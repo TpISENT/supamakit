@@ -1,0 +1,11 @@
+{
+    "merchant_key":"3d5697a2",
+    "currency":"OUV",
+    "order_id": "TestOpE_01100",
+    "amount":"1000",
+    "return_url": "http://www.gofenam.com/return",
+    "cancel_url": "http://www.gofenam.com/cancel",
+    "notif_url": "http://www.gofenam.com/notis",
+    "lang": "en",
+    "reference": "TestOpE_01100"
+}
