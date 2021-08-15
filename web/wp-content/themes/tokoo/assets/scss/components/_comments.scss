@@ -1,0 +1,201 @@
+form.comment-form {
+    @include make-form-and-row()
+    @include make-form( 16px, 32px, $input-color, $input-bg, 13px, 30px, #b4b4b4, false, $fw-light );
+    margin-bottom: 72px;
+
+    input[type="submit"] {
+        @include button-variant( $secondary, $secondary );
+    }
+}
+
+.comments-title,
+.comment-reply-title {
+    display: block;
+    font-size: 18px;
+    line-height: 32px;
+    color: #323232;
+    letter-spacing: 0.01em;
+    font-weight: $fw-medium;
+}
+
+.comments-title {
+    text-transform: uppercase;
+}
+
+.comment-reply-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comment-content {
+    margin-bottom: 22px;
+}
+
+.comments-area {
+    @include media-breakpoint-up(xl) {
+        width: 66.6666666667%;
+    }
+
+    margin: auto;
+}
+
+.page {
+    .comments-area {
+        width: 100%;
+        margin-top: 50px;
+    }
+}
+
+.comments-area-inner {
+    margin-bottom: 40px;
+
+    @include media-breakpoint-up(md) {
+        margin-bottom: 72px;
+    }
+}
+
+.comment-list {
+    @include list-unstyled();
+    margin-top: -20px;
+
+    .children {
+        @include list-unstyled();
+        padding-left: 20px;
+
+        @include media-breakpoint-up(xl) {
+            padding-left: 100px;
+        }
+    }
+
+    li.comment, li.pingback {
+        margin-top: 30px;
+
+        @include media-breakpoint-up(md) {
+            margin-top: 50px;
+        }
+    }
+
+    .bypostauthor {
+        .comment-author-name {
+            &:after {
+                font-family: "Font Awesome\ 5 Free";
+                font-weight: 400;
+                margin: 0 0 0 8px;
+                content: "\f02e";
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.comment-body {
+    display: flex;
+
+    @include media-breakpoint-down(sm) {
+        flex-direction: column;
+    }
+}
+
+.comment-author-gravatar {
+    @include media-breakpoint-up(md) {
+        margin-right: 38px;
+    }
+}
+
+.comment-meta-and-content {
+    flex: 1;
+}
+
+.comment-meta {
+    display: flex;
+    
+    @include media-breakpoint-up(md) {
+        align-items: center;
+    }
+
+    @include media-breakpoint-down(sm) {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    > * {
+        margin-right: 15px;
+    }
+}
+
+.comment-text {
+    font-size: 14px;
+    color: $tokoo-body-color;
+    margin-bottom: 6px;
+    word-break: break-word;
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+
+    table {
+        @include make-table();
+    }
+
+    ul, ol {
+        margin-bottom: 1rem;
+    }
+}
+
+.comment-respond {
+    .comment-reply-title {
+        a {
+            color: #757575;
+        }
+    }
+}
+
+.reply {
+    margin-bottom: 5px;
+
+    .comment-edit-link {
+        color: #757575;
+
+        &:before {
+            content: "-";
+            display: inline-block;
+            margin: 0 10px 0 6px;
+        }
+    }
+}
+
+.comment-author-name {
+    font-size: 16px;
+    line-height: 33px;
+    font-weight: $fw-medium;
+    color: #303030;
+    font-style: normal;
+
+}
+
+.comment-date {
+    font-size: 13px;
+    line-height: 22px;
+    color: #909090;
+    font-weight: $fw-light;
+}
+
+.no-comments {
+    @include make-woocommerce-alert( "warning" );
+}
+
+.comment-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4em;
+
+    .nav-previous:before,
+    .nav-next:after {
+        content: none;
+    }
+}

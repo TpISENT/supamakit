@@ -1,0 +1,241 @@
+.header-aside a,
+.about-job .job-title,
+.about-job a:hover,
+.about-job a:focus,
+.comment-reply-link,
+.comment-reply-link:hover,
+.comment-reply-link:focus,
+.comment-navigation a,
+.page-numbers .current,
+nav.page-numbers > span,
+.article .entry-featured-image:hover .post-icon, 
+.article .entry-featured-image:focus .post-icon,
+.url,
+.single-article .tk-list li:before,
+.single-article blockquote.tk-blockquote,
+.post-navigation a,
+.nav-previous:before,
+.nav-next:after,
+.single-post-footer .author-name,
+.cart-contents .count,
+.header-wishlist .count,
+.feature-icon,
+.widget-area .widget .current-cat .child-indicator,
+.cart-header-subtitle strong, 
+.cart-header-subtitle .woocommerce-Price-amount,
+.checkout-steps a.active, 
+.checkout-steps a.always-active,
+.register-benefits-banner .register-benefits-banner-inner .banner-icon i,
+.register-benefits-banner .register-benefits-banner-inner .banner-content h3,
+.shop-view-switcher li > a.active,
+.wc-terms-and-conditions  a,
+.coupon-form-subtitle a,
+.woocommerce-Price-amount,
+.woocommerce-breadcrumb a,
+.login-register-tab.active,
+.woocommerce-lost-password .site-content-inner .page-title,
+.woocommerce-MyAccount-navigation-link.is-active,
+.woocommerce-MyAccount-navigation-link > a,
+.product_title,
+.wc-tabs > li.active > a,
+.info-message-subtitle a, 
+.info-message-subtitle strong,
+.widget-area .widget_product_categories .product-categories li.current-cat.cat-parent > .cat-item-inner > .cat-item-link,
+.single-product .single-product-summary-inner .price-details .price,
+.single-product .product_meta span a,
+.single-product-feature-list ul .feature-inner .feature-thumbnail i,
+.vertical-menu-title a,
+.vertical-nav > .menu-item > a:hover,
+.section-flash-sale-block .section-title i,
+.section-flash-sale-block .marketing-text:before,
+.categories-nav .nav-link.active,
+.categories-nav .nav-link:hover,
+.view-products,
+.view-products:hover,
+.view-products:focus,
+.advanced-review .rating-histogram .rating-count:not(.zero),
+.advanced-review .comment-text .meta .woocommerce-review__verified,
+.register-benefits ul li:before,
+.primary-nav .yamm-content a:hover,
+.price,
+.article .entry-title a:hover,
+.home-v1-slider .tparrows.custom:hover:before,
+.entry-content a,
+form.comment-form .logged-in-as a,
+.ais-menu .ais-menu--list .ais-menu--item .ais-menu--link:hover,
+.ais-pagination--item__active a,
+.reply .comment-edit-link,
+.comment-text a {
+
+	color: $tokoo-primary-color;
+}
+
+.masthead-v3 .header-icon-link .count,
+.masthead:not(.masthead-v3),
+.widget_tag_cloud .tag-cloud-link:hover,
+.onsale,
+.handheld-header .handheld-header-links .cart .count ,
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.dokan-common-links a:hover,
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.dokan-common-links a:focus {
+	background-color: $primary-bg-color;
+	color: $primary-text-color;
+}
+
+.checkout-steps a.active:before, 
+.checkout-steps a.always-active:before,
+.widget_price_filter .ui-slider .ui-slider-range,
+.woocommerce-widget-layered-nav-list__item--chosen .checkbox-indicator,
+#scrollUp,
+.slick-dots li.slick-active button:before {
+	background-color: $primary-bg-color;
+}
+
+.widget_tag_cloud .tag-cloud-link,
+.widget_price_filter .ui-slider .ui-slider-handle,
+.woocommerce-widget-layered-nav-list__item--chosen .checkbox-indicator,
+.slick-dots li.slick-active button:before,
+.advanced-review .comment-text .meta .woocommerce-review__verified,
+.slick-arrow,
+.single-product .product-images-wrapper .tokoo-single-product-gallery-thumbnails .slick-vertical .slick-arrow:not(.disabled) {
+	border-color: $tokoo-primary-color;
+}
+
+@include media-breakpoint-down(sm) {
+	.checkout-steps li:before {
+		border-left-color: $tokoo-primary-color;
+	}
+}
+
+.checkout-steps a.active, 
+.checkout-steps a.always-active,
+.login-register-tab.active,
+.woocommerce-MyAccount-navigation-link.is-active,
+.wc-tabs > li.active > a,
+.categories-nav .nav-link.active:after,
+.single-product .product-images-wrapper .tokoo-single-product-gallery-thumbnails .tokoo-single-product-gallery-thumbnails__wrapper .slick-slide.slick-current img,
+.woocommerce-lost-password .site-content-inner .page-header,
+.rev_slider_wrapper .tp-tabs .tp-tab.selected,
+.single-product .product-images-wrapper .tokoo-single-product-gallery-thumbnails .tokoo-single-product-gallery-thumbnails__wrapper .slick-slide.slick-current img {
+
+	border-bottom-color: $tokoo-primary-color; 
+}
+
+.primary-nav .primary-nav-menu > .menu-item .sub-menu,
+.secondary-nav-menu .sub-menu {
+    border-top-color: $tokoo-primary-color;    
+}
+
+.masthead-v3 .tokoo-svg {
+    fill: $tokoo-primary-color;
+}
+
+.contact-form .wpcf7 form.wpcf7-form input[type="submit"],
+.return-to-shop .button,
+.checkout-button,
+button[name="woocommerce_checkout_place_order"],
+.woocommerce-mini-cart__buttons .button:last-child,
+.btn-action,
+.added_to_cart,
+.single_add_to_cart_button,
+.advanced-review .advanced-review-comment .form-submit input,
+form.woocommerce-ResetPassword .login-form-footer .button, 
+form.woocommerce-ResetPassword .woocommerce-Button, 
+.login-register-forms .login-form-footer .button, 
+.login-register-forms .woocommerce-Button,
+.table-compare tbody tr td .button,
+.woocommerce-MyAccount-content .btn-primary,
+.dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success,
+.dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary,
+.woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"],
+.widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit,
+div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit], 
+div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit], 
+div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button {
+	@include button-variant( $tokoo-primary-color, $tokoo-primary-color );
+
+}
+
+input[name="apply_coupon"] {
+	@include button-outline-variant($tokoo-primary-color);
+}
+.secondary-nav-menu > li + li:before {
+	background-color: darken($tokoo-primary-color, 17%);
+}
+.primary-nav {
+	background-color: darken($tokoo-primary-color, 4%);
+}
+
+.top-bar {
+	  background-color: darken( $tokoo-primary-color, 10.9%);
+}
+
+.top-bar a,
+.secondary-nav-menu > li > a,
+.primary-nav-menu > li > a{
+	  color: lighten( $tokoo-primary-color, 39.9% );
+}
+
+.checkout-button,
+.entry-content a.btn-action,
+.entry-content a.added_to_cart,
+.departments-menu-title,
+.departments-menu-title:hover,
+.departments-menu-title:focus {
+	color: $primary-text-color !important;
+}
+
+.header-user-account-dropdown li > a {
+	color: $primary-text-color;
+}
+
+@include media-breakpoint-up(xl) {
+    .tokoo-svg {
+        fill: $primary-text-color;
+
+    }
+
+    .header-icon i,
+    .site-branding .site-title,
+    .site-branding .site-description  {
+    	color: $primary-text-color;
+    }
+
+}
+
+/*........Dokan.......*/
+
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.active,
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li:hover,
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li:focus,
+.dokan-coupon-content .code:hover,
+.dokan-subscription-content .pack_content_wrapper .product_pack_item .pack_price {
+	background-color: $tokoo-primary-color;
+}
+
+.dokan-store .pagination-wrap ul.pagination > li > span.current,
+.dokan-dashboard .pagination-wrap ul.pagination > li > span.current,
+.dokan-pagination-container .dokan-pagination li.active a,
+.dokan-coupon-content .code a, 
+.dokan-coupon-content .code span,
+.dokan-dashboard-content ul.dokan_tabs li.active a,
+.dokan-product-listing .dokan-product-listing-area .row-actions .edit a:hover, 
+.dokan-product-listing .dokan-product-listing-area .row-actions .view a:hover, 
+.dokan-product-listing .dokan-product-listing-area .row-actions .duplicate a:hover,
+.dokan-orders-content .dokan-orders-area ul.order-statuses-filter li.active a,
+ul.subsubsub li.active a,
+.dokan-coupon-content .row-actions .edit a:hover,
+.dokan-single-store .store-coupon-wrap .code span.outside,
+.dokan-widget-area .widget #cat-drop-stack ul > li .children a.selected,
+.dokan-subscription-content .seller_subs_info span,
+.dokan-panel .dokan-panel-body .wc-order-data-row table.wc-order-totals tbody tr td.refunded-total,
+.dokan-reviews-content .dokan-reviews-area .dokan-comments-wrap ul.dokan-cmt-row-actions li a:hover {
+	color: $tokoo-primary-color;
+}
+
+input.dokan-btn-theme[type="submit"],
+a.dokan-btn-theme, 
+.dokan-btn-theme,
+.dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit],
+.woocommerce-progress-form-wrapper .button {
+ 	@include button-variant( $tokoo-primary-color, $tokoo-primary-color );
+ }

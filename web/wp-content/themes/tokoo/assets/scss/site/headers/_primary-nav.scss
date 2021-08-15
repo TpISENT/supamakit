@@ -1,0 +1,83 @@
+.primary-nav-inner {
+    position: relative;
+}
+
+.primary-nav-menu {
+    @include make-nav();
+    margin: 0 -1rem;
+
+    > li {
+        position: relative;
+
+        &.menu-item-has-children {
+            position: static;
+
+            > a:after {
+                font-family: Flaticon;
+                content: "\f120";
+                font-size: 10px;
+                margin-left: 8px;
+            }
+        }
+
+        > a {
+            @include make-nav-link();
+            text-transform: uppercase;
+            font-weight: $fw-medium;
+            font-size: 13px;
+        }
+
+        &.highlight {
+            > a {
+                color: #efc609;
+            }            
+        }
+
+        &.hot {
+            > a {
+                color: #fff;
+                font-weight: $fw-semi-bold;
+                position: relative;
+
+                &:after {
+                    display: inline-block;
+                    height: 6px;
+                    width: 6px;
+                    border-radius: 50%;
+                    background-color: #efc609;
+                    position: absolute;
+                    top: 0.5rem;
+                    right: 0.5rem;
+                    content: '';
+                }
+            }
+        }
+        
+        @include hover-focus() {
+            > .children {
+                display: block;
+            }
+        }
+    }
+
+    .children {
+        @include make-dropdown-menu( $dropdown-padding-y, 1, $tokoo-dropdown-border-color, 0, 0, $snapdeal-box-shadow );
+        min-width: 220px;
+
+        > li > a {
+            font-size: 13px;
+            @include make-dropdown-item( 0.25em, 1.5em );
+            white-space: normal;
+        }
+
+        > li {
+            @include hover-focus() {
+                > .children {
+                    display: block;
+                    left: 100%;
+                    top: 0;
+                }
+            }
+        }
+    }
+}

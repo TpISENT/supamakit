@@ -1,0 +1,288 @@
+@import "signup-form";
+
+.footer-widgets {
+    @include make-row(0);
+    padding: 40px 0 49px;
+    border-top: 1px solid #e5e5e5;
+
+    > .block {
+        @include make-col-ready();
+
+        @include media-breakpoint-down(sm) {
+            text-align: center;
+        }
+
+        @include media-breakpoint-up(lg) {
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+
+    .widget-title {
+        font-size: 14px;
+        display: block;
+        font-weight: $fw-medium;
+        color: $tokoo-title-color;
+        line-height: 32px;
+        margin-bottom: 8px;
+    }
+
+    .widget-title + ul,
+    .menu {
+        @include list-unstyled();
+        column-count: 2;
+        display: block;
+    }
+
+    &.col-4 > .block,
+    &.col-3 > .block {
+        @include make-col(12);
+
+        @include media-breakpoint-only(md) {
+            @include make-col(6);
+        }
+    }
+
+    &.col-4 > .block {
+        @include media-breakpoint-up(lg) {
+            @include make-col(3);
+        }
+    }
+
+    &.col-3 > .block {
+        @include media-breakpoint-up(lg) {
+            @include make-col(4);
+        }
+    }
+
+    &.col-2 > .block {
+        @include media-breakpoint-up(md) {
+            @include make-col(6);
+        }
+    }
+
+    a,
+    .widget_product_categories .product-categories > li > .cat-item-inner > .cat-item-link,
+    .widget_product_categories .product-categories > li.cat-parent > .cat-item-inner > .cat-item-link {
+        color: $tokoo-body-color;
+        font-weight: $fw-regular;
+        line-height: inherit;
+
+        &:hover {
+            color: #000;
+        }
+    }
+
+    .menu > .menu-item > a {
+        padding: 0;
+    }
+
+    .widget_media_image .image{
+        margin-bottom: 14px;
+        margin-top: 10px;
+
+        a {
+            display: block;
+        }
+    }
+
+    .contact-details {
+        font-size: 15px;
+        line-height: 32px;
+        color: #757575;
+
+        a {
+            color: $tokoo-title-color;
+            font-weight: $fw-medium;
+            text-decoration: underline;
+        }
+    }
+
+    .contact-details,
+    .widget_media_image {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    form {
+        input {
+            background-color: transparent;
+            border: 1px solid #b4b4b4;
+            padding: 14px 24px;
+            width: 90%;
+        }
+
+        input::placeholder {
+            font-size: 15px;
+            font-weight: 300;
+            color: #b4b4b4;
+        }
+    }
+
+    .widget{
+        margin-bottom: 16px;
+
+        .widget_nav_menu li a {
+            padding: 0;
+        }
+
+        .sub-menu {
+            li a {
+                padding: 0;
+                
+                @include media-breakpoint-down(sm) {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .widget_rss,
+    .widget_meta,
+    .widget_pages,
+    .widget_archive,
+    .widget_recent_comments,
+    .widget_categories:not(.woocommerce) {
+        ul {
+            column-count: 1;
+        }
+    }
+
+    .widget_products,
+    .widget_recent_reviews,
+    .widget_top_rated_products {
+        .product_list_widget {
+            column-count: 1;
+        }
+    }
+}
+
+.site-footer {
+    .product-categories {
+        .cat-parent .children {
+            display: none;
+        }
+    }
+}
+
+.footer-v2 {
+
+    .about-menu {
+        margin-bottom: 27px;
+
+        a {
+            color: #252525;
+            font-weight: 500;
+            font-size: 13px;
+        }
+    }
+
+    .footer-logo-social {
+        display: none;
+    }
+
+    .footer-bottom-bar-inner {
+        .payment-icons {
+            order: 2;
+        }
+    }
+
+    .footer-widgets {
+        border-top: none;
+
+        .widget_media_image {
+            display: flex;
+
+            .image {
+                margin-top: 0;
+
+                & + .image {
+                    margin-left: 15px;
+                }
+            }
+        }
+
+        form {
+            margin-bottom: 20px;
+
+            input {
+                background-color: transparent;
+                border: none;
+                width: 100%;
+                border-bottom: 1px solid #b4b4b4;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding: 9px 0;
+
+                &:focus {
+                    box-shadow: none;
+                    outline: none
+                }
+            }
+        }
+
+        .menu {
+            @include media-breakpoint-down(sm) {
+                margin-bottom: 27px;
+            }
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 27px;
+
+            @include media-breakpoint-down(lg) {
+                flex-direction: column;
+            }
+
+            li {
+                display: flex;
+                flex-direction: column;
+                font-weight: 300;
+                color: #757575;
+                font-size: 15px;
+
+                a {
+                    text-decoration: none;
+                    font-size: 20px;
+                    display: block;
+                    color: #252525;
+                }
+            }
+        }
+
+        > .block {
+            @include make-col(12);
+
+            @include media-breakpoint-only(md) {
+                @include make-col(6);
+            }
+
+            @include media-breakpoint-up(lg) {
+                @include make-col(3);
+            }
+
+            &:nth-child(3) {
+                @include media-breakpoint-up(lg) {
+                    @include make-col(2);
+
+                    .menu {
+                        column-count: 1;
+                    }
+                }
+            }
+
+            &:last-child {
+                @include media-breakpoint-up(lg) {
+                    @include make-col(4);
+                }
+            }
+        }
+    }
+}

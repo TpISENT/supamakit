@@ -1,0 +1,76 @@
+.masthead-v3 {
+    .masthead-inner {
+        height: 80px;
+    }
+
+    .header-search {
+        .search-field {
+            background-color: #f8f8f8;
+            border-color: #e6e6e6;
+            border-left-width: 1px;
+            font-size: 13px;
+            color: #757575;
+            border-right-width: 1px;
+            padding: 13.5px 15px 13.5px 52px;
+
+            &::placeholder {
+                color: #b4b4b4;    
+            }
+        }
+
+        .search-submit {
+            background-color: #f8f8f8;
+            border-color: #e6e6e6;
+            border-left-width: 0;
+        }
+    }
+
+    .widget_search,
+    .widget_product_search {
+        form.search-form,
+        .woocommerce-product-search {
+            .search-field {
+                border: 1px solid #e6e6e6;
+            }
+        }
+    }
+
+    .site-branding {
+        @include make-col-ready();
+        @include make-auto-width-col();
+    }
+
+    .secondary-nav-menu > li > a {
+        font-size: 13px;
+        color: $tokoo-body-color;
+        font-weight: $fw-light;
+    }
+
+    .secondary-nav-menu > li + li:before {
+        background-color: #e6e6e6;
+    }
+
+    .header-icon-link {
+        color: #000;
+
+        i {
+            font-size: 22px;
+        }
+
+        .count {
+            right: 8px;
+            top: 20px;
+        }
+    }
+
+    .secondary-nav-menu li > .sub-menu::after,
+    .secondary-nav-menu li > .sub-menu::before {
+        content: none;
+    }
+
+    .site-branding {
+        .site-title {
+            color: #252525;
+        }
+    }
+}

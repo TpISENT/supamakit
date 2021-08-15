@@ -1,0 +1,97 @@
+.footer-features {
+    border-top: 1px solid #ebebeb;
+
+    .feature {
+        text-align: center;
+        margin: 36px;
+
+        @include media-breakpoint-down(md) { 
+            max-width: 15%;
+            flex: 0 0 15%;
+        }
+
+        @include media-breakpoint-down(sm) { 
+            max-width: 40%;
+            flex: 0 0 40%;
+            margin: 20px;
+        }
+    }
+}
+
+.features-list {
+    @include list-unstyled();
+    display: flex;
+    margin-bottom: 0;
+
+    @include media-breakpoint-down(md) { 
+        overflow: auto;
+    }
+
+    @include media-breakpoint-up(lg) { 
+        justify-content: space-evenly;
+    }
+}
+
+.feature-text {
+    font-size: 13px;
+    line-height: 20px;
+    color: #252525;
+    display: block;
+}
+
+.feature-icon {
+    font-size: 55px;
+    display: block;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.features-list-block.style-1 {
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .feature {
+        @include media-breakpoint-down(lg) { 
+            margin: 20px;
+            text-align: center;
+        }
+
+        @include media-breakpoint-down(sm) { 
+            max-width: 40%;
+            flex: 0 0 40%;
+        }
+
+        @include media-breakpoint-only(md) { 
+            max-width: 20%;
+            flex: 0 0 20%;
+        }
+
+        @include media-breakpoint-up(xl) { 
+            display: flex;
+            margin: 10px;
+            text-align: left;
+        }
+    }
+
+    .feature-icon {
+        @include media-breakpoint-up(xl) { 
+             margin-right: 20px;
+             font-size: 37px;
+        }
+    }
+}
+
+.features-list-block.box-shadow {
+    background-color: #fff;
+    box-shadow: 0px 14px 27.84px 4.16px rgba(86, 86, 86, 0.04);
+    border-radius: 6px;
+    padding: 25px 0 12px;
+    margin-bottom: 38px;
+}
+
+.home-v5-slider + .features-list-block.style-1.box-shadow {
+    position: relative;
+    margin-top: -53px;
+}

@@ -1,0 +1,3 @@
+.calendar_wrap table {
+    @include make-table-bordered( 0, 0, center );
+}

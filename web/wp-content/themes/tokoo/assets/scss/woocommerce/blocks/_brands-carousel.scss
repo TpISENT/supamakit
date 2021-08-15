@@ -1,0 +1,45 @@
+.brands-carousel {
+    margin-bottom: 0;
+
+    .section-title {
+        text-align: center;
+        font-weight: 300;
+    }
+
+    header {
+        margin-bottom: 12px;
+    }
+    
+    .thumbnail {
+        padding: 0 15px;
+
+        a {
+            border: 1px solid #ebebeb;
+            display: block;
+            padding: 10px;
+            @include media-breakpoint-up(md) {
+                padding: 22px 15px;
+            }
+
+            @include hover-focus {
+                outline: none;
+            }
+        }
+
+        img {
+            filter: grayscale(100%);
+            opacity: .5;
+
+            @include media-breakpoint-down(sm) {
+                max-height: 50px;
+                width: auto;
+                margin: 0 auto;
+            }
+        }
+
+        &:hover img {
+            filter: none;
+            opacity: 1;
+        }
+    }
+}

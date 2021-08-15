@@ -1,0 +1,46 @@
+.add-to-compare-link {
+    text-indent: -99999px;
+    position: absolute;
+    right: 16px;
+    display: none;
+
+    &:before {
+        position: absolute;
+        top: 12px;
+        right: 0;
+        text-indent: 0;
+        color: #757575;
+        font-size: 16px;
+        content: "\f021";
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 600;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    &.added:before {
+        content: "\f105";
+        font-family: 'Flaticon';
+        color: #e74a6f;
+    }
+}
+
+
+.yith-wcwl-add-to-wishlist ~ .add-to-compare-link {
+    &:before {
+        top: 38px;
+    }
+}
+
+.products .product .product-inner:hover,
+.list-view .products .product {
+    .add-to-compare-link {
+        display: block;
+    }
+}
+
+.product-main-1-8,
+.columns-4-1-4 .products-1 {
+    .add-to-compare-link {
+        right: 19px;
+    }
+}

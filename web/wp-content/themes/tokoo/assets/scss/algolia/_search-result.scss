@@ -1,0 +1,41 @@
+.ais-hits--item {
+	h2 {
+		margin-bottom: 10px !important;
+
+		a {
+			color: #252525;
+			font-size: 15px;
+			line-height: 26px;
+		}
+	}
+
+	.excerpt {
+		font-size: 13px;
+		line-height: 24px;
+	}
+}
+
+.ais-menu {
+	.ais-menu--list {
+		.ais-menu--item {
+			.ais-menu--link {
+			    display: flex;
+			    justify-content: space-between;
+			    width: 100%;
+			    color: #757575;
+
+			    .ais-menu--count {
+			    	 background-color: #F3F3F3;
+				    padding: 7px 11px 5px 11px;
+				    border-radius: 100px;
+				    font-size: 12px;
+				    line-height: 12px;
+			    }
+			}
+		}
+	}
+}
+
+#ais-facets {
+	width: 33.33% !important;
+}

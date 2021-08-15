@@ -1,0 +1,44 @@
+.dokan-store {
+	.seller-items ul.products {
+        .has-rating {
+            .product-outer {
+            	@include media-breakpoint-up(xl) {
+                	min-height: 368px;
+                }
+            }
+        }
+
+        li{
+        	&:only-child:not(.has-rating),
+        	&.first:last-child:not(.has-rating) {
+	        	.product-outer {
+	        		min-height: 318px;
+	        	}
+	        }
+        }
+    }
+}
+
+.dokan-single-store {
+	.profile-frame {
+		.profile-info-box.profile-layout-layout1 {
+			.profile-info-summery-wrapper {
+				@include media-breakpoint-down(lg) {
+					height: 175px;
+				}
+
+				@include media-breakpoint-down(sm) {
+					height: 290px;
+				}
+			}
+		}
+
+        .profile-info-box.profile-layout-layout3 {
+            .profile-info-summery-wrapper .profile-info-summery {
+                .profile-info .dokan-store-info li:before {
+                    content: none;
+                }
+            }
+        }
+	}
+}

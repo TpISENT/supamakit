@@ -1,0 +1,99 @@
+.vertical-menu-slider-category-with-features {
+    @include stretch-full-width();
+    background-color: #f8f8f8;
+    margin-bottom: 39px;
+}
+
+.vertical-menu-slider-category {
+    @include make-row();
+    flex-wrap: nowrap;
+    margin-bottom: 30px;
+
+    .vertical-nav-block,
+    .slider-with-catogory {
+        @include make-col-ready();
+        @include make-col(12);
+    }
+
+    .vertical-nav-block {
+        @include media-breakpoint-down(lg) {
+            display: none;
+        }
+
+        @include media-breakpoint-up(xl) {
+            @include make-col(3);
+            padding-right: 0;
+        }
+    }
+
+    .slider-with-catogory {
+        @include media-breakpoint-up(xl) {
+            @include make-col(9);
+            padding: 0;
+        }
+    }
+
+    .slider-with-catogory.slider-with-catogory-stretch {
+        @include make-col(12);
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.slider-feature-list {
+    padding-bottom: 30px;
+}
+
+.slider-with-catogory {
+    ul.products {
+        margin: 0;
+         @include media-breakpoint-down(lg) {
+            overflow: auto;
+            flex-wrap: nowrap;
+         }
+
+        > li.product-category {
+            padding: 0;
+            margin: 0;
+            background-color: #fff;
+            border-right: 1px solid #f1f1f1;
+            border-bottom: 1px solid #f1f1f1;
+
+            &:hover {
+                box-shadow: 0 7px 17px 0 rgba(23, 84, 116, 0.18);
+                transition: .5s;
+            }
+
+            @include media-breakpoint-down(sm) {
+                 @include make-col(6);
+            }
+
+            @include media-breakpoint-up(md) {
+                @include media-breakpoint-down(lg) {
+                    @include make-col(4);
+                }
+            }
+
+
+            img {
+                max-width: 121px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    .product-category > a{
+        padding: 12px 15px 17px;
+
+        &:hover {
+            margin: 0;
+            box-shadow: none
+        }
+    }
+
+    .woocommerce-loop-category__title {
+        font-size: 14px;
+        margin-bottom: 0;
+        line-height: 1;
+    }
+}

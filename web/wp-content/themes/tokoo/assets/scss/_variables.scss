@@ -1,0 +1,26 @@
+$title-color: #252525;
+$tokoo-title-color: #252525;
+$tokoo-body-color: #757575;
+$tokoo-border-color: #e6e6e6;
+$tokoo-primary-color: #45b44d;
+/*$tokoo-primary-color: #e40046;
+$tokoo-primary-color: #0069ff;*/
+$tokoo-container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px
+) !default;
+
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semi-bold: 600;
+
+$tokoo-font-family: 'Poppins', sans-serif;
+
+$snapdeal-box-shadow: 0 4px 17px 0 rgba(0,0,0,0.1);
+$tokoo-box-shadow: 3px 2px 7px 1px rgba(0,0,0,0.08);
+$noon-box-shadow: 0 5px 4px 0 rgba(0,0,0,.18);
+
+$tokoo-dropdown-border-color: rgba(0,0,0,0.05);

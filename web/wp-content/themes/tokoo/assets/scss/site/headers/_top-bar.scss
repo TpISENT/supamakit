@@ -1,0 +1,60 @@
+.top-bar {
+    font-size: 11px;
+    line-height: 1.5;
+
+    @include media-breakpoint-down(lg) {
+        display: none;
+    }
+}
+
+.top-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar-nav {
+    @include make-menu( 3px, 17px);
+    margin-left: -17px;
+    margin-right: -17px;
+
+    .sub-menu {
+        @include make-submenu( 3px, 11px, 3px, 16px, 0, 100px, 0);
+        box-shadow: 0 4px 17px 0 rgba(0, 0, 0, 0.1);
+        z-index: 10000;
+
+        .menu-item-has-children a:after {
+            content: none;
+        }
+    }
+
+    i {
+        margin-right: 6px;
+    }
+}
+
+.top-bar-right .sub-menu {
+    left: auto;
+    right: 0;
+}
+
+.header-v4 .top-bar {
+    background-color: #fff;
+    color: $tokoo-body-color;
+    font-size: 12px;
+
+    a {
+        color: $tokoo-body-color;
+        font-weight: $fw-light;
+        letter-spacing: 0.01em;
+        line-height: 2.8;
+    }
+
+    .top-bar-inner {
+        border-bottom: 1px solid #e6e6e6;
+
+        &:empty {
+            border-bottom: none;
+        }
+    }
+}

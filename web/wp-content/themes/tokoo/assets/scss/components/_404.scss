@@ -1,0 +1,57 @@
+.error404 {
+	.no-results {
+		form.search-form,
+	    .woocommerce-product-search {
+	        display: flex;
+	        position: relative;
+	        padding: 20px;
+	        background: rgba(0, 0, 0, 0.025);
+
+	        label {
+	            display: block;
+	        }
+
+	        .search-field {
+	            border: 1px solid #e6e6e6;
+	            border-radius: 0;
+	            line-height: 1.286em;
+	            padding: 12px 22px 12px 52px;
+	            width: 100%;
+	            color: #495057;
+
+	            &:focus {
+	                box-shadow: none;
+	                outline: none;
+	            }
+	        }
+
+	        &:before {
+	            position: absolute;
+	            top: 0;
+	            left: 0;
+	            content: "\f119";
+	            font-family: Flaticon;
+	            top: 50%;
+	            left: 40px;
+	            transform: translateY(-50%);
+	            font-size: 18px;
+	            color: #7b7b7b;
+
+
+	        }
+	    }
+
+	    .search-submit,
+	    input[type=submit],
+	    button[type=submit] {
+	        border-left-width: 0;
+	        background: transparent;
+	        border-color: #e6e6e6;
+	        display: none;
+
+	        &:focus {
+	            outline: none;
+	        }
+	    }
+	}
+}

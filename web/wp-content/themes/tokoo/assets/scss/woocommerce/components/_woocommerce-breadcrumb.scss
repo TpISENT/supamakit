@@ -1,0 +1,19 @@
+.woocommerce-breadcrumb {
+    font-size: 13px;
+    color: #757575;
+    font-weight: 300;
+    margin-top: 38px;
+
+    a {
+        font-weight: 400;
+    }
+}
+
+.delimiter {
+    display: inline-block;
+    margin: 0 15px;
+
+    i {
+        font-size: 8px;
+    }
+}

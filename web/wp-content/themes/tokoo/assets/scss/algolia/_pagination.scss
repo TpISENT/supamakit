@@ -1,0 +1,25 @@
+.ais-pagination {
+    display: flex;
+    padding-left: 0;
+    justify-content: center;
+
+    li {
+    	> a,
+    	> span {
+    		position: relative;
+		    display: block;
+		    padding: 0.5rem 0.75rem;
+		    line-height: 20px;
+		    color: #757575;
+		    background-color: #fff;
+		    margin: 0 6px;
+
+		    &:hover {
+		    	z-index: 2;
+			    color: #0056b3;
+			    text-decoration: none;
+			    background-color: #e9ecef;
+		    }
+    	}
+    }
+}	

@@ -1,0 +1,13 @@
+.comment-form-cookies-consent {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5em;
+
+    input[type="checkbox"] {
+        flex: 0 0 25px;
+    }
+
+    label {
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,315 @@
+.vertical-nav-inner {
+    background-color: #fff;
+    padding: 15px 0 19px;
+    border: 1px solid #f1f1f1;
+    border-top: 0;
+}
+
+.vertical-menu-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 20px;
+
+    .title {
+        font-size: 14px;
+        text-transform: uppercase;
+        color: $tokoo-title-color;
+        font-weight: 500;
+    }
+
+    a {
+        font-size: 12px;
+        border-bottom: 1px solid;
+        line-height: 1;
+        padding-bottom: 1px;
+    }
+}
+
+.vertical-nav {
+    @include make-menu( 3px, 0 );
+    
+    i {
+        font-size: 19px;
+        margin-right: 13px;
+        opacity: 0.5;
+    }
+
+    &.yamm a {
+        color: $tokoo-body-color;
+        font-weight: 300;
+    }
+}
+
+.vertical-nav.yamm {
+    .menu-item-has-children {
+        position: static;
+    }
+
+    .elementor {
+        .menu > .menu-item > a {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    > .menu-item-has-children {
+        padding-right: 30px;
+        
+        > a {
+            display: flex;
+
+            &:after {
+                font-family: Flaticon;
+                content: "\f118" #{"/*rtl:\"\f117\"*/"};
+                border: 0;
+                font-size: 10px;
+                margin-left: auto;
+            }
+        }
+    }
+
+    >li {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .sub-menu {
+        @include make-submenu ( 0, $font-size-base, $dropdown-item-padding-y, $dropdown-item-padding-x, $dropdown-border-radius, $dropdown-min-width, $dropdown-border-width, #f1f1f1, $dropdown-bg, $tokoo-body-color, 300, transparent, underline );
+        top: 0;
+        left: 99%;
+        margin-top: -.5px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        > li {
+            > a {
+                font-size: 14px;
+            }
+
+            &:hover > a {
+                color: $tokoo-title-color;
+            }
+        }
+
+        .menu-item-has-children {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &:after {
+                font-family: Flaticon;
+                content: "\f118" #{"/*rtl:\"\f117\"*/"};
+                border: 0;
+                font-size: 10px;
+                margin-right: 22px;
+            }
+
+            a:after {
+                display: none;
+            }
+        }
+    }
+
+    .menu-item:not(.yamm-tfw) {
+        .sub-menu {
+            padding: 15px 0;
+
+            li:hover > a,
+            li > a:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .sub-menu .sub-menu {
+        display: none;
+    }
+
+    [class|=yamm] {
+        > .sub-menu {
+            overflow: hidden;
+        }
+    }
+}
+
+.vertical-nav.yamm,
+.departments-menu {
+    &:not(.animated-dropdown) {
+        .yamm-tfw {
+            > .sub-menu {
+                width: 0;
+                opacity: 0;
+                transition: all .25s ease 0s;
+            }
+        }
+    }
+
+    &.animated-dropdown {
+
+        [class|=yamm] {
+            > .sub-menu {
+                opacity: 1;
+                transition: all .25s ease 0s;
+            }
+        }
+
+        .yamm-tfw {
+            > .sub-menu {
+                width: 600px;
+            }
+        }
+
+        .yamm-fw {
+            > .sub-menu {
+                width: 900px;
+            }
+        }
+
+        .yamm-hw {
+            > .sub-menu {
+                width: 450px;
+            }
+        }
+    }
+}
+
+.yamm-content {
+    padding: 30px;
+    display: flex;
+
+    &>.elementor {
+        width: 100%;
+
+        ul.menu {
+            flex-direction: column;
+        }
+    }
+
+    .bg-yamm-content {
+        position: absolute;
+        right: auto;
+        bottom: 0;
+    }
+
+    section {
+        margin-bottom: 0;
+    }
+
+    ul {
+        @include list-unstyled();
+    }
+
+    li a {
+        font-size: 14px;
+        color: $tokoo-body-color;
+        font-weight: 300;
+    }
+
+    h1, h2, h3, h4, h5, h6, .nav-title,.nav-title,
+    .sub-menu > li.nav-title {
+        font-weight: 600;
+        color: $tokoo-title-color;
+        font-size: 14px;
+        
+        a {
+            font-weight: 600;
+            color: $tokoo-title-color;
+            font-size: 14px;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        &:hover a {
+            text-decoration: none;
+        }
+    }
+
+    .nav-divider {
+        height: 1px;
+        border-top: 1px solid #ddd;
+        margin: 0.5em 0;
+    }
+
+    .nav-text, .nav-subtext {
+        display: block;
+    }
+
+    .nav-subtext {
+        font-size: 12px;
+        color: #aaa;
+        line-height: 1;
+    }
+}
+
+.sub-menu .menu-item-has-children,
+.yamm-content li {
+    @include hover-focus {
+        > a {
+            text-decoration: underline;
+            color: $tokoo-title-color;
+        }
+    }
+}
+
+.yamm-content .widget_nav_menu {
+    ul.menu li {
+        &.nav-title {
+            a {
+                color: $title-color;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        a {
+            padding: 0;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    +.widget_nav_menu ul.menu li {
+        &.nav-title {
+            margin-top: 15px;
+        }
+    }
+}
+
+ul.sub-menu,
+ul.dropdown-menu,
+.vertical-nav.yamm,
+.primary-nav {
+    li[class*="yamm"] > ul.sub-menu>li>a{
+        display: none;
+    }
+}
+
+
+.primary-vertical-nav,
+.vertical-nav-block,
+.departments-menu {
+    .yamm-content .elementor-column,
+    .yamm-content .elementor-section,
+    .yamm-content .elementor-column-wrap,
+    .yamm-content .elementor-widget-wrap,
+    .yamm-content .elementor-section .elementor-container {
+        position: initial;
+    }
+}
+
+.yamm-content .elementor-element.bg-yamm-content:not(:last-child),
+.primary-nav .primary-nav-menu .yamm-content section.elementor-element {
+    margin-bottom: 0;
+}
+
+.yamm-content .elementor-element.bg-yamm-content {
+    right: 0;
+}

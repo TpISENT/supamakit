@@ -1,0 +1,8 @@
+$tokoo-primary-color: #0063d1;
+$primary-bg-color: $tokoo-primary-color;
+$primary-text-color: #fff;
+@import "../vendors/bootstrap/functions";
+@import "../vendors/bootstrap/variables";
+@import "../vendors/bootstrap/mixins";
+@import "../utilities/primary-color.scss";
+

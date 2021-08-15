@@ -1,0 +1,4089 @@
+# <!=Copyright (C) 2021 MadrasThemes
+# This file is distributed under the GNU General Public License v2 or later.=!>
+msgid ""
+msgstr ""
+"Project-Id-Version: Tokoo 1.1.9\n"
+"Report-Msgid-Bugs-To: https://madrasthemes.freshdesk.com/\n"
+"POT-Creation-Date: 2021-06-21 08:53:09+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: POT <support@madrasthemes.freshdesk.com>\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:361
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:439
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:274
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:763
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:420
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:667
+#: inc/admin/tokoo-meta-box-functions.php:393
+msgid "1"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:362
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:440
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:275
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:764
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:421
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:668
+#: inc/admin/tokoo-meta-box-functions.php:394
+msgid "2"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:363
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:441
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:276
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:765
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:422
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:669
+#: inc/admin/tokoo-meta-box-functions.php:395
+msgid "3"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:364
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:442
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:277
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:766
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:423
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:670
+#: inc/admin/tokoo-meta-box-functions.php:396
+msgid "4"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:365
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:443
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:278
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:767
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:424
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:671
+#: inc/admin/tokoo-meta-box-functions.php:397
+msgid "5"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:366
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:444
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:279
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:768
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:425
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:672
+#: inc/admin/tokoo-meta-box-functions.php:398
+msgid "6"
+msgstr ""
+
+#: 404.php:21
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:24
+msgid ""
+"Nothing was found at this location. Try searching, or check out the links "
+"below."
+msgstr ""
+
+#: 404.php:27 inc/template-tags/header.php:572
+msgid "Search"
+msgstr ""
+
+#: 404.php:41
+msgid "Promoted Products"
+msgstr ""
+
+#: 404.php:47 404.php:49
+msgid "Product Categories"
+msgstr ""
+
+#: 404.php:61 404.php:63
+msgid "Popular Products"
+msgstr ""
+
+#: comments.php:21
+msgid "Post Comments"
+msgstr ""
+
+#: comments.php:46
+msgid "Comment Navigation Below"
+msgstr ""
+
+#: comments.php:47
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:48
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: comments.php:49
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: comments.php:56
+msgid "Comments are closed."
+msgstr ""
+
+#: dokan/store-reviews.php:38
+msgid "Seller Review"
+msgstr ""
+
+#: dokan/store-reviews.php:43
+msgid "No Results Found"
+msgstr ""
+
+#: dokan/store-reviews.php:65
+msgid "Rated %d out of 5"
+msgstr ""
+
+#: dokan/store-reviews.php:66
+msgid "out of 5"
+msgstr ""
+
+#: dokan/store-toc.php:27
+msgid "Terms And Conditions"
+msgstr ""
+
+#: dokan/store.php:46
+msgid "No products were found of this vendor!"
+msgstr ""
+
+#: inc/admin/class-tokoo-admin-assets.php:55
+msgid "tokoo"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:48
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:48
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:48
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:48
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:48
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:48
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:48
+#: inc/redux-framework/options/general-options.php:8
+#: inc/redux-framework/options/shop-options.php:12
+#: inc/redux-framework/options/style-options.php:16
+msgid "General"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:53
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:99
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:134
+msgid "About Header"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:58
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:100
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:160
+msgid "About Content 1"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:63
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:101
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:180
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:295
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:151
+msgid "Features List"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:68
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:102
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:320
+msgid "About Content 2"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:73
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:103
+msgid "Testimonials"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:78
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:104
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:383
+msgid "About Job"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:98
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:78
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:144
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:144
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:144
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:144
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:149
+msgid "Page content"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:110
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:86
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:159
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:159
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:159
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:159
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:165
+msgid "Block"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:111
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:87
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:160
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:160
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:160
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:160
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:166
+msgid "Animation"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:112
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:88
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:161
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:161
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:161
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:161
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:167
+msgid "Priority"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:113
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:89
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:162
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:162
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:162
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:162
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:168
+msgid "Enabled ?"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:141
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:137
+#: inc/admin/tokoo-meta-box-functions.php:890
+msgid "Pre Title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:147
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:143
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:196
+#: inc/admin/tokoo-meta-box-functions.php:417
+#: inc/admin/tokoo-meta-box-functions.php:767
+#: inc/admin/tokoo-meta-box-functions.php:898
+msgid "Title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:167
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:327
+msgid "About Content"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:182
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:309
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:210
+msgid "Feature 1"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:188
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:210
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:232
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:254
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:276
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:298
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:316
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:339
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:362
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:383
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:404
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:425
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:215
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:236
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:257
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:278
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:299
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:320
+#: inc/redux-framework/options/footer-options.php:21
+msgid "Icon"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:189
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:211
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:233
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:255
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:277
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:299
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:317
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:340
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:363
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:384
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:405
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:426
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:216
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:237
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:258
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:279
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:300
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:321
+msgid "Enter the icon for your features here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:196
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:218
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:240
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:262
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:284
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:306
+msgid "Feature Title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:197
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:219
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:241
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:263
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:285
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:307
+msgid "Enter the title for your features here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:204
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:332
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:231
+msgid "Feature 2"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:226
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:355
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:252
+msgid "Feature 3"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:248
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:378
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:273
+msgid "Feature 4"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:270
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:399
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:294
+msgid "Feature 5"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:292
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:420
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:315
+msgid "Feature 6"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:340
+msgid "About Testimonials"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:346
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:389
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:213
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:263
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:335
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:388
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:443
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:551
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:233
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:362
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:413
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:472
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:522
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:568
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:455
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:505
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:581
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:617
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:737
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:791
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:212
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:343
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:394
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:453
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:503
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:549
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:358
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:400
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:451
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:590
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:641
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:695
+msgid "Section Title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:347
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:390
+msgid "Enter the Section title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:354
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:558
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:575
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:798
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:556
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:702
+msgid "Order By"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:357
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:561
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:578
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:801
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:559
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:705
+#: inc/template-tags/single-post.php:159 inc/template-tags/single-post.php:161
+msgid "Name"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:358
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:562
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:579
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:802
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:560
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:706
+msgid "Slug"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:359
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:565
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:582
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:805
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:563
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:709
+#: inc/admin/tokoo-meta-box-functions.php:412
+msgid "Id"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:366
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:574
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:591
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:814
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:572
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:718
+msgid "Order"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:369
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:577
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:594
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:817
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:575
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:721
+#: inc/admin/tokoo-meta-box-functions.php:429
+msgid "ASC"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:370
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:578
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:595
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:818
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:576
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:722
+#: inc/admin/tokoo-meta-box-functions.php:430
+msgid "DESC"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:397
+msgid "About Job List 1"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:403
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:457
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:511
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:565
+msgid "Job Pre Title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:404
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:458
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:512
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:566
+msgid "Enter the job pre title for your job here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:411
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:465
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:519
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:573
+msgid "Job Title Link"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:412
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:444
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:466
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:498
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:520
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:552
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:574
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:606
+msgid "Enter the action link for your job here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:419
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:473
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:527
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:581
+msgid "Job Title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:420
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:474
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:528
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:582
+msgid "Enter the title for your job here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:427
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:481
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:535
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:589
+msgid "Job Description"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:428
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:482
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:536
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:590
+msgid "Enter the description for your job here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:435
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:489
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:543
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:597
+msgid "Job Action Text"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:436
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:490
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:544
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:598
+msgid "Enter the action text for your job here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:443
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:497
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:551
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:605
+msgid "Job Action Link"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:451
+msgid "About Job List 2"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:505
+msgid "About Job List 3"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-about.php:559
+msgid "About Job List 4"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:53
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:79
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:110
+msgid "Contact Map"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:58
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:130
+msgid "Contact Form"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:80
+msgid "Contact Details"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:117
+msgid "Google Map"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:149
+msgid "Form Shortcode"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-contact.php:150
+msgid "Enter the shorcode for your form here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:53
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:145
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:183
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:183
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:227
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:53
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:145
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:183
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:53
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:150
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:189
+msgid "Slider"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:58
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:146
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:83
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:151
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:58
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:146
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:83
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:151
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:73
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:154
+msgid "Products Carousel - 1"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:63
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:147
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:88
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:152
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:63
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:147
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:88
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:152
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:68
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:153
+msgid "Products Carousel - 2"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:68
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:148
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:63
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:147
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:68
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:148
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:63
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:147
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:78
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:155
+msgid "Banner"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:73
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:149
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:78
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:150
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:88
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:152
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:78
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:150
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:93
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:158
+msgid "Categories Block"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:78
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:150
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:73
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:149
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:78
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:150
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:73
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:149
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:88
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:157
+msgid "Products 1-8 Block"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:83
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:151
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:68
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:148
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:83
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:151
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:68
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:148
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:83
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:156
+msgid "Flash Sale Block"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:88
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:152
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:58
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:146
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:73
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:149
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:58
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:146
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:63
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:152
+msgid "Products 4-1-4 Block"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:93
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:153
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:93
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:153
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:93
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:153
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:93
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:153
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:98
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:159
+msgid "Brands Carousel"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:113
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:113
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:113
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:113
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:118
+#: inc/redux-framework/options/header-options.php:89
+msgid "Header Style"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:116
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:116
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:116
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:116
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:121
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:27
+#: inc/redux-framework/options/header-options.php:94
+msgid "Header v1"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:117
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:117
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:117
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:117
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:122
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:28
+#: inc/redux-framework/options/header-options.php:95
+msgid "Header v2"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:118
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:118
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:118
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:118
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:123
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:29
+#: inc/redux-framework/options/header-options.php:96
+msgid "Header v3"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:119
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:119
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:119
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:119
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:124
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:30
+#: inc/redux-framework/options/header-options.php:97
+msgid "Header v4"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:130
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:130
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:130
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:130
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:135
+#: inc/redux-framework/options/footer-options.php:42
+msgid "Footer Style"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:133
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:133
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:133
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:133
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:138
+#: inc/redux-framework/options/footer-options.php:47
+msgid "Footer v1"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:134
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:134
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:134
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:134
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:139
+#: inc/redux-framework/options/footer-options.php:48
+msgid "Footer v2"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:189
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:189
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:233
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:189
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:195
+msgid "Slider Shortcode"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:190
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:190
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:234
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:190
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:196
+msgid "Enter the shorcode for your slider here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:206
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:257
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:437
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:480
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:227
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:296
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:465
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:516
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:448
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:499
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:575
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:667
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:206
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:275
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:446
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:497
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:352
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:394
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:444
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:522
+msgid "Show Header"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:215
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:474
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:457
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:455
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:453
+#: inc/template-tags/home/home-v1.php:23 inc/template-tags/home/home-v1.php:240
+#: inc/template-tags/home/home-v1.php:318
+#: inc/template-tags/home/home-v2.php:111
+#: inc/template-tags/home/home-v2.php:520
+#: inc/template-tags/home/home-v2.php:598 inc/template-tags/home/home-v3.php:67
+#: inc/template-tags/home/home-v3.php:383
+#: inc/template-tags/home/home-v3.php:461
+#: inc/template-tags/home/home-v4.php:104
+#: inc/template-tags/home/home-v4.php:466
+#: inc/template-tags/home/home-v4.php:544 inc/template-tags/home/home-v5.php:95
+#: inc/template-tags/home/home-v5.php:360
+#: inc/template-tags/home/home-v5.php:441
+msgid "Deals of the day"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:220
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:270
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:450
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:240
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:479
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:529
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:462
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:512
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:588
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:219
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:460
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:510
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:365
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:407
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:458
+msgid "Header Aside Action Text"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:227
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:277
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:457
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:247
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:486
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:536
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:469
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:519
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:595
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:226
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:467
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:517
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:372
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:414
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:465
+msgid "Header Aside Action Link"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:234
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:284
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:423
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:464
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:210
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:254
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:397
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:493
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:543
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:476
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:526
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:602
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:652
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:233
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:378
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:474
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:524
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:379
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:421
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:472
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:625
+#: inc/admin/tokoo-meta-box-functions.php:273
+msgid "Products"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:243
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:293
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:530
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:599
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:346
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:502
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:552
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:616
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:485
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:535
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:717
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:839
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:325
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:483
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:533
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:597
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:430
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:481
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:572
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:743
+msgid "Carousel Args"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:265
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:524
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:507
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:505
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:402
+#: inc/template-tags/home/home-v1.php:44 inc/template-tags/home/home-v2.php:133
+#: inc/template-tags/home/home-v3.php:89 inc/template-tags/home/home-v4.php:126
+#: inc/template-tags/home/home-v5.php:73
+msgid "Best Rated Products"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:307
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:269
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:549
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:248
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:495
+msgid "Banner Image"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:314
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:276
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:556
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:255
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:502
+msgid "Link"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:320
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:282
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:562
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:261
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:508
+msgid "Extra Class"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:337
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:415
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:739
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:396
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:643
+#: inc/template-tags/home/home-v1.php:73 inc/template-tags/home/home-v2.php:100
+#: inc/template-tags/home/home-v3.php:178 inc/template-tags/home/home-v4.php:93
+#: inc/template-tags/home/home-v5.php:168
+msgid "Shop by Categories"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:342
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:420
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:255
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:744
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:401
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:648
+msgid "Category Slug"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:345
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:423
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:258
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:747
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:404
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:651
+msgid "Enter category slugs separated by comma"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:350
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:585
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:428
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:602
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:263
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:752
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:825
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:409
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:583
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:656
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:729
+msgid "Limit"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:351
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:429
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:264
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:753
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:410
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:657
+msgid "Enter the limit"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:358
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:436
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:271
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:760
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:417
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:664
+msgid "Columns"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:374
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:452
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:287
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:776
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:433
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:680
+msgid "Hide Empty"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:390
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:364
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:619
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:345
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:592
+#: inc/template-tags/home/home-v1.php:86 inc/template-tags/home/home-v2.php:84
+#: inc/template-tags/home/home-v3.php:136 inc/template-tags/home/home-v4.php:77
+#: inc/template-tags/home/home-v5.php:152 inc/template-tags/home.php:145
+msgid "Best Seller Products on Gaming Categories"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:395
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:369
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:624
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:350
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:597
+msgid "Show Categories Tab"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:402
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:376
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:631
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:357
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:604
+msgid "Tab Title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:404
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:378
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:633
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:359
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:606
+#: inc/template-tags/home/home-v1.php:85 inc/template-tags/home/home-v1.php:455
+#: inc/template-tags/home/home-v2.php:83 inc/template-tags/home/home-v2.php:446
+#: inc/template-tags/home/home-v3.php:135
+#: inc/template-tags/home/home-v3.php:603 inc/template-tags/home/home-v4.php:76
+#: inc/template-tags/home/home-v4.php:392
+#: inc/template-tags/home/home-v5.php:151
+#: inc/template-tags/home/home-v5.php:639 inc/template-tags/home.php:146
+msgid "Gaming"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:409
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:383
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:638
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:364
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:611
+msgid "Category number"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:416
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:390
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:645
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:371
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:618
+msgid "Category Slugs"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:445
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:235
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:583
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:214
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:360
+#: inc/template-tags/home/home-v1.php:131
+#: inc/template-tags/home/home-v1.php:583 inc/template-tags/home/home-v2.php:33
+#: inc/template-tags/home/home-v2.php:299
+#: inc/template-tags/home/home-v3.php:121
+#: inc/template-tags/home/home-v3.php:568 inc/template-tags/home/home-v4.php:26
+#: inc/template-tags/home/home-v4.php:245 inc/template-tags/home/home-v5.php:57
+#: inc/template-tags/home/home-v5.php:321
+msgid "New Arrivals"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:486
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:302
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:673
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:281
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:528
+msgid "Section title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:493
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:309
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:680
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:288
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:535
+msgid "Show Timer"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:500
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:316
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:687
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:295
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:542
+#: inc/admin/tokoo-meta-box-functions.php:798
+#: inc/admin/tokoo-meta-box-functions.php:818
+msgid "Background Image"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:507
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:323
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:694
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:302
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:549
+msgid "Timer Value"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:514
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:330
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:701
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:309
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:556
+msgid "Timer Title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:521
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:337
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:708
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:316
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:563
+msgid "Shortcode Content"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:553
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:570
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:793
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:551
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:697
+msgid "Our Offical Brand"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:563
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:580
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:803
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:561
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:707
+msgid "Term Group"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:564
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:581
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:804
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:562
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:708
+msgid "Term Id"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:566
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:583
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:806
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:564
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:710
+#: inc/functions/menu.php:242 templates/shop/compare.php:82
+msgid "Description"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:567
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:584
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:807
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:565
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:711
+msgid "Parent"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v1.php:592
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:609
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:832
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v4.php:590
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:736
+msgid "Hide Empty?"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:53
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:145
+msgid "Slider with Product"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:197
+#: templates/shop/compare.php:28
+msgid "Product"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v2.php:203
+msgid "Enable Feature product"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:53
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:145
+msgid "Vertical Menu, Slider, Catergory & Features"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:183
+msgid "Vertical Menu"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:189
+msgid "Enable Vertical Menu"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:197
+msgid "Enter the title for your menu here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:204
+msgid "Vertical Menu Aside Action Text"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:205
+msgid "Enter the Action Text text for your menu here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:212
+msgid "Vertical Menu Aside Action Link"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:213
+msgid "Enter the action link for your menu here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:220
+#: inc/admin/tokoo-meta-box-functions.php:928
+msgid "Menu"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:241
+msgid "Category Block"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:248
+msgid "Enable Category Block"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:302
+msgid "Enable Features List"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:324
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:347
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:370
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:391
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:412
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:433
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:223
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:244
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:265
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:286
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:307
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:328
+msgid "Label"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:325
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:348
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:371
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:392
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:413
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v3.php:434
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:224
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:245
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:266
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:287
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:308
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:329
+msgid "Enter the label for your features here"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:58
+msgid "Features list"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:208
+msgid "Feature List"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-home-v5.php:339
+msgid "Section Class"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:21
+msgid "Site Header Style"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:22
+msgid "Choose a site header style for this page"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:26
+msgid "Default Header"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:35
+msgid "Hide Page Header"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:36
+msgid ""
+"Check this if you want to hide page header that contains page title and "
+"subtitle."
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:42
+msgid "Page Title"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:43
+msgid ""
+"Add a custom page title or leave empty if you want the page title to be the "
+"same as the page name"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:49
+msgid "Page Subtitle"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:50
+msgid "Add a subtitle to the page"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:56
+msgid "Hide Breadcrumb"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:57
+msgid "Check this if you want to hide breadcrumb."
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:63
+msgid "Additional Body Classes"
+msgstr ""
+
+#: inc/admin/meta-boxes/class-tokoo-meta-box-page.php:64
+msgid "Add custom classes to page <body>"
+msgstr ""
+
+#: inc/admin/tokoo-admin-functions.php:12
+msgid "Tokoo Custom Primary Color CSS"
+msgstr ""
+
+#: inc/admin/tokoo-admin-functions.php:13
+msgid "The generated custom primary color CSS is given below"
+msgstr ""
+
+#: inc/admin/tokoo-admin-functions.php:15
+msgid "Instructions"
+msgstr ""
+
+#: inc/admin/tokoo-admin-functions.php:17
+msgid ""
+"Create a file named custom-color.css in your child theme like "
+"wp-content/themes/tokoo-child/custom-color.css. Latest versions of "
+"tokoo-child comes with an empty custom-color.css so you don't have to "
+"create one"
+msgstr ""
+
+#: inc/admin/tokoo-admin-functions.php:18
+msgid ""
+"If you do not use a child theme, please use one otherwise all your custom "
+"changes will be lost during update"
+msgstr ""
+
+#: inc/admin/tokoo-admin-functions.php:19
+msgid "Copy the CSS above and paste in the custom-color.css file created in step 1"
+msgstr ""
+
+#: inc/admin/tokoo-admin-functions.php:20
+msgid "Thats it. Your custom-color.css will be loaded automatically."
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:267
+msgid "Recent Products"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:268
+#: inc/woocommerce/tokoo-woocommerce-template-functions.php:36
+msgid "Featured Products"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:269
+msgid "Sale Products"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:270
+msgid "Best Selling Products"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:271
+msgid "Top Rated Products"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:272
+msgid "Product Category"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:274
+msgid "Product Attribute"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:283
+msgid "Product Category Slug"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:285
+msgid "Enter slug spearate by comma(,)."
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:293
+msgid "Product Category Operator"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:295
+msgid "Operator to compare categories. Possible values are 'IN', 'NOT IN', 'AND'."
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:303
+msgid "Show Products by:"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:305
+msgid "IDs"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:306
+msgid "SKUs"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:316
+msgid "Product IDs or SKUs"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:317
+msgid "Enter IDs or SKUs separated by comma"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:325
+msgid "Attribute"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:327
+msgid "Enter single attribute slug."
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:335
+msgid "Terms"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:337
+msgid "Enter term slug spearate by comma(,)."
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:345
+msgid "Terms Operator"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:347
+msgid "Operator to compare terms. Possible values are 'IN', 'NOT IN', 'AND'."
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:357
+msgid "Shortcode Atts"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:381
+msgid "per_page"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:390
+msgid "columns"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:408
+#: inc/admin/tokoo-meta-box-functions.php:482
+msgid "orderby"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:411
+msgid "Date"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:413
+msgid "Menu Order"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:414
+#: inc/woocommerce/template-tags/product-archive.php:47
+msgid "Popularity"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:415
+msgid "Rand"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:416
+msgid "Rating"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:426
+#: inc/admin/tokoo-meta-box-functions.php:491
+msgid "order"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:455
+msgid "limit"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:464
+msgid "number"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:473
+msgid "hide_empty"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:536
+#: inc/admin/tokoo-meta-box-functions.php:797
+#: inc/admin/tokoo-meta-box-functions.php:808
+msgid "Image"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:539
+msgid "Upload/Add image"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:540
+msgid "Remove this image"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:554
+msgid "No Animation"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:655
+msgid "slidesPerRow"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:664
+msgid "slidesToShow"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:673
+msgid "slidesToScroll"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:682
+msgid "rows"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:692
+msgid "dots"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:701
+msgid "arrows"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:711
+msgid "prevArrow"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:720
+msgid "nextArrow"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:729
+msgid "autoplay"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:739
+msgid "infinite"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:776
+msgid "Action Text"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:785
+msgid "Action Link"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:794
+msgid "Image Choice"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:828
+msgid "Background Color"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:838
+#: inc/redux-framework/options/blog-options.php:30
+#: inc/redux-framework/options/blog-options.php:43
+#: inc/redux-framework/options/shop-options.php:81
+msgid "Full Width"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:847
+msgid "Button Type"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:850
+msgid "Primary"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:851
+msgid "Secondary"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:882
+msgid "Step Value"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:906
+msgid "Caption"
+msgstr ""
+
+#: inc/admin/tokoo-meta-box-functions.php:919
+msgid "Select a menu"
+msgstr ""
+
+#: inc/class-tokoo.php:98
+msgid "Top Bar Left Menu"
+msgstr ""
+
+#: inc/class-tokoo.php:99
+msgid "Top Bar Right Menu"
+msgstr ""
+
+#: inc/class-tokoo.php:100
+msgid "Departments Menu"
+msgstr ""
+
+#: inc/class-tokoo.php:101
+msgid "Primary Nav Menu"
+msgstr ""
+
+#: inc/class-tokoo.php:102
+msgid "Secondary Nav Menu"
+msgstr ""
+
+#: inc/class-tokoo.php:103
+msgid "Handheld Menu"
+msgstr ""
+
+#: inc/class-tokoo.php:171
+msgid "Blog Sidebar"
+msgstr ""
+
+#: inc/class-tokoo.php:173
+msgid "Widgets added to this region will appear in the blog and single post page."
+msgstr ""
+
+#: inc/class-tokoo.php:183
+msgid "Shop Sidebar"
+msgstr ""
+
+#: inc/class-tokoo.php:195
+msgid "Footer Column %1$d"
+msgstr ""
+
+#: inc/class-tokoo.php:196
+msgid "Widgets added here will appear in column %1$d of the footer."
+msgstr ""
+
+#: inc/class-tokoo.php:198
+msgid "Footer Row %1$d - Column %2$d"
+msgstr ""
+
+#: inc/class-tokoo.php:199
+msgid "Widgets added here will appear in column %1$d of footer row %2$d."
+msgstr ""
+
+#: inc/class-tokoo.php:335
+msgid "Expand child menu"
+msgstr ""
+
+#: inc/class-tokoo.php:336
+msgid "Collapse child menu"
+msgstr ""
+
+#: inc/class-tokoo.php:349
+msgid "Unable to find any products that match the current query"
+msgstr ""
+
+#: inc/class-tokoo.php:351
+msgid "Days"
+msgstr ""
+
+#: inc/class-tokoo.php:352
+msgid "Hours"
+msgstr ""
+
+#: inc/class-tokoo.php:353
+msgid "Mins"
+msgstr ""
+
+#: inc/class-tokoo.php:354
+msgid "Secs"
+msgstr ""
+
+#: inc/class-tokoo.php:457
+msgid "Contact Form by WPForms"
+msgstr ""
+
+#: inc/class-tokoo.php:467
+msgid "Envato Market"
+msgstr ""
+
+#: inc/class-tokoo.php:478
+msgid "Tokoo Extensions"
+msgstr ""
+
+#: inc/class-tokoo.php:489
+msgid "KingComposer"
+msgstr ""
+
+#: inc/class-tokoo.php:499
+msgid "Elementor"
+msgstr ""
+
+#: inc/class-tokoo.php:509
+msgid "MAS WooCommerce Brands"
+msgstr ""
+
+#: inc/class-tokoo.php:520
+msgid "One Click Demo Import"
+msgstr ""
+
+#: inc/class-tokoo.php:541
+msgid "Redux Framework"
+msgstr ""
+
+#: inc/class-tokoo.php:551
+msgid "Regenerate Thumbnails"
+msgstr ""
+
+#: inc/class-tokoo.php:561
+msgid "Revolution Slider"
+msgstr ""
+
+#: inc/class-tokoo.php:572
+#: inc/woocommerce/classes/class-tokoo-increment-decrement.php:93
+msgid "WooCommerce"
+msgstr ""
+
+#: inc/class-tokoo.php:582
+msgid "YITH WooCommerce Wishlist"
+msgstr ""
+
+#: inc/class-tokoo.php:603 inc/classes/class-tgm-plugin-activation.php:334
+msgid "Install Required Plugins"
+msgstr ""
+
+#: inc/class-tokoo.php:604 inc/classes/class-tgm-plugin-activation.php:335
+msgid "Install Plugins"
+msgstr ""
+
+#: inc/class-tokoo.php:605 inc/classes/class-tgm-plugin-activation.php:337
+#. translators: %s: plugin name.
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: inc/class-tokoo.php:606 inc/classes/class-tgm-plugin-activation.php:340
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: inc/class-tokoo.php:607
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-tokoo.php:608
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-tokoo.php:609
+msgid ""
+"Sorry, but you do not have the correct permissions to install the %s "
+"plugin. Contact the administrator of this site for help on getting the "
+"plugin installed."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to install the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-tokoo.php:610
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-tokoo.php:611
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-tokoo.php:612
+msgid ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugin. Contact the administrator of this site for help on getting the "
+"plugin activated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins activated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-tokoo.php:613
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-tokoo.php:614
+msgid ""
+"Sorry, but you do not have the correct permissions to update the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin "
+"updated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to update the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-tokoo.php:615 inc/classes/class-tgm-plugin-activation.php:377
+#. translators: 1: plugin name(s).
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-tokoo.php:616
+msgid "Activate installed plugin"
+msgid_plural "Activate installed plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-tokoo.php:617 inc/classes/class-tgm-plugin-activation.php:392
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: inc/class-tokoo.php:618 inc/classes/class-tgm-plugin-activation.php:394
+#: inc/classes/class-tgm-plugin-activation.php:3244
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: inc/class-tokoo.php:619
+msgid "All plugins installed and activated successfully. %s"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:339
+#. translators: %s: plugin name.
+msgid "Updating Plugin: %s"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:382
+msgid "Begin updating plugin"
+msgid_plural "Begin updating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/classes/class-tgm-plugin-activation.php:387
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/classes/class-tgm-plugin-activation.php:393
+#: inc/classes/class-tgm-plugin-activation.php:912
+#: inc/classes/class-tgm-plugin-activation.php:2618
+#: inc/classes/class-tgm-plugin-activation.php:3668
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:395
+#: inc/classes/class-tgm-plugin-activation.php:3037
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:397
+#. translators: 1: plugin name.
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:399
+#. translators: 1: plugin name.
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:401
+#. translators: 1: dashboard link.
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:402
+msgid "Dismiss this notice"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:403
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:404
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:607
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:608
+msgid "Update Required"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:1019
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug "
+"and renaming did not work."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:1019
+#: inc/classes/class-tgm-plugin-activation.php:1022
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:1022
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2067
+#. translators: %s: version number
+msgid "TGMPA v%s"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2358
+msgid "Required"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2361
+msgid "Recommended"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2377
+msgid "WordPress Repository"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2380
+msgid "External Source"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2383
+msgid "Pre-Packaged"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2400
+msgid "Not Installed"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2404
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2406
+msgid "Active"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2412
+msgid "Required Update not Available"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2415
+msgid "Requires Update"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2418
+msgid "Update recommended"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2477
+#. translators: 1: number of plugins.
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgid_plural "To Install <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2481
+#. translators: 1: number of plugins.
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgid_plural "Update Available <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2485
+#. translators: 1: number of plugins.
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgid_plural "To Activate <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2575
+msgid "Installed version:"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2583
+msgid "Minimum required version:"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2595
+msgid "Available version:"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2618
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2632
+msgid "Plugin"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2633
+msgid "Source"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2634
+msgid "Type"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2638
+msgid "Version"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2639
+msgid "Status"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2688
+#. translators: %2$s: plugin name in screen reader markup
+msgid "Install %2$s"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2693
+#. translators: %2$s: plugin name in screen reader markup
+msgid "Update %2$s"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2699
+#. translators: %2$s: plugin name in screen reader markup
+msgid "Activate %2$s"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2769
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2802
+msgid "Install"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2808
+msgid "Update"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2811
+msgid "Activate"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2842
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2844
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2885
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2887
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2993
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3019
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3243
+msgid "Plugin activation failed."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3583
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3586
+#. translators: 1: plugin name, 2: error message.
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3588
+#. translators: 1: plugin name.
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3591
+msgid ""
+"The installation and activation process is starting. This process may take "
+"a while on some hosts, so please be patient."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3593
+#. translators: 1: plugin name.
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3594
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3596
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3599
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3601
+#. translators: 1: plugin name.
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3602
+msgid "All installations have been completed."
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3604
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3608
+msgid "Show Details"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:3608
+msgid "Hide Details"
+msgstr ""
+
+#: inc/classes/class-tokoo-walker-category.php:80
+msgid "Feed for all posts filed under %s"
+msgstr ""
+
+#: inc/classes/class-tokoo-walker-page.php:102
+#. translators: %d: ID of a post
+msgid "#%d (no title)"
+msgstr ""
+
+#: inc/dokan/functions.php:58
+msgid "Store Category"
+msgstr ""
+
+#: inc/dokan/functions.php:61
+msgid "Store Location"
+msgstr ""
+
+#: inc/dokan/functions.php:65
+msgid "Contact Seller"
+msgstr ""
+
+#: inc/dokan/functions.php:109
+msgid "Store Sidebar"
+msgstr ""
+
+#: inc/dokan/functions.php:140
+msgid "Specifications"
+msgstr ""
+
+#: inc/dokan/functions.php:141
+msgid "Manage specifications for this product."
+msgstr ""
+
+#: inc/dokan/functions.php:158
+msgid "Display Attributes"
+msgstr ""
+
+#: inc/dokan/functions.php:163
+msgid "Attributes Title"
+msgstr ""
+
+#: inc/functions/menu.php:148
+#. translators: %s: title of menu item which is invalid
+msgid "%s (Invalid)"
+msgstr ""
+
+#: inc/functions/menu.php:152
+#. translators: %s: title of menu item in draft status
+msgid "%s (Pending)"
+msgstr ""
+
+#: inc/functions/menu.php:164
+msgid "sub item"
+msgstr ""
+
+#: inc/functions/menu.php:179
+msgid "Move up"
+msgstr ""
+
+#: inc/functions/menu.php:192
+msgid "Move down"
+msgstr ""
+
+#: inc/functions/menu.php:194 inc/functions/menu.php:196
+msgid "Edit Menu Item"
+msgstr ""
+
+#: inc/functions/menu.php:205
+msgid "URL"
+msgstr ""
+
+#: inc/functions/menu.php:212
+msgid "Navigation Label"
+msgstr ""
+
+#: inc/functions/menu.php:218
+msgid "Title Attribute"
+msgstr ""
+
+#: inc/functions/menu.php:225
+msgid "Open link in a new window/tab"
+msgstr ""
+
+#: inc/functions/menu.php:230
+msgid "CSS Classes (optional)"
+msgstr ""
+
+#: inc/functions/menu.php:236
+msgid "Link Relationship (XFN)"
+msgstr ""
+
+#: inc/functions/menu.php:244
+msgid ""
+"The description will be displayed in the menu if the current theme supports "
+"it."
+msgstr ""
+
+#: inc/functions/menu.php:254
+msgid "Icon Class"
+msgstr ""
+
+#: inc/functions/menu.php:261
+msgid "Move"
+msgstr ""
+
+#: inc/functions/menu.php:262
+msgid "Up one"
+msgstr ""
+
+#: inc/functions/menu.php:263
+msgid "Down one"
+msgstr ""
+
+#: inc/functions/menu.php:266
+msgid "To the top"
+msgstr ""
+
+#: inc/functions/menu.php:273
+msgid "Original: %s"
+msgstr ""
+
+#: inc/functions/menu.php:286 templates/shop/compare.php:141
+msgid "Remove"
+msgstr ""
+
+#: inc/functions/menu.php:287
+msgid "Cancel"
+msgstr ""
+
+#: inc/ocdi/functions.php:17
+msgid ""
+"This demo import with Elementor elements. Import process may take 3-5 "
+"minutes. If you facing any issues please contact our support."
+msgstr ""
+
+#: inc/ocdi/functions.php:32
+msgid ""
+"This demo import with King Composer elements. Import process may take 3-5 "
+"minutes. If you facing any issues please contact our support."
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:139
+#: inc/redux-framework/options/social-options.php:13
+#: inc/template-tags/footer.php:103
+msgid "Facebook"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:145
+#: inc/redux-framework/options/social-options.php:69
+#: inc/template-tags/footer.php:108
+msgid "Instagram"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:150
+#: inc/redux-framework/options/social-options.php:20
+#: inc/template-tags/footer.php:118
+msgid "Twitter"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:156
+#: inc/redux-framework/options/social-options.php:41
+#: inc/template-tags/footer.php:113
+msgid "Google+"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:162
+#: inc/redux-framework/options/social-options.php:55
+#: inc/template-tags/footer.php:123
+msgid "LinkedIn"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:168
+#: inc/redux-framework/options/social-options.php:27
+#: inc/template-tags/footer.php:128
+msgid "Whatsapp Mobile"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:173
+#: inc/redux-framework/options/social-options.php:34
+#: inc/template-tags/footer.php:133
+msgid "Whatsapp Desktop"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:178
+#: inc/redux-framework/options/social-options.php:48
+#: inc/template-tags/footer.php:138
+msgid "Pinterest"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:183
+#: inc/redux-framework/options/social-options.php:62
+#: inc/template-tags/footer.php:143
+msgid "Tumblr"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:189
+#: inc/redux-framework/options/social-options.php:76
+#: inc/template-tags/footer.php:148
+msgid "Youtube"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:195
+#: inc/redux-framework/options/social-options.php:83
+#: inc/template-tags/footer.php:153
+msgid "Vimeo"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:200
+#: inc/redux-framework/options/social-options.php:90
+#: inc/template-tags/footer.php:158
+msgid "Dribbble"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:205
+#: inc/template-tags/footer.php:163
+msgid "StumbleUpon"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:211
+#: inc/redux-framework/options/social-options.php:104
+#: inc/template-tags/footer.php:168
+msgid "Sound Cloud"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:216
+#: inc/redux-framework/options/social-options.php:111
+#: inc/template-tags/footer.php:173
+msgid "Vine"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:221
+#: inc/redux-framework/options/social-options.php:118
+#: inc/template-tags/footer.php:178
+msgid "VKontakte"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:226
+#: inc/redux-framework/options/social-options.php:125
+#: inc/template-tags/footer.php:183
+msgid "Telegram"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:231
+#: inc/redux-framework/options/social-options.php:134
+#: inc/template-tags/footer.php:188
+msgid "RSS"
+msgstr ""
+
+#: inc/redux-framework/functions/footer-functions.php:336
+msgid "Payment Icons"
+msgstr ""
+
+#: inc/redux-framework/functions/header-functions.php:70
+msgid "flaticon-list"
+msgstr ""
+
+#: inc/redux-framework/functions/header-functions.php:82
+#: inc/redux-framework/options/header-options.php:124
+#: inc/template-tags/header.php:157 inc/template-tags/home/home-v3.php:19
+#: inc/template-tags/home/home-v3.php:283 inc/template-tags/home.php:826
+#: inc/template-tags/home.php:851
+msgid "Categories"
+msgstr ""
+
+#: inc/redux-framework/functions/header-functions.php:95
+#: inc/redux-framework/options/header-options.php:144 searchform.php:6
+#: woocommerce/product-searchform.php:23
+msgid "What are you looking for ?"
+msgstr ""
+
+#: inc/redux-framework/functions/shop-functions.php:31
+#: inc/redux-framework/functions/shop-functions.php:62
+msgid "View Product"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:8
+msgid "Blog"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:13
+msgid "Blog Page View"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:14
+msgid "Select the view for the Blog Listing."
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:18
+#: inc/redux-framework/options/shop-options.php:68
+msgid "Grid"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:19
+#: inc/redux-framework/options/shop-options.php:69
+msgid "List"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:25
+msgid "Blog Page Layout"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:26
+msgid "Select the layout for the Blog Listing."
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:31
+#: inc/redux-framework/options/blog-options.php:44
+#: inc/redux-framework/options/shop-options.php:82
+msgid "Left Sidebar"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:32
+#: inc/redux-framework/options/blog-options.php:45
+#: inc/redux-framework/options/shop-options.php:83
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:38
+msgid "Single Post Layout"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:39
+msgid "Select the layout for the Single Post."
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:51
+msgid "Blog Post Placeholder Icon"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:53
+#: inc/redux-framework/options/blog-options.php:62
+msgid "Show"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:54
+#: inc/redux-framework/options/blog-options.php:63
+msgid "Hide"
+msgstr ""
+
+#: inc/redux-framework/options/blog-options.php:60
+msgid "Blog Post Author Info"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:7
+msgid "Footer"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:8
+msgid ""
+"Options related to the footer section. The Footer has : Brands Slider, "
+"Footer Widgets, Footer Newsletter Section, Footer Contact Block, Footer "
+"Bottom Wigets"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:13
+msgid "Show Footer Feature Lists"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:22
+#: inc/redux-framework/options/shop-options.php:135
+msgid "Add Icon"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:29
+msgid "Text"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:30
+msgid "Add Text"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:38
+msgid "Footer Style Block"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:43
+msgid "Select the footer style."
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:65
+msgid "Footer Logo Block"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:66
+msgid ""
+"The Footer Logo Block is part of Footer. However it is not available as a "
+"separate widget but are fully customizable with the options given below."
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:72
+msgid "Show Footer logo"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:78
+msgid "Your Logo"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:79
+msgid "Upload your footer logo image."
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:88
+msgid "Footer Logo Text"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:103
+msgid "Footer Social Icons Block"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:104
+msgid ""
+"The Footer Social Icons Block is part of Footer widgets.However it is not "
+"available as a separate widget but are fully customizable with the options "
+"given below."
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:110
+msgid "Show Footer Social Icons"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:117
+msgid "Footer Social Icons Text"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:118
+#: inc/template-tags/footer.php:211
+msgid "Follow us on :"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:132
+msgid "Footer Widgets"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:133
+msgid ""
+"Options related to Footer Widgets. Please add widgets in Appearance > "
+"Widgets > Footer Column widget area. If the widget area is empty without "
+"any widgets, the theme loads default widgets."
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:138
+msgid "Show Footer Widgets ?"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:154
+msgid "Footer Bottom Bar"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:155
+msgid "The Footer Bottom Bar is available bottom of Footer."
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:161
+msgid "Enable Footer Bottom Bar"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:168
+msgid "Enable Footer Payment Icons"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:176
+msgid "Footer Payment Icons Text"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:177
+msgid "We accept"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:184
+msgid "Footer Payment Icons Image"
+msgstr ""
+
+#: inc/redux-framework/options/footer-options.php:191
+msgid "Footer Copyright Text"
+msgstr ""
+
+#: inc/redux-framework/options/general-options.php:12
+msgid "Scroll To Top"
+msgstr ""
+
+#: inc/redux-framework/options/general-options.php:15
+#: inc/redux-framework/options/header-options.php:53
+#: inc/redux-framework/options/header-options.php:62
+#: inc/redux-framework/options/header-options.php:107
+#: inc/redux-framework/options/header-options.php:181
+#: inc/redux-framework/options/header-options.php:204
+#: inc/redux-framework/options/shop-options.php:23
+msgid "Enabled"
+msgstr ""
+
+#: inc/redux-framework/options/general-options.php:16
+#: inc/redux-framework/options/header-options.php:54
+#: inc/redux-framework/options/header-options.php:63
+#: inc/redux-framework/options/header-options.php:108
+#: inc/redux-framework/options/header-options.php:182
+#: inc/redux-framework/options/header-options.php:205
+#: inc/redux-framework/options/shop-options.php:24
+msgid "Disabled"
+msgstr ""
+
+#: inc/redux-framework/options/general-options.php:24
+msgid "Load child theme style.css"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:8
+msgid "Default WooCommerce account menu"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:16
+msgid "Header"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:18
+msgid ""
+"Options related to the header section. The header has 5 different styles "
+"including top bar, masthead, etc."
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:21
+msgid "Top Bar"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:29
+msgid "Show Top Bar"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:41
+msgid "Logo"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:48
+msgid "Logo SVG"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:49
+msgid "Enable to display svg logo instead of site title."
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:50
+msgid "This will not work when you use site logo in customizer."
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:61
+msgid "Show Separate Logo For Handheld"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:68
+msgid "Your Handheld Logo"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:69
+msgid "Upload your Handheld logo image."
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:82
+msgid "Masthead"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:90
+msgid "Select the header style."
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:104
+msgid "Sticky Header"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:115
+msgid "Department Menu Icon"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:123
+msgid "Department Menu Title"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:134
+msgid "Header Search"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:143
+msgid "Navbar Search Placeholder"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:149
+msgid "Enable Live search ?"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:161
+msgid "Header Cart"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:163
+#: inc/redux-framework/options/header-options.php:194
+msgid " The settings below are applicable only if WooCommerce plugin is activated"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:171
+msgid "Cart Icon"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:177
+msgid "Disable dropdown menu in header cart ?"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:178
+msgid "If you are using a sticky header, you might want to disable dropdown menu"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:192
+msgid "Header User Account"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:201
+msgid "Enable user account icon in header ?"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:211
+msgid "User Account Icon"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:217
+msgid "Logged in dropdown menu"
+msgstr ""
+
+#: inc/redux-framework/options/header-options.php:218
+msgid "Select the menu you want to show in dropdown when the user is logged in."
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:8
+msgid "Shop"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:19
+msgid "Catalog Mode"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:20
+msgid "Enable / Disable the Catalog Mode."
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:35
+msgid "Shop/Catalog Pages"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:43
+msgid "Shop Page Jumbotron"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:44
+msgid "Choose a static block that will be the jumbotron element for shop page"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:55
+msgid "Shop Comparison Page"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:56
+msgid "Choose a page that will be the product compare page for shop."
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:64
+msgid "Product archive views"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:65
+msgid "Please drag and arrange the views. Top most view will be the default view"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:76
+msgid "Shop Page Layout"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:77
+msgid "Select the layout for the Shop Listing."
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:90
+msgid "Shop Page Bottom Jumbotron"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:91
+msgid ""
+"Choose a static block that will be the jumbotron element for shop page "
+"bottom"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:101
+msgid "Number of Product Sub-categories Columns"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:102
+msgid ""
+"Drag the slider to set the number of columns for displaying product "
+"sub-categories in shop and catalog pages."
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:118
+msgid "Single Product Page"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:126
+msgid "Show Single Product Features List"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:134
+msgid "Feature List Icon"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:137
+msgid "fas fa-truck"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:138
+msgid "fas fa-undo"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:139
+msgid "fas fa-shield-alt"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:140
+msgid "fas fa-lock"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:148
+msgid "Feature List Title"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:149
+msgid "Add Title"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:151
+#: inc/woocommerce/template-tags/single-product.php:385
+msgid "Fast Shipping"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:152
+#: inc/woocommerce/template-tags/single-product.php:390
+msgid "Easy Returns"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:153
+#: inc/woocommerce/template-tags/single-product.php:395
+msgid "Always Authentic"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:154
+#: inc/woocommerce/template-tags/single-product.php:400
+msgid "Secure Shopping"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:162
+msgid "Feature List Text"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:163
+msgid "Add Description"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:165
+#: inc/woocommerce/template-tags/single-product.php:386
+msgid "Receive products in amazing time"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:166
+#: inc/woocommerce/template-tags/single-product.php:391
+msgid "Return policy that lets you shop at ease"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:167
+#: inc/woocommerce/template-tags/single-product.php:396
+msgid "We only sell 100% authentic products"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:168
+#: inc/woocommerce/template-tags/single-product.php:401
+msgid "Your data is always protected"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:175
+msgid "Enable Related Products"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:181
+msgid "Enable Horizontal Thumbnails"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:188
+msgid "Horizontal Dots only ?"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:202
+msgid "Cart & Checkout Page"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:210
+msgid "Coupon Form Title"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:212
+#: inc/woocommerce/template-tags/wc-pages.php:34
+msgid "Discount/Promo Code"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:217
+msgid "Coupon Form Subtitle"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:219
+#: inc/woocommerce/template-tags/wc-pages.php:36
+msgid "Don't have any yet ? %sCheckout our discount programs%s"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:229
+msgid "My Account Page"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:237
+msgid "Register Benefits Title"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:239
+msgid "Sign up today and you will be able to :"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:244
+msgid "Register Benefits Text"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:246
+#: woocommerce/myaccount/form-login.php:39
+msgid ""
+"Tokoo Buyer Protection has you covered from click to delivery. Sign up or "
+"sign in and you will be able to:"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:251
+msgid "Register Benefits"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:254
+msgid "Speed your way through checkout"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:255
+#: woocommerce/myaccount/form-login.php:33
+msgid "Track your orders easily"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:256
+#: woocommerce/myaccount/form-login.php:34
+msgid "Keep a record of all your purchases"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:262
+msgid "Register Banner Icon"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:264
+#: woocommerce/myaccount/form-login.php:54
+msgid "fa flaticon-megaphone"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:269
+msgid "Register Banner Title"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:271
+#: woocommerce/myaccount/form-login.php:55
+msgid "Get your free $50.00!"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:276
+msgid "Register Banner Text"
+msgstr ""
+
+#: inc/redux-framework/options/shop-options.php:278
+#: woocommerce/myaccount/form-login.php:56
+msgid ""
+"Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+"Lorem Ipsum has been the industry standard"
+msgstr ""
+
+#: inc/redux-framework/options/social-options.php:8
+msgid "Social Media"
+msgstr ""
+
+#: inc/redux-framework/options/social-options.php:10
+msgid "Please type in your complete social network URL"
+msgstr ""
+
+#: inc/redux-framework/options/social-options.php:97
+msgid "Stumble Upon"
+msgstr ""
+
+#: inc/redux-framework/options/social-options.php:135
+msgid "On enabling footer rss icon."
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:7
+msgid "Custom Primary CSS"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:10
+msgid "Styling"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:17
+msgid "General Theme Style Settings"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:22
+msgid "Use a predefined color scheme"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:23
+#: inc/redux-framework/options/typography-options.php:13
+msgid "Yes"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:24
+#: inc/redux-framework/options/typography-options.php:14
+msgid "No"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:31
+msgid "Main Theme Color"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:32
+msgid "The main color of the site."
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:36
+msgid "Green"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:37
+msgid "Red"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:38
+msgid "Blue"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:39
+msgid "Purple"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:40
+msgid "Midnightblue"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:41
+msgid "Orange"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:49
+msgid "Custom Primary Color"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:58
+msgid "Custom Primary Text Color"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:67
+msgid "How to include custom color ?"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:70
+msgid "Inline"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:71
+msgid "External File"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:80
+msgid "Custom Primary Color CSS"
+msgstr ""
+
+#: inc/redux-framework/options/style-options.php:81
+msgid ""
+"If you choose \"External File\", then please \"Save Changes\" and then "
+"click on ths link to get the custom color primary CSS: "
+msgstr ""
+
+#: inc/redux-framework/options/typography-options.php:8
+msgid "Typography"
+msgstr ""
+
+#: inc/redux-framework/options/typography-options.php:12
+msgid "Use default font scheme ?"
+msgstr ""
+
+#: inc/redux-framework/options/typography-options.php:21
+msgid "Title Font Family"
+msgstr ""
+
+#: inc/redux-framework/options/typography-options.php:38
+msgid "Content Font Family"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Tokoo"
+msgstr ""
+
+#: inc/team-members/template-tags.php:11
+msgid "Twitter URL"
+msgstr ""
+
+#: inc/team-members/template-tags.php:12
+msgid "Enter this team member's Twitter url."
+msgstr ""
+
+#: inc/team-members/template-tags.php:15
+msgid "Facebook URL"
+msgstr ""
+
+#: inc/team-members/template-tags.php:16
+msgid "Enter this team member's Facebook url."
+msgstr ""
+
+#: inc/team-members/template-tags.php:23
+msgid "Linkedin Username"
+msgstr ""
+
+#: inc/team-members/template-tags.php:24
+msgid "Enter this team member's Linkedin url."
+msgstr ""
+
+#: inc/team-members/template-tags.php:52
+msgid "Add me on Facebook"
+msgstr ""
+
+#: inc/team-members/template-tags.php:58
+msgid "Follow me on Twitter"
+msgstr ""
+
+#: inc/team-members/template-tags.php:64
+msgid "Add me on Linkedin"
+msgstr ""
+
+#: inc/template-tags/about.php:11 inc/template-tags/about.php:154
+#: inc/template-tags/home.php:610
+msgid "know us better"
+msgstr ""
+
+#: inc/template-tags/about.php:12 inc/template-tags/about.php:155
+#: inc/template-tags/home.php:611
+msgid "About Us"
+msgstr ""
+
+#: inc/template-tags/about.php:18 inc/template-tags/about.php:183
+msgid ""
+"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy "
+"nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut "
+"wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit "
+"lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure "
+"dolor in hendrerit in vulputate velit esse molestie consequat, vel illum "
+"dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio "
+"dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te "
+"feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option "
+"congue nihil imperdiet doming id quod mazim placerat facer possim assum. "
+"Typi non habent claritatem insitam; est usus legentis in iis qui facit "
+"eorum claritatem. Investigationes demonstraverunt lectores legere me lius "
+"quod ii legunt saepius. Claritas est etiam processus dynamicus, qui "
+"sequitur mutationem consuetudium lectorum Nam liber tempor cum soluta nobis "
+"eleifend. <br><br>Mirum est notare quam littera gothica, quam nunc putamus "
+"parum claram, anteposuerit litterarum formas humanitatis per seacula quarta "
+"decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum "
+"clari, fiant sollemnes in futurum. Duis autem vel eum iriure dolor in "
+"hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu "
+"feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim "
+"qui blandit praesent luptatum zzril delenit augue duis dolore te feugait "
+"nulla facilisi."
+msgstr ""
+
+#: inc/template-tags/about.php:27 inc/template-tags/footer.php:25
+#: inc/template-tags/home/home-v3.php:37 inc/template-tags/home/home-v5.php:28
+msgid "100% Payment <br>Secured"
+msgstr ""
+
+#: inc/template-tags/about.php:31 inc/template-tags/footer.php:29
+#: inc/template-tags/home/home-v3.php:41 inc/template-tags/home/home-v5.php:32
+msgid "Support lots <br>of Payments"
+msgstr ""
+
+#: inc/template-tags/about.php:35 inc/template-tags/footer.php:33
+msgid "Friendly Customer <br>Support"
+msgstr ""
+
+#: inc/template-tags/about.php:39 inc/template-tags/footer.php:37
+msgid "Free Delivery <br>to All Destinations"
+msgstr ""
+
+#: inc/template-tags/about.php:43 inc/template-tags/footer.php:41
+#: inc/template-tags/home/home-v3.php:53 inc/template-tags/home/home-v5.php:44
+msgid "Best Price <br>Guaranteed"
+msgstr ""
+
+#: inc/template-tags/about.php:47 inc/template-tags/footer.php:45
+#: inc/template-tags/home/home-v3.php:57 inc/template-tags/home/home-v5.php:48
+msgid "Mobile Apps <br>Ready"
+msgstr ""
+
+#: inc/template-tags/about.php:55 inc/template-tags/about.php:248
+msgid ""
+"Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet "
+"doming id quod mazim placerat facer possim assum. Typi non habent "
+"claritatem insitam; est usus legentis in iis qui facit eorum claritatem. "
+"Investigationes demonstraverunt lectores legere me lius quod ii legunt "
+"saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem "
+"consuetudium lectorum Nam liber tempor cum soluta nobis eleifend."
+msgstr ""
+
+#: inc/template-tags/about.php:61 inc/template-tags/home.php:692
+msgid "Our Team"
+msgstr ""
+
+#: inc/template-tags/about.php:71 inc/template-tags/about.php:326
+#: inc/template-tags/home.php:724
+msgid "Join Us on Tokoo"
+msgstr ""
+
+#: inc/template-tags/contact.php:21 inc/template-tags/contact.php:105
+msgid "Leave Us a Message"
+msgstr ""
+
+#: inc/template-tags/contact.php:22 inc/template-tags/contact.php:106
+msgid "Contact Us"
+msgstr ""
+
+#: inc/template-tags/footer.php:347
+msgid "We are accepts"
+msgstr ""
+
+#: inc/template-tags/footer.php:383
+msgid "&copy; Copyright %1$s, <a href=\"%2$s\">%3$s</a>. All Rights Reserved"
+msgstr ""
+
+#: inc/template-tags/header/header-v2.php:40
+#: inc/template-tags/header/header-v2.php:74
+msgid "Sign in"
+msgstr ""
+
+#: inc/template-tags/header/header-v2.php:43
+msgid "Register or Sign in"
+msgstr ""
+
+#: inc/template-tags/header/header-v2.php:59
+msgid "My Account"
+msgstr ""
+
+#: inc/template-tags/header/header-v2.php:73
+msgid "Returning Customer ?"
+msgstr ""
+
+#: inc/template-tags/header/header-v2.php:78
+msgid "Don't have an account ?"
+msgstr ""
+
+#: inc/template-tags/header/header-v2.php:79
+#: woocommerce/myaccount/form-login.php:86
+#: woocommerce/myaccount/form-login.php:178
+msgid "Register"
+msgstr ""
+
+#: inc/template-tags/header.php:188
+msgid "All Categories"
+msgstr ""
+
+#: inc/template-tags/home/home-v1.php:24 inc/template-tags/home/home-v1.php:45
+#: inc/template-tags/home/home-v1.php:129 inc/template-tags/home/home-v2.php:34
+#: inc/template-tags/home/home-v2.php:112
+#: inc/template-tags/home/home-v2.php:134 inc/template-tags/home/home-v3.php:68
+#: inc/template-tags/home/home-v3.php:90 inc/template-tags/home/home-v3.php:119
+#: inc/template-tags/home/home-v4.php:27 inc/template-tags/home/home-v4.php:105
+#: inc/template-tags/home/home-v4.php:127 inc/template-tags/home/home-v5.php:58
+#: inc/template-tags/home/home-v5.php:74 inc/template-tags/home/home-v5.php:96
+msgid "View all"
+msgstr ""
+
+#: inc/template-tags/home/home-v1.php:102
+#: inc/template-tags/home/home-v1.php:491 inc/template-tags/home/home-v2.php:56
+#: inc/template-tags/home/home-v2.php:357
+#: inc/template-tags/home/home-v3.php:152
+#: inc/template-tags/home/home-v3.php:639 inc/template-tags/home/home-v4.php:49
+#: inc/template-tags/home/home-v4.php:303
+#: inc/template-tags/home/home-v5.php:124
+#: inc/template-tags/home/home-v5.php:547 inc/template-tags/home.php:265
+msgid "Fla<i class=\"flaticon-flash\"></i>h <br> sale"
+msgstr ""
+
+#: inc/template-tags/home/home-v1.php:105
+#: inc/template-tags/home/home-v1.php:493 inc/template-tags/home/home-v2.php:59
+#: inc/template-tags/home/home-v2.php:359
+#: inc/template-tags/home/home-v3.php:155
+#: inc/template-tags/home/home-v3.php:641 inc/template-tags/home/home-v4.php:52
+#: inc/template-tags/home/home-v4.php:305
+#: inc/template-tags/home/home-v5.php:127
+#: inc/template-tags/home/home-v5.php:549 inc/template-tags/home.php:267
+msgid "Sales Ends in"
+msgstr ""
+
+#: inc/template-tags/home/home-v1.php:144
+#: inc/template-tags/home/home-v1.php:619
+#: inc/template-tags/home/home-v2.php:154
+#: inc/template-tags/home/home-v2.php:676
+#: inc/template-tags/home/home-v3.php:188
+#: inc/template-tags/home/home-v3.php:760
+#: inc/template-tags/home/home-v4.php:147
+#: inc/template-tags/home/home-v4.php:623
+#: inc/template-tags/home/home-v5.php:178
+#: inc/template-tags/home/home-v5.php:716 inc/template-tags/home.php:455
+msgid "Our Official Brand"
+msgstr ""
+
+#: inc/template-tags/home/home-v1.php:241
+#: inc/template-tags/home/home-v1.php:319
+#: inc/template-tags/home/home-v1.php:584
+#: inc/template-tags/home/home-v2.php:300
+#: inc/template-tags/home/home-v2.php:521
+#: inc/template-tags/home/home-v2.php:599 inc/template-tags/home/home-v3.php:20
+#: inc/template-tags/home/home-v3.php:284
+#: inc/template-tags/home/home-v3.php:384
+#: inc/template-tags/home/home-v3.php:462
+#: inc/template-tags/home/home-v3.php:569
+#: inc/template-tags/home/home-v4.php:246
+#: inc/template-tags/home/home-v4.php:467
+#: inc/template-tags/home/home-v4.php:545
+#: inc/template-tags/home/home-v5.php:322
+#: inc/template-tags/home/home-v5.php:361
+#: inc/template-tags/home/home-v5.php:442 inc/template-tags/home.php:827
+msgid "View All"
+msgstr ""
+
+#: inc/template-tags/home/home-v1.php:417
+#: inc/template-tags/home/home-v2.php:482
+#: inc/template-tags/home/home-v3.php:723
+#: inc/template-tags/home/home-v4.php:428
+#: inc/template-tags/home/home-v5.php:678 inc/template-tags/home.php:107
+msgid "Shop By Categories"
+msgstr ""
+
+#: inc/template-tags/home/home-v1.php:453
+#: inc/template-tags/home/home-v2.php:444
+#: inc/template-tags/home/home-v3.php:601
+#: inc/template-tags/home/home-v4.php:390
+#: inc/template-tags/home/home-v5.php:637
+msgid "Best seller products on Gaming categories"
+msgstr ""
+
+#: inc/template-tags/home/home-v3.php:45 inc/template-tags/home/home-v5.php:36
+msgid "24hours/7days <br>Support"
+msgstr ""
+
+#: inc/template-tags/home/home-v3.php:49 inc/template-tags/home/home-v5.php:40
+msgid "Free Delivery <br>with $50"
+msgstr ""
+
+#: inc/template-tags/home.php:249
+msgid "View all Products"
+msgstr ""
+
+#: inc/template-tags/page.php:85 inc/template-tags/page.php:114
+#: inc/template-tags/single-post.php:36
+msgid "Pages:"
+msgstr ""
+
+#: inc/template-tags/post.php:202 inc/template-tags/post.php:215
+#. translators: used between list items, there is a space after the comma
+msgid ", "
+msgstr ""
+
+#: inc/template-tags/post.php:221
+msgid "Tagged"
+msgstr ""
+
+#: inc/template-tags/post.php:282
+msgid "Posted by"
+msgstr ""
+
+#: inc/template-tags/single-post.php:27
+msgid "Continue reading %s"
+msgstr ""
+
+#: inc/template-tags/single-post.php:106
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: inc/template-tags/single-post.php:131
+msgid "Edit"
+msgstr ""
+
+#: inc/template-tags/single-post.php:165 inc/template-tags/single-post.php:167
+msgid "Email"
+msgstr ""
+
+#: inc/template-tags/single-post.php:171 inc/template-tags/single-post.php:172
+msgid "Website"
+msgstr ""
+
+#: inc/template-tags/single-post.php:181 inc/template-tags/single-post.php:182
+msgid "Comment"
+msgstr ""
+
+#: inc/template-tags/single-post.php:211
+msgid "Posted By"
+msgstr ""
+
+#: inc/template-tags/single-post.php:239
+msgid "Related Articles"
+msgstr ""
+
+#: inc/widgets/class-tokoo-social-menu-widget.php:14
+msgid "Add a social menu to your sidebar/footer."
+msgstr ""
+
+#: inc/widgets/class-tokoo-social-menu-widget.php:17
+msgid "Tokoo Social Links Menu"
+msgstr ""
+
+#: inc/widgets/class-tokoo-social-menu-widget.php:124
+msgid "No menus have been created yet. <a href=\"%s\">Create some</a>."
+msgstr ""
+
+#: inc/widgets/class-tokoo-social-menu-widget.php:128
+msgid "Title:"
+msgstr ""
+
+#: inc/widgets/class-tokoo-social-menu-widget.php:132
+msgid "Select Menu:"
+msgstr ""
+
+#: inc/widgets/class-tokoo-social-menu-widget.php:134
+msgid "&mdash; Select &mdash;"
+msgstr ""
+
+#: inc/widgets/class-tokoo-social-menu-widget.php:144
+msgid "Edit Menu"
+msgstr ""
+
+#: inc/woocommerce/classes/class-tokoo-categories.php:51
+#: inc/woocommerce/classes/class-tokoo-categories.php:179
+msgid "Jumbotron"
+msgstr ""
+
+#: inc/woocommerce/classes/class-tokoo-categories.php:53
+#: inc/woocommerce/classes/class-tokoo-categories.php:65
+#: inc/woocommerce/classes/class-tokoo-categories.php:107
+#: inc/woocommerce/classes/class-tokoo-categories.php:136
+msgid "Select a Static Block"
+msgstr ""
+
+#: inc/woocommerce/classes/class-tokoo-categories.php:63
+#: inc/woocommerce/classes/class-tokoo-categories.php:120
+#: inc/woocommerce/classes/class-tokoo-categories.php:180
+msgid "Bottom Jumbotron"
+msgstr ""
+
+#: inc/woocommerce/classes/class-tokoo-categories.php:92
+msgid "Top Jumbotron"
+msgstr ""
+
+#: inc/woocommerce/classes/class-tokoo-increment-decrement.php:93
+msgid "WooCommerce Quantity Increment requires the %s 2.3 or higher to work!"
+msgstr ""
+
+#: inc/woocommerce/integrations.php:126
+msgid "Add to Compare"
+msgstr ""
+
+#: inc/woocommerce/template-tags/header.php:35
+msgid "View your shopping cart"
+msgstr ""
+
+#: inc/woocommerce/template-tags/header.php:37
+msgid "%d"
+msgid_plural "%d"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/woocommerce/template-tags/loop.php:33
+msgid "Start From"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:31
+#. translators: %d: total results
+msgid "Showing the <strong>single</strong> product"
+msgid_plural "Showing all <strong>%d</strong> products"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/woocommerce/template-tags/product-archive.php:46
+msgid "Default"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:48
+msgid "Average rating"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:49
+msgid "Newness"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:50
+msgid "Price: low to high"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:51
+msgid "Price: high to low"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:64
+msgid "Sort by %s"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:79
+msgid "%s Categories"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:117
+msgid "List View"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:124
+msgid "Grid View"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:338
+msgid "Filters"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-item.php:72
+msgid "%s review"
+msgid_plural "%s reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/woocommerce/template-tags/product-item.php:88
+msgid "%s products"
+msgstr ""
+
+#: inc/woocommerce/template-tags/single-product.php:104
+msgid "Select"
+msgstr ""
+
+#: inc/woocommerce/template-tags/single-product.php:248
+msgid "Awaiting product image"
+msgstr ""
+
+#: inc/woocommerce/template-tags/single-product.php:531
+msgid "Highlights"
+msgstr ""
+
+#: inc/woocommerce/template-tags/single-product.php:563
+msgid "Your review is awaiting approval"
+msgstr ""
+
+#: inc/woocommerce/template-tags/single-product.php:573
+msgid "Verified Buyer"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:9
+#: inc/woocommerce/template-tags/wc-pages.php:291
+msgid "Total"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:43
+msgid "Coupon Code"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:43
+msgid "Enter your coupon code here"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:43
+msgid "Apply"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:55
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:60
+msgid "Review your cart with <strong>%s</strong> and total %s"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:61
+msgid "Your Shopping Cart Summary"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:84
+msgid "Shipping Details"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:96
+msgid "Already have an account ?"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:97
+msgid ""
+"%sLogin%s to autocomplete required information and speed up checkout "
+"process."
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:106
+msgid "Account Details"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:133
+msgid "Thank you! Your Order has successfully placed."
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:135
+msgid "Complete Steps to Place Your Order"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:154
+#: woocommerce/order/order-details-customer.php:24
+msgid "Customer Details"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:155
+msgid "Review & Pay"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:156
+msgid "Confirmation"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:178
+msgid "Order Review"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:193
+msgid "Order Totals"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:209
+msgid "Payment Method"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:239
+msgid "Cart Totals"
+msgstr ""
+
+#: inc/woocommerce/template-tags/wc-pages.php:244
+msgid "Subtotal"
+msgstr ""
+
+#: inc/woocommerce/tokoo-woocommerce-template-functions.php:44
+msgid "On Sale Now"
+msgstr ""
+
+#: inc/woocommerce/tokoo-woocommerce-template-functions.php:52
+msgid "New In Store"
+msgstr ""
+
+#: templates/contents/content-none.php:13
+msgid "Nothing Found"
+msgstr ""
+
+#: templates/contents/content-none.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: templates/contents/content-none.php:23
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: templates/contents/content-none.php:28
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: templates/shop/compare.php:60 templates/shop/compare.php:111
+msgid "Price"
+msgstr ""
+
+#: templates/shop/compare.php:72
+msgid "Availability"
+msgstr ""
+
+#: templates/shop/compare.php:156
+msgid "No products were added to the compare table"
+msgstr ""
+
+#: templates/shop/compare.php:162
+msgid "Return To Shop"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:27
+#: templates/shop/single-product-advanced-reviews.php:35
+msgid "Rated %s out of 5"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:30
+msgid "%s reviews"
+msgid_plural "%s reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/shop/single-product-advanced-reviews.php:76
+msgid "There are no reviews yet."
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:91
+msgid "Add Your Review"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:91
+msgid "Be the first to review &ldquo;%s&rdquo;"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:92
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:96
+msgid "Your Name"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:97
+msgid "Enter your name here"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:98
+msgid "Your Email"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:99
+msgid "Enter your email here"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:101
+msgid "Add Review"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:107
+msgid "You must be <a href=\"%s\">logged in</a> to post a review."
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:111
+msgid "Your Rate"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:112
+msgid "Rate&hellip;"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:113
+msgid "Perfect"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:114
+msgid "Good"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:115
+msgid "Average"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:116
+msgid "Not that bad"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:117
+msgid "Very Poor"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:121
+msgid "Your Review"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:121
+msgid "Enter your review here"
+msgstr ""
+
+#: templates/shop/single-product-advanced-reviews.php:129
+msgid "Only logged in customers who have purchased this product may leave a review."
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:32
+msgid "Speed your way through the checkout "
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:35
+msgid "Collect your Tokoo points"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:38
+msgid "Shoping in Tokoo with Confidence!"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:84
+#: woocommerce/myaccount/form-login.php:130
+msgid "Login"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:108
+msgid "Username or email address"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:113
+#: woocommerce/myaccount/form-login.php:164
+msgid "Password"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:114
+msgid "Lost your password?"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:124
+msgid "Keep me logged in"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:150
+msgid "Username"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:157
+msgid "Email address"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:170
+msgid "A password will be sent to your email address."
+msgstr ""
+
+#: woocommerce/order/order-details-customer.php:32
+msgid "Billing address"
+msgstr ""
+
+#: woocommerce/order/order-details-customer.php:35
+#: woocommerce/order/order-details-customer.php:53
+msgid "N/A"
+msgstr ""
+
+#: woocommerce/order/order-details-customer.php:51
+msgid "Shipping address"
+msgstr ""
+
+#: woocommerce/product-searchform.php:27
+msgid "Search for:"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid ""
+"https://themeforest.net/item/tokoo-electronics-store-woocommerce-theme-for-"
+"affiliates-dropship-and-multivendor-websites/22359036"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"In the world of Swiss Army Knives, Tokoo – Electronics Store WooCommerce "
+"Theme is a chef’s knife. It is built for only one-purpose, to help you "
+"build your eCommerce website that looks like one of the top eCommerce "
+"websites like snapdeal, aliexpress, etc."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "MadrasThemes"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://madrasthemes.com/"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "About"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Contact"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Home v1"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Home v2"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Home v3"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Home v4"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Home v5"
+msgstr ""
+
+#: comments.php:28
+msgctxt "comments title"
+msgid "1 Comment"
+msgid_plural "%1$s Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/classes/class-tgm-plugin-activation.php:1206
+#: inc/classes/class-tgm-plugin-activation.php:3033
+msgctxt "plugin A *and* plugin B"
+msgid "and"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2427
+#. translators: 1: install status, 2: update status
+msgctxt "Install/Update Status"
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2473
+#. translators: 1: number of plugins.
+msgctxt "plugins"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/classes/class-tgm-plugin-activation.php:2567
+msgctxt "as in: \"version nr unknown\""
+msgid "unknown"
+msgstr ""
+
+#: inc/template-tags/post.php:175
+msgctxt "post date"
+msgid "%s"
+msgstr ""
+
+#: inc/template-tags/post.php:325
+msgctxt "Next post"
+msgid "Next"
+msgstr ""
+
+#: inc/template-tags/post.php:326
+msgctxt "Previous post"
+msgid "Previous"
+msgstr ""
+
+#: inc/woocommerce/template-tags/product-archive.php:36
+#. translators: 1: first result 2: last result 3: total results
+msgctxt "with <strong>first</strong> and <strong>last</strong> product"
+msgid "Showing the <strong>single</strong> product"
+msgid_plural ""
+"Showing <strong>%1$d&ndash;%2$d</strong> products from "
+"<strong>%3$d</strong> products"
+msgstr[0] ""
+msgstr[1] ""
+
+#: searchform.php:10
+msgctxt "label"
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:12 woocommerce/product-searchform.php:29
+msgctxt "submit button"
+msgid "Search"
+msgstr ""

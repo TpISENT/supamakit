@@ -1,0 +1,11 @@
+form[name="mc-embedded-subscribe-form"], .footer-subscription-form {
+    margin-bottom: 1rem;
+        
+    .indicates-required, label, input[type="submit"] {
+        @include sr-only();
+    }
+    
+    input[type="email"] {
+        @include make-form-control( 15px, 32px, #b4b4b4, #fafafa, 10px, 26px, #b4b4b4, false, $fw-light );
+    }
+}

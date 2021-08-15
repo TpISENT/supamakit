@@ -1,0 +1,50 @@
+a {
+    @include hover-focus() {
+        text-decoration: none;
+        outline: none;
+    }
+}
+
+.page-template-template-homepage-v2 {
+    .site-content-inner {
+        margin-top: 20px;
+    }
+}
+
+.kc_row:not(.kc_row_inner),
+.entry-content {
+    @include clearfix();
+}
+
+section.elementor-element {
+    margin-bottom: 0;
+}
+
+
+i {
+    &[class^="fas fa-"],
+    &[class*="fas fa-"],
+    &[class^="fas fa-"]:before,
+    &[class*="fas fa-"]:before {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+    }
+
+    &[class^="fab fa-"],
+    &[class*="fab fa-"],
+    &[class^="fab fa-"]:before,
+    &[class*="fab fa-"]:before {
+        font-family: 'Font Awesome 5 Brands';
+    }
+}
+
+.quantity{
+    &.buttons_added {
+
+        .minus,
+        .plus {
+            display: none;
+
+        }
+    }
+}

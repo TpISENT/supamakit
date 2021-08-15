@@ -1,0 +1,77 @@
+ul.products {
+    @include list-unstyled();
+    @include make-row(12px);
+
+    > .product {
+        @include make-col-ready(12px);
+        @include make-col(6);
+        margin-bottom: 12px;
+    }
+
+    .slick-track .product {
+        @include make-col-ready(12px);
+    }
+
+    @include media-breakpoint-up(md) {
+        &.columns-1,
+        &.columns-2,
+        &.columns-3,
+        &.columns-4,
+        &.columns-5,
+        &.columns-6,
+        &.columns-7,
+        &.columns-8 {
+            > .product {
+                @include make-col(4);
+            }
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        &.columns-1 {
+            > .product {
+                @include make-col(12);
+            }
+        }
+        &.columns-2 {
+            > .product {
+                @include make-col(6);
+            }
+        }
+        &.columns-3 {
+            > .product {
+                @include make-col(4);
+            }
+        }
+
+        &.columns-4 {
+            > .product {
+                @include make-col(3);
+            }
+        }
+
+        &.columns-5 {
+            > .product {
+                @include make-col(2.4);
+            }
+        }
+
+        &.columns-6 {
+            > .product {
+                @include make-col(2);
+            }
+        }
+
+        &.columns-7 {
+            > .product {
+                @include make-col(1.71428571);
+            }
+        }
+
+        &.columns-8 {
+            > .product {
+                @include make-col(1.5);
+            }
+        }
+    }
+}
