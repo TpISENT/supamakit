@@ -1,0 +1,50 @@
+.widefat .column-wc_actions a.e2w_ebay_order_fulfillment::after {content: "\f174";}
+
+#e2w_update_process_loader {font-weight: bold;}
+
+.e2w-dialog .ui-button-icon-only .ui-button-text,
+.e2w-dialog .ui-button-icons-only .ui-button-text {padding: 0px;}
+.e2w-dialog .ui-button.ui-button-text-only .ui-button-text {margin: 0px;}
+
+/* place orders in bulk popup start */
+.hover_e2w_fulfillment{
+	height: auto;
+	position: fixed;
+	bottom: 2%;
+	width: 150px;
+	background-color: black;
+	color: white;
+	opacity: 1;
+	right: 5%;
+	z-index: 99999;
+	padding: 15px 1%;
+	min-width: 250px;
+	display: none;
+	border-radius: 8px;
+}
+
+.hover_e2w_fulfillment .tip {
+	display: none;
+	margin-top: 10px;
+	border-top: 1px white solid;
+	padding-top: 5px;
+}
+
+.hover_e2w_fulfillment button {
+	display: none;
+	margin-top: 10px;
+	background-color: white;
+	border-radius: 5px;
+	border: none;
+	font-weight: bold;
+	min-height: 24px;
+	cursor: pointer;
+}
+
+.hover_e2w_fulfillment button.payall,
+.hover_e2w_fulfillment button.close,
+.hover_e2w_fulfillment button.solve {
+	background-color: lightgreen;
+	color: white;
+}
+/* place orders in bulk popup end */

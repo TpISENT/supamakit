@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "f9da2403-5bc4-4a94-8be3-4bae85c68e7b",
+		"name": "Orange",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.orange.com/oauth/v2/token",
+					"protocol": "https",
+					"host": [
+						"api",
+						"orange",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"v2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WebPayment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
