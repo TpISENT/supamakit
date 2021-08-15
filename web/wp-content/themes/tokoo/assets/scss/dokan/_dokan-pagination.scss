@@ -1,0 +1,56 @@
+.dokan-store .pagination-wrap ul.pagination,
+.dokan-dashboard .pagination-wrap ul.pagination,
+.dokan-pagination-container ul.dokan-pagination {
+    @include list-unstyled();
+    display: flex;
+    justify-content: center;
+    margin: 0 0 20px;
+
+     > li > span.current {
+        font-weight: 500;
+        background: #fff;
+    }
+
+    > li > span, > li > a, > a, > span {
+        position: relative;
+        display: block;
+        padding: 8px 12px;
+        line-height: 20px;
+        color: #757575;
+        background-color: #fff;
+        margin: 0 6px;
+        border: none;
+
+        &:hover {
+            z-index: 2;
+            color: $pagination-hover-color;
+            text-decoration: none;
+            background-color: $pagination-hover-bg;
+        }
+
+        &:focus {
+            z-index: 2;
+            outline: $pagination-focus-outline;
+            box-shadow: $pagination-focus-box-shadow;
+        }
+
+        // Opinionated: add "hand" cursor to non-disabled .page-link elements
+        &:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+    }
+}
+
+.pagination-wrap.pagination > span {
+    font-weight: 500;
+}
+
+.page-links {
+    display: flex;
+    align-items: center;
+    clear: both;
+}
+
+.dokan-pagination-container .dokan-pagination li.active a {
+    background: #fff;
+}

@@ -1,0 +1,21 @@
+input[type="submit"].dokan-btn, 
+a.dokan-btn, 
+.dokan-btn,
+.dokan-btn-default {
+	@include make-button();
+  	@include button-variant( $secondary, $secondary );
+  	color: #fff !important;
+	border-radius: 2px;
+	font-size: 14px;
+    line-height: 1.42857143;
+
+	&.dokan-btn-sm {
+		padding: 0.3rem 0.6rem;
+	}
+}
+
+.table-cell .dokan-btn:hover {
+	@include button-variant( $secondary, $secondary );
+}
+
+

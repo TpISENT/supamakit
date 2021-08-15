@@ -1,0 +1,5 @@
+@mixin remove-after-border() {
+    &::after {
+        content: none;
+    }
+}

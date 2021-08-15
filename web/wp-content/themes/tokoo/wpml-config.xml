@@ -1,0 +1,24 @@
+<wpml-config>
+	<admin-texts>
+		<key name="tokoo_options">
+			<key name="shop_jumbotron_id" />
+			<key name="header_departments_menu_title" />
+			<key name="header_departments_menu_icon" />
+			<key name="header_navbar_search_placeholder" />
+			<key name="site_header_logo" />
+			<key name="footer_feature_list_text" />
+			<key name="footer_feature_list_icon" />
+			<key name="footer_text" />
+			<key name="footer_social_icons_text" />
+			<key name="footer_payment_text" />
+			<key name="footer_copyright" />
+			<key name="site_footer_logo" />
+			<key name="myaccount_register_benefits_title" />
+			<key name="myaccount_register_benefits_text" />
+			<key name="myaccount_register_benefits" />
+			<key name="myaccount_register_banner_icon" />
+			<key name="myaccount_register_banner_title" />
+			<key name="myaccount_register_banner_text" />
+		</key>
+	</admin-texts>
+</wpml-config>

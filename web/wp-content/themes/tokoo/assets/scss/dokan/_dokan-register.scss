@@ -1,0 +1,17 @@
+.login-register-forms {
+	.show_if_seller {
+		.form-row {
+			input {
+				width: 100%;
+			}
+
+			label.pull-left {
+				float: none;
+			}
+
+			.radio input {
+				margin-right: 5px;
+			}
+		}
+	}
+}

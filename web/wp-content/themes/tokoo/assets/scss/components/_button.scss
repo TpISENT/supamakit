@@ -1,0 +1,4 @@
+.button {
+    @include make-button();
+    @include button-variant( $secondary, $secondary );
+}

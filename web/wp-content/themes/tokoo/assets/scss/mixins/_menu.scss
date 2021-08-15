@@ -1,0 +1,94 @@
+@mixin make-menu( $nav-link-padding-y:$nav-link-padding-y, $nav-link-padding-x:$nav-link-padding-x, $dropdown-item-padding-y:$dropdown-item-padding-y, $dropdown-item-padding-x:$dropdown-item-padding-x ) {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+
+    > .menu-item > a,
+    > li > a {
+        display: block;
+        padding: $nav-link-padding-y $nav-link-padding-x;
+
+        @include hover-focus {
+            text-decoration: none;
+        }
+
+        // Disabled state lightens text
+        &.disabled {
+            color: $nav-link-disabled-color;
+        }
+    }
+
+    .menu-item-has-children {
+        position: relative;
+
+        > a {
+            @include caret;
+        }
+
+        @include hover-focus() {
+            .sub-menu {
+                display: block;
+            }
+        }
+    }
+}
+
+@mixin make-submenu( $dropdown-padding-y:$dropdown-padding-y, $font-size-base: $font-size-base, $dropdown-item-padding-y:$dropdown-item-padding-y, $dropdown-item-padding-x:$dropdown-item-padding-x, $dropdown-border-radius:$dropdown-border-radius, $dropdown-min-width:$dropdown-min-width, $dropdown-border-width:$dropdown-border-width, $dropdown-border-color:$dropdown-border-color, $dropdown-bg:$dropdown-bg, $dropdown-link-color:$dropdown-link-color, $font-weight-normal:$font-weight-normal, $dropdown-link-hover-bg:$dropdown-link-hover-bg, $link-decoration:$link-decoration ) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: $zindex-dropdown;
+    display: none; // none by default, but block on "open" of the menu
+    float: left;
+    min-width: $dropdown-min-width;
+    padding: $dropdown-padding-y 0;
+    margin: $dropdown-spacer 0 0; // override default ul
+    font-size: $font-size-base; // Redeclare because nesting can cause inheritance issues
+    color: $body-color;
+    text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+    list-style: none;
+    background-color: $dropdown-bg;
+    background-clip: padding-box;
+    border: $dropdown-border-width solid $dropdown-border-color;
+    @include border-radius($dropdown-border-radius);
+    @include box-shadow($dropdown-box-shadow);
+
+    > .menu-item > a,
+    > li > a {
+        display: block;
+        width: 100%; // For `<button>`s
+        padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+        clear: both;
+        font-weight: $font-weight-normal;
+        color: $dropdown-link-color;
+        text-align: inherit; // For `<button>`s
+        white-space: nowrap;
+        background-color: transparent; // For `<button>`s
+        border: 0; // For `<button>`s
+
+        @include hover-focus {
+            color: $dropdown-link-hover-color;
+            text-decoration: $link-decoration;
+            @include gradient-bg($dropdown-link-hover-bg);
+        }
+
+        &.active,
+        &:active {
+            color: $dropdown-link-active-color;
+            text-decoration: none;
+            @include gradient-bg($dropdown-link-active-bg);
+        }
+
+        &.disabled,
+        &:disabled {
+            color: $dropdown-link-disabled-color;
+            background-color: transparent;
+            // Remove CSS gradients if they're enabled
+            @if $enable-gradients {
+                background-image: none;
+            }
+        }
+    }
+}

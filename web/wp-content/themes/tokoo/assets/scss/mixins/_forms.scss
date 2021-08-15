@@ -1,0 +1,131 @@
+@mixin make-custom-select( $custom-select-color:$custom-select-color, $custom-select-height:$custom-select-height, $custom-select-line-height: $custom-select-line-height, $custom-select-padding-x: $custom-select-padding-x, $custom-select-padding-y: $custom-select-padding-y ) {
+    display: inline-block;
+    width: 100%;
+    height: $custom-select-height;
+    padding: $custom-select-padding-y $custom-select-padding-x $custom-select-padding-y $custom-select-padding-x;
+    line-height: $custom-select-line-height;
+    color: $custom-select-color;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+
+    &:focus {
+        border-color: $custom-select-focus-border-color;
+        outline: 0;
+        box-shadow: $custom-select-focus-box-shadow;
+
+        &::-ms-value {
+          // For visual consistency with other platforms/browsers,
+          // suppress the default white text on blue background highlight given to
+          // the selected option text when the (still closed) <select> receives focus
+          // in IE and (under certain conditions) Edge.
+          // See https://github.com/twbs/bootstrap/issues/19398.
+          color: $input-color;
+          background-color: $input-bg;
+        }
+    }
+
+    &[multiple],
+    &[size]:not([size="1"]) {
+        height: auto;
+        padding-right: $custom-select-padding-x;
+        background-image: none;
+    }
+
+    &:disabled {
+        color: $custom-select-disabled-color;
+        background-color: $custom-select-disabled-bg;
+    }
+
+    // Hides the default caret in IE11
+    &::-ms-expand {
+        opacity: 0;
+    }
+}
+
+@mixin make-form-control( $font-size-base: $font-size-base, $input-line-height: $input-line-height, $input-color: $input-color, $input-bg: $input-bg, $input-padding-y: $input-padding-y, $input-padding-x: $input-padding-x, $input-border-color: #e6e6e6, $enable-rounded: false, $font-weight: $fw-regular ) {
+    display: block;
+    width: 100%;
+    padding: $input-padding-y $input-padding-x;
+    font-size: $font-size-base;
+    line-height: $input-line-height;
+    color: $input-color;
+    background-color: $input-bg;
+    background-clip: padding-box;
+    border: $input-border-width solid $input-border-color;
+    font-weight: $font-weight;
+
+    @if $enable-rounded {
+        border-radius: $input-border-radius;
+    } @else {
+        border-radius: 0;
+    }
+
+    @include box-shadow($input-box-shadow);
+    @include transition($input-transition);
+
+    // Unstyle the caret on `<select>`s in IE10+.
+    &::-ms-expand {
+        background-color: transparent;
+        border: 0;
+    }
+
+    // Customize the `:focus` state to imitate native WebKit styles.
+    @include form-control-focus();
+
+    // Placeholder
+    &::placeholder {
+        color: $input-placeholder-color;
+        // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+        opacity: 1;
+    }
+
+    // Disabled and read-only inputs
+    //
+    // HTML5 says that controls under a fieldset > legend:first-child won't be
+    // disabled if the fieldset is disabled. Due to implementation difficulty, we
+    // don't honor that edge case; we style them as disabled anyway.
+    &:disabled,
+    &[readonly] {
+        background-color: $input-disabled-bg;
+        // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
+        opacity: 1;
+    }
+}
+
+@mixin make-form-and-row() {
+    @include make-row();
+
+    > * {
+        @include make-col-ready();
+        @include make-col(12);
+    }
+
+    > .form-row-wide {
+        @include make-col(12);
+    }
+
+    @include media-breakpoint-up(md) {
+        > .form-row-first,
+        > .form-row-last {
+            @include make-col(6);
+        }
+    }
+}
+
+@mixin make-form( $font-size-base: $font-size-base, $input-line-height: $input-line-height, $input-color: $input-color, $input-bg: $input-bg, $input-padding-y: $input-padding-y, $input-padding-x: $input-padding-x, $input-border-color: #e6e6e6, $enable-rounded: false, $font-weight: $fw-regular ) {
+    label {
+        display: block;
+    }
+
+    .input-text {
+        @include make-form-control( $font-size-base, $input-line-height, $input-color, $input-bg, $input-padding-y, $input-padding-x, $input-border-color, $enable-rounded, $font-weight );
+    }
+
+    input[type="submit"] {
+        @include make-button( $input-padding-y, $input-padding-x, $font-size-base, $input-line-height, 4px, $btn-font-weight );
+    }
+}

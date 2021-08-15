@@ -1,0 +1,88 @@
+.dokan-widget-area {
+	.widget {
+		border: 1px solid #e6e6e6;
+	    padding: 14px 17px;
+	    color: #757575;
+	    margin-bottom: 20px;
+
+		.widget-title {
+			text-transform: uppercase;
+		    font-weight: 600;
+		    color: #252525;
+		    display: block;
+		    margin-bottom: 20px;
+		    font-size: 14px;
+	    	line-height: 26px;
+		}
+
+		#cat-drop-stack {
+			ul {
+				@include list-unstyled();
+				font-size: 14px;
+				line-height: 26px;
+				margin-bottom: 0;
+
+				 > li.parent-cat-wrap {
+				 	> a {
+						text-decoration: none;
+						color: #252525;
+					    font-weight: 500 !important;
+					    line-height: 35px;
+					    display: block;
+					    border-bottom: none !important;
+
+					    .caret-icon {
+					    	float: right;
+					    	color: #909090;
+					    }
+					}
+				}
+
+				>li {
+					.children {
+						margin-bottom: 8px;
+						list-style: none;
+    					padding-left: 15px;
+    					display: none;
+
+    					li {
+    						margin-bottom: 0;
+    					}
+
+    					a {
+    						line-height: 32px;
+    						color: #757575;
+    						text-decoration: none;
+
+    						&.selected {
+    							font-weight: 500 !important;
+    						}
+    					}
+					}
+				}
+			}
+		}
+
+		form.seller-form {
+			.dokan-right {
+				float: none !important;
+			}
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+@include media-breakpoint-down(lg) {
+	.dokan-theme-tokoo {
+	 	.site-content {
+	 		.widget-area:not(.blog-sidebar) {
+	 			position: static !important;
+	 			opacity: 1;
+	 			visibility: visible;
+	 		}
+	 	}
+	 }
+}

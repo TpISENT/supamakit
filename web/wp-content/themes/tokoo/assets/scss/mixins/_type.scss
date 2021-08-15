@@ -1,0 +1,25 @@
+@mixin make-section-title() {
+    color: $title-color;
+    font-size: 22px;
+    line-height: 32.1px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+@mixin make-checkout-page-section-title() {
+    position: absolute;
+    left: calc( -50% + 16.6666667% );
+    width: 33.3333333%;
+    padding-right: 30px;
+    font-size: 18px;
+    line-height: 25px;
+    color: #252525;
+    font-weight: 500;
+}
+
+@mixin make-hover-color-primary() {
+    @include hover-focus() {
+        text-decoration: none;
+        color: $tokoo-primary-color;
+    }
+}

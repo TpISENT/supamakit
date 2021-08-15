@@ -1,0 +1,10 @@
+.masthead-v2 {
+    .site-branding {
+        @include make-col-ready();
+        @include make-auto-width-col();
+    }
+
+    .cart-contents .count {
+        right: 9px;
+    }
+}

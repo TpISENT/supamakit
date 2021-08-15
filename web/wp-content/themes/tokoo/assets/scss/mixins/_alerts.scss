@@ -1,0 +1,20 @@
+@mixin make-woocommerce-alert( $color ) {
+    @include list-unstyled();
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 26px;
+    position: relative;
+    padding: $alert-padding-y $alert-padding-x;
+    margin-bottom: $alert-margin-bottom;
+    border: $alert-border-width solid transparent;
+    @include alert-variant( theme-color-level( $color, $alert-bg-level ), theme-color-level( $color, $alert-border-level ), theme-color-level( $color, $alert-color-level ) );
+
+    a, strong {
+        font-weight: $fw-semi-bold;
+        color: theme-color-level( $color, $alert-color-level );
+    }
+
+    .button {
+        float: right;
+    }
+}

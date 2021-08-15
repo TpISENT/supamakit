@@ -1,0 +1,87 @@
+body {
+    font-family: $tokoo-font-family;
+    color: #757575;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: $fw-regular;
+    overflow-x: hidden;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $tokoo-title-color;
+    font-weight: $fw-medium;
+    margin-bottom: 0.5em;
+    
+}
+
+h1 {
+    font-size: 2em;
+    line-height: 1.214;
+}
+
+h2 {
+    font-size: 1.618em;
+    line-height: 1.214;
+}
+
+h3 {
+    font-size: 1.41575em;
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+h5 {
+    font-size: 1em;
+}
+
+h6 {
+    font-size: 0.9em;
+}
+
+img {
+    @include img-fluid();
+}
+
+.screen-reader-text {
+    @include sr-only();
+}
+
+address {
+    p {
+        margin-bottom: 0;
+    }
+}
+
+figure {
+    max-width: 100%;
+
+    figcaption {
+        color: #757575;
+        text-align: center;
+        font-size: 90%;
+    }
+}
+
+iframe {
+    max-width: 100%;
+}
+
+blockquote {
+    padding-left: 30px;
+    border-left: 5px solid #757575;
+    margin-bottom: 30px;
+
+    cite {
+        font-style: normal;
+        display: block;
+        color: #252525;
+    }
+}
+
+p {
+    @include clearfix();
+}

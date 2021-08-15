@@ -1,0 +1,25 @@
+.checkout_coupon {
+    @include make-row();
+
+    > p {
+        @include make-col-ready();
+        @include make-col(12);
+    }
+
+    > .form-row-first,
+    > .form-row-last {
+        @include media-breakpoint-up(md) {        
+            @include make-col(6);
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        .input-text[name="coupon_code"] {
+            min-width: 100%;
+        }
+    }
+
+    .clear {
+        display: none;
+    }
+}

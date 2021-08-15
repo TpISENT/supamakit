@@ -1,0 +1,64 @@
+.widget_recently_viewed_products {
+    .product_list_widget {
+        @include make-row();
+
+        > li {
+            @include make-col-ready();
+            @include make-col(6);
+        }
+
+        .woocommerce-Price-amount {
+            display: none;
+        }
+    }
+}
+
+.product_list_widget {
+    li {
+        margin-bottom: 1em;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        > a {
+            display: block;
+        }
+    }
+
+    .product-title {
+        color: $tokoo-title-color;
+        font-weight: $fw-medium;
+        font-size: 13px;
+        line-height: 24px;
+        display: block;
+        white-space: pre;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .woocommerce-Price-amount {
+        display: block;
+    }
+
+    del {
+        margin-right: 4px;
+
+        .woocommerce-Price-amount {
+            color: #b4b4b4;
+            font-weight: 300;
+            text-decoration: line-through;
+        }
+    }
+
+    ins {
+        text-decoration: none;
+    }
+
+    del,
+    ins {
+        .woocommerce-Price-amount {
+            display: inline-block;
+        }
+    }
+}

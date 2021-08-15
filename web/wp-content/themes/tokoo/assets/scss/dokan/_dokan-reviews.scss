@@ -1,0 +1,147 @@
+.dokan-theme-tokoo {
+	#reviews {
+		.commentlist {
+			@include list-unstyled();
+
+			li.comment {
+				padding-bottom: 1.5em;
+    			padding-top: 2.5em;
+    			border-bottom: 1px solid #e6e6e6;
+
+                &:last-child {
+                    border-bottom: none;
+                    padding-bottom: 0;
+                }
+
+    			@include media-breakpoint-down(md) {
+    				padding-bottom: 1em;
+    				padding-top: 2em;
+    			}
+
+    			&:first-child {
+    				padding-top: 0;
+    			}
+			}
+
+			.dokan-review-author-img {
+				display: none;
+			}
+
+			.comment-text {
+				display: flex;
+    			flex-direction: column;
+
+    			.dokan-rating {
+    				margin-bottom: 1.012em;
+    				font-size: 1.2em;
+				    letter-spacing: 4px;
+				    
+                    .star-rating {
+                        width: 6.5em;
+                    }
+    			}
+
+    			.author {
+    				font-size: 1.071em;
+    				color: #252525;
+    			}
+			}
+		}
+	}
+
+	.dokan-single-store {
+		.store-review-wrap {
+			h2.headline {
+				margin-bottom: 30px;
+    			text-align: center;
+			}
+		}
+
+		.profile-frame {
+			.profile-info-box {
+				.profile-info-summery-wrapper {
+					.profile-info-summery {
+						.profile-info-head {
+							.store-name {
+								@include media-breakpoint-down(sm) {
+									font-size: 25px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.dokan-store-tabs {
+			@include media-breakpoint-down(sm) {
+				ul {
+					text-align: center;
+                    display: flex;
+                    flex-direction: column;
+
+					li.dokan-right {
+						float: none !important;
+					}
+
+                    li {
+                        border: none;
+                        
+                        button {
+                            margin: 0;
+                            margin-bottom: 10px;
+                            width: auto;
+                        }
+
+                        &.dokan-store-support-btn-wrap {
+                            margin-right: 0;
+                        }
+                    }
+				}
+			}
+
+            ul li {
+                &.dokan-share-btn-wrap,
+                &.dokan-store-support-btn-wrap {
+                    border: none;
+                }
+            }
+		}
+	}
+
+	.dokan-reviews-content {
+		.dokan-reviews-area {
+			.dokan-comments-wrap {
+
+				#dokan-comments-table td.col-author, 
+				#dokan-comments-table th.col-author,
+				#dokan-comments-table td.col-content, 
+				#dokan-comments-table th.col-content,
+				#dokan-comments-table td.col-link,
+				#dokan-comments-table th.col-link {
+					@include media-breakpoint-down(sm) {
+						width: 100%;
+					}
+				}
+			}
+		}
+
+		ul.dokan-cmt-row-actions {
+			li {
+				a {
+					color: #252525;
+				}
+			}
+		}
+	}
+
+	.dokan-support-table {
+		.dokan-support-customer-name {
+			img {
+				@include media-breakpoint-down(sm) {
+					float: none;
+				}
+			}
+		}
+	}
+}

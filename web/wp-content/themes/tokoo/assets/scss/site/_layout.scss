@@ -1,0 +1,131 @@
+@if $enable-grid-classes {
+    .container {
+        @include make-container();
+        @include make-container-max-widths($tokoo-container-max-widths);
+    }
+}
+
+@if $enable-grid-classes {
+    .container-fluid {
+        @include make-container();
+    }
+}
+
+.site-content-inner {
+    @include make-row();
+    margin-top: 35px;
+    margin-bottom: 50px;
+
+    > .content-area,
+    > .widget-area {
+        @include make-col-ready();
+        @include make-col(12);
+    }
+}
+
+.left-sidebar,
+.right-sidebar {
+    .site-content-inner {
+        @include media-breakpoint-up(xl) {
+            > .content-area {
+                @include make-col(9);
+            }
+
+            > .widget-area,
+            > .sidebar {
+                @include make-col(3);
+            }
+        }
+    }
+}
+
+.right-sidebar {
+    .site-content-inner {
+        .content-area {
+            order: 1;
+        }
+
+        .widget-area {
+            order: 2;
+        }
+    }
+}
+
+.left-sidebar {
+    .site-content-inner {
+        .content-area {
+            @include media-breakpoint-up(xl) {
+                order: 2;
+            }
+
+        }
+
+        .widget-area {
+            @include media-breakpoint-up(xl) {
+                order: 1;
+            }
+        }
+    }
+}
+
+.full-width {
+    .site-content-inner {
+        .content-area {
+            order: 1;
+            @include media-breakpoint-up(md) {
+                @include make-col(12);
+            }
+        }
+
+        .widget-area { display: none; }
+    }
+}
+
+.woocommerce-checkout .site-content-inner,
+.woocommerce-track-order .site-content-inner {
+    @include make-col(12);
+
+    @include media-breakpoint-up(xl) {
+        > .content-area {
+            @include make-col(6);
+            @include make-col-offset(3);
+        }
+    }
+}
+
+.woocommerce-lost-password .site-content-inner {
+    @include media-breakpoint-up(xl) {
+        > .content-area {
+            @include make-col(5);
+        }
+    }
+}
+
+.page-template-template-homepage-v1,
+.page-template-template-homepage-v3,
+.page-template-template-homepage-v4,
+.page-template-template-homepage-v5 {
+    .site-content-inner {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .desktop-only {
+        display: block;
+    }
+
+    .handheld-only {
+        display: none;
+    }
+}
+
+@media (max-width:1199px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .handheld-only {
+        display: block;
+    }
+}

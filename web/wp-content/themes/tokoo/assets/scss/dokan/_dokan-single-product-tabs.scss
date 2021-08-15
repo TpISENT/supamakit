@@ -1,0 +1,159 @@
+.woocommerce-tabs {
+	#tab-seller{
+		ul.list-unstyled {
+			@include list-unstyled();
+
+			li.seller-name {
+				a {
+					text-decoration: none;
+				}
+			}
+			
+			li.clearfix {
+				span.seller-rating {
+					display: block;
+
+					.star-rating {
+						display: inline-block;
+					}
+				}
+
+				span.text {
+					display: none;
+				}
+			}
+		}
+	}
+
+	#tab-seller_enquiry_form {
+		form {
+			@include make-form();
+
+			.row {
+				@include make-row();
+
+				.form-group {
+					@include make-col-ready();
+					@include make-col(12);
+
+					@include media-breakpoint-up(md) {
+						@include make-col(6);
+					}
+				}
+			}
+
+			.form-group {
+				margin-bottom: 1rem;
+				
+				.form-control {
+					display: block;
+				    width: 100%;
+				    padding: 0.375rem 0.75rem;
+				    font-size: 1rem;
+				    line-height: 1.5;
+				    color: #495057;
+				    background-color: #fff;
+				    background-clip: padding-box;
+				    border: 1px solid #e6e6e6;
+				    font-weight: 400;
+				    border-radius: 0;
+				    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+				}
+			}
+		}
+	}
+
+	#tab-seller_enquiry_form {
+		textarea {
+			width: 100%;
+		}
+	}
+
+	#tab-more_seller_product {
+		ul.products {
+			.has-rating {
+				.product-outer {
+					@include media-breakpoint-up(xl) {
+						min-height: 414px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.dokan-theme-tokoo{
+	.dokan-other-vendor-camparison {
+		width: 100%;
+
+		@include media-breakpoint-down(sm) {
+			padding: 0 15px;
+		}
+
+		.table-cell.vendor a {
+			color: #252525;
+		}
+
+		.table-cell.rating {
+			.woocommerce-product-rating {
+				.woocommerce-review-link {
+	                font-size: 13px;
+	                color: #757575;
+	                font-weight: 400;
+	            }
+			}
+		}
+	}
+
+	button[name=dokan_sell_this_item] {
+		margin-top: 20px;
+	}
+}
+
+
+form.edit-account {
+	@include make-form();
+	@include make-row();
+
+	.form-row,
+	p:not(.form-row) {
+		@include make-col-ready();
+		@include make-col(12);
+
+		&.form-row-first,
+		&.form-row-last {
+			@include media-breakpoint-up(md) {
+				@include make-col(6);
+			}
+		}
+	}
+
+	fieldset {
+		width: 100%;
+
+		legend {
+			padding: 0 15px;
+		}
+	}
+	
+
+	// .form-group {
+	// 	margin-bottom: 1rem;
+		
+	// 	.form-control {
+	// 		display: block;
+	// 	    width: 100%;
+	// 	    padding: 0.375rem 0.75rem;
+	// 	    font-size: 1rem;
+	// 	    line-height: 1.5;
+	// 	    color: #495057;
+	// 	    background-color: #fff;
+	// 	    background-clip: padding-box;
+	// 	    border: 1px solid #e6e6e6;
+	// 	    font-weight: 400;
+	// 	    border-radius: 0;
+	// 	    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	// 	}
+	// }
+}
+	

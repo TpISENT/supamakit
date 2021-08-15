@@ -1,0 +1,151 @@
+.dokan-table,
+.dokan-reports-content .dokan-reports-area table.table {
+	font-size: 15px;
+    line-height: 24px;
+
+	> thead {
+		> tr {
+			> th {
+			font-weight: 400;
+			color: #757575;
+			}
+		}
+
+		
+		@include media-breakpoint-down(sm) {
+			display: none;
+		}
+	}
+
+	> tbody {
+		tr {
+			td {
+				@include media-breakpoint-down(sm) {
+					display: block;
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	@include media-breakpoint-up(md) {
+		@include media-breakpoint-down(lg) {
+			> thead,
+			> tbody {
+				tr {
+					th,td {
+						padding: 0.2rem !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.dokan-product-listing {
+	.dokan-product-listing-area {
+		p {
+			a {
+				color: #252525;
+			    font-weight: 500;
+			    text-decoration: none;
+			}
+		}
+
+		table.product-listing-table {
+			mark.instock {
+				color: #1eb41e;
+			    background: transparent;
+			    font-weight: 400;
+			}
+
+			mark.outofstock {
+				color: #dc3545;
+			    background: transparent;
+			    font-weight: 400;
+			}
+
+			td[data-title=Price] {
+
+				del {
+					.woocommerce-Price-amount {
+						font-weight: 400;
+					}
+				}
+
+				.woocommerce-Price-amount {
+					color: #252525;
+					font-size: 18px;
+
+					@include media-breakpoint-up(md) {
+						@include media-breakpoint-down(lg) {
+							font-size: 15px;
+						}
+					}
+				}
+			}
+
+			td[data-title=Earning] {
+				.woocommerce-Price-amount {
+					color: #252525;
+					font-weight: 400;
+				}
+			}
+
+			span.product-type.simple:before {
+				@include media-breakpoint-down(sm) {
+					text-align: left;
+				}
+			}
+		}
+
+		.product-listing-top {
+
+			span.dokan-add-product-link {
+				width: auto;
+
+				@include media-breakpoint-down(sm) {
+					text-align: center;
+				}
+			}
+		}
+
+		.dokan-dashboard-product-listing-wrapper {
+			@include media-breakpoint-only(md) {
+				clear: both;
+			}
+		}
+
+		.row-actions {
+			.delete {
+				a {
+					color: #dc3545;
+				}
+			}
+
+			.edit,
+			.view,
+			.duplicate {
+				a {
+					color: #757575;
+				}
+			}
+		}
+	}
+}
+
+.dokan-orders-content {
+	.dokan-orders-area {
+		ul.order-statuses-filter {
+			padding-left: 0;
+		}
+	}
+}
+
+.dokan-coupon-content {
+	.code:hover {
+		text-shadow: none;
+	}
+
+
+}

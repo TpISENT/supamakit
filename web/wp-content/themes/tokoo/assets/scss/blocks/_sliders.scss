@@ -1,0 +1,121 @@
+.home-v1-slider,
+.home-v4-slider {
+    margin-bottom: 45px;
+}
+
+.rev_slider_wrapper {
+    .tp-tabs {
+
+        .tp-tabs-inner-wrapper {
+            border: 1px solid #ebebeb;
+        }
+
+        .tp-tab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.selected {
+                border-bottom: 3px solid;
+                font-weight: 500;
+                transition: all .1s;
+            }
+
+            &+.tp-tab {
+                border-left: 1px solid #ebebeb;
+            }
+        }
+
+        .tp-tab-title {
+            color: $title-color;
+        }
+    }
+}
+
+.custom.tparrows {
+    width: 30px;
+    height: 30px;
+    background-color: #f5e5e5;
+    border-radius: 20px;
+
+    &:hover {
+        transition: .4s;
+        background-color: #967979;
+
+        &:before {
+            color: #fff;
+        }
+    }
+
+    &:before {
+        color: #a7a0a0;
+        font-size: 12px;
+        line-height: 32px;
+    }
+}
+
+.home-v3-slider {
+    .custom.tparrows {
+        background-color: #d7639f;
+
+        &:before {
+            color: #f4d4e4;
+        }
+    }
+}
+
+.home-v4-slider .custom.tparrows {
+    background-color: #eff8f8;
+}
+
+.home-v1-slider {
+    .tparrows.custom {
+        background: transparent;
+
+        &:before {
+            font-family: Flaticon;
+            color: #bdbebd;
+            font-size: 18px;
+        }
+
+        &.tp-leftarrow:before {
+            content: "\f117" #{"/*rtl:\"\f118\"*/"};
+        }
+
+        &.tp-rightarrow:before {
+            content: "\f118" #{"/*rtl:\"\f117\"*/"};
+        }
+    }
+}
+
+.tp-caption.tp-resizeme.bottom-link {
+    opacity: 0 !important;
+    transition: 1s !important;
+}
+
+.active-revslide .tp-caption.tp-resizeme.bottom-link {
+    opacity: 1 !important;
+}
+
+.tp-bullets.custom {
+    display: flex;
+    width: 200px !important;
+    justify-content: center;
+
+    @include media-breakpoint-down(lg) {
+        display: none;
+    }
+
+    .tp-bullet {
+        width: 8px;
+        height: 8px;
+        border: 1px solid #ea92c0;
+        border-radius: 50%;
+        position: relative;
+        background-color: transparent;
+    }
+
+    .tp-bullet.selected {
+        background-color: #ea92c0;
+    }
+}

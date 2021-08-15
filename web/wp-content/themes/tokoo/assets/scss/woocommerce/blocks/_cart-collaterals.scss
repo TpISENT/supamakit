@@ -1,0 +1,12 @@
+.cart-collaterals {
+    display: flex;
+    flex-direction: column;
+}
+
+.cross-sells {
+    order: 2;
+
+    > h2 {
+        @include make-section-title();
+    }
+}

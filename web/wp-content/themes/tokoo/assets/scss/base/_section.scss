@@ -1,0 +1,21 @@
+.section-title {
+    @include make-section-title();
+    @include media-breakpoint-down(sm) {
+    	font-size: 18px;
+    	line-height: 30px;
+    }
+}
+
+.flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section, .section {
+    margin-bottom: 45px;
+
+    header, .section-header {
+        margin-bottom: 17px;
+    }
+}

@@ -1,0 +1,44 @@
+.dokan-widget-area {
+	.widget {
+		.widget-title {
+			font-size: 16px;
+		}
+
+		&.dokan-category-menu,
+		&.dokan-store-menu {
+			.widget-title {
+				padding: 0;
+				background-color: transparent;
+				border: 0;
+			}
+
+			#cat-drop-stack ul li {
+				a {
+					padding: 0;
+					margin: 0;
+					border-bottom: none;
+					line-height: 1.9;
+					display: inline-block;
+					font-weight: 500;
+					line-height: 35px;
+					font-size: 14px;
+					color: $tokoo-body-color;
+
+					&:hover {
+						color: $title-color;
+					}
+				}
+
+				&.parent-cat-wrap > a {
+					color: $title-color;
+				}
+			}
+		}
+	}
+
+	.dokan-store-contact {
+		.alert-success {
+			margin-bottom: .625em;
+		}
+	}
+}

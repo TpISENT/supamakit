@@ -1,0 +1,31 @@
+.woocommerce-checkout-review-order-table {
+    margin-top: 25px;
+
+    thead, tfoot {
+        display: none;
+    }
+
+    td, th {
+        display: block;
+    }
+
+    .cart_item {
+        font-size: 16px;
+        line-height: 38px;
+        font-weight: 300;
+        color: #757575;
+    }
+
+    .woocommerce-Price-amount {
+        color: #252525;
+        font-weight: 500;
+    }
+}
+
+#order_review_heading {
+    display: none;
+}
+
+.customer-details-tab-pane {
+    display: block !important;
+}

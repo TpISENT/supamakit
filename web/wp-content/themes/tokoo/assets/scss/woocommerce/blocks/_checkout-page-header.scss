@@ -1,0 +1,102 @@
+.checkout-page-header {
+    text-align: center;
+    margin-bottom: 50px;
+
+    @include media-breakpoint-up(xl) {
+        margin-left: -25%;
+        margin-right: -25%;
+    }
+}
+
+.checkout-page-title {
+    font-size: 20px;
+    line-height: 36px;
+    color: #252525;
+    font-weight: $fw-light;
+    margin-bottom: 19px;
+    
+    @include media-breakpoint-up(md) {
+        font-size: 28px;
+    }
+}
+
+.checkout-steps {
+    @include list-unstyled;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+
+    @include media-breakpoint-down(sm) {
+        flex-direction: column;
+    }
+
+    li {
+        position: relative;
+
+        @include media-breakpoint-down(sm) {
+            margin-bottom: 10px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            &:before {
+                border-left-width: 1px;
+                border-left-style: solid;
+                display: block;
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                height: 30px;
+                top: 30px;
+            }
+
+            &:last-child {
+                &:before {
+                    content: none;
+                }
+            }
+        }
+    }
+
+    a {
+        display: block;
+        color: #757575;
+        padding-bottom: 30px;
+        font-size: 15px;
+        line-height: 24px;
+        position: relative;
+        text-decoration: none;
+        text-align: left;
+        font-weight: $fw-regular;
+        text-align: center;
+
+        @include media-breakpoint-up(md) {
+            padding-right: 45px;
+            text-align: left;
+            border-bottom: 1px solid #e6e6e6;
+            padding-bottom: 19px;
+        }
+
+        &:before {
+            @include media-breakpoint-up(md) {
+                content: ' ';
+                display: inline-block;
+                height: 12px;
+                width: 12px;
+                background-color: #b4b4b4;
+                border: 2px solid #fff;
+                border-radius: 50%;
+                position: absolute;
+                bottom: -6px;
+            }
+        }
+
+        &.active, &.always-active {
+            font-weight: $fw-medium;
+        }
+    }
+
+    > li:last-child > a {
+        padding-right: 0;
+    }
+}

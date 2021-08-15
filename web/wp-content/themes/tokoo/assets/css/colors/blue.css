@@ -1,0 +1,598 @@
+.header-aside a,
+.about-job .job-title,
+.about-job a:hover,
+.about-job a:focus,
+.comment-reply-link,
+.comment-reply-link:hover,
+.comment-reply-link:focus,
+.comment-navigation a,
+.page-numbers .current,
+nav.page-numbers > span,
+.article .entry-featured-image:hover .post-icon,
+.article .entry-featured-image:focus .post-icon,
+.url,
+.single-article .tk-list li:before,
+.single-article blockquote.tk-blockquote,
+.post-navigation a,
+.nav-previous:before,
+.nav-next:after,
+.single-post-footer .author-name,
+.cart-contents .count,
+.header-wishlist .count,
+.feature-icon,
+.widget-area .widget .current-cat .child-indicator,
+.cart-header-subtitle strong,
+.cart-header-subtitle .woocommerce-Price-amount,
+.checkout-steps a.active,
+.checkout-steps a.always-active,
+.register-benefits-banner .register-benefits-banner-inner .banner-icon i,
+.register-benefits-banner .register-benefits-banner-inner .banner-content h3,
+.shop-view-switcher li > a.active,
+.wc-terms-and-conditions a,
+.coupon-form-subtitle a,
+.woocommerce-Price-amount,
+.woocommerce-breadcrumb a,
+.login-register-tab.active,
+.woocommerce-lost-password .site-content-inner .page-title,
+.woocommerce-MyAccount-navigation-link.is-active,
+.woocommerce-MyAccount-navigation-link > a,
+.product_title,
+.wc-tabs > li.active > a,
+.info-message-subtitle a,
+.info-message-subtitle strong,
+.widget-area .widget_product_categories .product-categories li.current-cat.cat-parent > .cat-item-inner > .cat-item-link,
+.single-product .single-product-summary-inner .price-details .price,
+.single-product .product_meta span a,
+.single-product-feature-list ul .feature-inner .feature-thumbnail i,
+.vertical-menu-title a,
+.vertical-nav > .menu-item > a:hover,
+.section-flash-sale-block .section-title i,
+.section-flash-sale-block .marketing-text:before,
+.categories-nav .nav-link.active,
+.categories-nav .nav-link:hover,
+.view-products,
+.view-products:hover,
+.view-products:focus,
+.advanced-review .rating-histogram .rating-count:not(.zero),
+.advanced-review .comment-text .meta .woocommerce-review__verified,
+.register-benefits ul li:before,
+.primary-nav .yamm-content a:hover,
+.price,
+.article .entry-title a:hover,
+.home-v1-slider .tparrows.custom:hover:before,
+.entry-content a,
+form.comment-form .logged-in-as a,
+.ais-menu .ais-menu--list .ais-menu--item .ais-menu--link:hover,
+.ais-pagination--item__active a,
+.reply .comment-edit-link,
+.comment-text a {
+  color: #0063d1; }
+
+.masthead-v3 .header-icon-link .count,
+.masthead:not(.masthead-v3),
+.widget_tag_cloud .tag-cloud-link:hover,
+.onsale,
+.handheld-header .handheld-header-links .cart .count,
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.dokan-common-links a:hover,
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.dokan-common-links a:focus {
+  background-color: #0063d1;
+  color: #fff; }
+
+.checkout-steps a.active:before,
+.checkout-steps a.always-active:before,
+.widget_price_filter .ui-slider .ui-slider-range,
+.woocommerce-widget-layered-nav-list__item--chosen .checkbox-indicator,
+#scrollUp,
+.slick-dots li.slick-active button:before {
+  background-color: #0063d1; }
+
+.widget_tag_cloud .tag-cloud-link,
+.widget_price_filter .ui-slider .ui-slider-handle,
+.woocommerce-widget-layered-nav-list__item--chosen .checkbox-indicator,
+.slick-dots li.slick-active button:before,
+.advanced-review .comment-text .meta .woocommerce-review__verified,
+.slick-arrow,
+.single-product .product-images-wrapper .tokoo-single-product-gallery-thumbnails .slick-vertical .slick-arrow:not(.disabled) {
+  border-color: #0063d1; }
+
+@media (max-width: 767.98px) {
+  .checkout-steps li:before {
+    border-left-color: #0063d1; } }
+
+.checkout-steps a.active,
+.checkout-steps a.always-active,
+.login-register-tab.active,
+.woocommerce-MyAccount-navigation-link.is-active,
+.wc-tabs > li.active > a,
+.categories-nav .nav-link.active:after,
+.single-product .product-images-wrapper .tokoo-single-product-gallery-thumbnails .tokoo-single-product-gallery-thumbnails__wrapper .slick-slide.slick-current img,
+.woocommerce-lost-password .site-content-inner .page-header,
+.rev_slider_wrapper .tp-tabs .tp-tab.selected,
+.single-product .product-images-wrapper .tokoo-single-product-gallery-thumbnails .tokoo-single-product-gallery-thumbnails__wrapper .slick-slide.slick-current img {
+  border-bottom-color: #0063d1; }
+
+.primary-nav .primary-nav-menu > .menu-item .sub-menu,
+.secondary-nav-menu .sub-menu {
+  border-top-color: #0063d1; }
+
+.masthead-v3 .tokoo-svg {
+  fill: #0063d1; }
+
+.contact-form .wpcf7 form.wpcf7-form input[type="submit"],
+.return-to-shop .button,
+.checkout-button,
+button[name="woocommerce_checkout_place_order"],
+.woocommerce-mini-cart__buttons .button:last-child,
+.btn-action,
+.added_to_cart,
+.single_add_to_cart_button,
+.advanced-review .advanced-review-comment .form-submit input,
+form.woocommerce-ResetPassword .login-form-footer .button,
+form.woocommerce-ResetPassword .woocommerce-Button,
+.login-register-forms .login-form-footer .button,
+.login-register-forms .woocommerce-Button,
+.table-compare tbody tr td .button,
+.woocommerce-MyAccount-content .btn-primary,
+.dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success,
+.dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary,
+.woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"],
+.widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit,
+div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit],
+div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit],
+div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button {
+  color: #fff;
+  background-color: #0063d1;
+  border-color: #0063d1; }
+  .contact-form .wpcf7 form.wpcf7-form input[type="submit"]:hover,
+  .return-to-shop .button:hover,
+  .checkout-button:hover,
+  button[name="woocommerce_checkout_place_order"]:hover,
+  .woocommerce-mini-cart__buttons .button:last-child:hover,
+  .btn-action:hover,
+  .added_to_cart:hover,
+  .single_add_to_cart_button:hover,
+  .advanced-review .advanced-review-comment .form-submit input:hover,
+  form.woocommerce-ResetPassword .login-form-footer .button:hover,
+  form.woocommerce-ResetPassword .woocommerce-Button:hover,
+  .login-register-forms .login-form-footer .button:hover,
+  .login-register-forms .woocommerce-Button:hover,
+  .table-compare tbody tr td .button:hover,
+  .woocommerce-MyAccount-content .btn-primary:hover,
+  .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success:hover,
+  .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary:hover,
+  .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"]:hover,
+  .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit:hover,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit]:hover,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit]:hover,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button:hover {
+    color: #fff;
+    background-color: #0051ab;
+    border-color: #004b9e; }
+  .contact-form .wpcf7 form.wpcf7-form input[type="submit"]:focus, .contact-form .wpcf7 form.wpcf7-form input[type="submit"].focus,
+  .return-to-shop .button:focus,
+  .return-to-shop .button.focus,
+  .checkout-button:focus,
+  .checkout-button.focus,
+  button[name="woocommerce_checkout_place_order"]:focus,
+  button[name="woocommerce_checkout_place_order"].focus,
+  .woocommerce-mini-cart__buttons .button:last-child:focus,
+  .woocommerce-mini-cart__buttons .button:last-child.focus,
+  .btn-action:focus,
+  .btn-action.focus,
+  .added_to_cart:focus,
+  .added_to_cart.focus,
+  .single_add_to_cart_button:focus,
+  .single_add_to_cart_button.focus,
+  .advanced-review .advanced-review-comment .form-submit input:focus,
+  .advanced-review .advanced-review-comment .form-submit input.focus,
+  form.woocommerce-ResetPassword .login-form-footer .button:focus,
+  form.woocommerce-ResetPassword .login-form-footer .button.focus,
+  form.woocommerce-ResetPassword .woocommerce-Button:focus,
+  form.woocommerce-ResetPassword .woocommerce-Button.focus,
+  .login-register-forms .login-form-footer .button:focus,
+  .login-register-forms .login-form-footer .button.focus,
+  .login-register-forms .woocommerce-Button:focus,
+  .login-register-forms .woocommerce-Button.focus,
+  .table-compare tbody tr td .button:focus,
+  .table-compare tbody tr td .button.focus,
+  .woocommerce-MyAccount-content .btn-primary:focus,
+  .woocommerce-MyAccount-content .btn-primary.focus,
+  .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success:focus,
+  .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success.focus,
+  .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary:focus,
+  .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary.focus,
+  .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"]:focus,
+  .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"].focus,
+  .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit:focus,
+  .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit.focus,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit]:focus,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit].focus,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit]:focus,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit].focus,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button:focus,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 99, 209, 0.5); }
+  .contact-form .wpcf7 form.wpcf7-form input[type="submit"].disabled, .contact-form .wpcf7 form.wpcf7-form input[type="submit"]:disabled,
+  .return-to-shop .button.disabled,
+  .return-to-shop .button:disabled,
+  .checkout-button.disabled,
+  .checkout-button:disabled,
+  button[name="woocommerce_checkout_place_order"].disabled,
+  button[name="woocommerce_checkout_place_order"]:disabled,
+  .woocommerce-mini-cart__buttons .button:last-child.disabled,
+  .woocommerce-mini-cart__buttons .button:last-child:disabled,
+  .btn-action.disabled,
+  .btn-action:disabled,
+  .added_to_cart.disabled,
+  .added_to_cart:disabled,
+  .single_add_to_cart_button.disabled,
+  .single_add_to_cart_button:disabled,
+  .advanced-review .advanced-review-comment .form-submit input.disabled,
+  .advanced-review .advanced-review-comment .form-submit input:disabled,
+  form.woocommerce-ResetPassword .login-form-footer .button.disabled,
+  form.woocommerce-ResetPassword .login-form-footer .button:disabled,
+  form.woocommerce-ResetPassword .woocommerce-Button.disabled,
+  form.woocommerce-ResetPassword .woocommerce-Button:disabled,
+  .login-register-forms .login-form-footer .button.disabled,
+  .login-register-forms .login-form-footer .button:disabled,
+  .login-register-forms .woocommerce-Button.disabled,
+  .login-register-forms .woocommerce-Button:disabled,
+  .table-compare tbody tr td .button.disabled,
+  .table-compare tbody tr td .button:disabled,
+  .woocommerce-MyAccount-content .btn-primary.disabled,
+  .woocommerce-MyAccount-content .btn-primary:disabled,
+  .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success.disabled,
+  .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success:disabled,
+  .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary.disabled,
+  .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary:disabled,
+  .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"].disabled,
+  .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"]:disabled,
+  .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit.disabled,
+  .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit:disabled,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit].disabled,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit]:disabled,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit].disabled,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit]:disabled,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button.disabled,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button:disabled {
+    color: #fff;
+    background-color: #0063d1;
+    border-color: #0063d1; }
+  .contact-form .wpcf7 form.wpcf7-form input[type="submit"]:not(:disabled):not(.disabled):active, .contact-form .wpcf7 form.wpcf7-form input[type="submit"]:not(:disabled):not(.disabled).active,
+  .show > .contact-form .wpcf7 form.wpcf7-form input[type="submit"].dropdown-toggle,
+  .return-to-shop .button:not(:disabled):not(.disabled):active,
+  .return-to-shop .button:not(:disabled):not(.disabled).active,
+  .show >
+  .return-to-shop .button.dropdown-toggle,
+  .checkout-button:not(:disabled):not(.disabled):active,
+  .checkout-button:not(:disabled):not(.disabled).active,
+  .show >
+  .checkout-button.dropdown-toggle,
+  button[name="woocommerce_checkout_place_order"]:not(:disabled):not(.disabled):active,
+  button[name="woocommerce_checkout_place_order"]:not(:disabled):not(.disabled).active,
+  .show >
+  button[name="woocommerce_checkout_place_order"].dropdown-toggle,
+  .woocommerce-mini-cart__buttons .button:last-child:not(:disabled):not(.disabled):active,
+  .woocommerce-mini-cart__buttons .button:last-child:not(:disabled):not(.disabled).active,
+  .show >
+  .woocommerce-mini-cart__buttons .button:last-child.dropdown-toggle,
+  .btn-action:not(:disabled):not(.disabled):active,
+  .btn-action:not(:disabled):not(.disabled).active,
+  .show >
+  .btn-action.dropdown-toggle,
+  .added_to_cart:not(:disabled):not(.disabled):active,
+  .added_to_cart:not(:disabled):not(.disabled).active,
+  .show >
+  .added_to_cart.dropdown-toggle,
+  .single_add_to_cart_button:not(:disabled):not(.disabled):active,
+  .single_add_to_cart_button:not(:disabled):not(.disabled).active,
+  .show >
+  .single_add_to_cart_button.dropdown-toggle,
+  .advanced-review .advanced-review-comment .form-submit input:not(:disabled):not(.disabled):active,
+  .advanced-review .advanced-review-comment .form-submit input:not(:disabled):not(.disabled).active,
+  .show >
+  .advanced-review .advanced-review-comment .form-submit input.dropdown-toggle,
+  form.woocommerce-ResetPassword .login-form-footer .button:not(:disabled):not(.disabled):active,
+  form.woocommerce-ResetPassword .login-form-footer .button:not(:disabled):not(.disabled).active,
+  .show >
+  form.woocommerce-ResetPassword .login-form-footer .button.dropdown-toggle,
+  form.woocommerce-ResetPassword .woocommerce-Button:not(:disabled):not(.disabled):active,
+  form.woocommerce-ResetPassword .woocommerce-Button:not(:disabled):not(.disabled).active,
+  .show >
+  form.woocommerce-ResetPassword .woocommerce-Button.dropdown-toggle,
+  .login-register-forms .login-form-footer .button:not(:disabled):not(.disabled):active,
+  .login-register-forms .login-form-footer .button:not(:disabled):not(.disabled).active,
+  .show >
+  .login-register-forms .login-form-footer .button.dropdown-toggle,
+  .login-register-forms .woocommerce-Button:not(:disabled):not(.disabled):active,
+  .login-register-forms .woocommerce-Button:not(:disabled):not(.disabled).active,
+  .show >
+  .login-register-forms .woocommerce-Button.dropdown-toggle,
+  .table-compare tbody tr td .button:not(:disabled):not(.disabled):active,
+  .table-compare tbody tr td .button:not(:disabled):not(.disabled).active,
+  .show >
+  .table-compare tbody tr td .button.dropdown-toggle,
+  .woocommerce-MyAccount-content .btn-primary:not(:disabled):not(.disabled):active,
+  .woocommerce-MyAccount-content .btn-primary:not(:disabled):not(.disabled).active,
+  .show >
+  .woocommerce-MyAccount-content .btn-primary.dropdown-toggle,
+  .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success:not(:disabled):not(.disabled):active,
+  .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success:not(:disabled):not(.disabled).active,
+  .show >
+  .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success.dropdown-toggle,
+  .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary:not(:disabled):not(.disabled):active,
+  .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary:not(:disabled):not(.disabled).active,
+  .show >
+  .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary.dropdown-toggle,
+  .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"]:not(:disabled):not(.disabled):active,
+  .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"]:not(:disabled):not(.disabled).active,
+  .show >
+  .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"].dropdown-toggle,
+  .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit:not(:disabled):not(.disabled):active,
+  .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit:not(:disabled):not(.disabled).active,
+  .show >
+  .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit.dropdown-toggle,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit]:not(:disabled):not(.disabled):active,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit]:not(:disabled):not(.disabled).active,
+  .show >
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit].dropdown-toggle,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit]:not(:disabled):not(.disabled):active,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit]:not(:disabled):not(.disabled).active,
+  .show >
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit].dropdown-toggle,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button:not(:disabled):not(.disabled):active,
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button:not(:disabled):not(.disabled).active,
+  .show >
+  div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button.dropdown-toggle {
+    color: #fff;
+    background-color: #004b9e;
+    border-color: #004591; }
+    .contact-form .wpcf7 form.wpcf7-form input[type="submit"]:not(:disabled):not(.disabled):active:focus, .contact-form .wpcf7 form.wpcf7-form input[type="submit"]:not(:disabled):not(.disabled).active:focus,
+    .show > .contact-form .wpcf7 form.wpcf7-form input[type="submit"].dropdown-toggle:focus,
+    .return-to-shop .button:not(:disabled):not(.disabled):active:focus,
+    .return-to-shop .button:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .return-to-shop .button.dropdown-toggle:focus,
+    .checkout-button:not(:disabled):not(.disabled):active:focus,
+    .checkout-button:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .checkout-button.dropdown-toggle:focus,
+    button[name="woocommerce_checkout_place_order"]:not(:disabled):not(.disabled):active:focus,
+    button[name="woocommerce_checkout_place_order"]:not(:disabled):not(.disabled).active:focus,
+    .show >
+    button[name="woocommerce_checkout_place_order"].dropdown-toggle:focus,
+    .woocommerce-mini-cart__buttons .button:last-child:not(:disabled):not(.disabled):active:focus,
+    .woocommerce-mini-cart__buttons .button:last-child:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .woocommerce-mini-cart__buttons .button:last-child.dropdown-toggle:focus,
+    .btn-action:not(:disabled):not(.disabled):active:focus,
+    .btn-action:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .btn-action.dropdown-toggle:focus,
+    .added_to_cart:not(:disabled):not(.disabled):active:focus,
+    .added_to_cart:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .added_to_cart.dropdown-toggle:focus,
+    .single_add_to_cart_button:not(:disabled):not(.disabled):active:focus,
+    .single_add_to_cart_button:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .single_add_to_cart_button.dropdown-toggle:focus,
+    .advanced-review .advanced-review-comment .form-submit input:not(:disabled):not(.disabled):active:focus,
+    .advanced-review .advanced-review-comment .form-submit input:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .advanced-review .advanced-review-comment .form-submit input.dropdown-toggle:focus,
+    form.woocommerce-ResetPassword .login-form-footer .button:not(:disabled):not(.disabled):active:focus,
+    form.woocommerce-ResetPassword .login-form-footer .button:not(:disabled):not(.disabled).active:focus,
+    .show >
+    form.woocommerce-ResetPassword .login-form-footer .button.dropdown-toggle:focus,
+    form.woocommerce-ResetPassword .woocommerce-Button:not(:disabled):not(.disabled):active:focus,
+    form.woocommerce-ResetPassword .woocommerce-Button:not(:disabled):not(.disabled).active:focus,
+    .show >
+    form.woocommerce-ResetPassword .woocommerce-Button.dropdown-toggle:focus,
+    .login-register-forms .login-form-footer .button:not(:disabled):not(.disabled):active:focus,
+    .login-register-forms .login-form-footer .button:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .login-register-forms .login-form-footer .button.dropdown-toggle:focus,
+    .login-register-forms .woocommerce-Button:not(:disabled):not(.disabled):active:focus,
+    .login-register-forms .woocommerce-Button:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .login-register-forms .woocommerce-Button.dropdown-toggle:focus,
+    .table-compare tbody tr td .button:not(:disabled):not(.disabled):active:focus,
+    .table-compare tbody tr td .button:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .table-compare tbody tr td .button.dropdown-toggle:focus,
+    .woocommerce-MyAccount-content .btn-primary:not(:disabled):not(.disabled):active:focus,
+    .woocommerce-MyAccount-content .btn-primary:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .woocommerce-MyAccount-content .btn-primary.dropdown-toggle:focus,
+    .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success:not(:disabled):not(.disabled):active:focus,
+    .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .dokan-dashboard .dokan-dashboard-wrap .dokan-btn-success.dropdown-toggle:focus,
+    .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary:not(:disabled):not(.disabled):active:focus,
+    .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .dokan-theme-tokoo .dokan-panel-body .add_note .dokan-form-group .btn-primary.dropdown-toggle:focus,
+    .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"]:not(:disabled):not(.disabled):active:focus,
+    .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"]:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .woocommerce-account.logged-in .dokan-become-seller .form-row input[type="submit"].dropdown-toggle:focus,
+    .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit:not(:disabled):not(.disabled):active:focus,
+    .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .widget.widget_layered_nav .woocommerce-widget-layered-nav-dropdown .woocommerce-widget-layered-nav-dropdown__submit.dropdown-toggle:focus,
+    div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit]:not(:disabled):not(.disabled):active:focus,
+    div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit]:not(:disabled):not(.disabled).active:focus,
+    .show >
+    div.wpforms-container-full.wpforms-contact-form .wpforms-form input[type=submit].dropdown-toggle:focus,
+    div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit]:not(:disabled):not(.disabled):active:focus,
+    div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit]:not(:disabled):not(.disabled).active:focus,
+    .show >
+    div.wpforms-container-full.wpforms-contact-form .wpforms-form button[type=submit].dropdown-toggle:focus,
+    div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button:not(:disabled):not(.disabled):active:focus,
+    div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button:not(:disabled):not(.disabled).active:focus,
+    .show >
+    div.wpforms-container-full.wpforms-contact-form .wpforms-form .wpforms-page-button.dropdown-toggle:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 99, 209, 0.5); }
+
+input[name="apply_coupon"] {
+  color: #0063d1;
+  background-color: transparent;
+  background-image: none;
+  border-color: #0063d1; }
+  input[name="apply_coupon"]:hover {
+    color: #fff;
+    background-color: #0063d1;
+    border-color: #0063d1; }
+  input[name="apply_coupon"]:focus, input[name="apply_coupon"].focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 99, 209, 0.5); }
+  input[name="apply_coupon"].disabled, input[name="apply_coupon"]:disabled {
+    color: #0063d1;
+    background-color: transparent; }
+  input[name="apply_coupon"]:not(:disabled):not(.disabled):active, input[name="apply_coupon"]:not(:disabled):not(.disabled).active,
+  .show > input[name="apply_coupon"].dropdown-toggle {
+    color: #fff;
+    background-color: #0063d1;
+    border-color: #0063d1; }
+    input[name="apply_coupon"]:not(:disabled):not(.disabled):active:focus, input[name="apply_coupon"]:not(:disabled):not(.disabled).active:focus,
+    .show > input[name="apply_coupon"].dropdown-toggle:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 99, 209, 0.5); }
+
+.secondary-nav-menu > li + li:before {
+  background-color: #003a7a; }
+
+.primary-nav {
+  background-color: #0059bd; }
+
+.top-bar {
+  background-color: #004999; }
+
+.top-bar a,
+.secondary-nav-menu > li > a,
+.primary-nav-menu > li > a {
+  color: #9dccff; }
+
+.checkout-button,
+.entry-content a.btn-action,
+.entry-content a.added_to_cart,
+.departments-menu-title,
+.departments-menu-title:hover,
+.departments-menu-title:focus {
+  color: #fff !important; }
+
+.header-user-account-dropdown li > a {
+  color: #fff; }
+
+@media (min-width: 1200px) {
+  .tokoo-svg {
+    fill: #fff; }
+  .header-icon i,
+  .site-branding .site-title,
+  .site-branding .site-description {
+    color: #fff; } }
+
+/*........Dokan.......*/
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.active,
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li:hover,
+.dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li:focus,
+.dokan-coupon-content .code:hover,
+.dokan-subscription-content .pack_content_wrapper .product_pack_item .pack_price {
+  background-color: #0063d1; }
+
+.dokan-store .pagination-wrap ul.pagination > li > span.current,
+.dokan-dashboard .pagination-wrap ul.pagination > li > span.current,
+.dokan-pagination-container .dokan-pagination li.active a,
+.dokan-coupon-content .code a,
+.dokan-coupon-content .code span,
+.dokan-dashboard-content ul.dokan_tabs li.active a,
+.dokan-product-listing .dokan-product-listing-area .row-actions .edit a:hover,
+.dokan-product-listing .dokan-product-listing-area .row-actions .view a:hover,
+.dokan-product-listing .dokan-product-listing-area .row-actions .duplicate a:hover,
+.dokan-orders-content .dokan-orders-area ul.order-statuses-filter li.active a,
+ul.subsubsub li.active a,
+.dokan-coupon-content .row-actions .edit a:hover,
+.dokan-single-store .store-coupon-wrap .code span.outside,
+.dokan-widget-area .widget #cat-drop-stack ul > li .children a.selected,
+.dokan-subscription-content .seller_subs_info span,
+.dokan-panel .dokan-panel-body .wc-order-data-row table.wc-order-totals tbody tr td.refunded-total,
+.dokan-reviews-content .dokan-reviews-area .dokan-comments-wrap ul.dokan-cmt-row-actions li a:hover {
+  color: #0063d1; }
+
+input.dokan-btn-theme[type="submit"],
+a.dokan-btn-theme,
+.dokan-btn-theme,
+.dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit],
+.woocommerce-progress-form-wrapper .button {
+  color: #fff;
+  background-color: #0063d1;
+  border-color: #0063d1; }
+  input.dokan-btn-theme[type="submit"]:hover,
+  a.dokan-btn-theme:hover,
+  .dokan-btn-theme:hover,
+  .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit]:hover,
+  .woocommerce-progress-form-wrapper .button:hover {
+    color: #fff;
+    background-color: #0051ab;
+    border-color: #004b9e; }
+  input.dokan-btn-theme[type="submit"]:focus, input.dokan-btn-theme[type="submit"].focus,
+  a.dokan-btn-theme:focus,
+  a.dokan-btn-theme.focus,
+  .dokan-btn-theme:focus,
+  .dokan-btn-theme.focus,
+  .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit]:focus,
+  .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit].focus,
+  .woocommerce-progress-form-wrapper .button:focus,
+  .woocommerce-progress-form-wrapper .button.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 99, 209, 0.5); }
+  input.dokan-btn-theme[type="submit"].disabled, input.dokan-btn-theme[type="submit"]:disabled,
+  a.dokan-btn-theme.disabled,
+  a.dokan-btn-theme:disabled,
+  .dokan-btn-theme.disabled,
+  .dokan-btn-theme:disabled,
+  .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit].disabled,
+  .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit]:disabled,
+  .woocommerce-progress-form-wrapper .button.disabled,
+  .woocommerce-progress-form-wrapper .button:disabled {
+    color: #fff;
+    background-color: #0063d1;
+    border-color: #0063d1; }
+  input.dokan-btn-theme[type="submit"]:not(:disabled):not(.disabled):active, input.dokan-btn-theme[type="submit"]:not(:disabled):not(.disabled).active,
+  .show > input.dokan-btn-theme[type="submit"].dropdown-toggle,
+  a.dokan-btn-theme:not(:disabled):not(.disabled):active,
+  a.dokan-btn-theme:not(:disabled):not(.disabled).active,
+  .show >
+  a.dokan-btn-theme.dropdown-toggle,
+  .dokan-btn-theme:not(:disabled):not(.disabled):active,
+  .dokan-btn-theme:not(:disabled):not(.disabled).active,
+  .show >
+  .dokan-btn-theme.dropdown-toggle,
+  .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit]:not(:disabled):not(.disabled):active,
+  .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit]:not(:disabled):not(.disabled).active,
+  .show >
+  .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit].dropdown-toggle,
+  .woocommerce-progress-form-wrapper .button:not(:disabled):not(.disabled):active,
+  .woocommerce-progress-form-wrapper .button:not(:disabled):not(.disabled).active,
+  .show >
+  .woocommerce-progress-form-wrapper .button.dropdown-toggle {
+    color: #fff;
+    background-color: #004b9e;
+    border-color: #004591; }
+    input.dokan-btn-theme[type="submit"]:not(:disabled):not(.disabled):active:focus, input.dokan-btn-theme[type="submit"]:not(:disabled):not(.disabled).active:focus,
+    .show > input.dokan-btn-theme[type="submit"].dropdown-toggle:focus,
+    a.dokan-btn-theme:not(:disabled):not(.disabled):active:focus,
+    a.dokan-btn-theme:not(:disabled):not(.disabled).active:focus,
+    .show >
+    a.dokan-btn-theme.dropdown-toggle:focus,
+    .dokan-btn-theme:not(:disabled):not(.disabled):active:focus,
+    .dokan-btn-theme:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .dokan-btn-theme.dropdown-toggle:focus,
+    .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit]:not(:disabled):not(.disabled):active:focus,
+    .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit]:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .dokan-theme-tokoo .dokan-panel-body .add_note input[type=submit].dropdown-toggle:focus,
+    .woocommerce-progress-form-wrapper .button:not(:disabled):not(.disabled):active:focus,
+    .woocommerce-progress-form-wrapper .button:not(:disabled):not(.disabled).active:focus,
+    .show >
+    .woocommerce-progress-form-wrapper .button.dropdown-toggle:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 99, 209, 0.5); }

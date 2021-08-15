@@ -1,0 +1,54 @@
+.page-numbers {
+    @include list-unstyled();
+    display: flex;
+    justify-content: center;
+
+    .current {
+        font-weight: 500;
+    }
+
+    > li > span, > li > a, > a, > span {
+        position: relative;
+        display: block;
+        padding: $pagination-padding-y $pagination-padding-x;
+        line-height: 20px;
+        color: #757575;
+        background-color: $pagination-bg;
+        margin: 0 6px;
+
+        &:hover {
+            z-index: 2;
+            color: $pagination-hover-color;
+            text-decoration: none;
+            background-color: $pagination-hover-bg;
+        }
+
+        &:focus {
+            z-index: 2;
+            outline: $pagination-focus-outline;
+            box-shadow: $pagination-focus-box-shadow;
+        }
+
+        // Opinionated: add "hand" cursor to non-disabled .page-link elements
+        &:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+    }
+}
+
+nav.page-numbers > span {
+    font-weight: 500;
+}
+
+.page-links {
+    display: flex;
+    align-items: center;
+    clear: both;
+}
+
+.rtl .page-numbers li {
+    a.next,
+    a.prev {
+        transform: rotate(180deg);
+    }
+}

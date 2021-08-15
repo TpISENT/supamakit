@@ -1,0 +1,142 @@
+.shop-control-bar {
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: #757575;
+    font-size: 15px;
+    line-height: 32px;
+    font-weight: 300;
+    margin-bottom: 14px;
+
+    .shop-control-bar-right {
+        display: flex;
+        align-items: center;
+
+    }
+}
+
+.tokoo-wc-catalog-ordering {
+    .woocommerce-ordering {
+        display: inline-block;
+    }
+}
+
+.orderby {
+    @include make-custom-select();
+    background: transparent;
+    height: auto;
+    padding: 0;
+    border: 0;
+    color: #252525;
+    font-weight: 500;
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.shop-view-switcher {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    align-items: center;
+
+    li {
+        font-size: 20px;
+        line-height: 1;
+
+        & + li {
+            margin-left: 15px;
+        }
+
+        > a {
+            color: #b4b4b4;
+            display: inline-block;
+
+            i {
+                display: inline-block;
+
+                &.flaticon-list {
+                    font-size: 22px;
+                }
+
+                &.flaticon-squares {
+                    font-size: 20px;
+                }
+            }
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .handheld-sidebar-toggle {
+        display: none;
+    }
+}
+
+@include media-breakpoint-down(lg) { /* (max-width: 1199.98px) */
+    .shop-control-bar .woocommerce-result-count,
+    .shop-control-bar .shop-view-switcher,
+    .post-type-archive-product.woocommerce-page .section-products-carousel,
+    .post-type-archive-product.woocommerce-page .jumbotron {
+        display: none;
+    }
+
+    .site-content .widget-area:not(.blog-sidebar) {
+        background-color: #fff;
+        position: fixed !important;
+        top: 0;
+        left: -340px;
+        width: 288px !important;
+        height: 100%;
+        transition: all .3s;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        z-index: 100000000;
+        padding-top: 20px;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .site-content.active-hh-sidebar .widget-area:not(.blog-sidebar) {
+        left: 0;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: 0 0 17px -1px rgba(0,0,0,.66);
+    }
+
+    .shop-widget-area>aside {
+        width: 100%;
+    }
+
+    .shop-control-bar {
+        display: flex;
+        border-radius: 0;
+        align-items: center;
+        justify-content: space-between;
+        padding: .4em 0;
+
+        .btn.sidebar-toggler {
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            outline: none;
+
+            span {
+                padding-left: 10px;
+            }
+        }
+
+        .woocommerce-ordering {
+            margin-bottom: 0;
+        }
+
+        &::after {display: none;}
+    }
+}

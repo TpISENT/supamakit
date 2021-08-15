@@ -1,0 +1,35 @@
+.masthead-v3 .header-icon-link .count,
+.masthead:not(.masthead-v3),
+.widget_tag_cloud .tag-cloud-link:hover,
+.onsale,
+.handheld-header .handheld-header-links .cart .count {
+	color: $primary-text-color;
+}
+
+.checkout-button,
+.entry-content a.btn-action,
+.entry-content a.added_to_cart,
+.departments-menu-title,
+.departments-menu-title:hover,
+.departments-menu-title:focus {
+	color: $primary-text-color !important;
+}
+
+.header-user-account-dropdown li > a {
+	color: $primary-text-color;
+}
+
+@include media-breakpoint-up(xl) {
+    .tokoo-svg {
+        fill: $primary-text-color;
+
+    }
+
+    .header-icon i,
+    .site-branding .site-title,
+    .site-branding .site-description  {
+    	color: $primary-text-color;
+    }
+
+}
+
