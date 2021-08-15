@@ -13,7 +13,8 @@ wp-content/advanced-cache.php
 wp-content/wp-cache-config.php
 sitemap.xml
 sitemap.xml.gz
-
+web/wp-config.php
+wp-config.php
 # @TODO writable paths
 wp-content/cache/
 wp-content/backups/

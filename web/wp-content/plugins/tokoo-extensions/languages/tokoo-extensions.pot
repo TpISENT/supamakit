@@ -1,0 +1,1237 @@
+# Copyright (C) 2021 MadrasThemes
+# This file is distributed under the same license as the Tokoo Extensions package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Tokoo Extensions 1.1.10\n"
+"Report-Msgid-Bugs-To: https://madrasthemes.freshdesk.com/\n"
+"POT-Creation-Date: 2021-06-21 08:53:09+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: POT <support@madrasthemes.freshdesk.com>\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: includes/class-tokoo-admin-meta-boxes.php:128
+msgid "Tokoo Page Options"
+msgstr ""
+
+#: includes/class-tokoo-admin-meta-boxes.php:145
+msgid "Home v1 Options"
+msgstr ""
+
+#: includes/class-tokoo-admin-meta-boxes.php:149
+msgid "Home v2 Options"
+msgstr ""
+
+#: includes/class-tokoo-admin-meta-boxes.php:153
+msgid "Home v3 Options"
+msgstr ""
+
+#: includes/class-tokoo-admin-meta-boxes.php:157
+msgid "Home v4 Options"
+msgstr ""
+
+#: includes/class-tokoo-admin-meta-boxes.php:161
+msgid "Home v5 Options"
+msgstr ""
+
+#: includes/class-tokoo-admin-meta-boxes.php:165
+msgid "Contact Options"
+msgstr ""
+
+#: includes/class-tokoo-admin-meta-boxes.php:169
+msgid "About Options"
+msgstr ""
+
+#: modules/elementor/elementor.php:87 modules/kingcomposer/maps.php:25
+#: modules/kingcomposer/maps.php:185 modules/kingcomposer/maps.php:237
+#: modules/kingcomposer/maps.php:334 modules/kingcomposer/maps.php:418
+#: modules/kingcomposer/maps.php:606 modules/kingcomposer/maps.php:630
+#: modules/kingcomposer/maps.php:661 modules/kingcomposer/maps.php:691
+#: modules/kingcomposer/maps.php:730 modules/kingcomposer/maps.php:764
+#: modules/kingcomposer/maps.php:835 modules/kingcomposer/maps.php:938
+#: modules/kingcomposer/maps.php:960 modules/kingcomposer/maps.php:1007
+#: modules/kingcomposer/maps.php:1091 modules/kingcomposer/maps.php:1109
+msgid "Tokoo Elements"
+msgstr ""
+
+#: modules/elementor/widgets/about-content-section.php:43
+#: modules/kingcomposer/maps.php:604 modules/kingcomposer/maps.php:605
+msgid "About Content Section"
+msgstr ""
+
+#: modules/elementor/widgets/about-content-section.php:87
+#: modules/elementor/widgets/about-header-section.php:87
+#: modules/elementor/widgets/banner.php:87
+#: modules/elementor/widgets/brands-carousel.php:87
+#: modules/elementor/widgets/deals-carousel.php:87
+#: modules/elementor/widgets/features-list.php:87
+#: modules/elementor/widgets/job-section.php:87
+#: modules/elementor/widgets/jumbotron.php:87
+#: modules/elementor/widgets/product-1-8-block.php:87
+#: modules/elementor/widgets/product-4-1-4-block.php:87
+#: modules/elementor/widgets/product-categories.php:87
+#: modules/elementor/widgets/products-carousel.php:87
+#: modules/elementor/widgets/slider-category-block.php:87
+#: modules/elementor/widgets/slider-product.php:87
+#: modules/elementor/widgets/team-member.php:87
+#: modules/elementor/widgets/vertical-menu.php:97
+msgid "Content"
+msgstr ""
+
+#: modules/elementor/widgets/about-content-section.php:95
+#: modules/kingcomposer/maps.php:613
+msgid "About Content"
+msgstr ""
+
+#: modules/elementor/widgets/about-content-section.php:99
+msgid "Enter your about content here"
+msgstr ""
+
+#: modules/elementor/widgets/about-content-section.php:106
+#: modules/elementor/widgets/about-header-section.php:117
+#: modules/elementor/widgets/banner.php:116
+#: modules/elementor/widgets/deals-carousel.php:285
+#: modules/elementor/widgets/features-list.php:118
+#: modules/elementor/widgets/job-section.php:162
+#: modules/elementor/widgets/jumbotron.php:113
+#: modules/elementor/widgets/product-1-8-block.php:223
+#: modules/elementor/widgets/product-4-1-4-block.php:200
+#: modules/elementor/widgets/products-carousel.php:263
+#: modules/elementor/widgets/team-member.php:124
+#: modules/kingcomposer/maps.php:227 modules/kingcomposer/maps.php:324
+#: modules/kingcomposer/maps.php:408 modules/kingcomposer/maps.php:596
+#: modules/kingcomposer/maps.php:620 modules/kingcomposer/maps.php:651
+#: modules/kingcomposer/maps.php:681 modules/kingcomposer/maps.php:720
+#: modules/kingcomposer/maps.php:825 modules/kingcomposer/maps.php:997
+msgid "Extra class name"
+msgstr ""
+
+#: modules/elementor/widgets/about-content-section.php:108
+#: modules/elementor/widgets/about-header-section.php:119
+#: modules/elementor/widgets/banner.php:118
+#: modules/elementor/widgets/deals-carousel.php:287
+#: modules/elementor/widgets/features-list.php:120
+#: modules/elementor/widgets/job-section.php:164
+#: modules/elementor/widgets/jumbotron.php:115
+#: modules/elementor/widgets/product-1-8-block.php:225
+#: modules/elementor/widgets/product-4-1-4-block.php:202
+#: modules/elementor/widgets/products-carousel.php:265
+#: modules/elementor/widgets/team-member.php:126
+#: modules/kingcomposer/maps.php:229 modules/kingcomposer/maps.php:326
+#: modules/kingcomposer/maps.php:410 modules/kingcomposer/maps.php:598
+#: modules/kingcomposer/maps.php:622 modules/kingcomposer/maps.php:653
+#: modules/kingcomposer/maps.php:683 modules/kingcomposer/maps.php:722
+#: modules/kingcomposer/maps.php:827 modules/kingcomposer/maps.php:999
+msgid ""
+"If you wish to style particular content element differently, please add a "
+"class name to this field and refer to it in your custom CSS file."
+msgstr ""
+
+#: modules/elementor/widgets/about-header-section.php:43
+#: modules/kingcomposer/maps.php:628 modules/kingcomposer/maps.php:629
+msgid "About Header Section"
+msgstr ""
+
+#: modules/elementor/widgets/about-header-section.php:95
+#: modules/elementor/widgets/brands-carousel.php:95
+#: modules/elementor/widgets/deals-carousel.php:107
+#: modules/elementor/widgets/job-section.php:95
+#: modules/elementor/widgets/jumbotron.php:95
+#: modules/elementor/widgets/product-1-8-block.php:95
+#: modules/elementor/widgets/product-4-1-4-block.php:107
+#: modules/elementor/widgets/product-categories.php:95
+#: modules/elementor/widgets/products-carousel.php:107
+#: modules/elementor/widgets/team-member.php:95
+#: modules/kingcomposer/maps.php:644 modules/kingcomposer/maps.php:944
+msgid "Title"
+msgstr ""
+
+#: modules/elementor/widgets/about-header-section.php:99
+#: modules/elementor/widgets/brands-carousel.php:99
+#: modules/elementor/widgets/deals-carousel.php:111
+#: modules/elementor/widgets/job-section.php:99
+#: modules/elementor/widgets/jumbotron.php:97
+#: modules/elementor/widgets/product-1-8-block.php:99
+#: modules/elementor/widgets/product-4-1-4-block.php:111
+#: modules/elementor/widgets/product-categories.php:99
+#: modules/elementor/widgets/products-carousel.php:111
+#: modules/elementor/widgets/team-member.php:99
+msgid "Enter your title here"
+msgstr ""
+
+#: modules/elementor/widgets/about-header-section.php:106
+#: modules/elementor/widgets/job-section.php:111
+#: modules/kingcomposer/maps.php:637 modules/kingcomposer/maps.php:787
+msgid "Pre Title"
+msgstr ""
+
+#: modules/elementor/widgets/about-header-section.php:110
+msgid "Enter your pre title here"
+msgstr ""
+
+#: modules/elementor/widgets/banner.php:43 modules/kingcomposer/maps.php:659
+#: modules/kingcomposer/maps.php:660
+msgid "Banner"
+msgstr ""
+
+#: modules/elementor/widgets/banner.php:96
+msgid "Image"
+msgstr ""
+
+#: modules/elementor/widgets/banner.php:98
+msgid "Upload Banner Image"
+msgstr ""
+
+#: modules/elementor/widgets/banner.php:106
+msgid "Image Link"
+msgstr ""
+
+#: modules/elementor/widgets/banner.php:109
+msgid "Enter your url here"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:43
+#: modules/kingcomposer/maps.php:833 modules/kingcomposer/maps.php:834
+msgid "Brands Carousel"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:106
+#: modules/elementor/widgets/deals-carousel.php:222
+#: modules/elementor/widgets/product-categories.php:118
+#: modules/elementor/widgets/products-carousel.php:200
+#: modules/elementor/widgets/slider-category-block.php:106
+#: modules/elementor/widgets/slider-product.php:155
+#: modules/kingcomposer/maps.php:75 modules/kingcomposer/maps.php:206
+#: modules/kingcomposer/maps.php:497 modules/kingcomposer/maps.php:849
+#: modules/kingcomposer/maps.php:974 modules/kingcomposer/maps.php:1028
+msgid "Limit"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:110
+msgid "Enter the number of brands to display"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:117
+msgid "Order By"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:121
+msgid "Enter order by"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:128
+#: modules/elementor/widgets/deals-carousel.php:213
+#: modules/elementor/widgets/product-1-8-block.php:214
+#: modules/elementor/widgets/product-4-1-4-block.php:191
+#: modules/elementor/widgets/products-carousel.php:191
+#: modules/elementor/widgets/slider-product.php:146
+#: modules/elementor/widgets/team-member.php:115
+#: modules/kingcomposer/maps.php:90 modules/kingcomposer/maps.php:288
+#: modules/kingcomposer/maps.php:393 modules/kingcomposer/maps.php:489
+#: modules/kingcomposer/maps.php:752 modules/kingcomposer/maps.php:864
+#: modules/kingcomposer/maps.php:1051
+msgid "Order"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:132
+msgid "Enter order"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:139
+#: modules/elementor/widgets/product-categories.php:138
+#: modules/elementor/widgets/slider-category-block.php:126
+msgid "Hide Emtpy"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:141
+#: modules/elementor/widgets/deals-carousel.php:98
+#: modules/elementor/widgets/deals-carousel.php:121
+#: modules/elementor/widgets/product-4-1-4-block.php:98
+#: modules/elementor/widgets/product-categories.php:140
+#: modules/elementor/widgets/products-carousel.php:98
+#: modules/elementor/widgets/products-carousel.php:230
+#: modules/elementor/widgets/slider-category-block.php:128
+msgid "Hide"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:142
+#: modules/elementor/widgets/deals-carousel.php:97
+#: modules/elementor/widgets/deals-carousel.php:120
+#: modules/elementor/widgets/product-4-1-4-block.php:97
+#: modules/elementor/widgets/product-categories.php:141
+#: modules/elementor/widgets/products-carousel.php:97
+#: modules/elementor/widgets/products-carousel.php:229
+#: modules/elementor/widgets/slider-category-block.php:129
+msgid "Show"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:151
+#: modules/elementor/widgets/deals-carousel.php:253
+#: modules/kingcomposer/maps.php:112 modules/kingcomposer/maps.php:165
+#: modules/kingcomposer/maps.php:534 modules/kingcomposer/maps.php:580
+#: modules/kingcomposer/maps.php:879 modules/kingcomposer/maps.php:918
+msgid "slidesToShow"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:153
+msgid "Enter the number of brands to display."
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:160
+#: modules/elementor/widgets/deals-carousel.php:263
+#: modules/kingcomposer/maps.php:120 modules/kingcomposer/maps.php:172
+#: modules/kingcomposer/maps.php:542 modules/kingcomposer/maps.php:587
+#: modules/kingcomposer/maps.php:887 modules/kingcomposer/maps.php:925
+msgid "slidesToScroll"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:162
+msgid "Enter the number of brands to scroll."
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:169
+#: modules/elementor/widgets/deals-carousel.php:273
+#: modules/elementor/widgets/products-carousel.php:251
+#: modules/kingcomposer/maps.php:135
+msgid "Autoplay"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:171
+#: modules/elementor/widgets/deals-carousel.php:275
+#: modules/elementor/widgets/product-1-8-block.php:108
+#: modules/elementor/widgets/product-1-8-block.php:153
+#: modules/elementor/widgets/products-carousel.php:241
+#: modules/elementor/widgets/products-carousel.php:253
+#: modules/kingcomposer/maps.php:35 modules/kingcomposer/maps.php:131
+#: modules/kingcomposer/maps.php:138 modules/kingcomposer/maps.php:145
+#: modules/kingcomposer/maps.php:223 modules/kingcomposer/maps.php:261
+#: modules/kingcomposer/maps.php:320 modules/kingcomposer/maps.php:344
+#: modules/kingcomposer/maps.php:428 modules/kingcomposer/maps.php:442
+#: modules/kingcomposer/maps.php:553 modules/kingcomposer/maps.php:875
+#: modules/kingcomposer/maps.php:898 modules/kingcomposer/maps.php:993
+msgid "Enable"
+msgstr ""
+
+#: modules/elementor/widgets/brands-carousel.php:172
+#: modules/elementor/widgets/deals-carousel.php:276
+#: modules/elementor/widgets/product-1-8-block.php:109
+#: modules/elementor/widgets/product-1-8-block.php:154
+#: modules/elementor/widgets/products-carousel.php:242
+#: modules/elementor/widgets/products-carousel.php:254
+msgid "Disable"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:43
+#: modules/kingcomposer/maps.php:416 modules/kingcomposer/maps.php:417
+msgid "Deals Carousel"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:95
+#: modules/elementor/widgets/product-4-1-4-block.php:95
+#: modules/elementor/widgets/products-carousel.php:95
+#: modules/kingcomposer/maps.php:33 modules/kingcomposer/maps.php:342
+#: modules/kingcomposer/maps.php:426
+msgid "Show Header"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:118
+#: modules/kingcomposer/maps.php:440
+msgid "Show Header Timer"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:130
+#: modules/kingcomposer/maps.php:446 modules/kingcomposer/maps.php:448
+msgid "Timer Title"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:134
+msgid "Enter your timer title here"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:141
+#: modules/kingcomposer/maps.php:453 modules/kingcomposer/maps.php:455
+msgid "Timer Value"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:145
+msgid "Enter your timer value here"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:153
+msgid "Upload Background Image"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:155
+msgid "Upload background image"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:162
+#: modules/elementor/widgets/product-1-8-block.php:163
+#: modules/elementor/widgets/product-4-1-4-block.php:140
+#: modules/elementor/widgets/products-carousel.php:140
+#: modules/elementor/widgets/slider-product.php:95
+msgid "Shortcode Tags"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:166
+#: modules/elementor/widgets/product-1-8-block.php:167
+#: modules/elementor/widgets/product-4-1-4-block.php:144
+#: modules/elementor/widgets/products-carousel.php:144
+#: modules/elementor/widgets/slider-product.php:99
+#: modules/kingcomposer/maps.php:63 modules/kingcomposer/maps.php:268
+#: modules/kingcomposer/maps.php:373 modules/kingcomposer/maps.php:469
+#: modules/kingcomposer/maps.php:1016
+msgid "Featured Products"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:167
+#: modules/elementor/widgets/product-1-8-block.php:168
+#: modules/elementor/widgets/product-4-1-4-block.php:145
+#: modules/elementor/widgets/products-carousel.php:145
+#: modules/elementor/widgets/slider-product.php:100
+#: modules/kingcomposer/maps.php:64 modules/kingcomposer/maps.php:269
+#: modules/kingcomposer/maps.php:374 modules/kingcomposer/maps.php:470
+#: modules/kingcomposer/maps.php:1017
+msgid "On Sale Products"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:168
+#: modules/elementor/widgets/product-1-8-block.php:169
+#: modules/elementor/widgets/product-4-1-4-block.php:146
+#: modules/elementor/widgets/products-carousel.php:146
+#: modules/elementor/widgets/slider-product.php:101
+#: modules/kingcomposer/maps.php:65 modules/kingcomposer/maps.php:270
+#: modules/kingcomposer/maps.php:375 modules/kingcomposer/maps.php:471
+#: modules/kingcomposer/maps.php:1018
+msgid "Top Rated Products"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:169
+#: modules/elementor/widgets/product-1-8-block.php:170
+#: modules/elementor/widgets/product-4-1-4-block.php:147
+#: modules/elementor/widgets/products-carousel.php:147
+#: modules/elementor/widgets/slider-product.php:102
+#: modules/kingcomposer/maps.php:66 modules/kingcomposer/maps.php:271
+#: modules/kingcomposer/maps.php:376 modules/kingcomposer/maps.php:472
+#: modules/kingcomposer/maps.php:1019
+msgid "Recent Products"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:170
+#: modules/elementor/widgets/product-1-8-block.php:171
+#: modules/elementor/widgets/product-4-1-4-block.php:148
+#: modules/elementor/widgets/products-carousel.php:148
+#: modules/elementor/widgets/slider-product.php:103
+#: modules/kingcomposer/maps.php:67 modules/kingcomposer/maps.php:272
+#: modules/kingcomposer/maps.php:377 modules/kingcomposer/maps.php:473
+#: modules/kingcomposer/maps.php:1020
+msgid "Best Selling Products"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:171
+#: modules/elementor/widgets/product-1-8-block.php:172
+#: modules/elementor/widgets/product-4-1-4-block.php:149
+#: modules/elementor/widgets/products-carousel.php:149
+#: modules/elementor/widgets/slider-product.php:104
+#: modules/kingcomposer/maps.php:68 modules/kingcomposer/maps.php:273
+#: modules/kingcomposer/maps.php:378 modules/kingcomposer/maps.php:474
+#: modules/kingcomposer/maps.php:1021
+msgid "Product Category"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:172
+#: modules/elementor/widgets/product-1-8-block.php:173
+#: modules/elementor/widgets/product-4-1-4-block.php:150
+#: modules/elementor/widgets/products-carousel.php:150
+#: modules/elementor/widgets/slider-product.php:105
+#: modules/kingcomposer/maps.php:69 modules/kingcomposer/maps.php:274
+#: modules/kingcomposer/maps.php:379 modules/kingcomposer/maps.php:475
+#: modules/kingcomposer/maps.php:1022
+msgid "Products"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:180
+#: modules/elementor/widgets/product-1-8-block.php:181
+#: modules/elementor/widgets/product-4-1-4-block.php:158
+#: modules/elementor/widgets/products-carousel.php:158
+#: modules/elementor/widgets/slider-product.php:113
+#: modules/kingcomposer/maps.php:98 modules/kingcomposer/maps.php:296
+#: modules/kingcomposer/maps.php:401 modules/kingcomposer/maps.php:504
+#: modules/kingcomposer/maps.php:1059
+msgid "Product IDs"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:182
+#: modules/elementor/widgets/product-1-8-block.php:183
+#: modules/elementor/widgets/product-4-1-4-block.php:160
+#: modules/elementor/widgets/products-carousel.php:160
+#: modules/elementor/widgets/slider-product.php:115
+#: modules/kingcomposer/maps.php:100 modules/kingcomposer/maps.php:298
+#: modules/kingcomposer/maps.php:403 modules/kingcomposer/maps.php:506
+#: modules/kingcomposer/maps.php:1061
+msgid "Enter id spearate by comma(,) Note: Only works with Products Shortcode."
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:192
+#: modules/elementor/widgets/product-1-8-block.php:193
+#: modules/elementor/widgets/product-4-1-4-block.php:170
+#: modules/elementor/widgets/products-carousel.php:170
+#: modules/elementor/widgets/slider-product.php:125
+#: modules/kingcomposer/maps.php:105 modules/kingcomposer/maps.php:511
+#: modules/kingcomposer/maps.php:1066
+msgid "Category"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:194
+#: modules/elementor/widgets/product-1-8-block.php:195
+#: modules/elementor/widgets/product-4-1-4-block.php:172
+#: modules/elementor/widgets/products-carousel.php:172
+#: modules/elementor/widgets/slider-product.php:127
+msgid "Enter id spearate by comma(,) Note: Only works with Category Shortcode."
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:204
+#: modules/elementor/widgets/product-1-8-block.php:205
+#: modules/elementor/widgets/product-4-1-4-block.php:182
+#: modules/elementor/widgets/products-carousel.php:182
+#: modules/elementor/widgets/slider-product.php:137
+#: modules/elementor/widgets/team-member.php:106
+#: modules/kingcomposer/maps.php:82 modules/kingcomposer/maps.php:280
+#: modules/kingcomposer/maps.php:385 modules/kingcomposer/maps.php:481
+#: modules/kingcomposer/maps.php:744 modules/kingcomposer/maps.php:856
+#: modules/kingcomposer/maps.php:1043
+msgid "Orderby"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:206
+#: modules/elementor/widgets/product-1-8-block.php:207
+#: modules/elementor/widgets/product-4-1-4-block.php:184
+#: modules/elementor/widgets/products-carousel.php:184
+#: modules/elementor/widgets/slider-product.php:139
+#: modules/elementor/widgets/team-member.php:108
+msgid "Enter Orderby"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:215
+#: modules/elementor/widgets/product-1-8-block.php:216
+#: modules/elementor/widgets/product-4-1-4-block.php:193
+#: modules/elementor/widgets/products-carousel.php:193
+#: modules/elementor/widgets/slider-product.php:148
+#: modules/elementor/widgets/team-member.php:117
+msgid "Enter Order"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:224
+#: modules/elementor/widgets/product-categories.php:121
+#: modules/elementor/widgets/products-carousel.php:202
+#: modules/elementor/widgets/slider-product.php:157
+msgid "Enter the number of products to display"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:232
+msgid "row"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:234
+msgid "Enter the number of rows."
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:242
+#: modules/kingcomposer/maps.php:526 modules/kingcomposer/maps.php:573
+msgid "slidesPerRow"
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:244
+#: modules/kingcomposer/maps.php:520
+msgid "Enter the number of rows to display."
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:255
+#: modules/elementor/widgets/products-carousel.php:211
+#: modules/kingcomposer/maps.php:115 modules/kingcomposer/maps.php:167
+#: modules/kingcomposer/maps.php:536 modules/kingcomposer/maps.php:582
+#: modules/kingcomposer/maps.php:881 modules/kingcomposer/maps.php:920
+msgid "Enter the number of items to display."
+msgstr ""
+
+#: modules/elementor/widgets/deals-carousel.php:265
+#: modules/elementor/widgets/products-carousel.php:220
+#: modules/kingcomposer/maps.php:123 modules/kingcomposer/maps.php:174
+#: modules/kingcomposer/maps.php:544 modules/kingcomposer/maps.php:589
+#: modules/kingcomposer/maps.php:889 modules/kingcomposer/maps.php:927
+msgid "Enter the number of items to scroll."
+msgstr ""
+
+#: modules/elementor/widgets/features-list.php:43
+#: modules/elementor/widgets/features-list.php:95
+#: modules/kingcomposer/maps.php:689 modules/kingcomposer/maps.php:690
+msgid "Features List"
+msgstr ""
+
+#: modules/elementor/widgets/features-list.php:100
+#: modules/kingcomposer/maps.php:706
+msgid "Icon"
+msgstr ""
+
+#: modules/elementor/widgets/features-list.php:106
+msgid "Feature Describtion"
+msgstr ""
+
+#: modules/elementor/widgets/job-section.php:43
+#: modules/kingcomposer/maps.php:762 modules/kingcomposer/maps.php:763
+msgid "Job Section"
+msgstr ""
+
+#: modules/elementor/widgets/job-section.php:106
+msgid "Jobs Section"
+msgstr ""
+
+#: modules/elementor/widgets/job-section.php:119
+#: modules/kingcomposer/maps.php:793
+msgid "Job Title"
+msgstr ""
+
+#: modules/elementor/widgets/job-section.php:127
+#: modules/kingcomposer/maps.php:799
+msgid "Job Title Link"
+msgstr ""
+
+#: modules/elementor/widgets/job-section.php:133
+#: modules/kingcomposer/maps.php:805
+msgid "Job Description"
+msgstr ""
+
+#: modules/elementor/widgets/job-section.php:141
+#: modules/kingcomposer/maps.php:811
+msgid "Action Text"
+msgstr ""
+
+#: modules/elementor/widgets/job-section.php:149
+#: modules/kingcomposer/maps.php:817
+msgid "Action Link"
+msgstr ""
+
+#: modules/elementor/widgets/jumbotron.php:43 modules/kingcomposer/maps.php:936
+msgid "Jumbotron"
+msgstr ""
+
+#: modules/elementor/widgets/jumbotron.php:104
+#: modules/kingcomposer/maps.php:668
+msgid "Upload Image"
+msgstr ""
+
+#: modules/elementor/widgets/jumbotron.php:106
+msgid "Upload image"
+msgstr ""
+
+#: modules/elementor/widgets/product-1-8-block.php:43
+msgid "Product 1-8 block"
+msgstr ""
+
+#: modules/elementor/widgets/product-1-8-block.php:106
+#: modules/kingcomposer/maps.php:258
+msgid "Show Categories Tab"
+msgstr ""
+
+#: modules/elementor/widgets/product-1-8-block.php:118
+#: modules/kingcomposer/maps.php:251
+msgid "Tab Title"
+msgstr ""
+
+#: modules/elementor/widgets/product-1-8-block.php:122
+msgid "Enter your tab title here"
+msgstr ""
+
+#: modules/elementor/widgets/product-1-8-block.php:130
+msgid "Category Number"
+msgstr ""
+
+#: modules/elementor/widgets/product-1-8-block.php:133
+msgid "Enter number of category to be displayed"
+msgstr ""
+
+#: modules/elementor/widgets/product-1-8-block.php:140
+#: modules/elementor/widgets/product-categories.php:106
+#: modules/elementor/widgets/slider-category-block.php:95
+#: modules/kingcomposer/maps.php:199 modules/kingcomposer/maps.php:310
+#: modules/kingcomposer/maps.php:967
+msgid "Category Slug"
+msgstr ""
+
+#: modules/elementor/widgets/product-1-8-block.php:144
+#: modules/elementor/widgets/product-categories.php:110
+#: modules/elementor/widgets/slider-category-block.php:98
+msgid "Enter id spearate by comma(,) Note: Only works with Products Shortcode"
+msgstr ""
+
+#: modules/elementor/widgets/product-1-8-block.php:151
+msgid "Hide Empty"
+msgstr ""
+
+#: modules/elementor/widgets/product-4-1-4-block.php:43
+msgid "Product 4-1-4 block"
+msgstr ""
+
+#: modules/elementor/widgets/product-4-1-4-block.php:118
+#: modules/elementor/widgets/products-carousel.php:118
+#: modules/kingcomposer/maps.php:46 modules/kingcomposer/maps.php:48
+#: modules/kingcomposer/maps.php:355 modules/kingcomposer/maps.php:357
+msgid "Header Aside Action Text"
+msgstr ""
+
+#: modules/elementor/widgets/product-4-1-4-block.php:122
+#: modules/elementor/widgets/products-carousel.php:122
+msgid "Enter your header aside action text here"
+msgstr ""
+
+#: modules/elementor/widgets/product-4-1-4-block.php:129
+#: modules/elementor/widgets/products-carousel.php:129
+#: modules/kingcomposer/maps.php:53 modules/kingcomposer/maps.php:55
+#: modules/kingcomposer/maps.php:362 modules/kingcomposer/maps.php:364
+msgid "Header Aside Action Link"
+msgstr ""
+
+#: modules/elementor/widgets/product-4-1-4-block.php:133
+#: modules/elementor/widgets/products-carousel.php:133
+msgid "Enter your header aside action link here"
+msgstr ""
+
+#: modules/elementor/widgets/product-categories.php:43
+#: modules/kingcomposer/maps.php:183 modules/kingcomposer/maps.php:184
+msgid "Product Categories"
+msgstr ""
+
+#: modules/elementor/widgets/product-categories.php:128
+#: modules/elementor/widgets/slider-category-block.php:116
+#: modules/kingcomposer/maps.php:213 modules/kingcomposer/maps.php:982
+#: modules/kingcomposer/maps.php:1036
+msgid "Columns"
+msgstr ""
+
+#: modules/elementor/widgets/product-categories.php:131
+#: modules/elementor/widgets/slider-category-block.php:109
+msgid "Enter the number of categories to display"
+msgstr ""
+
+#: modules/elementor/widgets/products-carousel.php:43
+#: modules/kingcomposer/maps.php:23 modules/kingcomposer/maps.php:24
+msgid "Products Carousel"
+msgstr ""
+
+#: modules/elementor/widgets/products-carousel.php:209
+msgid "SlidesToShow"
+msgstr ""
+
+#: modules/elementor/widgets/products-carousel.php:218
+msgid "SlidesToScroll"
+msgstr ""
+
+#: modules/elementor/widgets/products-carousel.php:227
+msgid "Arrows"
+msgstr ""
+
+#: modules/elementor/widgets/products-carousel.php:239
+msgid "Infinite"
+msgstr ""
+
+#: modules/elementor/widgets/slider-category-block.php:43
+msgid "Slider Category Block"
+msgstr ""
+
+#: modules/elementor/widgets/slider-category-block.php:119
+msgid "Enter the number of category column to display"
+msgstr ""
+
+#: modules/elementor/widgets/slider-product.php:43
+#: modules/kingcomposer/maps.php:1005
+msgid "Slider Product"
+msgstr ""
+
+#: modules/elementor/widgets/slider-product.php:164
+msgid "Column"
+msgstr ""
+
+#: modules/elementor/widgets/slider-product.php:166
+msgid "Enter the number of column to display"
+msgstr ""
+
+#: modules/elementor/widgets/team-member.php:43
+#: modules/kingcomposer/maps.php:728 modules/kingcomposer/maps.php:729
+msgid "Team Member"
+msgstr ""
+
+#: modules/elementor/widgets/vertical-menu.php:43
+msgid "Vertical Menu"
+msgstr ""
+
+#: modules/elementor/widgets/vertical-menu.php:87
+#: modules/kingcomposer/maps.php:15
+msgid "Select a menu"
+msgstr ""
+
+#: modules/elementor/widgets/vertical-menu.php:105
+#: modules/kingcomposer/maps.php:1115
+msgid "Vertical Menu Title"
+msgstr ""
+
+#: modules/elementor/widgets/vertical-menu.php:108
+msgid "Enter your Vertical Menu Title here"
+msgstr ""
+
+#: modules/elementor/widgets/vertical-menu.php:115
+#: modules/kingcomposer/maps.php:1122
+msgid "Vertical Menu Action Text"
+msgstr ""
+
+#: modules/elementor/widgets/vertical-menu.php:118
+msgid "Enter your Vertical Menu Action Text here"
+msgstr ""
+
+#: modules/elementor/widgets/vertical-menu.php:125
+msgid "Vertical Menu Action link"
+msgstr ""
+
+#: modules/elementor/widgets/vertical-menu.php:128
+msgid "Enter your Vertical Menu Action link here"
+msgstr ""
+
+#: modules/elementor/widgets/vertical-menu.php:135
+msgid "Select Menu"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:27
+msgid "Products Carousel Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:34 modules/kingcomposer/maps.php:343
+#: modules/kingcomposer/maps.php:427
+msgid "Check to show Header"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:39 modules/kingcomposer/maps.php:348
+#: modules/kingcomposer/maps.php:432
+msgid "Enter Title"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:41 modules/kingcomposer/maps.php:350
+#: modules/kingcomposer/maps.php:434 modules/kingcomposer/maps.php:646
+msgid "Enter title."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:60 modules/kingcomposer/maps.php:265
+#: modules/kingcomposer/maps.php:370 modules/kingcomposer/maps.php:466
+#: modules/kingcomposer/maps.php:1013
+msgid "Shortcode"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:77 modules/kingcomposer/maps.php:499
+#: modules/kingcomposer/maps.php:1030
+msgid "Enter the number of products to display."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:84 modules/kingcomposer/maps.php:282
+#: modules/kingcomposer/maps.php:387 modules/kingcomposer/maps.php:483
+#: modules/kingcomposer/maps.php:746 modules/kingcomposer/maps.php:858
+#: modules/kingcomposer/maps.php:1045
+msgid "Enter orderby."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:92 modules/kingcomposer/maps.php:290
+#: modules/kingcomposer/maps.php:395 modules/kingcomposer/maps.php:491
+#: modules/kingcomposer/maps.php:754 modules/kingcomposer/maps.php:866
+#: modules/kingcomposer/maps.php:1053
+msgid "Enter order."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:107 modules/kingcomposer/maps.php:312
+#: modules/kingcomposer/maps.php:513 modules/kingcomposer/maps.php:1068
+msgid ""
+"Enter id spearate by comma(,) Note: Only works with Product Category "
+"Shortcode."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:128
+msgid "Arrows?"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:130
+msgid "Check to show Arrows."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:137
+msgid "Check to Autoplay Product Carousel."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:142 modules/kingcomposer/maps.php:550
+#: modules/kingcomposer/maps.php:895
+msgid "Infinite?"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:144 modules/kingcomposer/maps.php:552
+#: modules/kingcomposer/maps.php:897
+msgid "Check to show Infinite Carousel."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:149 modules/kingcomposer/maps.php:557
+#: modules/kingcomposer/maps.php:902
+msgid "Responsive"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:153 modules/kingcomposer/maps.php:561
+#: modules/kingcomposer/maps.php:906
+msgid "Add new breakpoint"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:158 modules/kingcomposer/maps.php:566
+#: modules/kingcomposer/maps.php:911
+msgid "Breakpoint"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:160 modules/kingcomposer/maps.php:568
+#: modules/kingcomposer/maps.php:913
+msgid "Enter breakpoint."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:187
+msgid "Product Categories Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:192 modules/kingcomposer/maps.php:244
+#: modules/kingcomposer/maps.php:737 modules/kingcomposer/maps.php:771
+#: modules/kingcomposer/maps.php:842
+msgid "Section Title"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:194 modules/kingcomposer/maps.php:246
+#: modules/kingcomposer/maps.php:739 modules/kingcomposer/maps.php:773
+#: modules/kingcomposer/maps.php:844
+msgid "Enter section title"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:201 modules/kingcomposer/maps.php:969
+msgid ""
+"Enter slug spearate by comma(,) Note: Only works with Product Category "
+"Shortcode."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:208 modules/kingcomposer/maps.php:976
+msgid "Enter the number of categories to display."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:215 modules/kingcomposer/maps.php:984
+#: modules/kingcomposer/maps.php:1038
+msgid "Enter the number of columns to display."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:220 modules/kingcomposer/maps.php:317
+#: modules/kingcomposer/maps.php:872 modules/kingcomposer/maps.php:990
+msgid "Hide Empty?"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:222 modules/kingcomposer/maps.php:319
+#: modules/kingcomposer/maps.php:992
+msgid "Check to hide empty categories."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:235 modules/kingcomposer/maps.php:236
+msgid "Product-1-8 Block"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:239
+msgid "Product-1-8 Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:253
+msgid "Enter tab title"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:260
+msgid "Show categories tab"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:303
+msgid "Category Limit"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:305
+msgid "Enter number of categories to displayed"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:332 modules/kingcomposer/maps.php:333
+msgid "Product-4-1-4 Block"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:336
+msgid "Product-4-1-4  Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:420
+msgid "Deals Carousel Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:441
+msgid "Check to show Header Timer"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:461 modules/kingcomposer/maps.php:951
+msgid "Background Image"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:518
+msgid "Number of row"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:528
+msgid "Enter the number of items per row."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:575
+msgid "Enter the number of items per row to display."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:608
+msgid "About Content Section Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:615
+msgid "Enter About Content."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:632
+msgid "About Header Section Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:639
+msgid "Enter pre title"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:662
+msgid "Banner Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:674
+msgid "Banner Link"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:692
+msgid "Features List Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:697
+msgid "Features"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:701
+msgid "Add new feature"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:712
+msgid "Label"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:732
+msgid "Team Member Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:766
+msgid "Job Section Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:778
+msgid "Jobs"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:782
+msgid "Add new jobs"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:837
+msgid "Brands Carousel Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:851
+msgid "Enter the number of Brands to display."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:874
+msgid "Check to hide empty brands."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:937
+msgid "Add Jumbotron to your page."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:939
+msgid "Jumbotron Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:958 modules/kingcomposer/maps.php:959
+msgid "Slider With Category block"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:962
+msgid "Slider With Category block Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:1006
+msgid "Slider product"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:1008
+msgid "Slider Product Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:1085
+msgid "No sliders found"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:1089 modules/kingcomposer/maps.php:1097
+msgid "Revolution Slider"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:1090
+msgid "Select your Revolution Slider."
+msgstr ""
+
+#: modules/kingcomposer/maps.php:1092
+msgid "Revolution Slider Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:1107 modules/kingcomposer/maps.php:1108
+msgid "Tokoo Vertical Menu"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:1110
+msgid "Tokoo Vertical Menu Settings"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:1129
+msgid "Vertical Menu Action Text Link"
+msgstr ""
+
+#: modules/kingcomposer/maps.php:1137
+msgid "Choose Vertical Menu"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:39
+msgid "Add New Block"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:40
+msgid "Edit Block"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:41
+msgid "New Block"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:42
+msgid "Static Blocks"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:43
+msgid "View Block"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:44
+msgid "Search"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:45
+msgid "No blocks found"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:46
+msgid "No blocks found in Trash"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:48
+msgid "Static Content"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:76
+msgid "Content Options"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:92
+msgid "Content Filters"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:94
+msgid "Defaults (recommended)"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:97
+msgid "All Content Filters"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:99
+msgid "Apply all WP content filters? This will include plugin added filters."
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:102
+msgid "Auto Paragraphs"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:104
+msgid "On"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:107
+msgid "Off"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:109
+msgid ""
+"Add &lt;p&gt; and &lt;br&gt; tags automatically. (disabling may fix layout "
+"issues)"
+msgstr ""
+
+#: modules/theme-shortcodes/elements/compare-page.php:19
+msgid "You need to enable YITH Compare plugin for product comparison to work"
+msgstr ""
+
+#: tokoo-extensions.php:154 tokoo-extensions.php:163
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Tokoo Extensions"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://madrasthemes.com/tokoo"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This selection of extensions compliment our lean and mean theme for "
+"WooCommerce, Tokoo. Please note: they don’t work with any WordPress theme, "
+"just tokoo."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "MadrasThemes"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://madrasthemes.com/"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:36
+msgctxt "post type general name"
+msgid "Static Content Blocks"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:37
+msgctxt "post type singular name"
+msgid "Static Block"
+msgstr ""
+
+#: modules/post-types/static-block/static-block.php:38
+msgctxt "block"
+msgid "Add New"
+msgstr ""

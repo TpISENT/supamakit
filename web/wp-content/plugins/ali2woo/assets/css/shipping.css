@@ -1,0 +1,22 @@
+.a2w-small {
+	font-size: 9px;
+}
+
+.a2w-error {
+	color: red;
+}
+
+.a2w-hidden-shipping-recalc {
+    display: none;
+}
+
+.a2w_shipping_field_container {
+	width: 400px; 
+	display: inline-block;
+}
+
+@media only screen and (max-device-width: 480px) {
+	.a2w_shipping_field_container {
+		width: 200px;
+	}
+}
