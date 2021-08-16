@@ -3,15 +3,14 @@
  * Auto registration for LiteSpeed classes
  *
  * @since      	1.1.0
- * @since  		3.0 Moved into /
- * @package    	LiteSpeed
- * @author     	LiteSpeed Technologies <info@litespeedtech.com>
  */
 defined( 'WPINC' ) || exit;
 
+// Force define for object cache usage before plugin init
+! defined( 'LSCWP_DIR' ) && define( 'LSCWP_DIR', __DIR__ . '/' ) ;// Full absolute path '/var/www/html/***/wp-content/plugins/litespeed-cache/' or MU
+
 if ( ! function_exists( 'litespeed_autoload' ) ) {
-	function litespeed_autoload( $cls )
-	{
+	function litespeed_autoload( $cls ) {
 		if ( strpos( $cls, '.' ) !== false ) {
 			return;
 		}

@@ -6,6 +6,8 @@ $placeholder_summary = Placeholder::get_summary();
 
 $closest_server = Cloud::get_summary( 'server.' . Cloud::SVC_LQIP );
 
+$placeholder_queue = $this->_load_queue( 'lqip' );
+
 ?>
 
 <h3 class="litespeed-title-short">
@@ -25,7 +27,7 @@ $closest_server = Cloud::get_summary( 'server.' . Cloud::SVC_LQIP );
 				<?php echo __( 'Load images only when they enter the viewport.', 'litespeed-cache' ); ?>
 				<?php echo __( 'This can improve page loading time by reducing initial HTTP requests.', 'litespeed-cache' ); ?>
 				<br /><font class="litespeed-success">
-					💡:
+					💡
 					<a href="https://docs.litespeedtech.com/lscache/lscwp/pageopt/#lazy-load-images" target="_blank"><?php echo __('Adding Style to Your Lazy-Loaded Images', 'litespeed-cache'); ?></a>
 				</font>
 			</div>
@@ -117,9 +119,10 @@ $closest_server = Cloud::get_summary( 'server.' . Cloud::SVC_LQIP );
 			<?php $this->build_input( $id, 'litespeed-input-short' ); ?>
 			<div class="litespeed-desc">
 				<?php echo __( 'Specify the quality when generating LQIP.', 'litespeed-cache' ); ?>
-				<br /><?php echo __( 'Larger numbers will generate higher resolution quality placeholder, but will result in larger files which will increase page size and consume more points.', 'litespeed-cache' ); ?>
+				<br /><?php echo __( 'Larger number will generate higher resolution quality placeholder, but will result in larger files which will increase page size and consume more points.', 'litespeed-cache' ); ?>
 				<?php $this->recommended( $id ); ?>
 				<?php $this->_validate_ttl( $id, 1, 20 ); ?>
+				<br />💡 <?php echo sprintf(__('Changes to this setting do not apply to already-generated LQIPs. To regenerate existing LQIPs, please %s first from the admin bar menu.', 'litespeed-cache'), '<code>' . __( 'Purge All', 'litespeed-cache' ) . ' - ' . __( 'LQIP Cache', 'litespeed-cache' ) . '</code>'); ?>
 			</div>
 		</td>
 	</tr>
@@ -160,26 +163,35 @@ $closest_server = Cloud::get_summary( 'server.' . Cloud::SVC_LQIP );
 				<?php Doc::learn_more( 'https://docs.litespeedtech.com/lscache/lscwp/pageopt/#generate-lqip-in-background' ); ?>
 			</div>
 
-			<?php if ( $placeholder_summary ) : ?>
 			<div class="litespeed-desc">
-				<?php if ( ! empty( $placeholder_summary[ 'last_request' ] ) ) : ?>
-					<p>
-						<?php echo __( 'Last generated', 'litespeed-cache' ) . ': <code>' . Utility::readable_time( $placeholder_summary[ 'last_request' ] ) . '</code>'; ?>
-					</p>
+				<?php if ( $placeholder_summary ) : ?>
+					<?php if ( ! empty( $placeholder_summary[ 'last_request' ] ) ) : ?>
+						<p>
+							<?php echo __( 'Last generated', 'litespeed-cache' ) . ': <code>' . Utility::readable_time( $placeholder_summary[ 'last_request' ] ) . '</code>'; ?>
+						</p>
+					<?php endif; ?>
 				<?php endif; ?>
 
 				<?php if ( $closest_server ) : ?>
 					<a href="<?php echo Utility::build_url( Router::ACTION_CLOUD, Cloud::TYPE_REDETECT_CLOUD, false, null, array( 'svc' => Cloud::SVC_LQIP ) ); ?>" data-balloon-pos="up" data-balloon-break aria-label='<?php echo sprintf( __( 'Current closest Cloud server is %s.&#10; Click to redetect.', 'litespeed-cache' ), $closest_server ); ?>' data-litespeed-cfm="<?php echo __( 'Are you sure you want to redetect the closest cloud server for this service?', 'litespeed-cache' ) ; ?>"><i class='litespeed-quic-icon'></i></a>
 				<?php endif; ?>
 
-				<?php if ( ! empty( $placeholder_summary[ 'queue' ] ) ) : ?>
+				<?php if ( ! empty( $placeholder_queue ) ) : ?>
 					<div class="litespeed-callout notice notice-warning inline">
 						<h4>
 							<?php echo __( 'Size list in queue waiting for cron','litespeed-cache' ); ?>
 							<a href="<?php echo Utility::build_url( Router::ACTION_PLACEHOLDER, Placeholder::TYPE_CLEAR_Q ); ?>" class="button litespeed-btn-warning litespeed-right">Clear</a>
 						</h4>
 						<p>
-							<?php echo implode( '<br>', $placeholder_summary[ 'queue' ] ); ?>
+						<?php foreach ( $placeholder_queue as $k => $v ) : ?>
+							<?php if ( $k > 20 ) : ?>
+								<?php echo '...'; ?>
+								<?php break; ?>
+							<?php endif; ?>
+
+							<?php echo $v; ?>
+							<br />
+						<?php endforeach; ?>
 						</p>
 					</div>
 					<a href="<?php echo Utility::build_url( Router::ACTION_PLACEHOLDER, Placeholder::TYPE_GENERATE ); ?>" class="button litespeed-btn-success">
@@ -187,7 +199,6 @@ $closest_server = Cloud::get_summary( 'server.' . Cloud::SVC_LQIP );
 					</a>
 				<?php endif; ?>
 			</div>
-			<?php endif; ?>
 		</td>
 	</tr>
 
@@ -201,6 +212,21 @@ $closest_server = Cloud::get_summary( 'server.' . Cloud::SVC_LQIP );
 			<div class="litespeed-desc">
 				<?php echo __( 'Load iframes only when they enter the viewport.', 'litespeed-cache' ); ?>
 				<?php echo __( 'This can improve page loading time by reducing initial HTTP requests.', 'litespeed-cache' ); ?>
+			</div>
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+			<?php $id = Base::O_MEDIA_ADD_MISSING_SIZES; ?>
+			<?php $this->title( $id ); ?>
+		</th>
+		<td>
+			<?php $this->build_switch( $id ); ?>
+			<div class="litespeed-desc">
+				<?php echo __( 'Set an explicit width and height on image elements to reduce layout shifts and improve CLS (a Core Web Vitals metric).', 'litespeed-cache' ); ?>
+				<?php Doc::learn_more( 'https://web.dev/optimize-cls/#images-without-dimensions' ); ?>
+				<br /><?php echo sprintf( __( 'Note: this option only works when %1$s is %2$s.', 'litespeed-cache' ), '<code>' . Lang::title( Base::O_MEDIA_LAZY ) . '</code>', '<code>' . __( 'ON', 'litespeed-cache' ) . '</code>' ); ?>
 			</div>
 		</td>
 	</tr>

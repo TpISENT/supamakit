@@ -9,9 +9,7 @@ namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class Tag extends Instance {
-	protected static $_instance;
-
+class Tag extends Root {
 	const TYPE_FEED = 'FD';
 	const TYPE_FRONTPAGE = 'F';
 	const TYPE_HOME = 'H';
@@ -31,7 +29,6 @@ class Tag extends Instance {
 	const TYPE_REST = 'REST';
 	const TYPE_LIST = 'LIST';
 	const TYPE_MIN = 'MIN';
-	const TYPE_LOCALRES = 'LOCALRES';
 
 	const X_HEADER = 'X-LiteSpeed-Tag';
 
@@ -41,9 +38,9 @@ class Tag extends Instance {
 	/**
 	 * Initialize
 	 *
-	 * @since    2.2.3
+	 * @since 4.0
 	 */
-	protected function __construct() {
+	public function init() {
 		// register recent posts widget tag before theme renders it to make it work
 		add_filter( 'widget_posts_args', array( $this, 'add_widget_recent_posts' ) );
 
@@ -58,8 +55,8 @@ class Tag extends Instance {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public static function check_login_cacheable() {
-		if ( ! Conf::val( Base::O_CACHE_PAGE_LOGIN ) ) {
+	public function check_login_cacheable() {
+		if ( ! $this->conf( Base::O_CACHE_PAGE_LOGIN ) ) {
 			return;
 		}
 		if ( Control::isset_notcacheable() ) {
@@ -71,7 +68,7 @@ class Tag extends Instance {
 			return;
 		}
 
-		Control::set_cacheable();
+		$this->cls( 'Control' )->set_cacheable();
 
 		self::add( self::TYPE_LOGIN );
 
@@ -113,7 +110,13 @@ class Tag extends Instance {
 			$tags = array( $tags );
 		}
 
+		Debug2::debug( '💰 [Tag] Add ', $tags );
+
 		self::$_tags = array_merge( self::$_tags, $tags );
+
+		// Send purge header immediately
+		$tag_header = self::cls()->output( true );
+		@header( $tag_header );
 	}
 
 	/**
@@ -272,7 +275,7 @@ class Tag extends Instance {
 		}
 
 		// Check REST API
-		if ( REST::get_instance()->is_rest() ) {
+		if ( REST::cls()->is_rest() ) {
 			$tags[] = self::TYPE_REST;
 
 			$path = ! empty( $_SERVER[ 'SCRIPT_URL' ] ) ? $_SERVER[ 'SCRIPT_URL' ] : false;
@@ -313,6 +316,11 @@ class Tag extends Instance {
 			$type_tags = self::_build_type_tags();
 			self::$_tags = array_merge( self::$_tags, $type_tags );
 		}
+
+		if ( defined( 'LITESPEED_GUEST' ) && LITESPEED_GUEST ) {
+			self::$_tags[] = 'guest';
+		}
+
 		// append blog main tag
 		self::$_tags[] = '';
 		// removed duplicates
@@ -327,8 +335,14 @@ class Tag extends Instance {
 	 * @access public
 	 * @return string empty string if empty, otherwise the cache tags header.
 	 */
-	public static function output() {
-		self::_finalize();
+	public function output( $no_finalize = false ) {
+		if ( defined( 'LSCACHE_NO_CACHE' ) && LSCACHE_NO_CACHE ) {
+			return;
+		}
+
+		if ( ! $no_finalize ) {
+			self::_finalize();
+		}
 
 		$prefix_tags = array();
 		/**

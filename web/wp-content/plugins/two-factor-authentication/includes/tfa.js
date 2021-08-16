@@ -118,7 +118,9 @@ jQuery(function($) {
 		// Hide all elements in a browser-safe way
 		// .user-pass-wrap is the wrapper used (instead of a paragraph) on wp-login.php from WP 5.3
 		$submit_button.parents('form').first().find('p, .impu-form-line-fr, .tml-field-wrap, .user-pass-wrap, .elementor-field-type-text, .elementor-field-type-submit, .elementor-remember-me, .bbp-username, .bbp-password, .bbp-submit-wrapper').each(function(i) {
-			$(this).css('visibility','hidden').css('position', 'absolute');
+			$(this).css('visibility', 'hidden').css('position', 'absolute');
+			// On the WooCommerce form, the 'required' asterisk in the child <span> still shows without this
+			$(this).find('span').css('visibility', 'hidden').css('position', 'absolute');
 		});
 		
 		// WP-Members
@@ -127,9 +129,23 @@ jQuery(function($) {
 		// Add new field and controls
 		var html = '';
 		
-		html += '<label for="simba_two_factor_auth">' + simba_tfasettings.otp + '<br><input type="text" name="two_factor_code" id="simba_two_factor_auth" autocomplete="off" data-lpignore="true"></label>';
+		html += '<label for="simba_two_factor_auth">' + simba_tfasettings.otp + '<br><input type="text" name="two_factor_code" id="simba_two_factor_auth" autocomplete="off" data-lpignore="true"';
 		
-		html += '<p class="forgetmenot" style="font-size:small; max-width: 60%">' + simba_tfasettings.otp_login_help
+		if ($(form).hasClass('woocommerce-form-login')) {
+			// Retain compatibility with previous full-width layout
+			html += ' style="width: 100%;"';
+		}
+		
+		html += '></label>';
+		
+		html += '<p class="forgetmenot" style="font-size:small;';
+		
+		if (!$(form).hasClass('woocommerce-form-login')) {
+			// Retain compatibility with previous full-width layout
+			html += ' max-width: 60%;';
+		}
+		
+		html += '">'+simba_tfasettings.otp_login_help;
 
 		if (user_can_trust && ('https:' == window.location.protocol || 'localhost' === location.hostname || '127.0.0.1' === location.hostname)) {
 			

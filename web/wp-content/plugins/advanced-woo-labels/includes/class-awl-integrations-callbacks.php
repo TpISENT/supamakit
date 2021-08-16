@@ -46,20 +46,6 @@ if ( ! class_exists( 'AWL_Integrations_Callbacks' ) ) :
             return $title;
         }
 
-        public static function elementor_get_attachment_image_html( $html ) {
-            if ( $html ) {
-                return $html . AWL_Label_Display::instance()->show_label( 'on_image' );
-            }
-            return $html;
-        }
-
-        public static function elementor_render_content_single_title( $widget_content, $block ) {
-            if ( is_singular( 'product' ) && $block->get_name() === 'woocommerce-product-title' ) {
-                $widget_content = AWL_Label_Display::instance()->show_label( 'before_title' ) . $widget_content;
-            }
-            return $widget_content;
-        }
-
         public static function wrap_thumb_container_action() {
             echo '<div style="position:relative;width:100%;height:100%;">' . AWL_Label_Display::instance()->show_label( 'on_image' ) . '</div>';
         }

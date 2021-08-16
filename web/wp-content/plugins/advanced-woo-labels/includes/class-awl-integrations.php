@@ -98,6 +98,10 @@ if ( ! class_exists( 'AWL_Integrations' ) ) :
                 include_once( AWL_DIR . '/includes/modules/class-awl-aws.php' );
             }
 
+            if ( defined( 'ELEMENTOR_VERSION' ) || defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+                include_once( AWL_DIR . '/includes/modules/class-awl-elementor.php' );
+            }
+
         }
 
         /*
@@ -152,6 +156,7 @@ if ( ! class_exists( 'AWL_Integrations' ) ) :
 
                 case 'Flatsome':
                     $hooks['on_image']['single']['woocommerce_before_single_product_summary'] = array( 'priority' => 10, 'js' => array( '.product-gallery .product-images', 'append' ) );
+                    $hooks['on_image']['single']['flatsome_sale_flash'] = array( 'priority' => 10 );
                     $hooks['on_image']['archive']['flatsome_woocommerce_shop_loop_images'] = array( 'priority' => 10 );
                     if ( isset( $_REQUEST['action'] ) && 'flatsome_quickview' === $_REQUEST['action'] ) {
                         $hooks['before_title']['single'] = array( 'the_title' => array( 'priority' => 10, 'type' => 'filter', 'before' => true ) );
@@ -259,13 +264,6 @@ if ( ! class_exists( 'AWL_Integrations' ) ) :
                     'woocommerce_product_get_image' => array( 'priority' => 10, 'type' => 'filter', 'callback' => 'AWL_Integrations_Callbacks::woocommerce_product_get_image', 'args' => 3 ),
                     'woocommerce_before_shop_loop_item' => array( 'priority' => 10, 'js' => array( '.et_shop_image', 'append' ) )
                 );
-            }
-
-            // Elementor plugin
-            if ( defined( 'ELEMENTOR_VERSION' ) || defined( 'ELEMENTOR_PRO_VERSION' ) ) {
-                $hooks['on_image']['archive']['elementor/image_size/get_attachment_image_html'] = array( 'priority' => 10, 'type' => 'filter', 'callback' => 'AWL_Integrations_Callbacks::elementor_get_attachment_image_html', 'args' => 1,  'js' => array( '.elementor-post__thumbnail__link' ) );
-                $hooks['before_title']['archive']['elementor/image_size/get_attachment_image_html'] = array( 'priority' => 11, 'type' => 'filter', 'js' => array( '.elementor-post__title', 'before' ) );
-                $hooks['before_title']['single']['elementor/widget/render_content'] = array( 'priority' => 10, 'type' => 'filter', 'callback' => 'AWL_Integrations_Callbacks::elementor_render_content_single_title', 'args' => 2 );
             }
 
             // JetWooBuilder For Elementor

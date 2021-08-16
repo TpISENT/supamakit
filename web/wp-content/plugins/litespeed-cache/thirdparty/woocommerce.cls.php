@@ -14,16 +14,13 @@ defined( 'WPINC' ) || exit;
 
 use \LiteSpeed\API;
 use \LiteSpeed\Base;
-use \LiteSpeed\Instance;
 
-class WooCommerce extends Instance
-{
-	protected static $_instance ;
-
+class WooCommerce extends Base {
 	const O_CACHE_TTL_FRONTPAGE = Base::O_CACHE_TTL_FRONTPAGE;
 
 	const CACHETAG_SHOP = 'WC_S' ;
 	const CACHETAG_TERM = 'WC_T.' ;
+	const O_ESI_CACHE_CART = 'wc_esi_cache_cart';
 	const O_UPDATE_INTERVAL = 'wc_update_interval' ;
 	const O_SHOP_FRONT_TTL = 'wc_shop_use_front_ttl' ;
 	const O_WOO_CACHE_CART = 'woo_cache_cart' ;
@@ -53,7 +50,7 @@ class WooCommerce extends Instance
 			return ;
 		}
 
-		self::get_instance()->add_hooks() ;
+		self::cls()->add_hooks() ;
 
 	}
 
@@ -98,8 +95,10 @@ class WooCommerce extends Instance
 			 * Call when template_include to make sure woo cart is initialized
 			 * @since  1.7.2
 			 */
-			add_action( 'template_include', array( $this, 'check_if_need_esi' ) );
-			add_filter( 'litespeed_vary', array( $this, 'vary_maintain' ) );
+			if ( apply_filters( 'litespeed_conf', self::O_ESI_CACHE_CART ) ) {
+				add_action( 'template_include', array( $this, 'check_if_need_esi' ) );
+				add_filter( 'litespeed_vary', array( $this, 'vary_maintain' ) );
+			}
 
 		}
 
@@ -180,8 +179,7 @@ class WooCommerce extends Instance
 	 * @since  1.7.2
 	 * @access public
 	 */
-	public function vary_maintain( $vary )
-	{
+	public function vary_maintain( $vary ) {
 		if ( $this->vary_needed() ) {
 			do_action( 'litespeed_debug', 'API: 3rd woo added vary due to cart not empty' );
 			$vary[ 'woo_cart' ] = 1;
@@ -502,10 +500,10 @@ class WooCommerce extends Instance
 		if ( function_exists( 'is_product_taxonomy' ) && ! is_product_taxonomy() ) {
 			return ;
 		}
-		if ( isset($GLOBALS['product_cat']) ) {
+		if ( isset($GLOBALS['product_cat']) && is_string( $GLOBALS['product_cat'] ) ) { // todo: need to check previous woo version to find if its from old woo versions or not!
 			$term = get_term_by('slug', $GLOBALS['product_cat'], 'product_cat') ;
 		}
-		elseif ( isset($GLOBALS['product_tag']) ) {
+		elseif ( isset($GLOBALS['product_tag']) && is_string( $GLOBALS['product_tag'] ) ) {
 			$term = get_term_by('slug', $GLOBALS['product_tag'], 'product_tag') ;
 		}
 		else {
@@ -772,6 +770,7 @@ class WooCommerce extends Instance
 		// Append option save value filter
 		do_action( 'litespeed_conf_multi_switch', self::O_UPDATE_INTERVAL, 3 ); // This need to be before conf_append
 
+		do_action( 'litespeed_conf_append', self::O_ESI_CACHE_CART, true );
 		do_action( 'litespeed_conf_append', self::O_UPDATE_INTERVAL, false );
 		do_action( 'litespeed_conf_append', self::O_SHOP_FRONT_TTL, true );
 		do_action( 'litespeed_conf_append', self::O_WOO_CACHE_CART, true );

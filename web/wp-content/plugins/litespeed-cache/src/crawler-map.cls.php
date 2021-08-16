@@ -7,12 +7,11 @@
 namespace LiteSpeed;
 defined( 'WPINC' ) || exit;
 
-class Crawler_Map extends Instance {
+class Crawler_Map extends Root {
 	const BM_MISS = 1;
 	const BM_HIT = 2;
 	const BM_BLACKLIST = 4;
 
-	protected static $_instance;
 	private $_home_url; // Used to simplify urls
 	private $_tb;
 	private $__data;
@@ -23,14 +22,13 @@ class Crawler_Map extends Instance {
 	 * Instantiate the class
 	 *
 	 * @since 1.1.0
-	 * @access protected
 	 */
-	protected function __construct() {
+	public function __construct() {
 		$this->_home_url = get_home_url();
-		$this->__data = Data::get_instance();
+		$this->__data = Data::cls();
 		$this->_tb = $this->__data->tb( 'crawler' );
 		$this->_tb_blacklist = $this->__data->tb( 'crawler_blacklist' );
-		$this->_conf_map_timeout = Conf::val( Base::O_CRAWLER_MAP_TIMEOUT );
+		$this->_conf_map_timeout = $this->conf( Base::O_CRAWLER_MAP_TIMEOUT );
 	}
 
 	/**
@@ -43,7 +41,7 @@ class Crawler_Map extends Instance {
 		global $wpdb;
 		Utility::compatibility();
 
-		$total_crawler = count( Crawler::get_instance()->list_crawlers() );
+		$total_crawler = count( Crawler::cls()->list_crawlers() );
 		$total_crawler_pos = $total_crawler - 1;
 
 		// Replace current crawler's position
@@ -145,7 +143,7 @@ class Crawler_Map extends Instance {
 		$id = (int)$id;
 
 		// Build res&reason
-		$total_crawler = count( Crawler::get_instance()->list_crawlers() );
+		$total_crawler = count( Crawler::cls()->list_crawlers() );
 		$res = str_repeat( 'B', $total_crawler );
 		$reason = implode( ',', array_fill( 0, $total_crawler, 'Man' ) );
 
@@ -262,7 +260,7 @@ class Crawler_Map extends Instance {
 	 * @access public
 	 */
 	public function empty_map() {
-		Data::get_instance()->tb_del( 'crawler' );
+		Data::cls()->tb_del( 'crawler' );
 
 		$msg = __( 'Sitemap cleaned successfully', 'litespeed-cache' );
 		Admin_Display::succeed( $msg );
@@ -342,7 +340,7 @@ class Crawler_Map extends Instance {
 		}
 
 		// use custom sitemap
-		if ( ! $sitemap = Conf::val( Base::O_CRAWLER_SITEMAP ) ) {
+		if ( ! $sitemap = $this->conf( Base::O_CRAWLER_SITEMAP ) ) {
 			return false;
 		}
 
@@ -355,7 +353,7 @@ class Crawler_Map extends Instance {
 		}
 
 		if ( is_array( $this->_urls ) && ! empty( $this->_urls ) ) {
-			if ( Conf::val( Base::O_CRAWLER_DROP_DOMAIN ) ) {
+			if ( $this->conf( Base::O_CRAWLER_DROP_DOMAIN ) ) {
 				foreach ( $this->_urls as $k => $v ) {
 					if ( stripos( $v, $this->_home_url ) !== 0 ) {
 						unset( $this->_urls[ $k ] );
@@ -398,7 +396,7 @@ class Crawler_Map extends Instance {
 		$this->_urls = array_diff( $this->_urls, $full_blacklisted );
 
 		// Default res & reason
-		$crawler_count = count( Crawler::get_instance()->list_crawlers() );
+		$crawler_count = count( Crawler::cls()->list_crawlers() );
 		$default_res = str_repeat( '-', $crawler_count );
 		$default_reason = $crawler_count > 1 ? str_repeat( ',', $crawler_count - 1 ) : '';
 
@@ -414,7 +412,7 @@ class Crawler_Map extends Instance {
 		}
 
 		// Reset crawler
-		Crawler::get_instance()->reset_pos();
+		Crawler::cls()->reset_pos();
 
 		return count( $this->_urls );
 	}
@@ -460,7 +458,7 @@ class Crawler_Map extends Instance {
 			throw new \Exception( 'Failed to remote read ' . $sitemap );
 		}
 
-		$xml_object = simplexml_load_string( $response[ 'body' ] );
+		$xml_object = simplexml_load_string( $response[ 'body' ], null, LIBXML_NOCDATA );
 		if ( ! $xml_object ) {
 			if ( $this->_urls ) {
 				return;
@@ -475,6 +473,7 @@ class Crawler_Map extends Instance {
 			if ( is_object( $xml_array[ 'sitemap' ] ) ) {
 				$xml_array[ 'sitemap' ] = (array) $xml_array[ 'sitemap' ];
 			}
+
 			if ( ! empty( $xml_array[ 'sitemap' ][ 'loc' ] ) ) { // is single sitemap
 				$this->_parse( $xml_array[ 'sitemap' ][ 'loc' ] );
 			}
