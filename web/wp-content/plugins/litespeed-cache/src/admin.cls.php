@@ -12,12 +12,8 @@ namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class Admin extends Instance {
+class Admin extends Root {
 	const PAGE_EDIT_HTACCESS = 'litespeed-edit-htaccess';
-
-	protected static $_instance;
-	private $__cfg;// cfg instance
-	private $display;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -25,7 +21,7 @@ class Admin extends Instance {
 	 *
 	 * @since    1.0.0
 	 */
-	protected function __construct() {
+	public function __construct() {
 		// Define LSCWP_MU_PLUGIN if is mu-plugins
 		if ( defined( 'WPMU_PLUGIN_DIR' ) && dirname( LSCWP_DIR ) == WPMU_PLUGIN_DIR ) {
 			define( 'LSCWP_MU_PLUGIN', true );
@@ -33,21 +29,19 @@ class Admin extends Instance {
 
 		// Additional litespeed assets on admin display
 		// Also register menu
-		$this->display = Admin_Display::get_instance();
-
-		$this->__cfg = Conf::get_instance();
+		$this->cls( 'Admin_Display' );
 
 		// initialize admin actions
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		// add link to plugin list page
-		add_filter( 'plugin_action_links_' . LSCWP_BASENAME, array( $this->display, 'add_plugin_links' ) );
+		add_filter( 'plugin_action_links_' . LSCWP_BASENAME, array( $this->cls( 'Admin_Display' ), 'add_plugin_links' ) );
 
 		if ( defined( 'LITESPEED_ON' ) ) {
 			// register purge_all actions
-			$purge_all_events = Conf::val( Base::O_PURGE_HOOK_ALL );
+			$purge_all_events = $this->conf( Base::O_PURGE_HOOK_ALL );
 
 			// purge all on upgrade
-			if ( Conf::val( Base::O_PURGE_ON_UPGRADE ) ) {
+			if ( $this->conf( Base::O_PURGE_ON_UPGRADE ) ) {
 				$purge_all_events[] = 'upgrader_process_complete';
 				$purge_all_events[] = 'admin_action_do-plugin-upgrade';
 			}
@@ -71,6 +65,11 @@ class Admin extends Instance {
 	public function admin_init() {
 		Control::set_nocache( 'Admin page' );
 
+		// Hook attachment upload
+		if ( $this->conf( Base::O_IMG_OPTM_AUTO ) ) {
+			add_filter( 'wp_update_attachment_metadata', array( $this, 'wp_update_attachment_metadata' ), 9999, 2 );
+		}
+
 		$this->_proceed_admin_action();
 
 		// Terminate if user doesn't have the access to settings
@@ -90,15 +89,26 @@ class Admin extends Instance {
 		// Add privacy policy
 		// @since 2.2.6
 		if ( function_exists( 'wp_add_privacy_policy_content' ) ) {
-			wp_add_privacy_policy_content( Core::PLUGIN_NAME, Doc::privacy_policy() );
+			wp_add_privacy_policy_content( Core::NAME, Doc::privacy_policy() );
 		}
+
+		$this->cls( 'Media' )->after_admin_init();
 
 		do_action( 'litspeed_after_admin_init' );
 
-		if ( Router::esi_enabled() ) {
-			add_action( 'in_widget_form', array( $this->display, 'show_widget_edit' ), 100, 3 );
+		if ( $this->cls( 'Router' )->esi_enabled() ) {
+			add_action( 'in_widget_form', array( $this->cls( 'Admin_Display' ), 'show_widget_edit' ), 100, 3 );
 			add_filter( 'widget_update_callback', __NAMESPACE__ . '\Admin_Settings::validate_widget_save', 10, 4 );
 		}
+	}
+
+	/**
+	 * Handle attachment update
+	 * @since  4.0
+	 */
+	public function wp_update_attachment_metadata( $data, $post_id ) {
+		$this->cls( 'Img_Optm' )->wp_update_attachment_metadata( $data, $post_id );
+		return $data;
 	}
 
 	/**
@@ -112,17 +122,17 @@ class Admin extends Instance {
 
 			// Save htaccess
 			case Router::ACTION_SAVE_HTACCESS:
-				Htaccess::get_instance()->htaccess_editor_save();
+				$this->cls( 'Htaccess' )->htaccess_editor_save();
 				break;
 
 			case Router::ACTION_SAVE_SETTINGS:
-				Admin_Settings::get_instance()->save( $_POST );
+				$this->cls( 'Admin_Settings' )->save( $_POST );
 				break;
 
 
 			// Save network settings
 			case Router::ACTION_SAVE_SETTINGS_NETWORK:
-				Admin_Settings::get_instance()->network_save( $_POST );
+				$this->cls( 'Admin_Settings' )->network_save( $_POST );
 				break;
 
 			default:

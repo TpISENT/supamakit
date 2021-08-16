@@ -2,15 +2,14 @@
 namespace LiteSpeed;
 defined( 'WPINC' ) || exit;
 
-$readonly = Htaccess::get_instance()->writable() ? '' : 'readonly';
+$readonly = Htaccess::cls()->writable() ? '' : 'readonly';
 
 $content = null;
 try {
-	$content = Htaccess::get_instance()->htaccess_read();
+	$content = Htaccess::cls()->htaccess_read();
 } catch( \Exception $e ) {
 	echo '<div class="notice notice-error is-dismissible"><p>'. $e->getMessage() . '</p></div>';
 }
-
 
 $htaccess_path = Htaccess::get_frontend_htaccess();
 

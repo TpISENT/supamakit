@@ -282,6 +282,10 @@
 	color: #3366CC !important;
 }
 
+.litespeed-info {
+	color: #3FBFBF !important;
+}
+
 .litespeed-success {
 	color: #73b38d !important;
 }
@@ -318,6 +322,10 @@ button.litespeed-form-action:hover {
 
 .litespeed-bg-primary {
 	background-color: #3366CC !important;
+}
+
+.litespeed-bg-info {
+	background-color: #d1ecf1 !important;
 }
 
 .litespeed-bg-success {
@@ -502,6 +510,15 @@ h3 .litespeed-learn-more {
 	font-size: 1.2em;
 	display: block;
 	border-top: 1px solid #f1f1f1;
+}
+
+.litespeed-postbox .litespeed-title {
+	display: flex;
+}
+
+.litespeed-title-right-icon {
+	margin-left: auto;
+	font-weight: normal;
 }
 
 .litespeed-list li:before {
@@ -712,10 +729,6 @@ h3 .litespeed-learn-more {
 
 .litespeed-panel-icon-all_transients {
 	background-image: url("../img/icons/all_transients.svg");
-}
-
-.litespeed-panel-icon-all_cssjs {
-	background-image: url("../img/icons/purge-cssjs.svg");
 }
 
 .litespeed-panel-icon-optimize_tables {
@@ -2647,7 +2660,6 @@ g.litespeed-pie_info .litespeed-pie-done {
 	padding: 0px 20px 7px 20px;
 	border-bottom: 1px solid #eee;
 	font-size: 1.2em;
-	display: block;
 }
 
 .litespeed-postbox .inside.litespeed-postbox-footer {

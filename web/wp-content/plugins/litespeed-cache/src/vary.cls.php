@@ -7,14 +7,10 @@
 namespace LiteSpeed;
 defined( 'WPINC' ) || exit;
 
-class Vary extends Instance {
-	protected static $_instance;
-
+class Vary extends Root {
 	const X_HEADER = 'X-LiteSpeed-Vary';
 
 	private static $_vary_name = '_lscache_vary'; // this default vary cookie is used for logged in status check
-	private static $_vary_cookies = array(); // vary header only!
-	private static $_default_vary_val = array();
 	private static $_can_change_vary = false; // Currently only AJAX used this
 
 	/**
@@ -24,16 +20,65 @@ class Vary extends Instance {
 	 *
 	 * @since 1.0.4
 	 */
-	protected function __construct() {
+	public function init() {
+		$this->_update_vary_name();
+	}
+
+	/**
+	 * Update the default vary name if changed
+	 *
+	 * @since  4.0
+	 */
+	private function _update_vary_name() {
+		$db_cookie = $this->conf( Base::O_CACHE_LOGIN_COOKIE ); // [3.0] todo: check if works in network's sites
+
+		// If no vary set in rewrite rule
+		if ( ! isset( $_SERVER[ 'LSCACHE_VARY_COOKIE' ] ) ) {
+			if ( $db_cookie ) {
+				// Display cookie error msg to admin
+				if ( is_multisite() ? is_network_admin() : is_admin() ) {
+					Admin_Display::show_error_cookie();
+				}
+				Control::set_nocache( 'vary cookie setting error' );
+				return;
+			}
+			return;
+		}
+		// If db setting does not exist, skip checking db value
+		if ( ! $db_cookie ) {
+			return;
+		}
+
+		// beyond this point, need to make sure db vary setting is in $_SERVER env.
+		$vary_arr = explode( ',', $_SERVER[ 'LSCACHE_VARY_COOKIE' ] );
+
+		if ( in_array( $db_cookie, $vary_arr ) ) {
+			self::$_vary_name = $db_cookie;
+			return;
+		}
+
+		if ( is_multisite() ? is_network_admin() : is_admin() ) {
+			Admin_Display::show_error_cookie();
+		}
+		Control::set_nocache('vary cookie setting lost error');
+
+	}
+
+	/**
+	 * Hooks after user init
+	 *
+	 * @since  4.0
+	 */
+	public function after_user_init() {
 		// logged in user
 		if ( Router::is_logged_in() ) {
 			// If not esi, check cache logged-in user setting
-			if ( ! Router::esi_enabled() ) {
+			if ( ! $this->cls( 'Router' )->esi_enabled() ) {
 				// If cache logged-in, then init cacheable to private
-				if ( Conf::val( Base::O_CACHE_PRIV ) ) {
+				if ( $this->conf( Base::O_CACHE_PRIV ) ) {
 					add_action( 'wp_logout', __NAMESPACE__ . '\Purge::purge_on_logout' );
 
-					Control::init_cacheable();
+					$this->cls( 'Control' )->init_cacheable();
 					Control::set_private( 'logged in user' );
 				}
 				// No cache for logged-in user
@@ -44,7 +89,7 @@ class Vary extends Instance {
 			// ESI is on, can be public cache
 			else {
 				// Need to make sure vary is using group id
-				Control::init_cacheable();
+				$this->cls( 'Control' )->init_cacheable();
 			}
 
 			// register logout hook to clear login status
@@ -52,15 +97,21 @@ class Vary extends Instance {
 
 		}
 		else {
+			// Only after vary init, can detect if is Guest mode or not
+			$this->_maybe_guest_mode();
+
 			// Set vary cookie for logging in user, otherwise the user will hit public with vary=0 (guest version)
 			add_action( 'set_logged_in_cookie', array( $this, 'add_logged_in' ), 10, 4 );
 			add_action( 'wp_login', __NAMESPACE__ . '\Purge::purge_on_logout' );
 
-			Control::init_cacheable();
+			$this->cls( 'Control' )->init_cacheable();
 
 			// Check `login page` cacheable setting because they don't go through main WP logic
-			add_action( 'login_init', __NAMESPACE__ . '\Tag::check_login_cacheable', 5 );
+			add_action( 'login_init', array( $this->cls( 'Tag' ), 'check_login_cacheable' ), 5 );
 
+			if ( ! empty( $_GET[ 'litespeed_guest' ] ) ) {
+				add_action( 'wp_loaded', array( $this, 'update_guest_vary' ), 20 );
+			}
 		}
 
 		// Add comment list ESI
@@ -73,44 +124,84 @@ class Vary extends Instance {
 		 * Don't change for REST call because they don't carry on user info usually
 		 * @since 1.6.7
 		 */
-		add_action( 'rest_api_init', function(){
+		add_action( 'rest_api_init', function(){ // this hook is fired in `init` hook
 			Debug2::debug( '[Vary] Rest API init disabled vary change' );
 			add_filter( 'litespeed_can_change_vary', '__return_false' );
 		} );
+	}
 
-		/******** Below to the end is only for cookie name setting check ********/
-		// Get specific cookie name
-		$db_cookie = Conf::val( Base::O_CACHE_LOGIN_COOKIE ); // [3.0] todo: check if works in network's sites
-
-		// If no vary set in rewrite rule
-		if ( ! isset($_SERVER['LSCACHE_VARY_COOKIE']) ) {
-			if ( $db_cookie ) {
-				// Display cookie error msg to admin
-				if ( is_multisite() ? is_network_admin() : is_admin() ) {
-					Admin_Display::show_error_cookie();
-				}
-				Control::set_nocache('vary cookie setting error');
-				return;
-			}
-			return;
-		}
-		// If db setting does not exist, skip checking db value
-		if ( ! $db_cookie ) {
+	/**
+	 * Check if is Guest mode or not
+	 *
+	 * @since  4.0
+	 */
+	private function _maybe_guest_mode() {
+		if ( defined( 'LITESPEED_GUEST' ) ) {
+			Debug2::debug( '[Vary] 👒👒 Guest mode ' . ( LITESPEED_GUEST ? 'predefined' : 'turned off' ) );
 			return;
 		}
 
-		// beyond this point, need to make sure db vary setting is in $_SERVER env.
-		$vary_arr = explode(',', $_SERVER['LSCACHE_VARY_COOKIE']);
-
-		if ( in_array($db_cookie, $vary_arr) ) {
-			self::$_vary_name = $db_cookie;
+		if ( ! $this->conf( Base::O_GUEST ) ) {
 			return;
 		}
 
-		if ( is_multisite() ? is_network_admin() : is_admin() ) {
-			Admin_Display::show_error_cookie();
+		// If vary is set, then not a guest
+		if ( self::has_vary() ) {
+			return;
 		}
-		Control::set_nocache('vary cookie setting lost error');
+
+		// If has admin QS, then no guest
+		if ( ! empty( $_GET[ Router::ACTION ] ) ) {
+			return;
+		}
+
+		if ( defined( 'DOING_AJAX' ) ) {
+			return;
+		}
+
+		if ( defined( 'DOING_CRON' ) ) {
+			return;
+		}
+
+		// If is the request to update vary, then no guest
+		// Don't need anymore as it is always ajax call
+		// Still keep it in case some WP blocked the lightweigh guest vary update script, WP can still update the vary
+		if ( ! empty( $_GET[ 'litespeed_guest' ] ) ) {
+			return;
+		}
+
+		Debug2::debug( '[Vary] 👒👒 Guest mode' );
+
+		! defined( 'LITESPEED_GUEST' ) && define( 'LITESPEED_GUEST', true );
+
+		if ( $this->conf( Base::O_GUEST_OPTM ) ) {
+			! defined( 'LITESPEED_GUEST_OPTM' ) && define( 'LITESPEED_GUEST_OPTM', true );
+		}
+	}
+
+	/**
+	 * Update Guest vary
+	 *
+	 * @since  4.0
+	 * @deprecated 4.1 Use independent lightweight guest.vary.php as a replacement
+	 */
+	public function update_guest_vary() {
+		// This process must not be cached
+		! defined( 'LSCACHE_NO_CACHE' ) && define( 'LSCACHE_NO_CACHE', true );
+
+		$_guest = new Lib\Guest();
+		if ( $_guest->always_guest() || self::has_vary() ) { // If contains vary already, don't reload to avoid infinite loop when parent page having browser cache
+			! defined( 'LITESPEED_GUEST' ) && define( 'LITESPEED_GUEST', true ); // Reuse this const to bypass set vary in vary finalize
+			Debug2::debug( '[Vary] 🤠🤠 Guest' );
+			echo '[]';
+			exit;
+		}
+
+		Debug2::debug( "[Vary] Will update guest vary in finalize" );
+
+		// return json
+		echo json_encode( array( 'reload' => 'yes' ) );
+		exit;
 	}
 
 	/**
@@ -136,7 +227,7 @@ class Vary extends Instance {
 		if ( apply_filters( 'litespeed_vary_check_commenter_pending', true ) ) {
 			$pending = false;
 			foreach ( $comments as $comment ) {
-				if ( ! $comment->comment_approved ) {// current user has pending comment
+				if ( ! $comment->comment_approved ) { // current user has pending comment
 					$pending = true;
 					break;
 				}
@@ -144,6 +235,7 @@ class Vary extends Instance {
 
 			// No pending comments, don't need to add private cache
 			if ( ! $pending ) {
+				Debug2::debug( '[Vary] No pending comment' );
 				$this->remove_commenter();
 
 				// Remove commenter prefilled info if exists, for public cache
@@ -161,7 +253,7 @@ class Vary extends Instance {
 		// set vary=2 for next time vary lookup
 		$this->add_commenter();
 
-		if ( Conf::val( Base::O_CACHE_COMMENTER ) ) {
+		if ( $this->conf( Base::O_CACHE_COMMENTER ) ) {
 			Control::set_private( 'existing commenter' );
 		}
 		else {
@@ -304,9 +396,9 @@ class Vary extends Instance {
 			if ( ! $expire ) {
 				$expire = time() + 2 * DAY_IN_SECONDS;
 			}
-			self::_cookie( $vary, $expire );
+			$this->_cookie( $vary, $expire );
 			Debug2::debug( "[Vary] set_cookie ---> $vary" );
-			Control::set_nocache( 'changing default vary' . " $current_vary => $vary" );
+			// Control::set_nocache( 'changing default vary' . " $current_vary => $vary" );
 		}
 	}
 
@@ -331,7 +423,7 @@ class Vary extends Instance {
 	 */
 	public function in_vary_group( $role ) {
 		$group = 0;
-		$vary_groups = Conf::val( Base::O_CACHE_VARY_GROUP );
+		$vary_groups = $this->conf( Base::O_CACHE_VARY_GROUP );
 		if ( array_key_exists( $role, $vary_groups ) ) {
 			$group = $vary_groups[ $role ];
 		}
@@ -347,7 +439,7 @@ class Vary extends Instance {
 	}
 
 	/**
-	 * Finalize default vary
+	 * Finalize default Vary Cookie
 	 *
 	 *  Get user vary tag based on admin_bar & role
 	 *
@@ -357,7 +449,17 @@ class Vary extends Instance {
 	 * @access public
 	 */
 	public function finalize_default_vary( $uid = false ) {
-		$vary = self::$_default_vary_val;
+		// Must check this to bypass vary generation for guests
+		// Must check this to avoid Guest page's CSS/JS/CCSS/UCSS get non-guest vary filename
+		if ( defined( 'LITESPEED_GUEST' ) && LITESPEED_GUEST ) {
+			return false;
+		}
+
+		$vary = array();
+
+		if ( $this->conf( Base::O_GUEST ) ) {
+			$vary[ 'guest_mode' ] = 1;
+		}
 
 		if ( ! $uid ) {
 			$uid = get_current_user_id();
@@ -398,7 +500,7 @@ class Vary extends Instance {
 		/**
 		 * Add filter
 		 * @since 1.6 Added for Role Excludes for optimization cls
-		 * @since 1.6.2 Hooked to webp
+		 * @since 1.6.2 Hooked to webp (checked in v4, no webp anymore)
 		 * @since 3.0 Used by 3rd hooks too
 		 */
 		$vary = apply_filters( 'litespeed_vary', $vary );
@@ -418,8 +520,32 @@ class Vary extends Instance {
 			return $res;
 		}
 		// Encrypt in production
-		return md5( Conf::val( Base::HASH ) . $res );
+		return md5( $this->conf( Base::HASH ) . $res );
+	}
 
+	/**
+	 * Get the hash of all vary related values
+	 *
+	 * @since  4.0
+	 */
+	public function finalize_full_varies() {
+		$vary = $this->_finalize_curr_vary_cookies( true );
+		$vary .= $this->finalize_default_vary( get_current_user_id() );
+		$vary .= $this->get_env_vary();
+		return $vary;
+	}
+
+	/**
+	 * Get request environment Vary
+	 *
+	 * @since  4.0
+	 */
+	public function get_env_vary() {
+		$env_vary = isset( $_SERVER[ 'LSCACHE_VARY_VALUE' ] ) ? $_SERVER[ 'LSCACHE_VARY_VALUE' ] : false;
+		if ( ! $env_vary ) {
+			$env_vary = isset( $_SERVER[ 'HTTP_X_LSCACHE_VARY_VALUE' ] ) ? $_SERVER[ 'HTTP_X_LSCACHE_VARY_VALUE' ] : false;
+		}
+		return $env_vary;
 	}
 
 	/**
@@ -444,12 +570,13 @@ class Vary extends Instance {
 	private function add_commenter( $from_redirect = false ) {
 		// If the cookie is lost somehow, set it
 		if ( self::has_vary() !== 'commenter' ) {
+			Debug2::debug( '[Vary] Add commenter' );
 			// $_COOKIE[ self::$_vary_name ] = 'commenter'; // not needed
 
 			// save it
 			// only set commenter status for current domain path
-			self::_cookie( 'commenter', time() + apply_filters( 'comment_cookie_lifetime', 30000000 ), self::_relative_path( $from_redirect ) );
-			Control::set_nocache( 'adding commenter status' );
+			$this->_cookie( 'commenter', time() + apply_filters( 'comment_cookie_lifetime', 30000000 ), self::_relative_path( $from_redirect ) );
+			// Control::set_nocache( 'adding commenter status' );
 		}
 	}
 
@@ -461,12 +588,13 @@ class Vary extends Instance {
 	 */
 	private function remove_commenter() {
 		if ( self::has_vary() === 'commenter' ) {
+			Debug2::debug( '[Vary] Remove commenter' );
 			// remove logged in status from global var
 			// unset( $_COOKIE[ self::$_vary_name ] ); // not needed
 
 			// save it
-			self::_cookie( false, false, self::_relative_path() );
-			Control::set_nocache( 'removing commenter status' );
+			$this->_cookie( false, false, self::_relative_path() );
+			// Control::set_nocache( 'removing commenter status' );
 		}
 	}
 
@@ -491,118 +619,84 @@ class Vary extends Instance {
 	/**
 	 * Builds the vary header.
 	 *
-	 * Currently, this only checks post passwords.
+	 * NOTE: Non caccheable page can still set vary ( for logged in process )
+	 *
+	 * Currently, this only checks post passwords and 3rd party.
 	 *
 	 * @since 1.0.13
 	 * @access public
 	 * @global $post
-	 * @return mixed false if the user has the postpass cookie. Empty string
-	 * if the post is not password protected. Vary header otherwise.
+	 * @return mixed false if the user has the postpass cookie. Empty string if the post is not password protected. Vary header otherwise.
 	 */
-	public static function finalize() {
-		return self::get_instance()->_finalize();
-
-	}
-
-	private function _finalize() {
+	public function finalize() {
 		// Finalize default vary
-		$this->_update_default_vary();
-
-		/**
-		 * Non caccheable page can still set vary ( for logged in process )
-		 * @since  1.6.6.1
-		 */
-		// if ( ! Control::is_cacheable() ) {
-		// 	Debug2::debug2( 'Vary: bypass finalize due to not cacheable' );
-		// 	return false;
-		// }
-
-		$tp_cookies = $this->_format_vary_cookies();
-		global $post;
-		if ( ! empty($post->post_password) ) {
-			if ( isset($_COOKIE['wp-postpass_' . COOKIEHASH]) ) {
-				Debug2::debug( '[Vary] finalize bypassed due to password protected vary ' );
-				// If user has password cookie, do not cache
-				Control::set_nocache('password protected vary');
-				return;
-			}
-
-			$tp_cookies[] = 'cookie=wp-postpass_' . COOKIEHASH;
+		if ( ! defined( 'LITESPEED_GUEST' ) || ! LITESPEED_GUEST ) {
+			$this->_update_default_vary();
 		}
 
-		if ( empty($tp_cookies) ) {
-			Debug2::debug2( '[Vary] no custimzed vary ' );
+		$tp_cookies = $this->_finalize_curr_vary_cookies();
+
+		if ( ! $tp_cookies ) {
+			Debug2::debug2( '[Vary] no custimzed vary' );
 			return;
 		}
 
-		return self::X_HEADER . ': ' . implode(',', $tp_cookies);
-
+		return self::X_HEADER . ': ' . implode( ',', $tp_cookies );
 	}
 
 	/**
-	 * Gets vary cookies that are already added for the current page.
+	 * Gets vary cookies or their values unique hash that are already added for the current page.
 	 *
 	 * @since 1.0.13
 	 * @access private
-	 * @return array An array of all vary cookies currently added.
+	 * @return array List of all vary cookies currently added.
 	 */
-	private function _format_vary_cookies() {
-		/**
-		 * To add new varys, use hook `API::filter_vary_cookies()` before here
-		 */
-		do_action( 'litespeed_vary_add' );
+	private function _finalize_curr_vary_cookies( $values_json = false ) {
+		global $post;
 
-		/**
-		 * Give a filter to manipulate vary
-		 * @since 2.7.1
-		 */
-		$cookies = apply_filters( 'litespeed_vary_cookies', self::$_vary_cookies );
-		if ( $cookies !== self::$_vary_cookies ) {
-			Debug2::debug( '[Vary] vary changed by filter [Old] ' . var_export( self::$_vary_cookies, true ) . ' [New] ' . var_export( $cookies, true )  );
+		$cookies = array(); // No need to append default vary cookie name
+
+		if ( ! empty( $post->post_password ) ) {
+			$postpass_key = 'wp-postpass_' . COOKIEHASH;
+			if ( $this->_get_cookie_val( $postpass_key ) ) {
+				Debug2::debug( '[Vary] finalize bypassed due to password protected vary ' );
+				// If user has password cookie, do not cache & ignore existing vary cookies
+				Control::set_nocache( 'password protected vary' );
+				return false;
+			}
+
+			$cookies[] = $values_json ? $this->_get_cookie_val( $postpass_key ) : $postpass_key;
 		}
 
-		if ( ! empty( $cookies ) ) {
+		$cookies = apply_filters( 'litespeed_vary_curr_cookies', $cookies );
+		if ( $cookies ) {
 			$cookies = array_filter( array_unique( $cookies ) );
+			Debug2::debug( '[Vary] vary cookies changed by filter litespeed_vary_curr_cookies', $cookies );
 		}
 
-		if ( empty($cookies) ) {
+		if ( ! $cookies ) {
 			return false;
 		}
-
-		foreach ($cookies as $key => $val) {
-			$cookies[$key] = 'cookie=' . $val;
+		// Format cookie name data or value data
+		sort( $cookies ); // This is to maintain the cookie val orders for $values_json=true case.
+		foreach ( $cookies as $k => $v ) {
+			$cookies[ $k ] = $values_json ? $this->_get_cookie_val( $v ) : 'cookie=' . $v;
 		}
 
-		return $cookies;
+		return $values_json ? json_encode( $cookies ) : $cookies;
 	}
 
 	/**
-	 * Adds vary to the list of vary cookies for the current page.
-	 * This is to add a new vary cookie
+	 * Get one vary cookie value
 	 *
-	 * @since 1.0.13
-	 * @deprecated 2.7.1 Use filter `litespeed_vary_cookies` instead.
-	 * @access public
-	 * @param mixed $vary A string or array of vary cookies to add to the current list.
+	 * @since  4.0
 	 */
-	public static function add( $vary ) {
-		if ( ! is_array( $vary ) ) {
-			$vary = array( $vary );
+	private function _get_cookie_val( $key ) {
+		if ( ! empty( $_COOKIE[ $key ] ) ) {
+			return $_COOKIE[ $key ];
 		}
 
-		error_log( 'Deprecated since LSCWP 2.7.1! [Vary] Add new vary ' . var_export( $vary, true ) );
-
-		self::$_vary_cookies = array_merge(self::$_vary_cookies, $vary);
-	}
-
-	/**
-	 * Append child value to default vary
-	 *
-	 * @since 2.6
-	 * @access public
-	 */
-	public static function append( $name, $val ) {
-		self::$_default_vary_val[ $name ] = $val;
+		return false;
 	}
 
 	/**
@@ -616,7 +710,7 @@ class Vary extends Instance {
 	 * @param integer $expire Expire time.
 	 * @param boolean $path False if use wp root path as cookie path
 	 */
-	private static function _cookie($val = false, $expire = false, $path = false) {
+	private function _cookie($val = false, $expire = false, $path = false) {
 		if ( ! $val ) {
 			$expire = 1;
 		}
@@ -625,7 +719,7 @@ class Vary extends Instance {
 		 * Add HTTPS bypass in case clients use both HTTP and HTTPS version of site
 		 * @since 1.7
 		 */
-		$is_ssl = Conf::val( Base::O_UTIL_NO_HTTPS_VARY ) ? false : is_ssl();
+		$is_ssl = $this->conf( Base::O_UTIL_NO_HTTPS_VARY ) ? false : is_ssl();
 
 		setcookie( self::$_vary_name, $val, $expire, $path?: COOKIEPATH, COOKIE_DOMAIN, $is_ssl, true );
 	}

@@ -11,6 +11,37 @@ defined( 'WPINC' ) || exit;
 use LiteSpeed\Debug2;
 use LiteSpeed\Conf;
 use LiteSpeed\Admin_Display;
+use LiteSpeed\File;
+
+/**
+ * Drop object cache data file
+ * @since 4.1
+ */
+function litespeed_update_4_1() {
+	if ( file_exists( WP_CONTENT_DIR . '/.object-cache.ini' ) ) {
+		unlink( WP_CONTENT_DIR . '/.object-cache.ini' );
+	}
+}
+
+/**
+ * Drop cssjs table and rm cssjs folder
+ * @since 4.0
+ */
+function litespeed_update_4() {
+	global $wpdb;
+	$tb = $wpdb->prefix . 'litespeed_cssjs';
+	$existed = $wpdb->get_var( "SHOW TABLES LIKE '$tb'" );
+	if ( ! $existed ) {
+		return;
+	}
+
+	$q = 'DROP TABLE IF EXISTS ' . $tb;
+	$wpdb->query( $q );
+
+	if ( file_exists( LITESPEED_STATIC_DIR . '/ccss' ) ) {
+		File::rrmdir( LITESPEED_STATIC_DIR . '/ccss' );
+	}
+}
 
 /**
  * Append jQuery to JS optm exclude list for max compatibility
@@ -19,10 +50,10 @@ use LiteSpeed\Admin_Display;
  * @since  3.5.1
  */
 function litespeed_update_3_5() {
-	$__conf = Conf::get_instance();
+	$__conf = Conf::cls();
 	// Excludes jQuery
 	foreach ( array( 'optm-js_exc', 'optm-js_defer_exc' ) as $v ) {
-		$curr_setting = Conf::val( $v );
+		$curr_setting = $__conf->conf( $v );
 		$curr_setting[] = 'jquery.js';
 		$curr_setting[] = 'jquery.min.js';
 		$__conf->update( $v, $curr_setting );
@@ -30,7 +61,7 @@ function litespeed_update_3_5() {
 	// Turn off JS Combine and defer
 	$show_msg = false;
 	foreach ( array( 'optm-js_comb', 'optm-js_defer', 'optm-js_inline_defer' ) as $v ) {
-		$curr_setting = Conf::val( $v );
+		$curr_setting = $__conf->conf( $v );
 		if ( ! $curr_setting ) {
 			continue;
 		}
@@ -341,13 +372,13 @@ function litespeed_update_3_0( $ver ) {
 		// 'js_combined_priority'	=> 'optm-js_comb_priority',
 		'js_http2'				=> 'optm-js_http2',
 		'js_exclude' 			=> 'optm-js_exc',
-		'optimize_ttl'			=> 'optm-ttl',
+		// 'optimize_ttl'			=> 'optm-ttl',
 		'html_minify'			=> 'optm-html_min',
 		'optm_qs_rm'			=> 'optm-qs_rm',
 		'optm_ggfonts_rm'		=> 'optm-ggfonts_rm',
 		'optm_css_async'		=> 'optm-css_async',
-		'optm_ccss_gen'			=> 'optm-ccss_gen',
-		'optm_ccss_async'		=> 'optm-ccss_async',
+		// 'optm_ccss_gen'			=> 'optm-ccss_gen',
+		// 'optm_ccss_async'		=> 'optm-ccss_async',
 		'optm_css_async_inline'	=> 'optm-css_async_inline',
 		'optm_js_defer'			=> 'optm-js_defer',
 		'optm_emoji_rm'			=> 'optm-emoji_rm',

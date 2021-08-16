@@ -11,24 +11,8 @@
 namespace LiteSpeed;
 defined( 'WPINC' ) || exit;
 
-class Admin_Settings extends Base
-{
-	protected static $_instance;
-
+class Admin_Settings extends Base {
 	const ENROLL = '_settings-enroll';
-
-	private $__cfg;// cfg instance
-
-	/**
-	 * Init
-	 *
-	 * @since  1.3
-	 * @access protected
-	 */
-	protected function __construct()
-	{
-		$this->__cfg = Conf::get_instance();
-	}
 
 	/**
 	 * Save settings
@@ -40,8 +24,7 @@ class Admin_Settings extends Base
 	 * @since  3.0
 	 * @access public
 	 */
-	public function save( $raw_data )
-	{
+	public function save( $raw_data ) {
 		Debug2::debug( '[Settings] saving' );
 
 		if ( empty( $raw_data[ self::ENROLL ] ) ) {
@@ -104,7 +87,7 @@ class Admin_Settings extends Base
 			 */
 			if ( $id == self::O_CDN_MAPPING || $id == self::O_CRAWLER_COOKIES ) {
 				// Use existing in queue data if existed (Only available when $child != false)
-				$data2 = array_key_exists( $id, $the_matrix ) ? $the_matrix[ $id ] : ( defined( 'WP_CLI' ) && WP_CLI ? Conf::val( $id ) : array() );
+				$data2 = array_key_exists( $id, $the_matrix ) ? $the_matrix[ $id ] : ( defined( 'WP_CLI' ) && WP_CLI ? $this->conf( $id ) : array() );
 			}
 			switch ( $id ) {
 				case self::O_CDN_MAPPING:
@@ -254,7 +237,7 @@ class Admin_Settings extends Base
 		}
 
 		// id validation will be inside
-		$this->__cfg->update_confs( $the_matrix );
+		$this->cls( 'Conf' )->update_confs( $the_matrix );
 
 		$msg = __( 'Options saved.', 'litespeed-cache' );
 		Admin_Display::succeed( $msg );
@@ -266,8 +249,7 @@ class Admin_Settings extends Base
 	 * @since 3.0
 	 * @access public
 	 */
-	public function network_save( $raw_data )
-	{
+	public function network_save( $raw_data ) {
 		Debug2::debug( '[Settings] network saving' );
 
 		if ( empty( $raw_data[ self::ENROLL ] ) ) {
@@ -285,11 +267,11 @@ class Admin_Settings extends Base
 			$data = ! empty( $raw_data[ $id ] ) ? $raw_data[ $id ] : false;
 
 			// id validation will be inside
-			$this->__cfg->network_update( $id, $data );
+			$this->cls( 'Conf' )->network_update( $id, $data );
 		}
 
 		// Update related files
-		Activation::get_instance()->update_files();
+		Activation::cls()->update_files();
 
 		$msg = __( 'Options saved.', 'litespeed-cache' );
 		Admin_Display::succeed( $msg );
@@ -304,8 +286,7 @@ class Admin_Settings extends Base
 	 * @param string $location The location string.
 	 * @return string the updated location string.
 	 */
-	public static function widget_save_err( $location )
-	{
+	public static function widget_save_err( $location ) {
 		return str_replace( '?message=0', '?error=0', $location ) ;
 	}
 
@@ -321,8 +302,7 @@ class Admin_Settings extends Base
 	 * @param WP_Widget $widget The widget
 	 * @return mixed Updated settings on success, false on error.
 	 */
-	public static function validate_widget_save( $instance, $new_instance, $old_instance, $widget )
-	{
+	public static function validate_widget_save( $instance, $new_instance, $old_instance, $widget ) {
 		if ( empty( $new_instance ) ) {
 			return $instance;
 		}

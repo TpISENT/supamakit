@@ -33,6 +33,10 @@ defined( 'WPINC' ) || exit;
 			<div class="litespeed-desc">
 				<?php echo __( 'Combine all local JS files into a single file.', 'litespeed-cache' ); ?>
 				<a href="https://docs.litespeedtech.com/lscache/lscwp/ts-optimize/" target="_blank"><?php echo __( 'How to Fix Problems Caused by CSS/JS Optimization.', 'litespeed-cache' ); ?></a>
+				<br /><font class="litespeed-danger">
+					🚨 <?php echo __( 'This option may result in a JS error or layout issue on frontend pages with certain themes/plugins.', 'litespeed-cache' ); ?>
+					<?php echo __( 'JS error can be found from the developer console of browser by right clicking and choosing Inspect.', 'litespeed-cache' ); ?>
+				</font>
 			</div>
 		</td>
 	</tr>
@@ -69,24 +73,15 @@ defined( 'WPINC' ) || exit;
 			<?php $this->title( $id ); ?>
 		</th>
 		<td>
-			<?php $this->build_switch( $id ); ?>
+			<?php $this->build_switch( $id, array( __( 'OFF', 'litespeed-cache' ), __( 'Deferred', 'litespeed-cache' ), __( 'Delayed', 'litespeed-cache' ) ) ); ?>
 			<div class="litespeed-desc">
-				<?php echo __( 'Doing so can help reduce resource contention and improve performance.', 'litespeed-cache' ); ?>
+				<?php echo __( 'Doing so can help reduce resource contention and improve performance causing a lower FID (Core Web Vitals metric).', 'litespeed-cache' ); ?>
+				<?php Doc::learn_more( 'https://docs.litespeedtech.com/lscache/lscwp/pageopt/#load-js-deferred' ); ?><br />
 				<?php echo __( 'This can improve your speed score in services like Pingdom, GTmetrix and PageSpeed.', 'litespeed-cache' ); ?>
-			</div>
-		</td>
-	</tr>
-
-	<tr>
-		<th>
-			<?php $id = Base::O_OPTM_JS_INLINE_DEFER; ?>
-			<?php $this->title( $id ); ?>
-		</th>
-		<td>
-			<?php $this->build_switch( $id, array( __( 'Default', 'litespeed-cache' ), __( 'After DOM Ready', 'litespeed-cache' ), __( 'Deferred', 'litespeed-cache' ) ) ); ?>
-			<div class="litespeed-desc">
-				<?php echo __( 'Loading inline JS after DOM is fully loaded can increase JS compatibility and reduce JS error when other JS optimization features are enabled.', 'litespeed-cache' ); ?>
-				<br /><?php echo sprintf( __( '%s is recommended although would cause the most issues for scripts that are placed inline to avoid being deferred.', 'litespeed-cache' ), '<code>' . __( 'Deferred', 'litespeed-cache' ) . '</code>' ); ?>
+				<?php Doc::learn_more( 'https://web.dev/fid/#what-is-fid' ); ?>
+				<br /><font class="litespeed-danger">
+					🚨 <?php echo __( 'This option may result in a JS error or layout issue on frontend pages with certain themes/plugins.', 'litespeed-cache' ); ?>
+				</font>
 			</div>
 		</td>
 	</tr>

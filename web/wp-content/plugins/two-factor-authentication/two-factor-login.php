@@ -5,7 +5,7 @@ Plugin URI: https://www.simbahosting.co.uk/s3/product/two-factor-authentication/
 Description: Secure your WordPress login forms with two factor authentication - including WooCommerce login forms
 Author: David Anderson, original plugin by Oskar Hane and enhanced by Dee Nutbourne
 Author URI: https://www.simbahosting.co.uk
-Version: 1.10.3
+Version: 1.10.4
 Text Domain: two-factor-authentication
 Domain Path: /languages
 License: GPLv2 or later
@@ -21,7 +21,7 @@ define('SIMBA_TFA_PLUGIN_URL', plugins_url('', __FILE__));
 
 class Simba_Two_Factor_Authentication {
 
-	public $version = '1.10.3';
+	public $version = '1.10.4';
 
 	private $php_required = '5.6';
 

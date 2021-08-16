@@ -21,7 +21,8 @@ class Doc {
 	 * @access public
 	 */
 	public static function privacy_policy() {
-		return __( 'This site utilizes caching in order to facilitate a faster response time and better user experience. Caching potentially stores a duplicate copy of every web page that is on display on this site. All cache files are temporary, and are never accessed by any third party, except as necessary to obtain technical support from the cache plugin vendor. Cache files expire on a schedule set by the site administrator, but may easily be purged by the admin before their natural expiration, if necessary.', 'litespeed-cache' );
+		return __( 'This site utilizes caching in order to facilitate a faster response time and better user experience. Caching potentially stores a duplicate copy of every web page that is on display on this site. All cache files are temporary, and are never accessed by any third party, except as necessary to obtain technical support from the cache plugin vendor. Cache files expire on a schedule set by the site administrator, but may easily be purged by the admin before their natural expiration, if necessary. We may use QUIC.cloud services to process & cache your data temporarily.', 'litespeed-cache' )
+			. sprintf( __( 'Please see %s for more details.', 'litespeed-cache' ), '<a href="https://quic.cloud/privacy-policy/" target="_blank">https://quic.cloud/privacy-policy/</a>' );
 	}
 
 
@@ -87,7 +88,7 @@ class Doc {
 	 * @access public
 	 */
 	public static function notice_htaccess() {
-		echo '<font class="litespeed-warning">';
+		echo '<font class="litespeed-primary">';
 		echo '⚠️ ' . __( 'This setting will edit the .htaccess file.', 'litespeed-cache' );
 		echo ' <a href="https://docs.litespeedtech.com/lscache/lscwp/toolbox/#edit-htaccess-tab" target="_blank" class="litespeed-learn-more">' . __( 'Learn More', 'litespeed-cache' ) . '</a>';
 		echo '</font>';
@@ -100,8 +101,8 @@ class Doc {
 	 * @access public
 	 */
 	public static function notice_ips() {
-		echo '<div class="litespeed-warning">';
-		echo '⚠️ ' . __( 'For online services to work correctly, you must whitelist all online server IPs.', 'litespeed-cache' ) . '<br/>';
+		echo '<div class="litespeed-primary">';
+		echo '⚠️ ' . sprintf( __( 'For online services to work correctly, you must whitelist all %s server IPs.', 'litespeed-cache' ), 'QUIC.cloud' ) . '<br/>';
 		echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . __( 'Before generating key, please verify all IPs on this list are whitelisted', 'litespeed-cache' ) . ': ';
 		echo '<a href="' . Cloud::CLOUD_SERVER . '/ips" target="_blank">' . __( 'Current Online Server IPs', 'litespeed-cache' ) . '</a>';
 		echo '</div>';

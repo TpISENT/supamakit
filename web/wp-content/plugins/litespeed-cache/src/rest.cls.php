@@ -8,18 +8,15 @@ namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class REST extends Instance {
-	protected static $_instance;
-
+class REST extends Root {
 	private $_internal_rest_status = false;
 
 	/**
 	 * Confructor of ESI
 	 *
 	 * @since    2.9.4
-	 * @access protected
 	 */
-	protected function __construct() {
+	public function __construct() {
 		// Hook to internal REST call
 		add_filter( 'rest_request_before_callbacks', array( $this, 'set_internal_rest_on' ) );
 		add_filter( 'rest_request_after_callbacks', array( $this, 'set_internal_rest_off' ) );
@@ -46,19 +43,19 @@ class REST extends Instance {
 		register_rest_route( 'litespeed/v1', '/ip_validate', array(
 			'methods' => 'POST',
 			'callback' => array( $this, 'ip_validate' ),
-			'permission_callback'	=> '__return_true',
+			'permission_callback'	=> array( $this, 'is_from_cloud' ),
 		) );
 
 		// Token callback validate
 		register_rest_route( 'litespeed/v1', '/token', array(
 			'methods' => 'POST',
 			'callback' => array( $this, 'token' ),
-			'permission_callback'	=> '__return_true',
+			'permission_callback'	=> array( $this, 'is_from_cloud' ),
 		) );
 		register_rest_route( 'litespeed/v1', '/token', array(
 			'methods' => 'GET',
 			'callback' => array( $this, 'token_get' ),
-			'permission_callback'	=> '__return_true',
+			'permission_callback'	=> array( $this, 'is_from_cloud' ),
 		) );
 		register_rest_route( 'litespeed/v1', '/ping', array(
 			'methods' => 'GET',
@@ -70,7 +67,31 @@ class REST extends Instance {
 		register_rest_route( 'litespeed/v1', '/apikey', array(
 			'methods' => 'POST',
 			'callback' => array( $this, 'apikey' ),
-			'permission_callback'	=> '__return_true',
+			'permission_callback'	=> array( $this, 'is_from_cloud' ),
+		) );
+
+		register_rest_route( 'litespeed/v1', '/notify_ccss', array(
+			'methods' => 'POST',
+			'callback' => array( $this, 'notify_ccss' ),
+			'permission_callback'	=> array( $this, 'is_from_cloud' ),
+		) );
+
+		register_rest_route( 'litespeed/v1', '/notify_ucss', array(
+			'methods' => 'POST',
+			'callback' => array( $this, 'notify_ucss' ),
+			'permission_callback'	=> array( $this, 'is_from_cloud' ),
+		) );
+
+		register_rest_route( 'litespeed/v1', '/notify_lqip', array(
+			'methods' => 'POST',
+			'callback' => array( $this, 'notify_lqip' ),
+			'permission_callback'	=> array( $this, 'is_from_cloud' ),
+		) );
+
+		register_rest_route( 'litespeed/v1', '/notify_vpi', array(
+			'methods' => 'POST',
+			'callback' => array( $this, 'notify_vpi' ),
+			'permission_callback'	=> array( $this, 'is_from_cloud' ),
 		) );
 
 		// Image optm notify_img
@@ -78,7 +99,7 @@ class REST extends Instance {
 		register_rest_route( 'litespeed/v1', '/notify_img', array(
 			'methods' => 'POST',
 			'callback' => array( $this, 'notify_img' ),
-			'permission_callback'	=> '__return_true',
+			'permission_callback'	=> array( $this, 'is_from_cloud' ),
 		) );
 
 		// Image optm check_img
@@ -86,9 +107,18 @@ class REST extends Instance {
 		register_rest_route( 'litespeed/v1', '/check_img', array(
 			'methods' => 'POST',
 			'callback' => array( $this, 'check_img' ),
-			'permission_callback'	=> '__return_true',
+			'permission_callback'	=> array( $this, 'is_from_cloud' ),
 		) );
 
+	}
+
+	/**
+	 * Check if the request is from cloud nodes
+	 *
+	 * @since 4.2
+	 */
+	public function is_from_cloud() {
+		return $this->cls( 'Cloud' )->is_from_cloud();
 	}
 
 	/**
@@ -115,7 +145,7 @@ class REST extends Instance {
 	 * @since  3.0
 	 */
 	public function check_ip() {
-		return Tool::get_instance()->check_ip();
+		return Tool::cls()->check_ip();
 	}
 
 	/**
@@ -124,7 +154,7 @@ class REST extends Instance {
 	 * @since  3.0
 	 */
 	public function ip_validate() {
-		return Cloud::get_instance()->ip_validate();
+		return $this->cls( 'Cloud' )->ip_validate();
 	}
 
 	/**
@@ -133,7 +163,7 @@ class REST extends Instance {
 	 * @since  3.0
 	 */
 	public function token() {
-		return Cloud::get_instance()->token_validate();
+		return $this->cls( 'Cloud' )->token_validate();
 	}
 
 	/**
@@ -142,7 +172,43 @@ class REST extends Instance {
 	 * @since  3.0
 	 */
 	public function apikey() {
-		return Cloud::get_instance()->save_apikey();
+		return $this->cls( 'Cloud' )->save_apikey();
+	}
+
+	/**
+	 * Notify CCSS
+	 *
+	 * @since  4.2
+	 */
+	public function notify_ccss() {
+		return $this->cls( 'css' )->notify( 'ccss' );
+	}
+
+	/**
+	 * Notify UCSS
+	 *
+	 * @since  4.2
+	 */
+	public function notify_ucss() {
+		return $this->cls( 'css' )->notify( 'ucss' );
+	}
+
+	/**
+	 * Notify lqip
+	 *
+	 * @since  4.2
+	 */
+	public function notify_lqip() {
+		return $this->cls( 'placeholder' )->notify();
+	}
+
+	/**
+	 * Notify viewport images
+	 *
+	 * @since  4.2
+	 */
+	public function notify_vpi() {
+		return $this->cls( 'media' )->notify();
 	}
 
 	/**
@@ -151,7 +217,7 @@ class REST extends Instance {
 	 * @since  3.0
 	 */
 	public function notify_img() {
-		return Img_Optm::get_instance()->notify_img();
+		return Img_Optm::cls()->notify_img();
 	}
 
 	/**
@@ -160,7 +226,7 @@ class REST extends Instance {
 	 * @since  3.0
 	 */
 	public function check_img() {
-		return Img_Optm::get_instance()->check_img();
+		return Img_Optm::cls()->check_img();
 	}
 
 	/**

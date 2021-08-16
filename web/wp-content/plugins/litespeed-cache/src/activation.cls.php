@@ -12,15 +12,24 @@ namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class Activation extends Instance {
-	protected static $_instance;
-
+class Activation extends Base {
 	const TYPE_UPGRADE = 'upgrade';
 	const TYPE_INSTALL_3RD = 'install_3rd';
 	const TYPE_INSTALL_ZIP = 'install_zip';
 	const TYPE_DISMISS_RECOMMENDED = 'dismiss_recommended';
 
 	const NETWORK_TRANSIENT_COUNT = 'lscwp_network_count';
+
+	private static $_data_file;
+
+	/**
+	 * Construct
+	 *
+	 * @since 4.1
+	 */
+	public function __construct() {
+		self::$_data_file = LSCWP_CONTENT_DIR . '/' . self::CONF_FILE;
+	}
 
 	/**
 	 * The activation hook callback.
@@ -49,7 +58,7 @@ class Activation extends Instance {
 				if ( $count === 1 ) {
 					// Only itself is activated, set .htaccess with only CacheLookUp
 					try {
-						Htaccess::get_instance()->insert_ls_wrapper();
+						Htaccess::cls()->insert_ls_wrapper();
 					} catch ( \Exception $ex ) {
 						Admin_Display::error( $ex->getMessage() );
 					}
@@ -70,19 +79,19 @@ class Activation extends Instance {
 		Task::destroy();
 
 		// Delete options
-		foreach ( Conf::get_instance()->load_default_vals() as $k => $v ) {
+		foreach ( Conf::cls()->load_default_vals() as $k => $v ) {
 			Base::delete_option( $k );
 		}
 
 		// Delete site options
 		if ( is_multisite() ) {
-			foreach ( Conf::get_instance()->load_default_site_vals() as $k => $v ) {
+			foreach ( Conf::cls()->load_default_site_vals() as $k => $v ) {
 				Base::delete_site_option( $k );
 			}
 		}
 
 		// Delete avatar table
-		Data::get_instance()->tables_del();
+		Data::cls()->tables_del();
 
 		if ( file_exists( LITESPEED_STATIC_DIR ) ) {
 			File::rrmdir( LITESPEED_STATIC_DIR );
@@ -205,7 +214,7 @@ class Activation extends Instance {
 				if ( is_network_admin() ) {
 					// Still other activated subsite left, set .htaccess with only CacheLookUp
 					try {
-						Htaccess::get_instance()->insert_ls_wrapper();
+						Htaccess::cls()->insert_ls_wrapper();
 					} catch ( \Exception $ex ) {
 						Admin_Display::error( $ex->getMessage() );
 					}
@@ -217,7 +226,7 @@ class Activation extends Instance {
 		/* 1) wp-config.php; */
 
 		try {
-			self::get_instance()->_manage_wp_cache_const( false );
+			self::cls()->_manage_wp_cache_const( false );
 		} catch ( \Exception $ex ) {
 			error_log('In wp-config.php: WP_CACHE could not be set to false during deactivation!') ;
 
@@ -228,15 +237,19 @@ class Activation extends Instance {
 
 		/* 3) object-cache.php; */
 
-		Object_Cache::get_instance()->del_file();
+		Object_Cache::cls()->del_file();
 
 		/* 4) .htaccess; */
 
 		try {
-			Htaccess::get_instance()->clear_rules();
+			Htaccess::cls()->clear_rules();
 		} catch ( \Exception $ex ) {
 			Admin_Display::error( $ex->getMessage() );
 		}
+
+		/* 5) .litespeed_conf.dat; */
+
+		self::_del_conf_data_file();
 
 		// delete in case it's not deleted prior to deactivation.
 		GUI::dismiss_whm();
@@ -252,21 +265,24 @@ class Activation extends Instance {
 	 * 		2) adv-cache.php;
 	 * 		3) object-cache.php;
 	 * 		4) .htaccess;
+	 * 		5) .litespeed_conf.dat;
 	 *
 	 * @since 3.0
 	 * @access public
 	 */
 	public function update_files() {
+		Debug2::debug( '🗂️ [Activation] update_files' );
+
 		// Update cache setting `_CACHE`
-		Conf::get_instance()->define_cache();
+		$this->cls( 'Conf' )->define_cache();
 
 		// Site options applied already
-		$options = Conf::get_instance()->get_options();
+		$options = $this->get_options();
 
 		/* 1) wp-config.php; */
 
 		try {
-			$this->_manage_wp_cache_const( $options[ Base::_CACHE ] );
+			$this->_manage_wp_cache_const( $options[ self::_CACHE ] );
 		} catch ( \Exception $ex ) {
 			// Add msg to admin page or CLI
 			Admin_Display::error( $ex->getMessage() );
@@ -276,19 +292,87 @@ class Activation extends Instance {
 
 		/* 3) object-cache.php; */
 
-		if ( $options[ Base::O_OBJECT ] && ( ! $options[ Base::O_DEBUG_DISABLE_ALL ] || is_multisite() ) ) {
-			Object_Cache::get_instance()->update_file( $options );
+		if ( $options[ self::O_OBJECT ] && ( ! $options[ self::O_DEBUG_DISABLE_ALL ] || is_multisite() ) ) {
+			$this->cls( 'Object_Cache' )->update_file( $options );
 		}
 		else {
-			Object_Cache::get_instance()->del_file();
+			$this->cls( 'Object_Cache' )->del_file(); // Note: because it doesn't reconnect, which caused setting page OC option changes delayed, thus may meet Connect Test Failed issue (Next refresh will correct it). Not a big deal, will keep as is.
 		}
 
 		/* 4) .htaccess; */
 
 		try {
-			Htaccess::get_instance()->update( $options );
+			$this->cls( 'Htaccess' )->update( $options );
 		} catch ( \Exception $ex ) {
 			Admin_Display::error( $ex->getMessage() );
+		}
+
+		/* 5) .litespeed_conf.dat; */
+
+		if ( ( $options[ self::O_GUEST ] || $options[ self::O_OBJECT ] ) && ( ! $options[ self::O_DEBUG_DISABLE_ALL ] || is_multisite() ) ) {
+			$this->_update_conf_data_file( $options );
+		}
+	}
+
+	/**
+	 * Delete data conf file
+	 *
+	 * @since  4.1
+	 */
+	private static function _del_conf_data_file() {
+		if ( file_exists( self::$_data_file ) ) {
+			unlink( self::$_data_file );
+		}
+	}
+
+	/**
+	 * Update data conf file for guest mode & object cache
+	 *
+	 * @since  4.1
+	 */
+	private function _update_conf_data_file( $options ) {
+		$ids = array();
+		if ( $options[ self::O_OBJECT ] ) {
+			$this_ids = array(
+				self::O_OBJECT_KIND,
+				self::O_OBJECT_HOST,
+				self::O_OBJECT_PORT,
+				self::O_OBJECT_LIFE,
+				self::O_OBJECT_USER,
+				self::O_OBJECT_PSWD,
+				self::O_OBJECT_DB_ID,
+				self::O_OBJECT_PERSISTENT,
+				self::O_OBJECT_ADMIN,
+				self::O_OBJECT_TRANSIENTS,
+				self::O_OBJECT_GLOBAL_GROUPS,
+				self::O_OBJECT_NON_PERSISTENT_GROUPS,
+			);
+			$ids = array_merge( $ids, $this_ids );
+		}
+
+		if ( $options[ self::O_GUEST ] ) {
+			$this_ids = array(
+				self::HASH,
+				self::O_CACHE_LOGIN_COOKIE,
+				self::O_DEBUG,
+				self::O_DEBUG_IPS,
+				self::O_UTIL_NO_HTTPS_VARY,
+				self::O_GUEST_UAS,
+				self::O_GUEST_IPS,
+			);
+			$ids = array_merge( $ids, $this_ids );
+		}
+
+		$data = array();
+		foreach ( $ids as $v ) {
+			$data[ $v ] = $options[ $v ];
+		}
+		$data = json_encode( $data );
+
+		$old_data = File::read( self::$_data_file );
+		if ( $old_data != $data ) {
+			defined( 'LSCWP_LOG' ) && Debug2::debug( '[Activation] Updating .litespeed_conf.dat' );
+			File::save( self::$_data_file, $data );
 		}
 	}
 
@@ -329,12 +413,12 @@ class Activation extends Instance {
 
 		// Remove the line `define('WP_CACHE', true/false);` first
 		if ( defined( 'WP_CACHE' ) ) {
-			$content = preg_replace( '|define\(\s*(["\'])WP_CACHE\1\s*,\s*\w+\)\s*;|sU', '', $content );
+			$content = preg_replace( '/define\(\s*([\'"])WP_CACHE\1\s*,\s*\w+\s*\)\s*;/sU', '', $content );
 		}
 
 		// Insert const
 		if ( $enable ) {
-			$content = preg_replace( '|^<\?php|', "<?php\ndefine( 'WP_CACHE', true );", $content );
+			$content = preg_replace( '/^<\?php/', "<?php\ndefine( 'WP_CACHE', true );", $content );
 		}
 
 		$res = File::save( $conf_file, $content, false, false, false );
@@ -350,15 +434,14 @@ class Activation extends Instance {
 	 * Handle auto update
 	 *
 	 * @since 2.7.2
-	 * @since 2.9.8 Moved here from ls.cls
 	 * @access public
 	 */
-	public static function auto_update() {
-		if ( ! Conf::val( Base::O_AUTO_UPGRADE ) ) {
+	public function auto_update() {
+		if ( ! $this->conf( Base::O_AUTO_UPGRADE ) ) {
 			return;
 		}
 
-		add_filter( 'auto_update_plugin', array( self::get_instance(), 'auto_update_hook' ), 10, 2 );
+		add_filter( 'auto_update_plugin', array( $this, 'auto_update_hook' ), 10, 2 );
 	}
 
 	/**
@@ -514,18 +597,16 @@ class Activation extends Instance {
 	 * @since  2.9
 	 * @access public
 	 */
-	public static function handler() {
-		$instance = self::get_instance();
-
+	public function handler() {
 		$type = Router::verify_type();
 
 		switch ( $type ) {
 			case self::TYPE_UPGRADE :
-				$instance->upgrade();
+				$this->upgrade();
 				break;
 
 			case self::TYPE_INSTALL_3RD :
-				$instance->dash_notifier_install_3rd();
+				$this->dash_notifier_install_3rd();
 				break;
 
 			case self::TYPE_DISMISS_RECOMMENDED:
@@ -540,7 +621,7 @@ class Activation extends Instance {
 					$summary[ 'news.new' ] = 0;
 					Cloud::save_summary( $summary );
 
-					Debug2::get_instance()->beta_test( $summary[ 'zip' ] );
+					$this->cls( 'Debug2' )->beta_test( $summary[ 'zip' ] );
 				}
 				break;
 

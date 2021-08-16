@@ -10,19 +10,19 @@ namespace LiteSpeed;
 defined( 'WPINC' ) || exit;
 
 class GUI extends Base {
-	protected static $_instance;
-
 	private static $_clean_counter = 0;
 
 	private $_promo_true;
 
 	// [ file_tag => [ days, litespeed_only ], ... ]
 	private $_promo_list = array(
-		'new_version'	=> array( 1, false ),
-		'score'			=> array( 5, false ),
+		'new_version'	=> array( 7, false ),
+		'score'			=> array( 14, false ),
 		// 'slack'		=> array( 3, false ),
 	);
 
+	const LIB_GUEST_JS = 'assets/js/guest.min.js';
+	const PHP_GUEST = 'guest.vary.php';
 
 	const TYPE_DISMISS_WHM = 'whm';
 	const TYPE_DISMISS_EXPIRESDEFAULT = 'ExpiresDefault';
@@ -38,9 +38,8 @@ class GUI extends Base {
 	 * Instance
 	 *
 	 * @since  1.3
-	 * @access protected
 	 */
-	protected function __construct() {
+	public function __construct() {
 		$this->_summary = self::get_summary();
 
 	}
@@ -50,11 +49,7 @@ class GUI extends Base {
 	 *
 	 * @since  3.0
 	 */
-	public function frontend_init() {
-		if ( is_admin() ) {
-			return;
-		}
-
+	public function init() {
 		Debug2::debug2( '[GUI] init' );
 		if ( is_admin_bar_showing() && current_user_can( 'manage_options' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_enqueue_style' ) );
@@ -65,9 +60,12 @@ class GUI extends Base {
 		 * Turn on instant click
 		 * @since  1.8.2
 		 */
-		if ( Conf::val( Base::O_UTIL_INSTANT_CLICK ) ) {
+		if ( $this->conf( self::O_UTIL_INSTANT_CLICK ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_enqueue_style_public' ) );
 		}
+
+		// NOTE: this needs to be before optimizer to avoid wrapper being removed
+		add_filter( 'litespeed_buffer_finalize', array( $this, 'finalize' ), 8 );
 	}
 
 	/**
@@ -168,7 +166,7 @@ class GUI extends Base {
 	 * @access public
 	 */
 	public static function dismiss() {
-		$_instance = self::get_instance();
+		$_instance = self::cls();
 		switch ( Router::verify_type() ) {
 			case self::TYPE_DISMISS_WHM :
 				self::dismiss_whm();
@@ -406,7 +404,7 @@ class GUI extends Base {
 
 		if ( ! empty( $_SERVER[ 'REQUEST_URI' ] ) ) {
 			$append_arr = array(
-				Conf::TYPE_SET . '[' . Base::O_CACHE_FORCE_URI . '][]' => $_SERVER[ 'REQUEST_URI' ] . '$',
+				Conf::TYPE_SET . '[' . self::O_CACHE_FORCE_URI . '][]' => $_SERVER[ 'REQUEST_URI' ] . '$',
 				'redirect'	=> $_SERVER[ 'REQUEST_URI' ],
 			);
 			$wp_admin_bar->add_menu( array(
@@ -417,7 +415,7 @@ class GUI extends Base {
 			) );
 
 			$append_arr = array(
-				Conf::TYPE_SET . '[' . Base::O_CACHE_EXC . '][]' => $_SERVER[ 'REQUEST_URI' ] . '$',
+				Conf::TYPE_SET . '[' . self::O_CACHE_EXC . '][]' => $_SERVER[ 'REQUEST_URI' ] . '$',
 				'redirect'	=> $_SERVER[ 'REQUEST_URI' ],
 			);
 			$wp_admin_bar->add_menu( array(
@@ -428,7 +426,7 @@ class GUI extends Base {
 			) );
 
 			$append_arr = array(
-				Conf::TYPE_SET . '[' . Base::O_CACHE_PRIV_URI . '][]' => $_SERVER[ 'REQUEST_URI' ] . '$',
+				Conf::TYPE_SET . '[' . self::O_CACHE_PRIV_URI . '][]' => $_SERVER[ 'REQUEST_URI' ] . '$',
 				'redirect'	=> $_SERVER[ 'REQUEST_URI' ],
 			);
 			$wp_admin_bar->add_menu( array(
@@ -439,7 +437,7 @@ class GUI extends Base {
 			) );
 
 			$append_arr = array(
-				Conf::TYPE_SET . '[' . Base::O_OPTM_EXC . '][]' => $_SERVER[ 'REQUEST_URI' ] . '$',
+				Conf::TYPE_SET . '[' . self::O_OPTM_EXC . '][]' => $_SERVER[ 'REQUEST_URI' ] . '$',
 				'redirect'	=> $_SERVER[ 'REQUEST_URI' ],
 			);
 			$wp_admin_bar->add_menu( array(
@@ -501,22 +499,12 @@ class GUI extends Base {
 			) );
 		}
 
-		if ( Conf::val( Base::O_OPTM_CCSS_GEN ) ) {
+		if ( $this->cls( 'CSS' )->has_ccss_folder() ) {
 			$wp_admin_bar->add_menu( array(
 				'parent'	=> 'litespeed-menu',
 				'id'		=> 'litespeed-purge-ccss',
-				'title'		=> __( 'Purge All', 'litespeed-cache' ) . ' - ' . __( 'Critical CSS', 'litespeed-cache' ),
+				'title'		=> __( 'Purge All', 'litespeed-cache' ) . ' - CCSS',
 				'href'		=> Utility::build_url( Router::ACTION_PURGE, Purge::TYPE_PURGE_ALL_CCSS, false, '_ori' ),
-				'meta'		=> array( 'tabindex' => '0' ),
-			) );
-		}
-
-		if ( Conf::val( Base::O_OPTM_LOCALIZE ) ) {
-			$wp_admin_bar->add_menu( array(
-				'parent'	=> 'litespeed-menu',
-				'id'		=> 'litespeed-purge-localres',
-				'title'		=> __( 'Purge All', 'litespeed-cache' ) . ' - ' . __( 'Localized Resources', 'litespeed-cache' ),
-				'href'		=> Utility::build_url( Router::ACTION_PURGE, Purge::TYPE_PURGE_ALL_LOCALRES, false, '_ori' ),
 				'meta'		=> array( 'tabindex' => '0' ),
 			) );
 		}
@@ -622,7 +610,7 @@ class GUI extends Base {
 			'meta'		=> array( 'tabindex' => '0' ),
 		) );
 
-		if ( Conf::val( Base::O_CDN_CLOUDFLARE ) ) {
+		if ( $this->conf( self::O_CDN_CLOUDFLARE ) ) {
 			$wp_admin_bar->add_menu( array(
 				'parent'	=> 'litespeed-menu',
 				'id'		=> 'litespeed-purge-cloudflare',
@@ -652,22 +640,12 @@ class GUI extends Base {
 			) );
 		}
 
-		if ( Conf::val( Base::O_OPTM_CCSS_GEN ) ) {
+		if ( $this->cls( 'CSS' )->has_ccss_folder() ) {
 			$wp_admin_bar->add_menu( array(
 				'parent'	=> 'litespeed-menu',
 				'id'		=> 'litespeed-purge-ccss',
-				'title'		=> __( 'Purge All', 'litespeed-cache' ) . ' - ' . __( 'Critical CSS', 'litespeed-cache' ),
+				'title'		=> __( 'Purge All', 'litespeed-cache' ) . ' - CCSS',
 				'href'		=> Utility::build_url( Router::ACTION_PURGE, Purge::TYPE_PURGE_ALL_CCSS ),
-				'meta'		=> array( 'tabindex' => '0' ),
-			) );
-		}
-
-		if ( Conf::val( Base::O_OPTM_LOCALIZE ) ) {
-			$wp_admin_bar->add_menu( array(
-				'parent'	=> 'litespeed-menu',
-				'id'		=> 'litespeed-purge-localres',
-				'title'		=> __( 'Purge All', 'litespeed-cache' ) . ' - ' . __( 'Localized Resources', 'litespeed-cache' ),
-				'href'		=> Utility::build_url( Router::ACTION_PURGE, Purge::TYPE_PURGE_ALL_LOCALRES ),
 				'meta'		=> array( 'tabindex' => '0' ),
 			) );
 		}
@@ -765,9 +743,28 @@ class GUI extends Base {
 	 * @since  1.6
 	 * @access public
 	 */
-	public static function finalize( $buffer ) {
-		$instance = self::get_instance();
-		return $instance->_clean_wrapper( $buffer );
+	public function finalize( $buffer ) {
+		$buffer = $this->_clean_wrapper( $buffer );
+
+		if ( defined( 'LITESPEED_GUEST' ) && LITESPEED_GUEST && strpos( $buffer, '</body>' ) !== false ) {
+			$buffer = $this->_enqueue_guest_js( $buffer );
+		}
+
+		return $buffer;
+	}
+
+	/**
+	 * Append guest JS to update vary
+	 *
+	 * @since  4.0
+	 */
+	private function _enqueue_guest_js( $buffer ) {
+		$js_con = File::read( LSCWP_DIR . self::LIB_GUEST_JS );
+		// $guest_update_url = add_query_arg( 'litespeed_guest', 1, home_url( '/' ) );
+		$guest_update_url = LSWCP_PLUGIN_URL . self::PHP_GUEST;
+		$js_con = str_replace( 'litespeed_url', esc_url( $guest_update_url ), $js_con );
+		$buffer = str_replace( '</body>', '<script data-no-optimize="1">' . $js_con . '</script></body>', $buffer );
+		return $buffer;
 	}
 
 	/**

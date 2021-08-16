@@ -43,16 +43,10 @@ $_panels = array(
 		'title'	=> __( 'Optimize Tables', 'litespeed-cache' ),
 		'desc'	=> __( 'Optimize all tables in your database', 'litespeed-cache' ),
 	),
-	'all_cssjs' => array(
-		'title'	=> __( 'Clean CSS/JS Optimizer', 'litespeed-cache' ),
-		'desc'	=> __( 'Purge all and clean all minified/combined CSS/JS data', 'litespeed-cache' ),
-		'dismiss_count_icon' => true,
-		'title_cls'	=> 'litespeed-warning',
-	),
 );
 
-$rev_max = Conf::val( Base::O_DB_OPTM_REVISIONS_MAX );
-$rev_age = Conf::val( Base::O_DB_OPTM_REVISIONS_AGE );
+$rev_max = $this->conf( Base::O_DB_OPTM_REVISIONS_MAX );
+$rev_age = $this->conf( Base::O_DB_OPTM_REVISIONS_AGE );
 if ( $rev_max || $rev_age ) {
 	$_panels[ 'revision' ][ 'desc' ] = sprintf( __( 'Clean revisions older than %1$s day(s), excluding %2$s latest revisions', 'litespeed-cache' ), '<strong>' . $rev_age . '</strong>' , '<strong>' . $rev_max . '</strong>' );
 }
@@ -60,8 +54,8 @@ if ( $rev_max || $rev_age ) {
 $total = 0;
 foreach ( $_panels as $tag => $v ) {
 	if ( $tag != 'all' ) {
-		$_panels[ $tag ][ 'count' ] = DB_Optm::db_count( $tag );
-		if ( ! in_array( $tag, array( 'all_cssjs', 'optimize_tables' ) ) ) {
+		$_panels[ $tag ][ 'count' ] = $this->cls( 'DB_Optm' )->db_count( $tag );
+		if ( ! in_array( $tag, array( 'optimize_tables' ) ) ) {
 			$total += $_panels[ $tag ][ 'count' ];
 		}
 	}
@@ -70,7 +64,7 @@ foreach ( $_panels as $tag => $v ) {
 
 $_panels[ 'all' ][ 'count' ] = $total;
 
-$autoload_summary = DB_Optm::get_instance()->autoload_summary();
+$autoload_summary = DB_Optm::cls()->autoload_summary();
 
 ?>
 
@@ -88,17 +82,15 @@ $autoload_summary = DB_Optm::get_instance()->autoload_summary();
 			<span class="litespeed-panel-icon-<?php echo $tag; ?>"></span>
 		</section>
 		<section class="litespeed-panel-content">
-			<div class="litespeed-h3 <?php if ( ! empty( $v[ 'title_cls' ] ) ) echo $v[ 'title_cls' ]; ?>">
+			<div class="litespeed-h3">
 				<?php echo $v[ 'title' ]; ?>
-				<span class="litespeed-panel-counter<?php if ( $v[ 'count' ] > 0 && empty( $v[ 'dismiss_count_icon' ] ) ) echo '-red'; ?>">(<?php echo $v[ 'count' ]; ?><?php echo DB_Optm::hide_more() ? '+' : ''; ?>)</span>
+				<span class="litespeed-panel-counter<?php if ( $v[ 'count' ] > 0 ) echo '-red'; ?>">(<?php echo $v[ 'count' ]; ?><?php echo DB_Optm::hide_more() ? '+' : ''; ?>)</span>
 			</div>
 			<span class="litespeed-panel-para"><?php echo $v[ 'desc' ]; ?></span>
 		</section>
-		<?php if ( empty( $v[ 'dismiss_count_icon' ] ) ) : ?>
 		<section class="litespeed-panel-wrapper-top-right">
 			<span class="litespeed-panel-top-right-icon<?php echo $v[ 'count' ] > 0 ? '-cross' : '-tick'; ?>"></span>
 		</section>
-		<?php endif; ?>
 	</a>
 <?php endforeach; ?>
 
@@ -117,7 +109,7 @@ $autoload_summary = DB_Optm::get_instance()->autoload_summary();
 		</tr></thead>
 		<tbody>
 		<?php
-			$list = DB_Optm::get_instance()->list_myisam();
+			$list = DB_Optm::cls()->list_myisam();
 			if ( $list ) :
 				foreach ( $list as $k => $v ) :
 		?>

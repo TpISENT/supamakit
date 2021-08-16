@@ -11,22 +11,16 @@ namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class Optimizer extends Instance {
-	protected static $_instance;
-
+class Optimizer extends Root {
 	private $_conf_css_font_display;
 
 	/**
 	 * Init optimizer
 	 *
 	 * @since  1.9
-	 * @access protected
 	 */
-	protected function __construct() {
-		$this->_conf_css_font_display = Conf::val( Base::O_OPTM_CSS_FONT_DISPLAY );
-		if ( ! empty( Base::$CSS_FONT_DISPLAY_SET[ $this->_conf_css_font_display ] ) ) {
-			$this->_conf_css_font_display = Base::$CSS_FONT_DISPLAY_SET[ $this->_conf_css_font_display ];
-		}
+	public function __construct() {
+		$this->_conf_css_font_display = $this->conf( Base::O_OPTM_CSS_FONT_DISPLAY );
 	}
 
 	/**
@@ -67,102 +61,161 @@ class Optimizer extends Instance {
 	 * @since  1.9
 	 * @access public
 	 */
-	public function serve( $filename, $concat_only, $src_list = false, $page_url = false ) {
-		$__css = CSS::get_instance();
-		$ua = ! empty( $_SERVER[ 'HTTP_USER_AGENT' ] ) ? $_SERVER[ 'HTTP_USER_AGENT' ] : '';
-
-		$static_file = LITESPEED_STATIC_DIR . "/cssjs/$filename";
-
-		// Search src set in db based on the requested filename
-		if ( ! $src_list ) {
-			$optm_data = Data::get_instance()->optm_hash2src( $filename );
-			if ( empty( $optm_data[ 'src' ] ) || ! is_array( $optm_data[ 'src' ] ) ) {
-				return false;
-			}
-			$src_list = $optm_data[ 'src' ];
-			$page_url = $optm_data[ 'refer' ];
-		}
-
-		$file_type = substr( $filename, strrpos( $filename, '.' ) + 1 );
-
-		// Check if need to run Unique CSS feature
+	public function serve( $request_url, $file_type, $minify, $src_list ) {
+		// Try Unique CSS
 		if ( $file_type == 'css' ) {
-			// CHeck if need to trigger UCSS or not
 			$content = false;
-			if ( Conf::val( Base::O_OPTM_UCSS ) && ! Conf::val( Base::O_OPTM_UCSS_ASYNC ) ) {
-				$content = $__css->gen_ucss( $page_url, $ua );//todo: how to store ua!!!
-			}
+			if ( defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_OPTM_UCSS ) ) {
+				$final_file_path = $this->cls( 'CSS' )->load_ucss( $request_url );
 
-			$content = apply_filters( 'litespeed_css_serve', $content, $filename, $src_list, $page_url );
-			if ( $content ) {
-				Debug2::debug( '[Optmer] Content from filter `litespeed_css_serve` for [file] ' . $filename . ' [url] ' . $page_url );
-				File::save( $static_file, $content, true ); // todo: UCSS CDN and CSS font display setting
-				return true;
+				if ( $final_file_path ) {
+					return $final_file_path;
+				}
 			}
 		}
 
-		// Clear if existed
-		File::save( $static_file, '', true ); // TODO: need to lock file too
+		// Before generated, don't know the contented hash filename yet, so used url hash as tmp filename
+		$file_path_prefix = '/' . $file_type . '/';
+		if ( is_multisite() ) {
+			$file_path_prefix .= get_current_blog_id() . '/';
+		}
+		$static_file = LITESPEED_STATIC_DIR . $file_path_prefix . ( is_404() ? '404' : md5( $request_url ) ) . '.' . $file_type;
+
+		// Create tmp file to avoid conflict
+		$tmp_static_file = $static_file . '.tmp';
+		if ( file_exists( $tmp_static_file ) && time() - filemtime( $tmp_static_file ) <= 600 ) { // some other request is generating
+			return false;
+		}
+		// File::save( $tmp_static_file, '/* ' . ( is_404() ? '404' : $request_url ) . ' */', true ); // Can't use this bcos this will get filecon md5 changed
+		File::save( $tmp_static_file, '', true );
 
 		// Load content
 		$real_files = array();
 		foreach ( $src_list as $src_info ) {
 			$is_min = false;
-			$src = false;
 			if ( ! empty( $src_info[ 'inl' ] ) ) { // Load inline
 				$content = $src_info[ 'src' ];
 			}
 			else { // Load file
-				$src = ! empty( $src_info[ 'src' ] ) ? $src_info[ 'src' ] : $src_info;
-				$content = $__css->load_file( $src, $file_type );
+				$content = $this->load_file( $src_info[ 'src' ], $file_type );
 
 				if ( ! $content ) {
 					continue;
 				}
 
-				$is_min = $this->_is_min( $src );
+				$is_min = $this->is_min( $src_info[ 'src' ] );
 			}
-
-			// CSS related features
-			if ( $file_type == 'css' ) {
-				// Font optimize
-				if ( $this->_conf_css_font_display ) {
-					$content = preg_replace( '#(@font\-face\s*\{)#isU', '${1}font-display:' . $this->_conf_css_font_display . ';', $content );
-				}
-
-				$content = preg_replace( '/@charset[^;]+;\\s*/', '', $content );
-
-				if ( ! empty( $src_info[ 'media' ] ) ) {
-					$content = '@media ' . $src_info[ 'media' ] . '{' . $content . "\n}";
-				}
-
-				if ( ! $concat_only && ! $is_min ) {
-					$content = self::minify_css( $content );
-				}
-
-				$content = CDN::finalize( $content );
-			}
-			else {
-				if ( ! $concat_only && ! $is_min ) {
-					$content = self::minify_js( $content );
-				}
-				else {
-					$content = $this->_null_minifier( $content );
-				}
-
-				$content .= "\n;";
-			}
-
-			// Add filter
-			$content = apply_filters( 'litespeed_optm_cssjs', $content, $file_type, $src );
-
+			$content = $this->optm_snippet( $content, $file_type, $minify && ! $is_min, $src_info[ 'src' ], ! empty( $src_info[ 'media' ] ) ? $src_info[ 'media' ] : false );
 			// Write to file
-			File::save( $static_file, $content, true, true );
-
+			File::save( $tmp_static_file, $content, true, true );
 		}
 
-		Debug2::debug2( '[Optmer] Saved static file [path] ' . $static_file );
-		return true;
+		// validate md5
+		$filecon_md5 = md5_file( $tmp_static_file );
+
+		$final_file_path = $file_path_prefix . $filecon_md5 . '.' . $file_type;
+		$realfile = LITESPEED_STATIC_DIR . $final_file_path;
+		if ( ! file_exists( $realfile ) ) {
+			rename( $tmp_static_file, $realfile );
+			Debug2::debug2( '[Optmer] Saved static file [path] ' . $realfile );
+		}
+		else {
+			unlink( $tmp_static_file );
+		}
+
+		$vary = $this->cls( 'Vary' )->finalize_full_varies();
+		Debug2::debug2( "[Optmer] Save URL to file for [file_type] $file_type [file] $filecon_md5 [vary] $vary " );
+		$this->cls( 'Data' )->save_url( is_404() ? '404' : $request_url, $vary, $file_type, $filecon_md5, dirname( $realfile ) );
+
+		return $final_file_path;
+	}
+
+	/**
+	 * Load a single file
+	 * @since  4.0
+	 */
+	public function optm_snippet( $content, $file_type, $minify, $src, $media = false ) {
+		// CSS related features
+		if ( $file_type == 'css' ) {
+			// Font optimize
+			if ( $this->_conf_css_font_display ) {
+				$content = preg_replace( '#(@font\-face\s*\{)#isU', '${1}font-display:swap;', $content );
+			}
+
+			$content = preg_replace( '/@charset[^;]+;\\s*/', '', $content );
+
+			if ( $media ) {
+				$content = '@media ' . $media . '{' . $content . "\n}";
+			}
+
+			if ( $minify ) {
+				$content = self::minify_css( $content );
+			}
+
+			$content = $this->cls( 'CDN' )->finalize( $content );
+
+			if ( defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_IMG_OPTM_WEBP_REPLACE ) ) {
+				$content = $this->cls( 'Media' )->replace_background_webp( $content );
+			}
+
+		}
+		else {
+			if ( $minify ) {
+				$content = self::minify_js( $content );
+			}
+			else {
+				$content = $this->_null_minifier( $content );
+			}
+
+			$content .= "\n;";
+		}
+
+		// Add filter
+		$content = apply_filters( 'litespeed_optm_cssjs', $content, $file_type, $src );
+
+		return $content;
+	}
+
+	/**
+	 * Load remote/local resource
+	 *
+	 * @since  3.5
+	 */
+	public function load_file( $src, $file_type = 'css' ) {
+		$real_file = Utility::is_internal_file( $src );
+		$postfix = pathinfo( parse_url( $src, PHP_URL_PATH ), PATHINFO_EXTENSION );
+		if ( ! $real_file || $postfix != $file_type ) {
+			Debug2::debug2( '[CSS] Load Remote [' . $file_type . '] ' . $src );
+			$this_url = substr( $src, 0, 2 ) == '//' ? set_url_scheme( $src ) : $src;
+			$res = wp_remote_get( $this_url );
+			$res_code = wp_remote_retrieve_response_code( $res );
+			if ( is_wp_error( $res ) || $res_code == 404 ) {
+				Debug2::debug2( '[CSS] ❌ Load Remote error [code] ' . $res_code );
+				return false;
+			}
+			$con = wp_remote_retrieve_body( $res );
+			if ( ! $con ) {
+				return false;
+			}
+
+			if ( $file_type == 'css' ) {
+				$dirname = dirname( $this_url ) . '/';
+
+				$con = Lib\CSS_MIN\UriRewriter::prepend( $con, $dirname );
+			}
+		}
+		else {
+			Debug2::debug2( '[CSS] Load local [' . $file_type . '] ' . $real_file[ 0 ] );
+			$con = File::read( $real_file[ 0 ] );
+
+			if ( $file_type == 'css' ) {
+				$dirname = dirname( $real_file[ 0 ] );
+
+				$con = Lib\CSS_MIN\UriRewriter::rewrite( $con, $dirname );
+			}
+		}
+
+		return $con;
 	}
 
 	/**
@@ -226,11 +279,10 @@ class Optimizer extends Instance {
 	 * Check if the file is already min file
 	 *
 	 * @since  1.9
-	 * @access private
 	 */
-	private function _is_min( $filename ) {
+	public function is_min( $filename ) {
 		$basename = basename( $filename );
-		if ( preg_match( '|[-\.]min\.(?:[a-zA-Z]+)$|i', $basename ) ) {
+		if ( preg_match( '/[-\.]min\.(?:[a-zA-Z]+)$/i', $basename ) ) {
 			return true;
 		}
 

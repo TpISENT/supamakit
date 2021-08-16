@@ -186,10 +186,9 @@ class WP_Object_Cache {
 	 * Init
 	 *
 	 * @since  1.8
-	 * @access protected
 	 */
-	protected function __construct() {
-		$this->_object_cache = \LiteSpeed\Object_Cache::get_instance();
+	public function __construct() {
+		$this->_object_cache = \LiteSpeed\Object_Cache::cls();
 
 		$this->multisite = is_multisite();
 		$this->blog_prefix = $this->multisite ? get_current_blog_id() . ':' : '';
