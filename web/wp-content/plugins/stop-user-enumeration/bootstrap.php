@@ -2,14 +2,16 @@
 
 
 namespace Stop_User_Enumeration;
-// @TODO options for xforwarded
 
 // If this file is called directly, abort.
+use Stop_User_Enumeration\Includes\Core;
+use Stop_User_Enumeration\Includes\Freemius_Config;
+
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 define( 'STOP_USER_ENUMERATION_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'STOP_USER_ENUMERATION_PLUGIN_VERSION', '1.3.30' );
+define( 'STOP_USER_ENUMERATION_PLUGIN_VERSION', '1.3.2' );
 
 
 // Include the autoloader so we can dynamically include the classes.
@@ -20,7 +22,7 @@ function run_stop_user_enumeration() {
 	/**
 	 *  Load freemius SDK
 	 */
-	$freemius    = new \Stop_User_Enumeration\Includes\Freemius_Config();
+	$freemius    = new Freemius_Config();
 	$freemiusSDK = $freemius->init();
 	// Signal that SDK was initiated.
 	do_action( 'sue_fs_loaded' );
@@ -33,7 +35,7 @@ function run_stop_user_enumeration() {
 	 * admin-specific hooks, and public-facing site hooks.
 	 */
 
-	$plugin = new \Stop_User_Enumeration\Includes\Core( $freemiusSDK );
+	$plugin = new Core( $freemiusSDK );
 	$plugin->run();
 
 }

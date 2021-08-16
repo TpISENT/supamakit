@@ -180,6 +180,9 @@ class Core {
 		if ( 'on' === $this->sue_get_option( 'stop_sitemap', 'off' ) ) {
 			$this->loader->add_filter( 'wp_sitemaps_add_provider', $plugin_public, 'remove_author_sitemap', 10, 2 );
 		}
+		if ( 'on' === $this->sue_get_option( 'stop_oembed', 'off' ) ) {
+			$this->loader->add_filter( 'oembed_response_data', $plugin_public, 'remove_author_url_from_oembed', 10, 1 );
+		}
 
 
 	}

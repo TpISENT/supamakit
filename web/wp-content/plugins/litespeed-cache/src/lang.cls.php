@@ -11,8 +11,7 @@ namespace LiteSpeed ;
 
 defined( 'WPINC' ) || exit ;
 
-class Lang extends Base
-{
+class Lang extends Base {
 	/**
 	 * Get image status per status bit
 	 *
@@ -53,6 +52,8 @@ class Lang extends Base
 		$_lang_list = array(
 			self::O_SERVER_IP					=> __( 'Server IP', 'litespeed-cache' ),
 			self::O_API_KEY						=> __( 'Domain Key', 'litespeed-cache' ),
+			self::O_GUEST_UAS					=> __( 'Guest Mode User Agents', 'litespeed-cache' ),
+			self::O_GUEST_IPS					=> __( 'Guest Mode IPs', 'litespeed-cache' ),
 
 			self::O_CACHE						=> __( 'Enable Cache', 'litespeed-cache' ),
 			self::O_CACHE_BROWSER				=> __( 'Browser Cache', 'litespeed-cache' ),
@@ -64,6 +65,8 @@ class Lang extends Base
 			self::O_CACHE_TTL_STATUS			=> __( 'Default HTTP Status Code Page TTL', 'litespeed-cache' ),
 			self::O_CACHE_TTL_BROWSER			=> __( 'Browser Cache TTL', 'litespeed-cache' ),
 			self::O_AUTO_UPGRADE				=> __( 'Automatically Upgrade', 'litespeed-cache' ),
+			self::O_GUEST						=> __( 'Guest Mode', 'litespeed-cache' ),
+			self::O_GUEST_OPTM					=> __( 'Guest Optimization', 'litespeed-cache' ),
 			self::O_NEWS						=> __( 'Notifications', 'litespeed-cache' ),
 			self::O_CACHE_PRIV					=> __( 'Cache Logged-in Users', 'litespeed-cache' ),
 			self::O_CACHE_COMMENTER				=> __( 'Cache Commenters', 'litespeed-cache' ),
@@ -87,7 +90,7 @@ class Lang extends Base
 			self::O_OBJECT_GLOBAL_GROUPS		=> __( 'Global Groups', 'litespeed-cache' ),
 			self::O_OBJECT_NON_PERSISTENT_GROUPS	=> __( 'Do Not Cache Groups', 'litespeed-cache' ),
 			self::O_OBJECT_PERSISTENT			=> __( 'Persistent Connection', 'litespeed-cache' ),
-			self::O_OBJECT_ADMIN				=> __( 'Cache Wp-Admin', 'litespeed-cache' ),
+			self::O_OBJECT_ADMIN				=> __( 'Cache WP-Admin', 'litespeed-cache' ),
 			self::O_OBJECT_TRANSIENTS			=> __( 'Store Transients', 'litespeed-cache' ),
 
 			self::O_PURGE_ON_UPGRADE			=> __( 'Purge All On Upgrade', 'litespeed-cache' ),
@@ -105,26 +108,19 @@ class Lang extends Base
 			self::O_OPTM_CSS_COMB				=> __( 'CSS Combine', 'litespeed-cache' ),
 			self::O_OPTM_CSS_COMB_EXT_INL		=> __( 'CSS Combine External and Inline', 'litespeed-cache' ),
 			self::O_OPTM_UCSS					=> __( 'Generate UCSS', 'litespeed-cache' ),
-			self::O_OPTM_UCSS_ASYNC				=> __( 'Generate UCSS in Background', 'litespeed-cache' ),
-			self::O_OPTM_UCSS_WHITELIST			=> __( 'UCSS Whitelist Selector', 'litespeed-cache' ),
+			self::O_OPTM_UCSS_WHITELIST			=> __( 'UCSS Whitelist', 'litespeed-cache' ),
 			self::O_OPTM_CSS_HTTP2				=> __( 'CSS HTTP/2 Push', 'litespeed-cache' ),
 			self::O_OPTM_JS_MIN					=> __( 'JS Minify', 'litespeed-cache' ),
 			self::O_OPTM_JS_COMB				=> __( 'JS Combine', 'litespeed-cache' ),
 			self::O_OPTM_JS_COMB_EXT_INL		=> __( 'JS Combine External and Inline', 'litespeed-cache' ),
 			self::O_OPTM_JS_HTTP2				=> __( 'JS HTTP/2 Push', 'litespeed-cache' ),
-			self::O_OPTM_TTL					=> __( 'CSS/JS Cache TTL', 'litespeed-cache' ),
 			self::O_OPTM_HTML_MIN				=> __( 'HTML Minify', 'litespeed-cache' ),
+			self::O_OPTM_HTML_LAZY				=> __( 'HTML Lazy Load Selectors', 'litespeed-cache' ),
 			self::O_OPTM_CSS_ASYNC				=> __( 'Load CSS Asynchronously', 'litespeed-cache' ),
-			self::O_OPTM_CCSS_GEN				=> __( 'Generate Critical CSS', 'litespeed-cache' ),
-			self::O_OPTM_CCSS_ASYNC				=> __( 'Generate Critical CSS In Background', 'litespeed-cache' ),
-			self::O_OPTM_CCSS_SEP_POSTTYPE		=> __( 'Separate CCSS Cache Post Types', 'litespeed-cache' ),
-			self::O_OPTM_CCSS_SEP_URI			=> __( 'Separate CCSS Cache URIs', 'litespeed-cache' ),
+			self::O_OPTM_CCSS_PER_URL			=> __( 'CCSS Per URL', 'litespeed-cache' ),
 			self::O_OPTM_CSS_ASYNC_INLINE		=> __( 'Inline CSS Async Lib', 'litespeed-cache' ),
 			self::O_OPTM_CSS_FONT_DISPLAY		=> __( 'Font Display Optimization', 'litespeed-cache' ),
 			self::O_OPTM_JS_DEFER				=> __( 'Load JS Deferred', 'litespeed-cache' ),
-			self::O_OPTM_JS_INLINE_DEFER		=> __( 'Load Inline JS', 'litespeed-cache' ),
-			self::O_OPTM_LOCALIZE				=> __( 'Localize Resources', 'litespeed-cache' ),
-			self::O_OPTM_LOCALIZE_DOMAINS		=> __( 'Localization Files', 'litespeed-cache' ),
 			self::O_OPTM_DNS_PREFETCH			=> __( 'DNS Prefetch', 'litespeed-cache' ),
 			self::O_OPTM_DNS_PREFETCH_CTRL		=> __( 'DNS Prefetch Control', 'litespeed-cache' ),
 			self::O_OPTM_CSS_EXC				=> __( 'CSS Excludes', 'litespeed-cache' ),
@@ -133,10 +129,14 @@ class Lang extends Base
 			self::O_OPTM_GGFONTS_ASYNC			=> __( 'Load Google Fonts Asynchronously', 'litespeed-cache' ),
 			self::O_OPTM_GGFONTS_RM				=> __( 'Remove Google Fonts', 'litespeed-cache' ),
 			self::O_OPTM_CCSS_CON				=> __( 'Critical CSS Rules', 'litespeed-cache' ),
+			self::O_OPTM_CCSS_SEP_POSTTYPE		=> __( 'Separate CCSS Cache Post Types', 'litespeed-cache' ),
+			self::O_OPTM_CCSS_SEP_URI			=> __( 'Separate CCSS Cache URIs', 'litespeed-cache' ),
 			self::O_OPTM_JS_DEFER_EXC			=> __( 'JS Deferred Excludes', 'litespeed-cache' ),
+			self::O_OPTM_GM_JS_EXC				=> __( 'Guest Mode JS Excludes', 'litespeed-cache' ),
 			self::O_OPTM_EMOJI_RM				=> __( 'Remove WordPress Emoji', 'litespeed-cache' ),
-			self::O_OPTM_NOSCRIPT_RM			=> __( 'Remove Noscript Tag', 'litespeed-cache' ),
+			self::O_OPTM_NOSCRIPT_RM			=> __( 'Remove Noscript Tags', 'litespeed-cache' ),
 			self::O_OPTM_EXC					=> __( 'URI Excludes', 'litespeed-cache' ),
+			self::O_OPTM_GUEST_ONLY				=> __( 'Optimize for Guests Only', 'litespeed-cache' ),
 			self::O_OPTM_EXC_ROLES				=> __( 'Role Excludes', 'litespeed-cache' ),
 
 			self::O_DISCUSS_AVATAR_CACHE		=> __( 'Gravatar Cache', 'litespeed-cache' ),
@@ -161,6 +161,7 @@ class Lang extends Base
 			// self::O_MEDIA_LQIP_MIN_H			=> __( 'LQIP Minimum Height', 'litespeed-cache' ),
 			self::O_MEDIA_PLACEHOLDER_RESP_ASYNC	=> __( 'Generate LQIP In Background', 'litespeed-cache' ),
 			self::O_MEDIA_IFRAME_LAZY			=> __( 'Lazy Load Iframes', 'litespeed-cache' ),
+			self::O_MEDIA_ADD_MISSING_SIZES		=> __( 'Add Missing Sizes', 'litespeed-cache' ),
 			self::O_MEDIA_LAZYJS_INLINE			=> __( 'Inline Lazy Load Images Library', 'litespeed-cache' ),
 			self::O_IMG_OPTM_AUTO				=> __( 'Auto Request Cron', 'litespeed-cache' ),
 			self::O_IMG_OPTM_CRON				=> __( 'Auto Pull Cron', 'litespeed-cache' ),

@@ -2,18 +2,13 @@
 /**
  * The base consts
  *
- * @since      	2.4
- * @package    	LiteSpeed
- * @subpackage 	LiteSpeed/inc
- * @author     	LiteSpeed Technologies <info@litespeedtech.com>
+ * @since      	3.7
  */
 namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class Base extends Instance {
-	protected static $_instance;
-
+class Base extends Root {
 	// This is redundant since v3.0
 	// New conf items are `litespeed.key`
 	const OPTION_NAME = 'litespeed-cache-conf';
@@ -28,7 +23,11 @@ class Base extends Instance {
 	const O_AUTO_UPGRADE 	= 'auto_upgrade';
 	const O_API_KEY 		= 'api_key';
 	const O_SERVER_IP 		= 'server_ip';
+	const O_GUEST 			= 'guest';
+	const O_GUEST_OPTM		= 'guest_optm';
 	const O_NEWS 			= 'news';
+	const O_GUEST_UAS 		= 'guest_uas';
+	const O_GUEST_IPS 		= 'guest_ips';
 
 	## -------------------------------------------------- ##
 	## --------------		Cache 		----------------- ##
@@ -124,7 +123,6 @@ class Base extends Instance {
 	const O_OPTM_CSS_COMB 			= 'optm-css_comb';
 	const O_OPTM_CSS_COMB_EXT_INL	= 'optm-css_comb_ext_inl';
 	const O_OPTM_UCSS 				= 'optm-ucss';
-	const O_OPTM_UCSS_ASYNC 		= 'optm-ucss_async';
 	const O_OPTM_UCSS_WHITELIST 	= 'optm-ucss_whitelist';
 	const O_OPTM_CSS_HTTP2 			= 'optm-css_http2';
 	const O_OPTM_CSS_EXC 			= 'optm-css_exc';
@@ -133,30 +131,28 @@ class Base extends Instance {
 	const O_OPTM_JS_COMB_EXT_INL	= 'optm-js_comb_ext_inl';
 	const O_OPTM_JS_HTTP2 			= 'optm-js_http2';
 	const O_OPTM_JS_EXC 			= 'optm-js_exc';
-	const O_OPTM_TTL 				= 'optm-ttl';
 	const O_OPTM_HTML_MIN 			= 'optm-html_min';
+	const O_OPTM_HTML_LAZY 			= 'optm-html_lazy';
 	const O_OPTM_QS_RM 				= 'optm-qs_rm';
 	const O_OPTM_GGFONTS_RM 		= 'optm-ggfonts_rm';
 	const O_OPTM_CSS_ASYNC 			= 'optm-css_async';
-	const O_OPTM_CCSS_GEN 			= 'optm-ccss_gen';
-	const O_OPTM_CCSS_ASYNC 		= 'optm-ccss_async';
+	const O_OPTM_CCSS_PER_URL 		= 'optm-ccss_per_url';
+	const O_OPTM_CCSS_SEP_POSTTYPE 	= 'optm-ccss_sep_posttype';
+	const O_OPTM_CCSS_SEP_URI 		= 'optm-ccss_sep_uri';
 	const O_OPTM_CSS_ASYNC_INLINE 	= 'optm-css_async_inline';
 	const O_OPTM_CSS_FONT_DISPLAY 	= 'optm-css_font_display';
 	const O_OPTM_JS_DEFER 			= 'optm-js_defer';
-	const O_OPTM_JS_INLINE_DEFER	= 'optm-js_inline_defer';
-	const O_OPTM_LOCALIZE			= 'optm-localize';
-	const O_OPTM_LOCALIZE_DOMAINS	= 'optm-localize_domains';
 	const O_OPTM_EMOJI_RM 			= 'optm-emoji_rm';
 	const O_OPTM_NOSCRIPT_RM 		= 'optm-noscript_rm';
 	const O_OPTM_GGFONTS_ASYNC 		= 'optm-ggfonts_async';
 	const O_OPTM_EXC_ROLES 			= 'optm-exc_roles';
 	const O_OPTM_CCSS_CON			= 'optm-ccss_con';
 	const O_OPTM_JS_DEFER_EXC 		= 'optm-js_defer_exc';
+	const O_OPTM_GM_JS_EXC 			= 'optm-gm_js_exc';
 	const O_OPTM_DNS_PREFETCH		= 'optm-dns_prefetch';
 	const O_OPTM_DNS_PREFETCH_CTRL	= 'optm-dns_prefetch_ctrl';
 	const O_OPTM_EXC 				= 'optm-exc';
-	const O_OPTM_CCSS_SEP_POSTTYPE 	= 'optm-ccss_sep_posttype';
-	const O_OPTM_CCSS_SEP_URI 		= 'optm-ccss_sep_uri';
+	const O_OPTM_GUEST_ONLY 		= 'optm-guest_only';
 
 	## -------------------------------------------------- ##
 	## --------------	Object Cache	----------------- ##
@@ -196,6 +192,7 @@ class Base extends Instance {
 	const O_MEDIA_LQIP_MIN_H					= 'media-lqip_min_h';
 	const O_MEDIA_PLACEHOLDER_RESP_ASYNC		= 'media-placeholder_resp_async';
 	const O_MEDIA_IFRAME_LAZY 					= 'media-iframe_lazy';
+	const O_MEDIA_ADD_MISSING_SIZES 			= 'media-add_missing_sizes';
 	const O_MEDIA_LAZYJS_INLINE 				= 'media-lazyjs_inline';
 	const O_MEDIA_LAZY_EXC 						= 'media-lazy_exc';
 	const O_MEDIA_LAZY_CLS_EXC 					= 'media-lazy_cls_exc';
@@ -316,20 +313,17 @@ class Base extends Instance {
 		self::O_CDN_ATTR,
 	);
 
-	public static $CSS_FONT_DISPLAY_SET = array(
-		1 => 'block',
-		2 => 'swap',
-		3 => 'fallback',
-		4 => 'optional',
-	);
-
 	protected static $_default_options = array(
 		self::_VER 			=> '',
 		self::HASH				=> '',
 		self::O_AUTO_UPGRADE 	=> false,
 		self::O_API_KEY 		=> '',
 		self::O_SERVER_IP 		=> '',
+		self::O_GUEST 			=> false,
+		self::O_GUEST_OPTM 		=> false,
 		self::O_NEWS 			=> false,
+		self::O_GUEST_UAS 		=> array(),
+		self::O_GUEST_IPS 		=> array(),
 
 		// Cache
 		self::O_CACHE 					=> false,
@@ -411,8 +405,7 @@ class Base extends Instance {
 		self::O_OPTM_CSS_COMB 			=> false,
 		self::O_OPTM_CSS_COMB_EXT_INL	=> false,
 		self::O_OPTM_UCSS 				=> false,
-		self::O_OPTM_UCSS_ASYNC			=> false,
-		// self::O_OPTM_UCSS_WHITELIST		=> array(),
+		self::O_OPTM_UCSS_WHITELIST		=> array(),
 		self::O_OPTM_CSS_HTTP2 			=> false,
 		self::O_OPTM_CSS_EXC 			=> array(),
 		self::O_OPTM_JS_MIN 			=> false,
@@ -420,28 +413,28 @@ class Base extends Instance {
 		self::O_OPTM_JS_COMB_EXT_INL	=> false,
 		self::O_OPTM_JS_HTTP2 			=> false,
 		self::O_OPTM_JS_EXC 			=> array(),
-		self::O_OPTM_TTL 				=> 0,
 		self::O_OPTM_HTML_MIN 			=> false,
+		self::O_OPTM_HTML_LAZY 			=> array(),
 		self::O_OPTM_QS_RM 				=> false,
 		self::O_OPTM_GGFONTS_RM 		=> false,
 		self::O_OPTM_CSS_ASYNC 			=> false,
-		self::O_OPTM_CCSS_GEN 			=> false,
-		self::O_OPTM_CCSS_ASYNC 		=> false,
+		self::O_OPTM_CCSS_PER_URL 		=> false,
+		self::O_OPTM_CCSS_SEP_POSTTYPE	=> array(),
+		self::O_OPTM_CCSS_SEP_URI		=> array(),
 		self::O_OPTM_CSS_ASYNC_INLINE 	=> false,
 		self::O_OPTM_CSS_FONT_DISPLAY 	=> false,
 		self::O_OPTM_JS_DEFER 			=> false,
-		self::O_OPTM_JS_INLINE_DEFER	=> false,
 		self::O_OPTM_EMOJI_RM 			=> false,
 		self::O_OPTM_NOSCRIPT_RM 		=> false,
 		self::O_OPTM_GGFONTS_ASYNC 		=> false,
 		self::O_OPTM_EXC_ROLES			=> array(),
 		self::O_OPTM_CCSS_CON			=> '',
 		self::O_OPTM_JS_DEFER_EXC		=> array(),
+		self::O_OPTM_GM_JS_EXC			=> array(),
 		self::O_OPTM_DNS_PREFETCH		=> array(),
 		self::O_OPTM_DNS_PREFETCH_CTRL	=> false,
 		self::O_OPTM_EXC				=> array(),
-		self::O_OPTM_CCSS_SEP_POSTTYPE	=> array(),
-		self::O_OPTM_CCSS_SEP_URI		=> array(),
+		self::O_OPTM_GUEST_ONLY			=> false,
 
 		// Object
 		self::O_OBJECT 					=> false,
@@ -462,8 +455,6 @@ class Base extends Instance {
 		self::O_DISCUSS_AVATAR_CACHE		=> false,
 		self::O_DISCUSS_AVATAR_CRON			=> false,
 		self::O_DISCUSS_AVATAR_CACHE_TTL	=> 0,
-		self::O_OPTM_LOCALIZE 			=> false,
-		self::O_OPTM_LOCALIZE_DOMAINS	=> array(),
 
 		// Media
 		self::O_MEDIA_LAZY 							=> false,
@@ -477,6 +468,7 @@ class Base extends Instance {
 		self::O_MEDIA_LQIP_MIN_H		=> 0,
 		self::O_MEDIA_PLACEHOLDER_RESP_ASYNC		=> false,
 		self::O_MEDIA_IFRAME_LAZY 					=> false,
+		self::O_MEDIA_ADD_MISSING_SIZES 			=> false,
 		self::O_MEDIA_LAZYJS_INLINE 				=> false,
 		self::O_MEDIA_LAZY_EXC 						=> array(),
 		self::O_MEDIA_LAZY_CLS_EXC 					=> array(),
@@ -545,6 +537,7 @@ class Base extends Instance {
 		self::O_CACHE 					=> false,
 		self::NETWORK_O_USE_PRIMARY 	=> false,
 		self::O_AUTO_UPGRADE 			=> false,
+		self::O_GUEST 					=> false,
 
 		self::O_CACHE_FAVICON 			=> false,
 		self::O_CACHE_RES 				=> false,
@@ -593,8 +586,7 @@ class Base extends Instance {
 	// NOTE: all the val of following items will be int while not bool
 	protected static $_multi_switch_list = array(
 		self::O_DEBUG 			=> 2,
-		self::O_OPTM_CSS_FONT_DISPLAY 	=> 4,
-		self::O_OPTM_JS_INLINE_DEFER 	=> 2,
+		self::O_OPTM_JS_DEFER 	=> 2,
 	);
 
 
@@ -718,6 +710,9 @@ class Base extends Instance {
 						$this_row = array();
 						foreach ( $mapping_fields as $v3 ) {
 							$this_v = ! empty( $ini_v[ $v3 ][ $k2 ] ) ? $ini_v[ $v3 ][ $k2 ] : false;
+							if ( $v3 == self::CDN_MAPPING_URL ) {
+								$this_v = $this_v ? : '';
+							}
 							if ( $v3 == self::CDN_MAPPING_FILETYPE ) {
 								$this_v = $this_v ? Utility::sanitize_lines( $this_v ) : array(); // Note: Since v3.0 its already an array
 							}
@@ -821,11 +816,10 @@ class Base extends Instance {
 			// self::O_OPTM_CSS_EXC		=> 'uri', // Need to comment out for inline & external CSS
 			// self::O_OPTM_JS_EXC			=> 'uri',
 			self::O_OPTM_EXC			=> 'relative',
+			self::O_OPTM_CCSS_SEP_URI	=> 'uri',
 			// self::O_OPTM_JS_DEFER_EXC	=> 'uri',
 			self::O_OPTM_DNS_PREFETCH	=> 'domain',
-			self::O_OPTM_CCSS_SEP_URI	=> 'uri',
 			self::O_CDN_ORI				=> 'noprotocol', // `Original URLs`
-			// self::O_OPTM_LOCALIZE_DOMAINS	=> 'noprotocol', // `Localize Resources`
 			// self::	=> '',
 			// self::	=> '',
 		);
@@ -895,7 +889,7 @@ class Base extends Instance {
 	protected function _conf_cron( $id ) {
 		$check_ids = array(
 			self::O_IMG_OPTM_CRON,
-			self::O_OPTM_CCSS_ASYNC,
+			self::O_OPTM_CSS_ASYNC,
 			self::O_MEDIA_PLACEHOLDER_RESP_ASYNC,
 			self::O_DISCUSS_AVATAR_CRON,
 			self::O_IMG_OPTM_AUTO,
@@ -920,135 +914,6 @@ class Base extends Instance {
 		}
 
 		return false;
-	}
-
-	/**
-	 * Generate conf name for wp_options record
-	 *
-	 * @since 3.0
-	 */
-	public static function name( $id ) {
-		$cls = new \ReflectionClass( get_called_class() );
-		return 'litespeed.' . strtolower( $cls->getShortName() ) . '.' . $id;
-	}
-
-	/**
-	 * Dropin with prefix for WP's get_option
-	 *
-	 * @since 3.0
-	 */
-	public static function get_option( $id, $default_v = false ) {
-		return get_option( self::name( $id ), $default_v );
-	}
-
-	/**
-	 * Dropin with prefix for WP's get_site_option
-	 *
-	 * @since 3.0
-	 */
-	public static function get_site_option( $id, $default_v = false ) {
-		return get_site_option( self::name( $id ), $default_v );
-	}
-
-	/**
-	 * Dropin with prefix for WP's get_blog_option
-	 *
-	 * @since 3.0
-	 */
-	public static function get_blog_option( $blog_id, $id, $default_v = false ) {
-		return get_blog_option( $blog_id, self::name( $id ), $default_v );
-	}
-
-	/**
-	 * Dropin with prefix for WP's add_option
-	 *
-	 * @since 3.0
-	 */
-	public static function add_option( $id, $v ) {
-		add_option( self::name( $id ), $v );
-	}
-
-	/**
-	 * Dropin with prefix for WP's add_site_option
-	 *
-	 * @since 3.0
-	 */
-	public static function add_site_option( $id, $v ) {
-		add_site_option( self::name( $id ), $v );
-	}
-
-	/**
-	 * Dropin with prefix for WP's update_option
-	 *
-	 * @since 3.0
-	 */
-	public static function update_option( $id, $v ) {
-		update_option( self::name( $id ), $v );
-	}
-
-	/**
-	 * Dropin with prefix for WP's update_site_option
-	 *
-	 * @since 3.0
-	 */
-	public static function update_site_option( $id, $v ) {
-		update_site_option( self::name( $id ), $v );
-	}
-
-	/**
-	 * Dropin with prefix for WP's delete_option
-	 *
-	 * @since 3.0
-	 */
-	public static function delete_option( $id ) {
-		delete_option( self::name( $id ) );
-	}
-
-	/**
-	 * Dropin with prefix for WP's delete_site_option
-	 *
-	 * @since 3.0
-	 */
-	public static function delete_site_option( $id ) {
-		delete_site_option( self::name( $id ) );
-	}
-
-	/**
-	 * Read summary
-	 *
-	 * @since  3.0
-	 * @access public
-	 */
-	public static function get_summary( $field = false ) {
-		$summary = self::get_option( '_summary', array() );
-
-		if ( ! is_array( $summary ) ) {
-			$summary = array();
-		}
-
-		if ( ! $field ) {
-			return $summary;
-		}
-
-		if ( array_key_exists( $field, $summary ) ) {
-			return $summary[ $field ];
-		}
-
-		return null;
-	}
-
-	/**
-	 * Save summary
-	 *
-	 * @since  3.0
-	 * @access public
-	 */
-	public static function save_summary( $data = null ) {
-		if ( $data === null ) {
-			$data = static::get_instance()->_summary;
-		}
-
-		self::update_option( '_summary', $data );
 	}
 
 	/**

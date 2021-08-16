@@ -2,14 +2,14 @@
 /**
  * The core plugin class.
  *
+ * Note: Core doesn't allow $this->cls( 'Core' )
+ *
  * @since      	1.0.0
  */
 namespace LiteSpeed;
 defined( 'WPINC' ) || exit;
 
-class Core extends Instance {
-	protected static $_instance;
-
+class Core extends Root {
 	const NAME = 'LiteSpeed Cache';
 	const PLUGIN_NAME = 'litespeed-cache';
 	const PLUGIN_FILE = 'litespeed-cache/litespeed-cache.php';
@@ -31,8 +31,6 @@ class Core extends Instance {
 
 	private $footer_comment = '';
 
-	private $__cfg;
-
 	/**
 	 * Define the core functionality of the plugin.
 	 *
@@ -42,27 +40,26 @@ class Core extends Instance {
 	 *
 	 * @since    1.0.0
 	 */
-	protected function __construct() {
-		$this->__cfg = Conf::get_instance();
-		$this->__cfg->init();
+	public function __construct() {
+		$this->cls( 'Conf' )->init();
 
 		// Check if debug is on
-		if ( Conf::val( Base::O_DEBUG ) ) {
-			Debug2::init();
+		if ( $this->conf( Base::O_DEBUG ) ) {
+			$this->cls( 'Debug2' )->init();
 		}
 
 		/**
 		 * Load API hooks
 		 * @since  3.0
 		 */
-		API::get_instance()->init();
+		$this->cls( 'API' )->init();
 
 		if ( defined( 'LITESPEED_ON' ) ) {
 			// Load third party detection if lscache enabled.
 			include_once LSCWP_DIR . 'thirdparty/entry.inc.php';
 		}
 
-		if ( Conf::val( Base::O_DEBUG_DISABLE_ALL ) ) {
+		if ( $this->conf( Base::O_DEBUG_DISABLE_ALL ) ) {
 			! defined( 'LITESPEED_DISABLE_ALL' ) && define( 'LITESPEED_DISABLE_ALL', true );
 		}
 
@@ -92,13 +89,18 @@ class Core extends Instance {
 		 * Hook internal REST
 		 * @since  2.9.4
 		 */
-		REST::get_instance();
+		$this->cls( 'REST' );
 
 		/**
-		 * Preload ESI functionality for ESI request uri recovery
-		 * @since 1.8.1
+		 * Hook wpnonce function
+		 *
+		 * Note: ESI nonce won't be available until hook after_setup_theme ESI init due to Guest Mode concern
+		 * @since v4.1
 		 */
-		ESI::get_instance();
+		if ( $this->cls( 'Router' )->esi_enabled() && ! function_exists( 'wp_create_nonce' ) ) {
+			Debug2::debug( '[ESI] Overwrite wp_create_nonce()' );
+			litespeed_define_nonce_func();
+		}
 	}
 
 	/**
@@ -122,6 +124,7 @@ class Core extends Instance {
 	public function init() {
 		/**
 		 * Added hook before init
+		 * 3rd party preload hooks will be fired here too (e.g. Divi disable all in edit mode)
 		 * @since  1.6.6
 		 * @since  2.6 	Added filter to all config values in Conf
 		 */
@@ -129,11 +132,11 @@ class Core extends Instance {
 
 		// in `after_setup_theme`, before `init` hook
 		if ( ! defined( 'LITESPEED_BYPASS_AUTO_V' ) ) {
-			Activation::auto_update();
+			$this->cls( 'Activation' )->auto_update();
 		}
 
 		if( is_admin() ) {
-			Admin::get_instance();
+			$this->cls( 'Admin' );
 		}
 
 		if ( defined( 'LITESPEED_DISABLE_ALL' ) ) {
@@ -153,26 +156,26 @@ class Core extends Instance {
 		 */
 		if ( ! empty( $_GET[ Router::ACTION ] ) && $_GET[ Router::ACTION ] == 'before_optm' ) {
 			Debug2::debug( '[Core] ⛑️ bypass_optm due to QS CTRL' );
-			! defined( 'LITESPEED_BYPASS_OPTM' ) && define( 'LITESPEED_BYPASS_OPTM', true );
+			! defined( 'LITESPEED_NO_OPTM' ) && define( 'LITESPEED_NO_OPTM', true );
 		}
 
 		/**
 		 * Register vary filter
 		 * @since  1.6.2
 		 */
-		Control::get_instance();
+		$this->cls( 'Control' )->init();
 
 		// 1. Init vary
 		// 2. Init cacheable status
-		Vary::get_instance();
+		$this->cls( 'Vary' )->init();
 
 		// Init Purge hooks
-		Purge::get_instance()->init();
+		$this->cls( 'Purge' )->init();
 
-		Tag::get_instance();
+		$this->cls( 'Tag' )->init();
 
 		// Load hooks that may be related to users
-		add_action( 'init', array( $this, 'after_user_init' ) );
+		add_action( 'init', array( $this, 'after_user_init' ), 5 );
 
 		// Load 3rd party hooks
 		add_action( 'wp_loaded', array( $this, 'load_thirdparty' ), 2 );
@@ -185,33 +188,49 @@ class Core extends Instance {
 	 * @access public
 	 */
 	public function after_user_init() {
-		Router::get_instance()->is_role_simulation();
+		$this->cls( 'Router' )->is_role_simulation();
 
-		if ( ! is_admin() && $result = $this->__cfg->in_optm_exc_roles() ) {
+		// Detect if is Guest mode or not also
+		$this->cls( 'Vary' )->after_user_init();
+
+		/**
+		 * Preload ESI functionality for ESI request uri recovery
+		 * @since 1.8.1
+		 * @since  4.0 ESI init needs to be after Guest mode detection to bypass ESI if is under Guest mode
+		 */
+		$this->cls( 'ESI' )->init();
+
+		if ( ! is_admin() && ! defined( 'LITESPEED_GUEST_OPTM' ) && $result = $this->cls( 'Conf' )->in_optm_exc_roles() ) {
 			Debug2::debug( '[Core] ⛑️ bypass_optm: hit Role Excludes setting: ' . $result );
-			! defined( 'LITESPEED_BYPASS_OPTM' ) && define( 'LITESPEED_BYPASS_OPTM', true );
+			! defined( 'LITESPEED_NO_OPTM' ) && define( 'LITESPEED_NO_OPTM', true );
 		}
 
 		// Heartbeat control
-		Tool::heartbeat();
+		$this->cls( 'Tool' )->heartbeat();
 
-		$__media = Media::get_instance();
+		/**
+		 * Backward compatibility for v4.2- @Ruikai
+		 * TODO: Will change to hook in future versions to make it revertable
+		 */
+		if ( defined( 'LITESPEED_BYPASS_OPTM' ) && ! defined( 'LITESPEED_NO_OPTM' ) ) {
+			defined( 'LITESPEED_NO_OPTM', LITESPEED_BYPASS_OPTM );
+		}
 
-		if ( ! defined( 'LITESPEED_BYPASS_OPTM' ) ) {
+		if ( ! defined( 'LITESPEED_NO_OPTM' ) || ! LITESPEED_NO_OPTM ) {
 			// Check missing static files
-			Router::serve_static();
+			$this->cls( 'Router' )->serve_static();
 
-			$__media->init();
+			$this->cls( 'Media' )->init();
 
-			Placeholder::get_instance()->init();
+			$this->cls( 'Placeholder' )->init();
 
-			Optimize::get_instance()->init();
+			$this->cls( 'Router' )->can_optm() && $this->cls( 'Optimize' )->init();
 
 			// Hook cdn for attachements
-			CDN::get_instance();
+			$this->cls( 'CDN' )->init();
 
 			// load cron tasks
-			Task::get_instance()->init();
+			$this->cls( 'Task' )->init();
 		}
 
 		// load litespeed actions
@@ -220,7 +239,9 @@ class Core extends Instance {
 		}
 
 		// Load frontend GUI
-		GUI::get_instance()->frontend_init();
+		if ( ! is_admin() ) {
+			$this->cls( 'GUI' )->init();
+		}
 
 	}
 
@@ -258,7 +279,7 @@ class Core extends Instance {
 				break;
 
 			case self::ACTION_PURGE_BY:
-				Purge::get_instance()->purge_list();
+				$this->cls( 'Purge' )->purge_list();
 				$msg = __( 'Notified LiteSpeed Web Server to purge the list.', 'litespeed-cache' );
 				break;
 
@@ -267,7 +288,7 @@ class Core extends Instance {
 				break;
 
 			default:
-				$msg = Router::handler( $action );
+				$msg = $this->cls( 'Router' )->handler( $action );
 				break;
 		}
 		if ( $msg && ! Router::is_ajax() ) {
@@ -342,7 +363,7 @@ class Core extends Instance {
 			$buffer = substr( $buffer, 0, 300 );
 		}
 		if ( strstr( $buffer, '<!--' ) !== false ) {
-			$buffer = preg_replace( '|<!--.*?-->|s', '', $buffer );
+			$buffer = preg_replace( '/<!--.*?-->/s', '', $buffer );
 		}
 		$buffer = trim( $buffer );
 
@@ -378,30 +399,21 @@ class Core extends Instance {
 		// Hook to modify buffer before
 		$buffer = apply_filters('litespeed_buffer_before', $buffer);
 
-
-		if ( ! defined( 'LITESPEED_BYPASS_OPTM' ) ) {
-			// Image lazy load check
-			$buffer = Media::finalize( $buffer );
-		}
-
 		/**
-		 * Clean wrapper mainly for esi block
-		 * NOTE: this needs to be before optimizer to avoid wrapper being removed
-		 * @since 1.4
+		 * Media: Image lazyload && WebP
+		 * GUI: Clean wrapper mainly for esi block NOTE: this needs to be before optimizer to avoid wrapper being removed
+		 * Optimize
+		 * CDN
 		 */
-		$buffer = GUI::finalize( $buffer );
-
-		if ( ! defined( 'LITESPEED_BYPASS_OPTM' ) ) {
-			$buffer = Optimize::finalize( $buffer );
-
-			$buffer = CDN::finalize( $buffer );
+		if ( ! defined( 'LITESPEED_NO_OPTM' ) || ! LITESPEED_NO_OPTM ) {
+			$buffer = apply_filters( 'litespeed_buffer_finalize', $buffer );
 		}
 
 		/**
 		 * Replace ESI preserved list
 		 * @since  3.3 Replace this in the end to avoid `Inline JS Defer` or other Page Optm features encoded ESI tags wrongly, which caused LSWS can't recognize ESI
 		 */
-		$buffer = ESI::finalize( $buffer );
+		$buffer = $this->cls( 'ESI' )->finalize( $buffer );
 
 		$this->send_headers( true );
 
@@ -466,13 +478,13 @@ class Core extends Instance {
 		$this->_check_is_html();
 
 		// NOTE: cache ctrl output needs to be done first, as currently some varies are added in 3rd party hook `litespeed_api_control`.
-		Control::finalize();
+		$this->cls( 'Control' )->finalize();
 
-		$vary_header = Vary::finalize();
+		$vary_header = $this->cls( 'Vary' )->finalize();
 
 		// If is not cacheable but Admin QS is `purge` or `purgesingle`, `tag` still needs to be generated
-		$tag_header = Tag::output();
-		if ( Control::is_cacheable() && ! $tag_header ) {
+		$tag_header = $this->cls( 'Tag' )->output();
+		if ( ! $tag_header && Control::is_cacheable() ) {
 			Control::set_nocache( 'empty tag header' );
 		}
 
@@ -480,7 +492,7 @@ class Core extends Instance {
 		$purge_header = Purge::output();
 
 		// generate `control` header in the end in case control status is changed by other headers.
-		$control_header = Control::output();
+		$control_header = $this->cls( 'Control' )->output();
 
 		// Init comment info
 		$running_info_showing = defined( 'LITESPEED_IS_HTML' ) || defined( 'LSCACHE_IS_ESI' );
@@ -492,7 +504,7 @@ class Core extends Instance {
 		 * Silence comment for json req
 		 * @since 2.9.3
 		 */
-		if ( REST::get_instance()->is_rest() || Router::is_ajax() ) {
+		if ( REST::cls()->is_rest() || Router::is_ajax() ) {
 			$running_info_showing = false;
 			Debug2::debug( '[Core] Silence Comment due to REST/AJAX' );
 		}
@@ -586,6 +598,10 @@ class Core extends Instance {
 		// Object cache comment
 		if ( $running_info_showing && defined( 'LSCWP_LOG' ) && defined( 'LSCWP_OBJECT_CACHE' ) && method_exists( 'WP_Object_Cache', 'debug' ) ) {
 			$this->footer_comment .= "\n<!-- Object Cache " . \WP_Object_Cache::get_instance()->debug() . " -->";
+		}
+
+		if ( defined( 'LITESPEED_GUEST' ) && LITESPEED_GUEST && $running_info_showing ) {
+			$this->footer_comment .= "\n<!-- Guest Mode -->";
 		}
 
 		if ( $is_forced ) {

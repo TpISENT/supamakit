@@ -12,9 +12,7 @@ namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class Htaccess extends Instance {
-	protected static $_instance;
-
+class Htaccess extends Root {
 	const EDITOR_TEXTAREA_NAME = 'lscwp_ht_editor';
 
 	private $frontend_htaccess = null;
@@ -49,7 +47,6 @@ class Htaccess extends Instance {
 	const MARKER_CORS = '### marker CORS';
 	const MARKER_WEBP = '### marker WEBP';
 	const MARKER_DROPQS = '### marker DROPQS';
-	const MARKER_NETWORK_CSSJS_AUTOGEN = '### marker Network CSS/JS Auto Generation Rules';
 	const MARKER_START = ' start ###';
 	const MARKER_END = ' end ###';
 
@@ -59,18 +56,17 @@ class Htaccess extends Instance {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.7
-	 * @access   protected
 	 */
-	protected function __construct() {
+	public function __construct() {
 		$this->_path_set();
 		$this->_default_frontend_htaccess = $this->frontend_htaccess;
 		$this->_default_backend_htaccess = $this->backend_htaccess;
 
-		$frontend_htaccess = Conf::val( Base::O_MISC_HTACCESS_FRONT );
+		$frontend_htaccess = $this->conf( Base::O_MISC_HTACCESS_FRONT );
 		if ( $frontend_htaccess && substr( $frontend_htaccess, -10 ) === '/.htaccess' ) {
 			$this->frontend_htaccess = $frontend_htaccess;
 		}
-		$backend_htaccess = Conf::val( Base::O_MISC_HTACCESS_BACK );
+		$backend_htaccess = $this->conf( Base::O_MISC_HTACCESS_BACK );
 		if ( $backend_htaccess && substr( $backend_htaccess, -10 ) === '/.htaccess' ) {
 			$this->backend_htaccess = $backend_htaccess;
 		}
@@ -94,7 +90,8 @@ class Htaccess extends Instance {
 			self::REWRITE_ON,
 			"CacheLookup on",
 			"RewriteRule .* - [E=Cache-Control:no-autoflush]",
-			"RewriteRule \.object-cache\.ini - [F,L]",
+			// "RewriteRule \.object-cache\.ini - [F,L]",
+			'RewriteRule ' . preg_quote( self::CONF_FILE ) . ' - [F,L]',
 		);
 
 		// backend .htaccess privilege
@@ -151,9 +148,9 @@ class Htaccess extends Instance {
 	 */
 	public static function get_frontend_htaccess( $show_default = false ) {
 		if ( $show_default ) {
-			return self::get_instance()->_default_frontend_htaccess;
+			return self::cls()->_default_frontend_htaccess;
 		}
-		return self::get_instance()->frontend_htaccess;
+		return self::cls()->frontend_htaccess;
 	}
 
 	/**
@@ -164,9 +161,9 @@ class Htaccess extends Instance {
 	 */
 	public static function get_backend_htaccess( $show_default = false ) {
 		if ( $show_default ) {
-			return self::get_instance()->_default_backend_htaccess;
+			return self::cls()->_default_backend_htaccess;
 		}
-		return self::get_instance()->backend_htaccess;
+		return self::cls()->backend_htaccess;
 	}
 
 	/**
@@ -513,10 +510,10 @@ class Htaccess extends Instance {
 
 		// mobile agents
 		$id = Base::O_CACHE_MOBILE_RULES;
-		if ( ! empty( $cfg[ Base::O_CACHE_MOBILE ] ) && ! empty( $cfg[ $id ] ) ) {
+		if ( ( ! empty( $cfg[ Base::O_CACHE_MOBILE ] ) || ! empty( $cfg[ Base::O_GUEST ] ) ) && ! empty( $cfg[ $id ] ) ) {
 			$new_rules[] = self::MARKER_MOBILE . self::MARKER_START;
 			$new_rules[] = 'RewriteCond %{HTTP_USER_AGENT} ' . Utility::arr2regex( $cfg[ $id ], true ) . ' [NC]';
-			$new_rules[] = 'RewriteRule .* - [E=Cache-Control:vary=ismobile]';
+			$new_rules[] = 'RewriteRule .* - [E=Cache-Control:vary=%{ENV:LSCACHE_VARY_VALUE}+ismobile]';
 			$new_rules[] = self::MARKER_MOBILE . self::MARKER_END;
 			$new_rules[] = '';
 		}
@@ -552,29 +549,14 @@ class Htaccess extends Instance {
 
 		// check login cookie
 		$id = Base::O_CACHE_LOGIN_COOKIE;
-
-		// Need to keep this due to different behavior of OLS when handling response vary header @Sep/22/2018
-		if ( LITESPEED_SERVER_TYPE === 'LITESPEED_SERVER_OLS' ) {
-			if ( ! empty( $cfg[ $id ] ) ) {
-				$cfg[ $id ] .= ',wp-postpass_' . COOKIEHASH;
-			}
-			else {
-				$cfg[ $id ] = 'wp-postpass_' . COOKIEHASH;
-			}
-		}
-
-		$tp_cookies = apply_filters( 'litespeed_api_vary', array() );
-		if ( ! empty( $tp_cookies ) && is_array( $tp_cookies ) ) {
-			if ( ! empty( $cfg[ $id ] ) ) {
-				$cfg[ $id ] .= ',' . implode( ',', $tp_cookies );
-			}
-			else {
-				$cfg[ $id ] = implode( ',', $tp_cookies );
-			}
+		$vary_cookies = $cfg[ $id ] ? array( $cfg[ $id ] ) : array();
+		if ( LITESPEED_SERVER_TYPE === 'LITESPEED_SERVER_OLS' ) { // Need to keep this due to different behavior of OLS when handling response vary header @Sep/22/2018
+			$vary_cookies[] = ',wp-postpass_' . COOKIEHASH;
+			$vary_cookies = apply_filters( 'litespeed_vary_cookies', $vary_cookies ); // todo: test if response vary header can work in latest OLS, drop the above two lines
 		}
 		// frontend and backend
-		if ( ! empty( $cfg[ $id ] ) ) {
-			$env = 'Cache-Vary:' . $cfg[ $id ];
+		if ( $vary_cookies ) {
+			$env = 'Cache-Vary:' . implode( ',', $vary_cookies );
 			if ( LITESPEED_SERVER_TYPE === 'LITESPEED_SERVER_OLS' ) {
 				$env = '"' . $env . '"';
 			}
@@ -605,7 +587,7 @@ class Htaccess extends Instance {
 
 		// webp support
 		$id = Base::O_IMG_OPTM_WEBP_REPLACE;
-		if ( ! empty( $cfg[ $id ] ) ) {
+		if ( ! empty( $cfg[ $id ] ) || ! empty( $cfg[ Base::O_GUEST ] ) ) {
 			$new_rules[] = self::MARKER_WEBP . self::MARKER_START;
 			$new_rules[] = 'RewriteCond %{HTTP_ACCEPT} "image/webp" [or]';
 			$new_rules[] = 'RewriteCond %{HTTP_USER_AGENT} "Page Speed"';
@@ -636,20 +618,6 @@ class Htaccess extends Instance {
 			$new_rules_backend_nonls = array_merge( $new_rules_backend_nonls, $this->_browser_cache_rules( $cfg ) );
 			$new_rules_nonls[] = $new_rules_backend_nonls[] = self::MARKER_BROWSER_CACHE . self::MARKER_END;
 			$new_rules_nonls[] = '';
-		}
-
-		// Network CSS/JS auto generate
-		if ( is_multisite() ) {
-			$rewrite_base = parse_url( trailingslashit( get_option( 'home' ) ), PHP_URL_PATH );
-			$new_rules_nonls[] = self::MARKER_NETWORK_CSSJS_AUTOGEN . self::MARKER_START;
-			$new_rules_nonls[] = self::REWRITE_ON;
-			$new_rules_nonls[] = 'RewriteCond %{REQUEST_FILENAME} !-f';
-			$new_rules_nonls[] = 'RewriteCond %{REQUEST_URI} !^' . $rewrite_base . LSCWP_CONTENT_FOLDER;
-			$new_rules_nonls[] = 'RewriteRule ^([_0-9a-zA-Z-]+/)?(' . LSCWP_CONTENT_FOLDER . '/litespeed/cssjs/.*) $2 [L]';
-			$new_rules_nonls[] = 'RewriteCond %{REQUEST_FILENAME} !-f';
-			$new_rules_nonls[] = 'RewriteCond %{REQUEST_URI} ^' . $rewrite_base . LSCWP_CONTENT_FOLDER . '/litespeed/cssjs/.+\.(css|js)$';
-			$new_rules_nonls[] = 'RewriteRule . ' . $rewrite_base . 'index.php [L]';
-			$new_rules_nonls[] = self::MARKER_NETWORK_CSSJS_AUTOGEN . self::MARKER_END;
 		}
 
 		// Add module wrapper for LiteSpeed rules

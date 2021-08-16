@@ -1,0 +1,12 @@
+
+---Downloaded files---
+The import files for: Tokoo - Elementor were successfully downloaded!
+Initial max execution time = 30
+Files info:
+Site URL = https://dev.gofenam.com
+Data file = /var/www/dev/public-html/web/wp-content/themes/tokoo/assets/dummy-data/elementor/dummy-data.xml
+Widget file = /var/www/dev/public-html/web/wp-content/themes/tokoo/assets/dummy-data/elementor/widgets.wie
+Customizer file = not defined!
+Redux files:
+tokoo_options -> /var/www/dev/public-html/web/wp-content/themes/tokoo/assets/dummy-data/elementor/redux-options.json 
+

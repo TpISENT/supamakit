@@ -3,7 +3,6 @@
  * The plugin cache-control class for X-Litespeed-Cache-Control
  *
  * @since      	1.1.3
- * @since  		1.5 Moved into /inc
  * @package    	LiteSpeed
  * @subpackage 	LiteSpeed/inc
  * @author     	LiteSpeed Technologies <info@litespeedtech.com>
@@ -12,9 +11,7 @@ namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class Control extends Instance {
-	protected static $_instance;
-
+class Control extends Root {
 	const BM_CACHEABLE = 1;
 	const BM_PRIVATE = 2;
 	const BM_SHARED = 4;
@@ -35,9 +32,8 @@ class Control extends Instance {
 	 * Init cache control
 	 *
 	 * @since  1.6.2
-	 * @access protected
 	 */
-	protected function __construct() {
+	public function init() {
 		/**
 		 * Add vary filter for Role Excludes
 		 * @since  1.6.2
@@ -48,7 +44,7 @@ class Control extends Instance {
 		add_filter( 'wp_redirect', array( $this, 'check_redirect' ), 10, 2 );
 
 		// Load response header conf
-		$this->_response_header_ttls = Conf::val( Base::O_CACHE_TTL_STATUS );
+		$this->_response_header_ttls = $this->conf( Base::O_CACHE_TTL_STATUS );
 		foreach ( $this->_response_header_ttls as $k => $v ) {
 			$v = explode( ' ', $v );
 			if ( empty( $v[ 0 ] ) || empty( $v[ 1 ] ) ) {
@@ -57,8 +53,8 @@ class Control extends Instance {
 			$this->_response_header_ttls[ $v[ 0 ] ] = $v[ 1 ];
 		}
 
-		if ( Conf::val( Base::O_PURGE_STALE ) ) {
-			self::set_stale();
+		if ( $this->conf( Base::O_PURGE_STALE ) ) {
+			$this->set_stale();
 		}
 	}
 
@@ -95,7 +91,7 @@ class Control extends Instance {
 			return false;
 		}
 
-		return in_array( $role, Conf::val( Base::O_CACHE_EXC_ROLES ) ) ? $role : false;
+		return in_array( $role, $this->conf( Base::O_CACHE_EXC_ROLES ) ) ? $role : false;
 	}
 
 	/**
@@ -105,29 +101,29 @@ class Control extends Instance {
 	 * @since 1.1.3
 	 * @access public
 	 */
-	public static function init_cacheable() {
+	public function init_cacheable() {
 		// Hook `wp` to mark default cacheable status
 		// NOTE: Any process that does NOT run into `wp` hook will not get cacheable by default
-		add_action( 'wp', __CLASS__ . '::set_cacheable', 5 );
+		add_action( 'wp', array( $this, 'set_cacheable' ), 5 );
 
 		// Hook WP REST to be cacheable
-		if ( Conf::val( Base::O_CACHE_REST ) ) {
-			add_action( 'rest_api_init', __CLASS__ . '::set_cacheable', 5 );
+		if ( $this->conf( Base::O_CACHE_REST ) ) {
+			add_action( 'rest_api_init', array( $this, 'set_cacheable' ), 5 );
 		}
 
 		// Cache resources
 		// NOTE: If any strange resource doesn't use normal WP logic `wp_loaded` hook, rewrite rule can handle it
-		$cache_res = Conf::val( Base::O_CACHE_RES );
+		$cache_res = $this->conf( Base::O_CACHE_RES );
 		if ( $cache_res ) {
 			$uri = esc_url( $_SERVER["REQUEST_URI"] );// todo: check if need esc_url()
 			$pattern = '!' . LSCWP_CONTENT_FOLDER . Htaccess::RW_PATTERN_RES . '!';
 			if ( preg_match( $pattern, $uri ) ) {
-				add_action( 'wp_loaded', __CLASS__ . '::set_cacheable', 5 );
+				add_action( 'wp_loaded', array( $this, 'set_cacheable' ), 5 );
 			}
 		}
 
 		// Check error page
-		add_filter( 'status_header', array( self::get_instance(), 'check_error_codes' ), 10, 2 );
+		add_filter( 'status_header', array( $this, 'check_error_codes' ), 10, 2 );
 	}
 
 
@@ -187,7 +183,7 @@ class Control extends Instance {
 	 * @access public
 	 * @since 1.1.3
 	 */
-	public static function set_stale() {
+	public function set_stale() {
 		if ( self::is_stale() ) {
 			return;
 		}
@@ -301,6 +297,10 @@ class Control extends Instance {
 	 * @since 1.1.3
 	 */
 	public static function is_private() {
+		if ( defined( 'LITESPEED_GUEST' ) && LITESPEED_GUEST ) {
+			return false;
+		}
+
 		return self::$_control & self::BM_PRIVATE && ! self::is_public_forced();
 	}
 
@@ -310,7 +310,7 @@ class Control extends Instance {
 	 * @access public
 	 * @since 1.1.3
 	 */
-	public static function set_cacheable( $reason = false ) {
+	public function set_cacheable( $reason = false ) {
 		self::$_control |= self::BM_CACHEABLE;
 
 		if ( ! is_string( $reason ) ) {
@@ -391,6 +391,16 @@ class Control extends Instance {
 	 * @return bool True if is still cacheable, otherwise false.
 	 */
 	public static function is_cacheable() {
+		if ( defined( 'LSCACHE_NO_CACHE' ) && LSCACHE_NO_CACHE ) {
+			Debug2::debug( '[Ctrl] LSCACHE_NO_CACHE constant defined' );
+			return false;
+		}
+
+		// Guest mode always cacheable
+		if ( defined( 'LITESPEED_GUEST' ) && LITESPEED_GUEST ) {
+			return true;
+		}
+
 		// If its forced public cacheable
 		if ( self::is_public_forced() ) {
 			return true;
@@ -424,14 +434,14 @@ class Control extends Instance {
 	 * @access public
 	 * @since 1.1.3
 	 */
-	public static function get_ttl() {
+	public function get_ttl() {
 		if ( self::$_custom_ttl != 0 ) {
 			return self::$_custom_ttl;
 		}
 
 		// Check if is in timed url list or not
-		$timed_urls = Utility::wildcard2regex( Conf::val( Base::O_PURGE_TIMED_URLS ) );
-		$timed_urls_time = Conf::val( Base::O_PURGE_TIMED_URLS_TIME );
+		$timed_urls = Utility::wildcard2regex( $this->conf( Base::O_PURGE_TIMED_URLS ) );
+		$timed_urls_time = $this->conf( Base::O_PURGE_TIMED_URLS_TIME );
 		if ( $timed_urls && $timed_urls_time ) {
 			$current_url = Tag::build_uri_tag( true );
 			// Use time limit ttl
@@ -458,23 +468,23 @@ class Control extends Instance {
 
 		// Private cache uses private ttl setting
 		if ( self::is_private() ) {
-			return Conf::val( Base::O_CACHE_TTL_PRIV );
+			return $this->conf( Base::O_CACHE_TTL_PRIV );
 		}
 
 		if ( is_front_page() ){
-			return Conf::val( Base::O_CACHE_TTL_FRONTPAGE );
+			return $this->conf( Base::O_CACHE_TTL_FRONTPAGE );
 		}
 
-		$feed_ttl = Conf::val( Base::O_CACHE_TTL_FEED );
+		$feed_ttl = $this->conf( Base::O_CACHE_TTL_FEED );
 		if ( is_feed() && $feed_ttl > 0 ) {
 			return $feed_ttl;
 		}
 
-		if ( REST::get_instance()->is_rest() || REST::get_instance()->is_internal_rest() ) {
-			return Conf::val( Base::O_CACHE_TTL_REST );
+		if ( $this->cls( 'REST' )->is_rest() || $this->cls( 'REST' )->is_internal_rest() ) {
+			return $this->conf( Base::O_CACHE_TTL_REST );
 		}
 
-		return Conf::val( Base::O_CACHE_TTL_PUB );
+		return $this->conf( Base::O_CACHE_TTL_PUB );
 	}
 
 	/**
@@ -519,14 +529,31 @@ class Control extends Instance {
 	 * @access public
 	 * @return string empty string if empty, otherwise the cache control header.
 	 */
-	public static function output() {
+	public function output() {
+		$hdr = self::X_HEADER . ': ';
+
+		// Guest mode directly return cacheable result
+		if ( defined( 'LITESPEED_GUEST' ) && LITESPEED_GUEST ) {
+			// If is POST, no cache
+			if ( defined( 'LSCACHE_NO_CACHE' ) && LSCACHE_NO_CACHE ) {
+				$hdr .= 'no-cache';
+			}
+			else if( $_SERVER[ 'REQUEST_METHOD' ] !== 'GET' ) {
+				$hdr .= 'no-cache';
+			}
+			else {
+				$hdr .= 'public';
+				$hdr .= ',max-age=' . $this->get_ttl();
+			}
+
+			return $hdr;
+		}
+
 		$esi_hdr = '';
 		// Fix cli `uninstall --deactivate` fatal err
 		if ( ESI::has_esi() ) {
 			$esi_hdr = ',esi=on';
 		}
-
-		$hdr = self::X_HEADER . ': ';
 
 		if ( ! self::is_cacheable() ) {
 			$hdr .= 'no-cache' . $esi_hdr;
@@ -547,7 +574,7 @@ class Control extends Instance {
 			$hdr .= ',no-vary';
 		}
 
-		$hdr .= ',max-age=' . self::get_ttl() . $esi_hdr;
+		$hdr .= ',max-age=' . $this->get_ttl() . $esi_hdr;
 		return $hdr;
 	}
 
@@ -557,17 +584,20 @@ class Control extends Instance {
 	 * @access public
 	 * @since 1.1.3
 	 */
-	public static function finalize() {
+	public function finalize() {
+		if ( defined( 'LITESPEED_GUEST' ) && LITESPEED_GUEST ) {
+			return;
+		}
+
 		// Check if URI is forced public cache
-		$excludes = Conf::val( Base::O_CACHE_FORCE_PUB_URI );
-		if ( ! empty( $excludes ) ) {
-			list( $result, $this_ttl ) =  Utility::str_hit_array( $_SERVER[ 'REQUEST_URI' ], $excludes, true );
-			if ( $result ) {
-				self::set_public_forced( 'Setting: ' . $result );
-				Debug2::debug( '[Ctrl] Forced public cacheable due to setting: ' . $result );
-				if ( $this_ttl ) {
-					self::set_custom_ttl( $this_ttl );
-				}
+		$excludes = $this->conf( Base::O_CACHE_FORCE_PUB_URI );
+		$hit =  Utility::str_hit_array( $_SERVER[ 'REQUEST_URI' ], $excludes, true );
+		if ( $hit ) {
+			list( $result, $this_ttl ) = $hit;
+			self::set_public_forced( 'Setting: ' . $result );
+			Debug2::debug( '[Ctrl] Forced public cacheable due to setting: ' . $result );
+			if ( $this_ttl ) {
+				self::set_custom_ttl( $this_ttl );
 			}
 		}
 
@@ -576,15 +606,14 @@ class Control extends Instance {
 		}
 
 		// Check if URI is forced cache
-		$excludes = Conf::val( Base::O_CACHE_FORCE_URI );
-		if ( ! empty( $excludes ) ) {
-			list( $result, $this_ttl ) =  Utility::str_hit_array( $_SERVER[ 'REQUEST_URI' ], $excludes, true );
-			if ( $result ) {
-				self::force_cacheable();
-				Debug2::debug( '[Ctrl] Forced cacheable due to setting: ' . $result );
-				if ( $this_ttl ) {
-					self::set_custom_ttl( $this_ttl );
-				}
+		$excludes = $this->conf( Base::O_CACHE_FORCE_URI );
+		$hit =  Utility::str_hit_array( $_SERVER[ 'REQUEST_URI' ], $excludes, true );
+		if ( $hit ) {
+			list( $result, $this_ttl ) = $hit;
+			self::force_cacheable();
+			Debug2::debug( '[Ctrl] Forced cacheable due to setting: ' . $result );
+			if ( $this_ttl ) {
+				self::set_custom_ttl( $this_ttl );
 			}
 		}
 
@@ -594,13 +623,6 @@ class Control extends Instance {
 			Debug2::debug( '[Ctrl] not cacheable before ctrl finalize' );
 			return;
 		}
-
-		if ( defined('LSCACHE_NO_CACHE') && LSCACHE_NO_CACHE ) {
-			self::set_nocache('LSCACHE_NO_CACHE constant defined');
-			return;
-		}
-
-		$instance = self::get_instance();
 
 		// Apply 3rd party filter
 		// NOTE: Hook always needs to run asap because some 3rd party set is_mobile in this hook
@@ -618,7 +640,7 @@ class Control extends Instance {
 		}
 
 		// Check litespeed setting to set cacheable status
-		if ( ! $instance->_setting_cacheable() ) {
+		if ( ! $this->_setting_cacheable() ) {
 			self::set_nocache();
 			return;
 		}
@@ -633,7 +655,7 @@ class Control extends Instance {
 
 		// The following check to the end is ONLY for mobile
 		$is_mobile = apply_filters( 'litespeed_is_mobile', false );
-		if ( ! Conf::val( Base::O_CACHE_MOBILE ) ) {
+		if ( ! $this->conf( Base::O_CACHE_MOBILE ) ) {
 			if ( $is_mobile ) {
 				self::set_nocache( 'mobile' );
 			}
@@ -646,7 +668,7 @@ class Control extends Instance {
 		}
 		if ( $env_vary && strpos( $env_vary, 'ismobile' ) !== false ) {
 			if ( ! wp_is_mobile() && ! $is_mobile ) {
-				self::set_nocache( 'is not mobile' );
+				self::set_nocache( 'is not mobile' ); // todo: no need to uncache, it will correct vary value in vary finalize anyways
 				return;
 			}
 		}
@@ -681,11 +703,11 @@ class Control extends Instance {
 			return $this->_no_cache_for( 'Query String Action' );
 		}
 
-		if ( $_SERVER["REQUEST_METHOD"] !== 'GET' ) {
+		if ( $_SERVER[ 'REQUEST_METHOD' ] !== 'GET' ) {
 			return $this->_no_cache_for('not GET method:' . $_SERVER["REQUEST_METHOD"]);
 		}
 
-		if ( is_feed() && Conf::val( Base::O_CACHE_TTL_FEED ) == 0 ) {
+		if ( is_feed() && $this->conf( Base::O_CACHE_TTL_FEED ) == 0 ) {
 			return $this->_no_cache_for('feed');
 		}
 
@@ -702,42 +724,38 @@ class Control extends Instance {
 //		}
 
 		// Check private cache URI setting
-		$excludes = Conf::val( Base::O_CACHE_PRIV_URI );
-		if ( ! empty( $excludes ) ) {
-			$result = Utility::str_hit_array( $_SERVER[ 'REQUEST_URI' ], $excludes );
-			if ( $result ) {
-				self::set_private( 'Admin cfg Private Cached URI: ' . $result );
-			}
+		$excludes = $this->conf( Base::O_CACHE_PRIV_URI );
+		$result = Utility::str_hit_array( $_SERVER[ 'REQUEST_URI' ], $excludes );
+		if ( $result ) {
+			self::set_private( 'Admin cfg Private Cached URI: ' . $result );
 		}
 
 		if ( ! self::is_forced_cacheable() ) {
 
 			// Check if URI is excluded from cache
-			$excludes = Conf::val( Base::O_CACHE_EXC );
-			if ( ! empty( $excludes ) ) {
-				$result =  Utility::str_hit_array( $_SERVER[ 'REQUEST_URI' ], $excludes );
-				if ( $result ) {
-					return $this->_no_cache_for( 'Admin configured URI Do not cache: ' . $result );
-				}
+			$excludes = $this->conf( Base::O_CACHE_EXC );
+			$result =  Utility::str_hit_array( $_SERVER[ 'REQUEST_URI' ], $excludes );
+			if ( $result ) {
+				return $this->_no_cache_for( 'Admin configured URI Do not cache: ' . $result );
 			}
 
 			// Check QS excluded setting
-			$excludes = Conf::val( Base::O_CACHE_EXC_QS );
+			$excludes = $this->conf( Base::O_CACHE_EXC_QS );
 			if ( ! empty( $excludes ) && $qs = $this->_is_qs_excluded( $excludes ) ) {
 				return $this->_no_cache_for( 'Admin configured QS Do not cache: ' . $qs );
 			}
 
-			$excludes = Conf::val( Base::O_CACHE_EXC_CAT );
+			$excludes = $this->conf( Base::O_CACHE_EXC_CAT );
 			if ( ! empty( $excludes ) && has_category( $excludes ) ) {
 				return $this->_no_cache_for( 'Admin configured Category Do not cache.' );
 			}
 
-			$excludes = Conf::val( Base::O_CACHE_EXC_TAG );
+			$excludes = $this->conf( Base::O_CACHE_EXC_TAG );
 			if ( ! empty( $excludes ) && has_tag( $excludes ) ) {
 				return $this->_no_cache_for( 'Admin configured Tag Do not cache.' );
 			}
 
-			$excludes = Conf::val( Base::O_CACHE_EXC_COOKIES );
+			$excludes = $this->conf( Base::O_CACHE_EXC_COOKIES );
 			if ( ! empty( $excludes ) && ! empty( $_COOKIE ) ) {
 				$cookie_hit = array_intersect( array_keys( $_COOKIE ), $excludes );
 				if ( $cookie_hit ) {
@@ -745,7 +763,7 @@ class Control extends Instance {
 				}
 			}
 
-			$excludes = Conf::val( Base::O_CACHE_EXC_USERAGENTS );
+			$excludes = $this->conf( Base::O_CACHE_EXC_USERAGENTS );
 			if ( ! empty( $excludes ) && isset( $_SERVER[ 'HTTP_USER_AGENT' ] ) ) {
 				$nummatches = preg_match( Utility::arr2regex( $excludes ), $_SERVER[ 'HTTP_USER_AGENT' ] );
 				if ( $nummatches ) {

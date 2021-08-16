@@ -8,13 +8,25 @@
  * @author     	LiteSpeed Technologies <info@litespeedtech.com>
  */
 namespace LiteSpeed;
-
 defined( 'WPINC' ) || exit;
 
-class Object_Cache {
-	protected static $_instance;
+require_once dirname( __DIR__ ) . '/autoload.php';
 
-	private $_oc_data_file;
+class Object_Cache extends Root {
+	const O_OBJECT				 = 'object';
+	const O_OBJECT_KIND			 = 'object-kind';
+	const O_OBJECT_HOST			 = 'object-host';
+	const O_OBJECT_PORT			 = 'object-port';
+	const O_OBJECT_LIFE			 = 'object-life';
+	const O_OBJECT_PERSISTENT	 = 'object-persistent';
+	const O_OBJECT_ADMIN		 = 'object-admin';
+	const O_OBJECT_TRANSIENTS	 = 'object-transients';
+	const O_OBJECT_DB_ID		 = 'object-db_id';
+	const O_OBJECT_USER			 = 'object-user';
+	const O_OBJECT_PSWD			 = 'object-pswd';
+	const O_OBJECT_GLOBAL_GROUPS = 'object-global_groups';
+	const O_OBJECT_NON_PERSISTENT_GROUPS = 'object-non_persistent_groups';
+
 	private $_conn;
 	private $_cfg_enabled;
 	private $_cfg_method;
@@ -30,8 +42,8 @@ class Object_Cache {
 
 	private $_oc_driver = 'Memcached'; // Redis or Memcached
 
-	private $_global_groups;
-	private $_non_persistent_groups;
+	private $_global_groups = array();
+	private $_non_persistent_groups = array();
 
 	/**
 	 * Init
@@ -39,12 +51,9 @@ class Object_Cache {
 	 * NOTE: this class may be included without initialized  core
 	 *
 	 * @since  1.8
-	 * @access protected
 	 */
-	protected function __construct( $cfg = false ) {
+	public function __construct( $cfg = false ) {
 		defined( 'LSCWP_LOG' ) && Debug2::debug2( '[Object] init' );
-
-		$this->_oc_data_file = WP_CONTENT_DIR . '/.object-cache.ini';
 
 		if ( $cfg ) {
 			if ( ! is_array( $cfg[ Base::O_OBJECT_GLOBAL_GROUPS ] ) ) {
@@ -73,39 +82,41 @@ class Object_Cache {
 
 			defined( 'LSCWP_LOG' ) && Debug2::debug( '[Object] init with cfg result : ', $this->_cfg_enabled );
 		}
-		elseif ( class_exists( __NAMESPACE__ . '\Core' ) ) {
-			$this->_cfg_method = Conf::val( Base::O_OBJECT_KIND ) ? true : false;
-			$this->_cfg_host = Conf::val( Base::O_OBJECT_HOST );
-			$this->_cfg_port = Conf::val( Base::O_OBJECT_PORT );
-			$this->_cfg_life = Conf::val( Base::O_OBJECT_LIFE );
-			$this->_cfg_persistent = Conf::val( Base::O_OBJECT_PERSISTENT );
-			$this->_cfg_admin = Conf::val( Base::O_OBJECT_ADMIN );
-			$this->_cfg_transients = Conf::val( Base::O_OBJECT_TRANSIENTS );
-			$this->_cfg_db = Conf::val( Base::O_OBJECT_DB_ID );
-			$this->_cfg_user = Conf::val( Base::O_OBJECT_USER );
-			$this->_cfg_pswd = Conf::val( Base::O_OBJECT_PSWD );
-			$this->_global_groups = Conf::val( Base::O_OBJECT_GLOBAL_GROUPS );
-			$this->_non_persistent_groups = Conf::val( Base::O_OBJECT_NON_PERSISTENT_GROUPS );
+		// If OC is OFF, will hit here to init OC after conf initialized
+		elseif ( defined( 'LITESPEED_CONF_LOADED' ) ) {
+			$this->_cfg_method = $this->conf( Base::O_OBJECT_KIND ) ? true : false;
+			$this->_cfg_host = $this->conf( Base::O_OBJECT_HOST );
+			$this->_cfg_port = $this->conf( Base::O_OBJECT_PORT );
+			$this->_cfg_life = $this->conf( Base::O_OBJECT_LIFE );
+			$this->_cfg_persistent = $this->conf( Base::O_OBJECT_PERSISTENT );
+			$this->_cfg_admin = $this->conf( Base::O_OBJECT_ADMIN );
+			$this->_cfg_transients = $this->conf( Base::O_OBJECT_TRANSIENTS );
+			$this->_cfg_db = $this->conf( Base::O_OBJECT_DB_ID );
+			$this->_cfg_user = $this->conf( Base::O_OBJECT_USER );
+			$this->_cfg_pswd = $this->conf( Base::O_OBJECT_PSWD );
+			$this->_global_groups = $this->conf( Base::O_OBJECT_GLOBAL_GROUPS );
+			$this->_non_persistent_groups = $this->conf( Base::O_OBJECT_NON_PERSISTENT_GROUPS );
 
 			if ( $this->_cfg_method ) {
 				$this->_oc_driver = 'Redis';
 			}
-			$this->_cfg_enabled = Conf::val( Base::O_OBJECT ) && class_exists( $this->_oc_driver ) && $this->_cfg_host;
+			$this->_cfg_enabled = $this->conf( Base::O_OBJECT ) && class_exists( $this->_oc_driver ) && $this->_cfg_host;
 		}
-		elseif ( file_exists( $this->_oc_data_file ) ) { // Get cfg from oc_data_file
-			$cfg = parse_ini_file( $this->_oc_data_file, true );
-			$this->_cfg_method = ! empty( $cfg[ 'object_cache' ][ 'method' ] ) ? $cfg[ 'object_cache' ][ 'method' ] : false;
-			$this->_cfg_host = $cfg[ 'object_cache' ][ 'host' ];
-			$this->_cfg_port = $cfg[ 'object_cache' ][ 'port' ];
-			$this->_cfg_life = ! empty( $cfg[ 'object_cache' ][ 'life' ] ) ? $cfg[ 'object_cache' ][ 'life' ] : $this->_default_life;
-			$this->_cfg_persistent = ! empty( $cfg[ 'object_cache' ][ 'persistent' ] ) ? $cfg[ 'object_cache' ][ 'persistent' ] : false;
-			$this->_cfg_admin = ! empty( $cfg[ 'object_cache' ][ 'cache_admin' ] ) ? $cfg[ 'object_cache' ][ 'cache_admin' ] : false;
-			$this->_cfg_transients = ! empty( $cfg[ 'object_cache' ][ 'cache_transients' ] ) ? $cfg[ 'object_cache' ][ 'cache_transients' ] : false;
-			$this->_cfg_db = ! empty( $cfg[ 'object_cache' ][ 'db' ] ) ? $cfg[ 'object_cache' ][ 'db' ] : 0;
-			$this->_cfg_user = ! empty( $cfg[ 'object_cache' ][ 'user' ] ) ? $cfg[ 'object_cache' ][ 'user' ] : '';
-			$this->_cfg_pswd = ! empty( $cfg[ 'object_cache' ][ 'pswd' ] ) ? $cfg[ 'object_cache' ][ 'pswd' ] : '';
-			$this->_global_groups = ! empty( $cfg[ 'object_cache' ][ 'global_groups' ] ) ? explode( ',', $cfg[ 'object_cache' ][ 'global_groups' ] ) : array();
-			$this->_non_persistent_groups = ! empty( $cfg[ 'object_cache' ][ 'non_persistent_groups' ] ) ? explode( ',', $cfg[ 'object_cache' ][ 'non_persistent_groups' ] ) : array();
+		elseif ( defined( 'self::CONF_FILE' ) && file_exists( WP_CONTENT_DIR . '/' . self::CONF_FILE ) ) { // Get cfg from _data_file
+			// Use self::const to avoid loading more classes
+			$cfg = json_decode( file_get_contents( WP_CONTENT_DIR . '/' . self::CONF_FILE ), true );
+			$this->_cfg_method = ! empty( $cfg[ self::O_OBJECT_KIND ] ) ? $cfg[ self::O_OBJECT_KIND ] : false;
+			$this->_cfg_host = $cfg[ self::O_OBJECT_HOST ];
+			$this->_cfg_port = $cfg[ self::O_OBJECT_PORT ];
+			$this->_cfg_life = ! empty( $cfg[ self::O_OBJECT_LIFE ] ) ? $cfg[ self::O_OBJECT_LIFE ] : $this->_default_life;
+			$this->_cfg_persistent = ! empty( $cfg[ self::O_OBJECT_PERSISTENT ] ) ? $cfg[ self::O_OBJECT_PERSISTENT ] : false;
+			$this->_cfg_admin = ! empty( $cfg[ self::O_OBJECT_ADMIN ] ) ? $cfg[ self::O_OBJECT_ADMIN ] : false;
+			$this->_cfg_transients = ! empty( $cfg[ self::O_OBJECT_TRANSIENTS ] ) ? $cfg[ self::O_OBJECT_TRANSIENTS ] : false;
+			$this->_cfg_db = ! empty( $cfg[ self::O_OBJECT_DB_ID ] ) ? $cfg[ self::O_OBJECT_DB_ID ] : 0;
+			$this->_cfg_user = ! empty( $cfg[ self::O_OBJECT_USER ] ) ? $cfg[ self::O_OBJECT_USER ] : '';
+			$this->_cfg_pswd = ! empty( $cfg[ self::O_OBJECT_PSWD ] ) ? $cfg[ self::O_OBJECT_PSWD ] : '';
+			$this->_global_groups = ! empty( $cfg[ self::O_OBJECT_GLOBAL_GROUPS ] ) ? $cfg[ self::O_OBJECT_GLOBAL_GROUPS ] : array();
+			$this->_non_persistent_groups = ! empty( $cfg[ self::O_OBJECT_NON_PERSISTENT_GROUPS ] ) ? $cfg[ self::O_OBJECT_NON_PERSISTENT_GROUPS ] : array();
 
 			if ( $this->_cfg_method ) {
 				$this->_oc_driver = 'Redis';
@@ -146,30 +157,6 @@ class Object_Cache {
 	public function update_file( $options ) {
 		$changed = false;
 
-		// Update data file
-		$data = "[object_cache]"
-			. "\nmethod = " . $options[ Base::O_OBJECT_KIND ]
-			. "\nhost = " . $options[ Base::O_OBJECT_HOST ]
-			. "\nport = " . (int) $options[ Base::O_OBJECT_PORT ]
-			. "\nlife = " . $options[ Base::O_OBJECT_LIFE ]
-			. "\nuser = '" . $options[ Base::O_OBJECT_USER ] . "'"
-			. "\npswd = '" . $options[ Base::O_OBJECT_PSWD ] . "'"
-			. "\ndb = " . (int) $options[ Base::O_OBJECT_DB_ID ]
-			. "\npersistent = " . ( $options[ Base::O_OBJECT_PERSISTENT ] ? 1 : 0 )
-			. "\ncache_admin = " . ( $options[ Base::O_OBJECT_ADMIN ] ? 1 : 0 )
-			. "\ncache_transients = " . ( $options[ Base::O_OBJECT_TRANSIENTS ] ? 1 : 0 )
-			. "\nglobal_groups = " . implode( ',', $options[ Base::O_OBJECT_GLOBAL_GROUPS ] )
-			. "\nnon_persistent_groups = " . implode( ',', $options[ Base::O_OBJECT_NON_PERSISTENT_GROUPS ] )
-			;
-
-		$old_data = File::read( $this->_oc_data_file );
-		if ( $old_data != $data ) {
-			defined( 'LSCWP_LOG' ) && Debug2::debug( '[Settings] Update .object_cache.ini and flush object cache' );
-			File::save( $this->_oc_data_file, $data );
-
-			$changed = true;
-		}
-
 		// NOTE: When included in oc.php, `LSCWP_DIR` will show undefined, so this must be assigned/generated when used
 		$_oc_ori_file = LSCWP_DIR . 'lib/object-cache.php';
 		$_oc_wp_file = WP_CONTENT_DIR . '/object-cache.php';
@@ -205,11 +192,6 @@ class Object_Cache {
 			defined( 'LSCWP_LOG' ) && Debug2::debug( '[Object] removing ' . $_oc_wp_file );
 			unlink( $_oc_wp_file );
 		}
-
-		if ( file_exists( $this->_oc_data_file ) ) {
-			Debug2::debug( '[Object] Removing ' . $this->_oc_data_file );
-			unlink( $this->_oc_data_file );
-		}
 	}
 
 	/**
@@ -236,13 +218,13 @@ class Object_Cache {
 			defined( 'LSCWP_LOG' ) && Debug2::debug( '[Object] Quiting existing connection' );
 			$this->flush();
 			$this->_conn = null;
-			self::$_instance = null;
+			$this->cls( false, true );
 		}
 
-		self::$_instance = new self( $cfg );
-		self::$_instance->_connect();
-		if ( isset( self::$_instance->_conn ) ) {
-			self::$_instance->flush();
+		$cls = $this->cls( false, false, $cfg );
+		$cls->_connect();
+		if ( isset( $cls->_conn ) ) {
+			$cls->flush();
 		}
 
 	}
@@ -609,17 +591,4 @@ class Object_Cache {
 		return in_array( $group, $this->_non_persistent_groups );
 	}
 
-	/**
-	 * Get the current instance object.
-	 *
-	 * @since 1.8
-	 * @access public
-	 */
-	public static function get_instance() {
-		if ( ! isset( self::$_instance ) ) {
-			self::$_instance = new self();
-		}
-
-		return self::$_instance;
-	}
 }
