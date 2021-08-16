@@ -9,8 +9,7 @@ namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class Utility extends Instance {
-	protected static $_instance;
+class Utility extends Root {
 	private static $_internal_domains;
 
 	/**
@@ -305,9 +304,9 @@ class Utility extends Instance {
 	 */
 	public static function parse_attr( $str ) {
 		$attrs = array();
-		preg_match_all( '#([\w-]+)=["\']([^"\']*)["\']#isU', $str, $matches, PREG_SET_ORDER );
+		preg_match_all( '#([\w-]+)=(\'|")([^\2]*)\2#isU', $str, $matches, PREG_SET_ORDER );
 		foreach ( $matches as $match ) {
-			$attrs[ $match[ 1 ] ] = trim( $match[ 2 ] );
+			$attrs[ $match[ 1 ] ] = trim( $match[ 3 ] );
 		}
 		return $attrs;
 	}
@@ -324,6 +323,9 @@ class Utility extends Instance {
 	 * @return bool|string False if not found, otherwise return the matched string in haystack.
 	 */
 	public static function str_hit_array( $needle, $haystack, $has_ttl = false ) {
+		if ( ! $haystack ) {
+			return false;
+		}
 		/**
 		 * Safety check to avoid PHP warning
 		 * @see  https://github.com/litespeedtech/lscache_wp/pull/131/commits/45fc03af308c7d6b5583d1664fad68f75fb6d017

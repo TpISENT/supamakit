@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: plugin, woocommerce, labels, product labels, badges, woocommerce labels, woocommerce badges, shop, store, ecommerce, merketing, products, tags
 Requires at least: 4.0
 Tested up to: 5.8
-Stable tag: 1.25
+Stable tag: 1.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,13 @@ Yes, you can use plugin [text variables](https://advanced-woo-labels.com/guide/t
 11. Admin labels page
 
 == Changelog ==
+
+= 1.27 ( 02.08.2021 ) =
+* Update - Support for Flatsome theme. Fix labels display for image gallery
+
+= 1.26 ( 19.07.2021 ) =
+* Update - Support for Elementor plugin. New option to disable labels for any Products block. New label display condition option - Is Elementor block.
+* Update - Tested with WC 5.5
 
 = 1.25 ( 05.07.2021 ) =
 * Fix - Bug with incorrect discounts calculation

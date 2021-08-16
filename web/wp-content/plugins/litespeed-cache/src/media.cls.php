@@ -12,9 +12,7 @@ namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class Media extends Instance {
-	protected static $_instance;
-
+class Media extends Root {
 	const LIB_FILE_IMG_LAZYLOAD = 'assets/js/lazyload.min.js';
 
 	private $content;
@@ -24,15 +22,11 @@ class Media extends Instance {
 	 * Init
 	 *
 	 * @since  1.4
-	 * @access protected
 	 */
-	protected function __construct() {
+	public function __construct() {
 		Debug2::debug2( '[Media] init' );
 
 		$this->_wp_upload_dir = wp_upload_dir();
-
-		// This always needs to load w/ WP
-		add_action( 'litspeed_after_admin_init', array( $this, 'after_admin_init' ) );
 	}
 
 	/**
@@ -42,41 +36,30 @@ class Media extends Instance {
 	 * @access public
 	 */
 	public function init() {
-		if ( $this->can_media() ) {
-			// Due to ajax call doesn't send correct accept header, have to limit webp to HTML only
-			if ( Conf::val( Base::O_IMG_OPTM_WEBP_REPLACE ) ) {
-				/**
-				 * Add vary filter
-				 * @since  1.6.2
-				 */
-				// Moved to htaccess
-				// add_filter( 'litespeed_vary', array( $this, 'vary_add' ) );
+		if ( is_admin() ) {
+			return;
+		}
 
-				//
-				if ( $this->webp_support() ) {
-					// Hook to srcset
-					if ( function_exists( 'wp_calculate_image_srcset' ) ) {
-						add_filter( 'wp_calculate_image_srcset', array( $this, 'webp_srcset' ), 988 );
-					}
-					// Hook to mime icon
-					// add_filter( 'wp_get_attachment_image_src', array( $this, 'webp_attach_img_src' ), 988 );// todo: need to check why not
-					// add_filter( 'wp_get_attachment_url', array( $this, 'webp_url' ), 988 ); // disabled to avoid wp-admin display
+		// Due to ajax call doesn't send correct accept header, have to limit webp to HTML only
+		if ( defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_IMG_OPTM_WEBP_REPLACE ) ) {
+			if ( $this->webp_support() ) {
+				// Hook to srcset
+				if ( function_exists( 'wp_calculate_image_srcset' ) ) {
+					add_filter( 'wp_calculate_image_srcset', array( $this, 'webp_srcset' ), 988 );
 				}
+				// Hook to mime icon
+				// add_filter( 'wp_get_attachment_image_src', array( $this, 'webp_attach_img_src' ), 988 );// todo: need to check why not
+				// add_filter( 'wp_get_attachment_url', array( $this, 'webp_url' ), 988 ); // disabled to avoid wp-admin display
 			}
-
-			/**
-			 * Replace gravatar
-			 * @since  3.0
-			 */
-			Avatar::get_instance();
 		}
 
 		/**
-		 * JPG quality control
+		 * Replace gravatar
 		 * @since  3.0
 		 */
-		add_filter( 'jpeg_quality', array( $this, 'adjust_jpg_quality' ) );
+		$this->cls( 'Avatar' );
 
+		add_filter( 'litespeed_buffer_finalize', array( $this, 'finalize' ), 4 );
 	}
 
 	/**
@@ -86,7 +69,7 @@ class Media extends Instance {
 	 * @access public
 	 */
 	public function adjust_jpg_quality( $quality ) {
-		$v = Conf::val( Base::O_IMG_OPTM_JPG_QUALITY );
+		$v = $this->conf( Base::O_IMG_OPTM_JPG_QUALITY );
 
 		if ( $v ) {
 			return $v;
@@ -96,26 +79,18 @@ class Media extends Instance {
 	}
 
 	/**
-	 * Check if it can use Media frontend
-	 *
-	 * @since  1.6.2
-	 * @access private
-	 */
-	private function can_media() {
-		if ( is_admin() ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Register admin menu
 	 *
 	 * @since 1.6.3
 	 * @access public
 	 */
 	public function after_admin_init() {
+		/**
+		 * JPG quality control
+		 * @since  3.0
+		 */
+		add_filter( 'jpeg_quality', array( $this, 'adjust_jpg_quality' ) );
+
 		add_filter( 'manage_media_columns', array( $this, 'media_row_title' ) );
 		add_filter( 'manage_media_custom_column', array( $this, 'media_row_actions' ), 10, 2 );
 
@@ -132,12 +107,12 @@ class Media extends Instance {
 	 * @access public
 	 */
 	public static function delete_attachment( $post_id ) {
-		if ( ! Data::get_instance()->tb_exist( 'img_optm' ) ) {
+		if ( ! Data::cls()->tb_exist( 'img_optm' ) ) {
 			return;
 		}
 
 		Debug2::debug( '[Media] delete_attachment [pid] ' . $post_id );
-		Img_Optm::get_instance()->reset_row( $post_id );
+		Img_Optm::cls()->reset_row( $post_id );
 	}
 
 	/**
@@ -399,7 +374,7 @@ class Media extends Instance {
 	 * @since  1.6.2
 	 * @access public
 	 */
-	private function webp_support() {
+	public function webp_support() {
 		if ( ! empty( $_SERVER[ 'HTTP_ACCEPT' ] ) && strpos( $_SERVER[ 'HTTP_ACCEPT' ], 'image/webp' ) !== false ) {
 			return true;
 		}
@@ -430,7 +405,7 @@ class Media extends Instance {
 	 * @access public
 	 * @return  string The buffer
 	 */
-	public static function finalize( $content ) {
+	public function finalize( $content ) {
 		if ( defined( 'LITESPEED_NO_LAZY' ) ) {
 			Debug2::debug2( '[Media] bypass: NO_LAZY const' );
 			return $content;
@@ -441,13 +416,16 @@ class Media extends Instance {
 			return $content;
 		}
 
+		if ( ! Control::is_cacheable() ) {
+			Debug2::debug( '[Media] bypass: Not cacheable' );
+			return $content;
+		}
+
 		Debug2::debug( '[Media] finalize' );
 
-		$instance = self::get_instance();
-		$instance->content = $content;
-
-		$instance->_finalize();
-		return $instance->content;
+		$this->content = $content;
+		$this->_finalize();
+		return $this->content;
 	}
 
 	/**
@@ -461,16 +439,16 @@ class Media extends Instance {
 		 * Use webp for optimized images
 		 * @since 1.6.2
 		 */
-		if ( Conf::val( Base::O_IMG_OPTM_WEBP_REPLACE ) && $this->webp_support() ) {
-			$this->_replace_buffer_img_webp();
+		if ( ( defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_IMG_OPTM_WEBP_REPLACE ) ) && $this->webp_support() ) {
+			$this->content = $this->_replace_buffer_img_webp( $this->content );
 		}
 
 		/**
 		 * Check if URI is excluded
 		 * @since  3.0
 		 */
-		$excludes = Conf::val( Base::O_MEDIA_LAZY_URI_EXC );
-		if ( $excludes ) {
+		$excludes = $this->conf( Base::O_MEDIA_LAZY_URI_EXC );
+		if ( ! defined( 'LITESPEED_GUEST_OPTM' ) ) {
 			$result = Utility::str_hit_array( $_SERVER[ 'REQUEST_URI' ], $excludes );
 			if ( $result ) {
 				Debug2::debug( '[Media] bypass lazyload: hit URI Excludes setting: ' . $result );
@@ -478,8 +456,10 @@ class Media extends Instance {
 			}
 		}
 
-		$cfg_lazy = Conf::val( Base::O_MEDIA_LAZY );
-		$cfg_iframe_lazy = Conf::val( Base::O_MEDIA_IFRAME_LAZY );
+		$cfg_lazy = defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_MEDIA_LAZY );
+		$cfg_iframe_lazy = defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_MEDIA_IFRAME_LAZY );
+		$cfg_js_delay = defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_OPTM_JS_DEFER ) == 2;
+		$cfg_trim_noscript = defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_OPTM_NOSCRIPT_RM );
 
 		if ( $cfg_lazy ) {
 			list( $src_list, $html_list, $placeholder_list ) = $this->_parse_img();
@@ -489,7 +469,7 @@ class Media extends Instance {
 		// image lazy load
 		if ( $cfg_lazy ) {
 
-			$__placeholder = Placeholder::get_instance();
+			$__placeholder = Placeholder::cls();
 
 			foreach ( $html_list as $k => $v ) {
 				$size = $placeholder_list[ $k ];
@@ -509,8 +489,13 @@ class Media extends Instance {
 			$html_list_ori = $html_list;
 
 			foreach ( $html_list as $k => $v ) {
-				$snippet = Conf::val( Base::O_OPTM_NOSCRIPT_RM ) ? '' : '<noscript>' . $v . '</noscript>';
-				$v = str_replace( ' src=', ' data-src=', $v );
+				$snippet = $cfg_trim_noscript ? '' : '<noscript>' . $v . '</noscript>';
+				if ( $cfg_js_delay ) {
+					$v = str_replace( ' src=', ' data-litespeed-src=', $v );
+				}
+				else {
+					$v = str_replace( ' src=', ' data-src=', $v );
+				}
 				$v = str_replace( '<iframe ', '<iframe data-lazyloaded="1" src="about:blank" ', $v );
 				$snippet = $v . $snippet;
 
@@ -522,7 +507,7 @@ class Media extends Instance {
 
 		// Include lazyload lib js and init lazyload
 		if ( $cfg_lazy || $cfg_iframe_lazy ) {
-			if ( Conf::val( Base::O_MEDIA_LAZYJS_INLINE ) ) {
+			if ( ! defined( 'LITESPEED_GUEST_OPTM' ) && $this->conf( Base::O_MEDIA_LAZYJS_INLINE ) ) {
 				$lazy_lib = '<script data-no-optimize="1">' . File::read( LSCWP_DIR . self::LIB_FILE_IMG_LAZYLOAD ) . '</script>';
 			} else {
 				$lazy_lib_url = LSWCP_PLUGIN_URL . self::LIB_FILE_IMG_LAZYLOAD;
@@ -547,25 +532,25 @@ class Media extends Instance {
 		 * @since 1.5
 		 * @since  2.7.1 Changed to array
 		 */
-		$excludes = apply_filters( 'litespeed_media_lazy_img_excludes', Conf::val( Base::O_MEDIA_LAZY_EXC ) );
+		$excludes = apply_filters( 'litespeed_media_lazy_img_excludes', $this->conf( Base::O_MEDIA_LAZY_EXC ) );
 
-		$cls_excludes = apply_filters( 'litespeed_media_lazy_img_cls_excludes', Conf::val( Base::O_MEDIA_LAZY_CLS_EXC ) );
+		$cls_excludes = apply_filters( 'litespeed_media_lazy_img_cls_excludes', $this->conf( Base::O_MEDIA_LAZY_CLS_EXC ) );
 		$cls_excludes[] = 'skip-lazy'; // https://core.trac.wordpress.org/ticket/44427
 
 		$src_list = array();
 		$html_list = array();
 		$placeholder_list = array();
 
-		$content = preg_replace( '#<!--.*-->#sU', '', $this->content );
+		$content = preg_replace( array( '#<!--.*-->#sU', '#<noscript([^>]*)>.*</noscript>#isU' ), '', $this->content );
 		/**
 		 * Exclude parent classes
 		 * @since  3.0
 		 */
-		$parent_cls_exc = apply_filters( 'litespeed_media_lazy_img_parent_cls_excludes', Conf::val( Base::O_MEDIA_LAZY_PARENT_CLS_EXC ) );
+		$parent_cls_exc = apply_filters( 'litespeed_media_lazy_img_parent_cls_excludes', $this->conf( Base::O_MEDIA_LAZY_PARENT_CLS_EXC ) );
 		if ( $parent_cls_exc ) {
 			Debug2::debug2( '[Media] Lazyload Class excludes', $parent_cls_exc );
 			foreach ( $parent_cls_exc as $v ) {
-				$content = preg_replace( '#<(\w+) [^>]*class=(\'|")[^\'"]*' . preg_quote( $v, '#' ) . '[^\'"]*\2[^>]*>.*</\1>#sU', '', $content );
+				$content = preg_replace( '#<(\w+) [^>]*class=(\'|")[^\2]*' . preg_quote( $v, '#' ) . '[^\2]*\2[^>]*>.*</\1>#sU', '', $content );
 			}
 		}
 
@@ -622,8 +607,35 @@ class Media extends Instance {
 				continue;
 			}
 
+			// Add missing dimensions
+			if ( defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_MEDIA_ADD_MISSING_SIZES ) ) {
+				if ( empty( $attrs[ 'width' ] ) || $attrs[ 'width' ] == 'auto' || empty( $attrs[ 'height' ] ) || $attrs[ 'height' ] == 'auto' ) {
+					Debug2::debug( '[Media] ⚠️ Missing sizes for image [src] ' . $attrs[ 'src' ] );
+					$dimensions = $this->_detect_dimensions( $attrs[ 'src' ] );
+					if ( $dimensions ) {
+						$ori_width = $dimensions[ 0 ];
+						$ori_height = $dimensions[ 1 ];
+						// Calculate height based on width
+						if ( ! empty( $attrs[ 'width' ] ) && $attrs[ 'width' ] != 'auto' ) {
+							$ori_height = intval( $ori_height * $attrs[ 'width' ] / $ori_width );
+						}
+						elseif ( ! empty( $attrs[ 'height' ] ) && $attrs[ 'height' ] != 'auto' ) {
+							$ori_width = intval( $ori_width * $attrs[ 'height' ] / $ori_height );
+						}
+
+						$attrs[ 'width' ] = $ori_width;
+						$attrs[ 'height' ] = $ori_height;
+						$new_html = preg_replace( '#(width|height)=(\'|")[^\2]*\2#', '', $match[ 0 ] );
+						$new_html = str_replace( '<img ', '<img width="' . $attrs[ 'width' ] . '" height="' . $attrs[ 'height' ] . '" ', $new_html );
+						Debug2::debug( '[Media] Add missing sizes ' . $attrs[ 'width' ] . 'x' . $attrs[ 'height' ] . ' to ' . $attrs[ 'src' ] );
+						$this->content = str_replace( $match[ 0 ], $new_html, $this->content );
+						$match[ 0 ] = $new_html;
+					}
+				}
+			}
+
 			$placeholder = false;
-			if ( ! empty( $attrs[ 'width' ] ) && ! empty( $attrs[ 'height' ] ) ) {
+			if ( ! empty( $attrs[ 'width' ] ) && $attrs[ 'width' ] != 'auto' && ! empty( $attrs[ 'height' ] ) && $attrs[ 'height' ] != 'auto' ) {
 				$placeholder = $attrs[ 'width' ] . 'x' . $attrs[ 'height' ];
 			}
 
@@ -636,6 +648,25 @@ class Media extends Instance {
 	}
 
 	/**
+	 * Detect the original sizes
+	 *
+	 * @since  4.0
+	 */
+	private function _detect_dimensions( $src ) {
+		if ( $pathinfo = Utility::is_internal_file( $src ) ) {
+			$src = $pathinfo[ 0 ];
+		}
+
+		$sizes = getimagesize( $src );
+
+		if ( ! empty( $sizes[ 0 ] ) && ! empty( $sizes[ 1 ] ) ) {
+			return $sizes;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Parse iframe src
 	 *
 	 * @since  1.4
@@ -643,7 +674,7 @@ class Media extends Instance {
 	 * @return array  All the src & related raw html list
 	 */
 	private function _parse_iframe() {
-		$cls_excludes = apply_filters( 'litespeed_media_iframe_lazy_cls_excludes', Conf::val( Base::O_MEDIA_IFRAME_LAZY_CLS_EXC ) );
+		$cls_excludes = apply_filters( 'litespeed_media_iframe_lazy_cls_excludes', $this->conf( Base::O_MEDIA_IFRAME_LAZY_CLS_EXC ) );
 		$cls_excludes[] = 'skip-lazy'; // https://core.trac.wordpress.org/ticket/44427
 
 		$html_list = array();
@@ -654,11 +685,11 @@ class Media extends Instance {
 		 * Exclude parent classes
 		 * @since  3.0
 		 */
-		$parent_cls_exc = apply_filters( 'litespeed_media_iframe_lazy_parent_cls_excludes', Conf::val( Base::O_MEDIA_IFRAME_LAZY_PARENT_CLS_EXC ) );
+		$parent_cls_exc = apply_filters( 'litespeed_media_iframe_lazy_parent_cls_excludes', $this->conf( Base::O_MEDIA_IFRAME_LAZY_PARENT_CLS_EXC ) );
 		if ( $parent_cls_exc ) {
 			Debug2::debug2( '[Media] Iframe Lazyload Class excludes', $parent_cls_exc );
 			foreach ( $parent_cls_exc as $v ) {
-				$content = preg_replace( '#<(\w+) [^>]*class=(\'|")[^\'"]*' . preg_quote( $v, '#' ) . '[^\'"]*\2[^>]*>.*</\1>#sU', '', $content );
+				$content = preg_replace( '#<(\w+) [^>]*class=(\'|")[^\2]*' . preg_quote( $v, '#' ) . '[^\2]*\2[^>]*>.*</\1>#sU', '', $content );
 			}
 		}
 
@@ -704,13 +735,12 @@ class Media extends Instance {
 	 * @since  1.6.2
 	 * @access private
 	 */
-	private function _replace_buffer_img_webp() {
-		// preg_match_all( '#<img([^>]+?)src=([\'"\\\]*)([^\'"\s\\\>]+)([\'"\\\]*)([^>]*)>#i', $this->content, $matches );
+	private function _replace_buffer_img_webp( $content ) {
 		/**
 		 * Added custom element & attribute support
 		 * @since 2.2.2
 		 */
-		$webp_ele_to_check = Conf::val( Base::O_IMG_OPTM_WEBP_ATTR );
+		$webp_ele_to_check = $this->conf( Base::O_IMG_OPTM_WEBP_ATTR );
 
 		foreach ( $webp_ele_to_check as $v ) {
 			if ( ! $v || strpos( $v, '.' ) === false ) {
@@ -723,13 +753,13 @@ class Media extends Instance {
 			$v = explode( '.', $v );
 			$attr = preg_quote( $v[ 1 ], '#' );
 			if ( $v[ 0 ] ) {
-				$pattern = '#<' . preg_quote( $v[ 0 ], '#' ) . '([^>]+)' . $attr . '=([\'"])(.+)\g{2}#iU';
+				$pattern = '#<' . preg_quote( $v[ 0 ], '#' ) . '([^>]+)' . $attr . '=(\'|")([^\2]+)\2#iU';
 			}
 			else {
-				$pattern = '# ' . $attr . '=([\'"])(.+)\g{1}#iU';
+				$pattern = '# ' . $attr . '=(\'|")([^\1]+)\1#iU';
 			}
 
-			preg_match_all( $pattern, $this->content, $matches );
+			preg_match_all( $pattern, $content, $matches );
 
 			foreach ( $matches[ $v[ 0 ] ? 3 : 2 ] as $k2 => $url ) {
 				// Check if is a DATA-URI
@@ -755,20 +785,36 @@ class Media extends Instance {
 					);
 				}
 
-				$this->content = str_replace( $matches[ 0 ][ $k2 ], $html_snippet, $this->content );
+				$content = str_replace( $matches[ 0 ][ $k2 ], $html_snippet, $content );
 
 			}
 		}
 
 		// parse srcset
 		// todo: should apply this to cdn too
-		if ( Conf::val( Base::O_IMG_OPTM_WEBP_REPLACE_SRCSET ) ) {
-			$this->content = Utility::srcset_replace( $this->content, array( $this, 'replace_webp' ) );
+		if ( defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_IMG_OPTM_WEBP_REPLACE_SRCSET ) ) {
+			$content = Utility::srcset_replace( $content, array( $this, 'replace_webp' ) );
 		}
 
 		// Replace background-image
-		preg_match_all( '#background\-image:(\s*)url\((.*)\)#iU', $this->content, $matches );
-		foreach ( $matches[ 2 ] as $k => $url ) {
+		if ( defined( 'LITESPEED_GUEST_OPTM' ) || $this->conf( Base::O_IMG_OPTM_WEBP_REPLACE ) ) {
+			$content = $this->replace_background_webp( $content );
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Replace background image
+	 *
+	 * @since  4.0
+	 */
+	public function replace_background_webp( $content ) {
+		Debug2::debug2( '[Media] Start replacing bakcground WebP.' );
+
+		// preg_match_all( '#background-image:(\s*)url\((.*)\)#iU', $content, $matches );
+		preg_match_all( '#url\(([^)]+)\)#iU', $content, $matches );
+		foreach ( $matches[ 1 ] as $k => $url ) {
 			// Check if is a DATA-URI
 			if ( strpos( $url, 'data:image' ) !== false ) {
 				continue;
@@ -786,8 +832,50 @@ class Media extends Instance {
 
 			// $html_snippet = sprintf( 'background-image:%1$surl(%2$s)', $matches[ 1 ][ $k ], $url2 );
 			$html_snippet = str_replace( $url, $url2, $matches[ 0 ][ $k ] );
-			$this->content = str_replace( $matches[ 0 ][ $k ], $html_snippet, $this->content );
+			$content = str_replace( $matches[ 0 ][ $k ], $html_snippet, $content );
 		}
+
+		return $content;
+	}
+
+	/**
+	 * Replace internal image src to webp
+	 *
+	 * @since  1.6.2
+	 * @access public
+	 */
+	public function replace_webp( $url ) {
+		Debug2::debug2( '[Media] webp replacing: ' . substr( $url, 0, 200 ) );
+
+		if ( substr( $url, -5 ) == '.webp' ) {
+			Debug2::debug2( '[Media] already webp' );
+			return false;
+		}
+
+		/**
+		 * WebP API hook
+		 * NOTE: As $url may contain query strings, WebP check will need to parse_url before appending .webp
+		 * @since  2.9.5
+		 * @see  #751737 - API docs for WebP generation
+		 */
+		if ( apply_filters( 'litespeed_media_check_ori', Utility::is_internal_file( $url ), $url ) ) {
+			// check if has webp file
+			if ( apply_filters( 'litespeed_media_check_webp', Utility::is_internal_file( $url, 'webp' ), $url ) ) {
+				$url .= '.webp';
+			}
+			else {
+				Debug2::debug2( '[Media] -no WebP file, bypassed' );
+				return false;
+			}
+		}
+		else {
+			Debug2::debug2( '[Media] -no file, bypassed' );
+			return false;
+		}
+
+		Debug2::debug2( '[Media] - replaced to: ' . $url );
+
+		return $url;
 	}
 
 	/**
@@ -839,46 +927,6 @@ class Media extends Instance {
 			}
 		}
 		return $srcs;
-	}
-
-	/**
-	 * Replace internal image src to webp
-	 *
-	 * @since  1.6.2
-	 * @access public
-	 */
-	public function replace_webp( $url ) {
-		Debug2::debug2( '[Media] webp replacing: ' . $url, 4 );
-
-		if ( substr( $url, -5 ) == '.webp' ) {
-			Debug2::debug2( '[Media] already webp' );
-			return false;
-		}
-
-		/**
-		 * WebP API hook
-		 * NOTE: As $url may contain query strings, WebP check will need to parse_url before appending .webp
-		 * @since  2.9.5
-		 * @see  #751737 - API docs for WEBP generation
-		 */
-		if ( apply_filters( 'litespeed_media_check_ori', Utility::is_internal_file( $url ), $url ) ) {
-			// check if has webp file
-			if ( apply_filters( 'litespeed_media_check_webp', Utility::is_internal_file( $url, 'webp' ), $url ) ) {
-				$url .= '.webp';
-			}
-			else {
-				Debug2::debug2( '[Media] -no WebP file, bypassed' );
-				return false;
-			}
-		}
-		else {
-			Debug2::debug2( '[Media] -no file, bypassed' );
-			return false;
-		}
-
-		Debug2::debug2( '[Media] - replaced to: ' . $url );
-
-		return $url;
 	}
 
 }

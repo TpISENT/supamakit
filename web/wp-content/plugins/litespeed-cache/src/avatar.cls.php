@@ -12,8 +12,6 @@ namespace LiteSpeed;
 defined( 'WPINC' ) || exit;
 
 class Avatar extends Base {
-	protected static $_instance;
-
 	const TYPE_GENERATE = 'generate';
 
 	private $_conf_cache_ttl;
@@ -26,18 +24,17 @@ class Avatar extends Base {
 	 * Init
 	 *
 	 * @since  1.4
-	 * @access protected
 	 */
-	protected function __construct() {
-		if ( ! Conf::val( Base::O_DISCUSS_AVATAR_CACHE ) ) {
+	public function __construct() {
+		if ( ! $this->conf( self::O_DISCUSS_AVATAR_CACHE ) ) {
 			return;
 		}
 
 		Debug2::debug2( '[Avatar] init' );
 
-		$this->_tb = Data::get_instance()->tb( 'avatar' );
+		$this->_tb = $this->cls( 'Data' )->tb( 'avatar' );
 
-		$this->_conf_cache_ttl = Conf::val( Base::O_DISCUSS_AVATAR_CACHE_TTL );
+		$this->_conf_cache_ttl = $this->conf( self::O_DISCUSS_AVATAR_CACHE_TTL );
 
 		add_filter( 'get_avatar_url', array( $this, 'crawl_avatar' ) );
 
@@ -50,8 +47,8 @@ class Avatar extends Base {
 	 * @since 3.0
 	 * @access public
 	 */
-	public static function need_db() {
-		if ( Conf::val( Base::O_DISCUSS_AVATAR_CACHE ) ) {
+	public function need_db() {
+		if ( $this->conf( self::O_DISCUSS_AVATAR_CACHE ) ) {
 			return true;
 		}
 
@@ -63,7 +60,7 @@ class Avatar extends Base {
 	 * @since  3.0
 	 * @access public
 	 */
-	public function serve_satic( $md5 ) {
+	public function serve_static( $md5 ) {
 		global $wpdb;
 
 		Debug2::debug( '[Avatar] is avatar request' );
@@ -173,7 +170,7 @@ class Avatar extends Base {
 	 * @since  3.0
 	 */
 	private function _rewrite( $url ) {
-		return LITESPEED_STATIC_URL . '/avatar/' . md5( $url ) . '.jpg';
+		return LITESPEED_STATIC_URL . '/avatar/' . $this->_filepath( $url );
 	}
 
 	/**
@@ -183,7 +180,20 @@ class Avatar extends Base {
 	 * @access private
 	 */
 	private function _realpath( $url ) {
-		return LITESPEED_STATIC_DIR . '/avatar/' . md5( $url ) . '.jpg';
+		return LITESPEED_STATIC_DIR . '/avatar/' . $this->_filepath( $url );
+	}
+
+	/**
+	 * Get filepath
+	 *
+	 * @since  4.0
+	 */
+	private function _filepath( $url ) {
+		$filename = md5( $url ) . '.jpg';
+		if ( is_multisite() ) {
+			$filename = get_current_blog_id() . '/' . $filename;
+		}
+		return $filename;
 	}
 
 	/**
@@ -192,9 +202,12 @@ class Avatar extends Base {
 	 * @since  3.0
 	 * @access public
 	 */
-	public function rm_cache_folder() {
-		if ( file_exists( LITESPEED_STATIC_DIR . '/avatar' ) ) {
-			File::rrmdir( LITESPEED_STATIC_DIR . '/avatar' );
+	public function rm_cache_folder( $subsite_id = false ) {
+		if ( $subsite_id ) {
+			file_exists( LITESPEED_STATIC_DIR . '/avatar' . $subsite_id ) && File::rrmdir( LITESPEED_STATIC_DIR . '/avatar/' . $subsite_id );
+		}
+		else {
+			file_exists( LITESPEED_STATIC_DIR . '/avatar' ) && File::rrmdir( LITESPEED_STATIC_DIR . '/avatar' );
 		}
 
 		// Clear avatar summary
@@ -212,7 +225,7 @@ class Avatar extends Base {
 	public static function cron( $force = false ) {
 		global $wpdb;
 
-		$_instance = self::get_instance();
+		$_instance = self::cls();
 		if ( ! $_instance->queue_count() ) {
 			Debug2::debug( '[Avatar] no queue' );
 			return;
@@ -298,9 +311,7 @@ class Avatar extends Base {
 	 * @since  3.0
 	 * @access public
 	 */
-	public static function handler() {
-		$instance = self::get_instance();
-
+	public function handler() {
 		$type = Router::verify_type();
 
 		switch ( $type ) {

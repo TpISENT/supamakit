@@ -28,7 +28,6 @@ class FrontEnd {
 	 */
 	private $version;
 
-	private $option_key = 'stop-user-enumeration';
 
 	/**
 	 * Initialize the class and set its properties.
@@ -65,20 +64,6 @@ class FrontEnd {
 		}
 	}
 
-	public function only_allow_logged_in_rest_access_to_users( $access ) {
-		if ( 'on' === Core::sue_get_option( 'stop_rest_user', 'off' ) ) {
-			if ( ( preg_match( '/users/', $_SERVER['REQUEST_URI'] ) !== 0 ) || ( isset( $_REQUEST['rest_route'] ) && ( preg_match( '/users/', $_REQUEST['rest_route'] ) !== 0 ) ) ) {
-				if ( ! is_user_logged_in() ) {
-					$this->sue_log();
-
-					return new WP_Error( 'rest_cannot_access', esc_html__( 'Only authenticated users can access the User endpoint REST API.', 'stop-user-enumeration' ), array( 'status' => rest_authorization_required_code() ) );
-				}
-			}
-		}
-
-		return $access;
-	}
-
 	private function ContainsNumbers( $String ) {
 		return preg_match( '/\\d/', $String ) > 0;
 	}
@@ -87,7 +72,7 @@ class FrontEnd {
 		$ip = $this->get_ip();
 		if ( false !== $ip && 'on' === Core::sue_get_option( 'log_auth', 'off' ) ) {
 			openlog( 'wordpress(' . sanitize_text_field( $_SERVER['HTTP_HOST'] ) . ')', LOG_NDELAY | LOG_PID, LOG_AUTH );
-			syslog( LOG_INFO, "Attempted user enumeration from " . $ip );
+			syslog( LOG_INFO, esc_html( "Attempted user enumeration from " . $ip ) );
 			closelog();
 		}
 	}
@@ -114,12 +99,32 @@ class FrontEnd {
 		return filter_var( $ipaddress, FILTER_VALIDATE_IP );
 	}
 
+	public function only_allow_logged_in_rest_access_to_users( $access ) {
+		if ( 'on' === Core::sue_get_option( 'stop_rest_user', 'off' ) ) {
+			if ( ( preg_match( '/users/i', $_SERVER['REQUEST_URI'] ) !== 0 ) || ( isset( $_REQUEST['rest_route'] ) && ( preg_match( '/users/i', $_REQUEST['rest_route'] ) !== 0 ) ) ) {
+				if ( ! is_user_logged_in() ) {
+					$this->sue_log();
+
+					return new WP_Error( 'rest_cannot_access', esc_html__( 'Only authenticated users can access the User endpoint REST API.', 'stop-user-enumeration' ), array( 'status' => rest_authorization_required_code() ) );
+				}
+			}
+		}
+
+		return $access;
+	}
+
 	public function remove_author_sitemap( $provider, $name ) {
 		if ( 'users' === $name ) {
 			return false;
 		}
 
 		return $provider;
+	}
+
+	public function remove_author_url_from_oembed( $data ) {
+		unset( $data['author_url'] );
+
+		return $data;
 	}
 
 }

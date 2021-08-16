@@ -9,6 +9,12 @@
 namespace Stop_User_Enumeration\Admin;
 
 
+use Freemius;
+
+/**
+ * Class Admin_Settings
+ * @package Stop_User_Enumeration\Admin
+ */
 class Admin_Settings extends Admin_Pages {
 
 	protected $settings_page;
@@ -22,7 +28,7 @@ class Admin_Settings extends Admin_Pages {
 	 *
 	 * @param string $plugin_name
 	 * @param string $version plugin version.
-	 * @param \Freemius $freemius Freemius SDK.
+	 * @param Freemius $freemius Freemius SDK.
 	 */
 
 	public function __construct( $plugin_name, $version, $freemius ) {
@@ -34,7 +40,6 @@ class Admin_Settings extends Admin_Pages {
 		$this->settings_title = esc_html__( 'Stop User Enumeration', 'stop-user-enumeration' );
 		parent::__construct();
 	}
-
 
 
 	public function enqueue_styles( $hook ) {
@@ -96,6 +101,7 @@ class Admin_Settings extends Admin_Pages {
 					// set defaults
 					'stop_rest_user' => 'on',
 					'stop_sitemap'   => 'on',
+					'stop_oembed'    => 'on',
 					'log_auth'       => 'on',
 					'comment_jquery' => 'on',
 				);
@@ -121,43 +127,30 @@ class Admin_Settings extends Admin_Pages {
 			'normal',                 /* Context */
 			'default'                 /* Priority */
 		);
-		/*
-		add_meta_box(
-			'offers',
-			__( 'Offers', 'stop-user-enumeration' ),
-			array( $this, 'meta_box_offers' ),
-			$this->settings_page_id,
-			'side',
-			'default'
-		);
-       */
-
-
 	}
 
-	public function meta_box_offers() {
-		$offer_id = rand( 1, 3 );
-		include STOP_USER_ENUMERATION_PLUGIN_DIR . 'admin/templates/metabox_offers_' . $offer_id . '.php';
-	}
 
 	public function meta_box_information() {
 		?>
         <table class="form-table">
             <tbody>
-            <tr valign="top" class="alternate">
+            <tr class="alternate">
                 <th scope="row"><?php _e( 'About this Plugin', 'stop-user-enumeration' ); ?></th>
-                <td>
-					<?php _e( '<p>Stop User Enumeration detects attempts by malicious scanners to identify your users</p>
-                    <p>If a bot or user is caught scanning for user names they are denied access and their IP is
-                        logged</p>
-                    <p>When you are viewing an admin page, the plugin does nothing, this is designed this way as it is
-                        assumed admin user have authority, bear this in mind when testing.</p><br>
-                    <p>This plugin is best used in conjunction with a blocking tool to exclude the IP for longer. If you
-                        are on a VPS or dedicated server where you have root access you can install and configure <a
-                                href="https://www.fail2ban.org" target="_blank">fail2ban</a></p>', 'stop-user-enumeration' ); ?>
+                <td><p>
+						<?php esc_html_e( 'Stop User Enumeration detects attempts by malicious scanners to identify your users', 'stop-user-enumeration' ); ?>
+                    </p><p><?php esc_html_e( 'If a bot or user is caught scanning for user names they are denied access and their IP is
+                        logged', 'stop-user-enumeration' ); ?>
+                    </p><p>
+						<?php esc_html_e( 'When you are viewing an admin page, the plugin does nothing, this is designed this way as it is
+                        assumed admin user have authority, bear this in mind when testing.', 'stop-user-enumeration' ); ?>
+                    </p><br><p><?php esc_html_e( 'This plugin is best used in conjunction with a blocking tool to exclude the IP for longer. If you
+                        are on a VPS or dedicated server where you have root access you can install and configure', 'stop-user-enumeration' ); ?>
+                        <a href="https://www.fail2ban.org" target="_blank">fail2ban</a></p><br><p>
+					<?php esc_html_e( 'Also note: It is very common for users to leave their Display Name and Nickname the same as their Username, in which case the Username is leaked by so many things. Best to check at least your admins don\'t do this', 'stop-user-enumeration' ); ?>
+                    </p>
                 </td>
             </tr>
-            <tr valign="top">
+            <tr>
                 <th scope="row"><?php _e( 'Support', 'stop-user-enumeration' ); ?></th>
                 <td>
 					<?php _e( '<a class="button-secondary"
@@ -175,6 +168,9 @@ class Admin_Settings extends Admin_Pages {
 		}
 		if ( ! isset( $settings['stop_sitemap'] ) ) {
 			$settings['stop_sitemap'] = 'off';  // always set checkboxes if they dont exist
+		}
+		if ( ! isset( $settings['stop_oembed'] ) ) {
+			$settings['stop_oembed'] = 'off';  // always set checkboxes if they dont exist
 		}
 		if ( ! isset( $settings['log_auth'] ) ) {
 			$settings['log_auth'] = 'off';  // always set checkboxes if they dont exist
@@ -197,6 +193,9 @@ class Admin_Settings extends Admin_Pages {
 		if ( ! isset( $options['stop_sitemap'] ) ) {
 			$options['stop_sitemap'] = 'off';
 		}
+		if ( ! isset( $options['stop_oembed'] ) ) {
+			$options['stop_oembed'] = 'off';
+		}
 		if ( ! isset( $options['log_auth'] ) ) {
 			$options['log_auth'] = 'off';
 		}
@@ -206,7 +205,7 @@ class Admin_Settings extends Admin_Pages {
 		?>
         <table class="form-table">
             <tbody>
-            <tr valign="top">
+            <tr>
                 <th scope="row"><?php esc_html_e( 'Stop REST API User calls', 'stop-user-enumeration' ); ?></th>
                 <td>
                     <label for="stop-user-enumeration[stop_rest_user]"><input type="checkbox"
@@ -218,7 +217,19 @@ class Admin_Settings extends Admin_Pages {
                     </label>
                 </td>
             </tr>
-            <tr valign="top">
+            <tr class="alternate">
+                <th scope="row"><?php esc_html_e( 'Stop oEmbed calls revealing user ids', 'stop-user-enumeration' ); ?></th>
+                <td>
+                    <label for="stop-user-enumeration[stop_rest_user]"><input type="checkbox"
+                                                                              name="stop-user-enumeration[stop_rest_user]]"
+                                                                              id="stop-user-enumeration[stop_rest_user]"
+                                                                              value="on"
+							<?php checked( 'on', $options['stop_rest_user'] ); ?>>
+						<?php esc_html_e( 'WordPress reveals the user login ID through oEmbed calls by including the Author Archive link which contains the user id. When in many cases just the Author Name is enough. Note: remember it is not good idea to have login user id equal to your display name', 'stop-user-enumeration' ); ?>
+                    </label>
+                </td>
+            </tr>
+            <tr>
                 <th scope="row"><?php esc_html_e( 'Disable WP Core Author sitemaps', 'stop-user-enumeration' ); ?></th>
                 <td>
                     <label for="stop-user-enumeration[stop_sitemap]"><input type="checkbox"
@@ -226,11 +237,11 @@ class Admin_Settings extends Admin_Pages {
                                                                             id="stop-user-enumeration[stop_sitemap]"
                                                                             value="on"
 							<?php checked( 'on', $options['stop_sitemap'] ); ?>>
-						<?php _e( 'WordPress provides sitemaps for built-in content types like pages and author archives out of the box. The Author sitemap exposes the user id.', 'stop-user-enumeration' ); ?>
+						<?php esc_html_e( 'WordPress provides sitemaps for built-in content types like pages and author archives out of the box. The Author sitemap exposes the user id.', 'stop-user-enumeration' ); ?>
                     </label>
                 </td>
             </tr>
-            <tr valign="top" class="alternate">
+            <tr class="alternate">
                 <th scope="row"><?php esc_html_e( 'log attempts to AUTH LOG', 'stop-user-enumeration' ); ?></th>
                 <td>
                     <label for="stop-user-enumeration[log_auth]"><input type="checkbox"
@@ -244,7 +255,7 @@ class Admin_Settings extends Admin_Pages {
                     </label>
                 </td>
             </tr>
-            <tr valign="top">
+            <tr>
                 <th scope="row"><?php esc_html_e( 'Remove numbers from comment authors', 'stop-user-enumeration' ); ?></th>
                 <td>
                     <label for="stop-user-enumeration[comment_jquery]"><input type="checkbox"
@@ -252,17 +263,13 @@ class Admin_Settings extends Admin_Pages {
                                                                               id="stop-user-enumeration[comment_jquery]"
                                                                               value="on"
 							<?php checked( 'on', $options['comment_jquery'] ); ?>>
-	                    <?php esc_html_e( 'This plugin uses JavaScript to remove any numbers from a comment author name, this is because numbers trigger enumeration checking. You can untick this if you do not use comments on your site or you use a different comment method than standard',
+						<?php esc_html_e( 'This plugin uses JavaScript to remove any numbers from a comment author name, this is because numbers trigger enumeration checking. You can untick this if you do not use comments on your site or you use a different comment method than standard',
 							'stop-user-enumeration' ); ?></label>
                 </td>
             </tr>
-
-
             </tbody>
         </table>
 		<?php
 	}
-
-
 }
 

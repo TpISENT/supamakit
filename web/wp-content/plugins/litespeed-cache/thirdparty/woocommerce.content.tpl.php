@@ -6,6 +6,8 @@ defined( 'WPINC' ) || exit;
 use \LiteSpeed\API;
 use \LiteSpeed\Doc;
 use \LiteSpeed\Admin_Display;
+use \LiteSpeed\Lang;
+use \LiteSpeed\Base;
 ?>
 
 <div data-litespeed-layout='woocommerce'>
@@ -18,10 +20,23 @@ use \LiteSpeed\Admin_Display;
 <div class="litespeed-callout notice notice-warning inline">
 	<h4><?php echo __( 'NOTICE:', 'litespeed-cache' ); ?></h4>
 	<p><?php echo __( 'After verifying that the cache works in general, please test the cart.', 'litespeed-cache' ); ?></p>
-	<p><?php echo sprintf( __( 'To test the cart, visit the <a %s>FAQ</a>.', 'litespeed-cache' ), 'href="https://docs.litespeedtech.com/lscache/lscwp/installation/#testing" target="_blank"' ); ?></p>
+	<p><?php echo sprintf( __( 'To test the cart, visit the <a %s>FAQ</a>.', 'litespeed-cache' ), 'href="https://docs.litespeedtech.com/lscache/lscwp/installation/#non-cacheable-pages" target="_blank"' ); ?></p>
+	<p><?php echo __( 'By default, the My Account, Checkout, and Cart pages are automatically excluded from caching. Misconfiguration of page associations in WooCommerce settings may cause some pages to be erroneously excluded.', 'litespeed-cache' ); ?></p>
 </div>
 
 <table class="wp-list-table striped litespeed-table"><tbody>
+	<tr>
+		<th>
+			<?php $id = self::O_ESI_CACHE_CART; ?>
+			<?php echo __( 'Use ESI for Cart', 'litespeed-cache' ); ?>
+		</th>
+		<td>
+			<?php do_action( 'litespeed_build_switch' , $id ); ?>
+			<div class="litespeed-desc">
+				<?php echo sprintf( __( 'When the option is ON, cart information will be implemented as ESI blocks. NOTE: To make it work, you need to turn on %1$s under ESI settings.', 'litespeed-cache' ), '<code>' . Lang::title( Base::O_ESI ) . '</code>' ); ?>
+			</div>
+		</td>
+	</tr>
 	<tr>
 		<th>
 			<?php $id = self::O_UPDATE_INTERVAL; ?>

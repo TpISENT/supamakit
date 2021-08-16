@@ -8,43 +8,53 @@ namespace LiteSpeed;
 defined( 'WPINC' ) || exit;
 
 class Cloud extends Base {
-	protected static $_instance;
-
 	const CLOUD_SERVER = 'https://api.quic.cloud';
+	const CLOUD_IPS = 'https://api.quic.cloud/ips?json';
 	const CLOUD_SERVER_DASH = 'https://my.quic.cloud';
+	const CLOUD_SERVER_WP = 'https://wpapi.quic.cloud';
 
 	const SVC_D_NODES 			= 'd/nodes';
 	const SVC_D_SYNC_CONF		= 'd/sync_conf';
 	const SVC_D_REGIONNODES		= 'd/regionnodes';
 	const SVC_D_USAGE 			= 'd/usage';
-	const SVC_CCSS 				= 'ccss' ;
-	const SVC_LQIP 				= 'lqip' ;
-	const SVC_IMG_OPTM			= 'img_optm' ;
-	const SVC_HEALTH			= 'health' ;
-	const SVC_CDN				= 'cdn' ;
+	const SVC_PAGE_OPTM 		= 'page_optm';
+	const SVC_CCSS 				= 'ccss';
+	const SVC_UCSS 				= 'ucss';
+	const SVC_LQIP 				= 'lqip';
+	const SVC_IMG_OPTM			= 'img_optm';
+	const SVC_HEALTH			= 'health';
+	const SVC_CDN				= 'cdn';
 
+	const BM_IMG_OPTM_PRIO = 16;
 	const BM_IMG_OPTM_JUMBO_GROUP = 32;
 	const IMG_OPTM_JUMBO_GROUP = 1000;
 	const IMG_OPTM_DEFAULT_GROUP = 200;
 
 	const IMGOPTM_TAKEN         = 'img_optm-taken';
 
-	const EXPIRATION_NODE = 3; // Days before node expired
+	const TTL_NODE = 3; // Days before node expired
 	const EXPIRATION_REQ = 300; // Seconds of min interval between two unfinished requests
 	const EXPIRATION_TOKEN = 900; // Min intval to request a token 15m
+	const TTL_IPS = 3; // Days for node ip list cache
 
-	const API_NEWS 			= 'wp/news';
 	const API_REPORT		= 'wp/report' ;
-	const API_VER			= 'wp/ver' ;
-	const API_BETA_TEST		= 'wp/beta_test' ;
+	const API_NEWS 			= 'news';
+	const API_VER			= 'ver';
+	const API_BETA_TEST		= 'beta_test';
 
 	private static $CENTER_SVC_SET = array(
 		self::SVC_D_NODES,
 		self::SVC_D_REGIONNODES,
 		self::SVC_D_SYNC_CONF,
 		self::SVC_D_USAGE,
-		self::API_NEWS,
+		// self::API_NEWS,
 		self::API_REPORT,
+		// self::API_VER,
+		// self::API_BETA_TEST,
+	);
+
+	private static $WP_SVC_SET = array(
+		self::API_NEWS,
 		self::API_VER,
 		self::API_BETA_TEST,
 	);
@@ -59,7 +69,9 @@ class Cloud extends Base {
 
 	public static $SERVICES = array(
 		self::SVC_IMG_OPTM,
+		self::SVC_PAGE_OPTM,
 		self::SVC_CCSS,
+		self::SVC_UCSS,
 		self::SVC_LQIP,
 		self::SVC_CDN,
 		self::SVC_HEALTH,
@@ -80,8 +92,8 @@ class Cloud extends Base {
 	 *
 	 * @since  3.0
 	 */
-	protected function __construct() {
-		$this->_api_key = Conf::val( Base::O_API_KEY );
+	public function __construct() {
+		$this->_api_key = $this->conf( self::O_API_KEY );
 		$this->_summary = self::get_summary();
 	}
 
@@ -150,7 +162,7 @@ class Cloud extends Base {
 			return;
 		}
 
-		if ( ! empty( $this->_summary[ 'news.plugin' ] ) && Activation::get_instance()->dash_notifier_is_plugin_active( $this->_summary[ 'news.plugin' ] ) ) {
+		if ( ! empty( $this->_summary[ 'news.plugin' ] ) && Activation::cls()->dash_notifier_is_plugin_active( $this->_summary[ 'news.plugin' ] ) ) {
 			return;
 		}
 
@@ -188,13 +200,26 @@ class Cloud extends Base {
 		$this->_summary[ 'news.new' ] = 1;
 
 		if ( $this->_summary[ 'news.plugin' ] ) {
-			$plugin_info = Activation::get_instance()->dash_notifier_get_plugin_info( $this->_summary[ 'news.plugin' ] );
+			$plugin_info = Activation::cls()->dash_notifier_get_plugin_info( $this->_summary[ 'news.plugin' ] );
 			if ( $plugin_info && ! empty( $plugin_info->name ) ) {
 				$this->_summary[ 'news.plugin_name' ] = $plugin_info->name;
 			}
 		}
 
 		self::save_summary();
+	}
+
+	/**
+	 * Check if contains a package in a service or not
+	 *
+	 * @since  4.0
+	 */
+	public function has_pkg( $service, $pkg ) {
+		if ( ! empty( $this->_summary[ 'usage.' . $service ][ 'pkgs' ] ) && $this->_summary[ 'usage.' . $service ][ 'pkgs' ] & $pkg ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -209,7 +234,12 @@ class Cloud extends Base {
 			$this->sync_usage();
 		}
 
-		if ( empty( $this->_summary[ 'usage.' . $service ] ) ) {
+		if ( in_array( $service, array( self::SVC_CCSS, self::SVC_UCSS ) ) ) { // @since 4.2
+			$service = self::SVC_PAGE_OPTM;
+		}
+
+		$usage = $this->_summary[ 'usage.' . $service ];
+		if ( empty( $usage ) ) {
 			return 0;
 		}
 
@@ -217,30 +247,36 @@ class Cloud extends Base {
 		$allowance_max = 0;
 		if ( $service == self::SVC_IMG_OPTM ) {
 			$allowance_max = self::IMG_OPTM_DEFAULT_GROUP;
-			if ( ! empty( $this->_summary[ 'usage.' . $service ][ 'pkgs' ] ) && $this->_summary[ 'usage.' . $service ][ 'pkgs' ] & self::BM_IMG_OPTM_JUMBO_GROUP ) {
+			if ( ! empty( $usage[ 'pkgs' ] ) && $usage[ 'pkgs' ] & self::BM_IMG_OPTM_JUMBO_GROUP ) {
 				$allowance_max = self::IMG_OPTM_JUMBO_GROUP;
 			}
 		}
 
-		$allowance = $this->_summary[ 'usage.' . $service ][ 'quota' ] - $this->_summary[ 'usage.' . $service ][ 'used' ];
+		$allowance = $usage[ 'quota' ] - $usage[ 'used' ];
 
 		if ( $allowance > 0 ) {
 			if ( $allowance_max && $allowance_max < $allowance ) {
-				return $allowance_max;
+				$allowance = $allowance_max;
 			}
+
+			// Daily limit @since 4.2
+			if ( isset( $usage[ 'remaining_daily_quota' ] ) && $usage[ 'remaining_daily_quota' ] >= 0 && $usage[ 'remaining_daily_quota' ] < $allowance ) {
+				$allowance = $usage[ 'remaining_daily_quota' ];
+			}
+
 			return $allowance;
 		}
 
 		// Check Pay As You Go balance
-		if ( empty( $this->_summary[ 'usage.' . $service ][ 'pag_bal' ] ) ) {
+		if ( empty( $usage[ 'pag_bal' ] ) ) {
 			return $allowance_max;
 		}
 
-		if ( $allowance_max && $allowance_max < $this->_summary[ 'usage.' . $service ][ 'pag_bal' ] ) {
+		if ( $allowance_max && $allowance_max < $usage[ 'pag_bal' ] ) {
 			return $allowance_max;
 		}
 
-		return $this->_summary[ 'usage.' . $service ][ 'pag_bal' ];
+		return $usage[ 'pag_bal' ];
 	}
 
 	/**
@@ -297,9 +333,13 @@ class Cloud extends Base {
 			return self::CLOUD_SERVER;
 		}
 
+		if ( in_array( $service, self::$WP_SVC_SET ) ) {
+			return self::CLOUD_SERVER_WP;
+		}
+
 		// Check if the stored server needs to be refreshed
 		if ( ! $force ) {
-			if ( ! empty( $this->_summary[ 'server.' . $service ] ) && ! empty( $this->_summary[ 'server_date.' . $service ] ) && $this->_summary[ 'server_date.' . $service ] > time() - 86400 * self::EXPIRATION_NODE ) {
+			if ( ! empty( $this->_summary[ 'server.' . $service ] ) && ! empty( $this->_summary[ 'server_date.' . $service ] ) && $this->_summary[ 'server_date.' . $service ] > time() - 86400 * self::TTL_NODE ) {
 				return $this->_summary[ 'server.' . $service ];
 			}
 		}
@@ -322,7 +362,7 @@ class Cloud extends Base {
 			Debug2::debug( '❄️  request cloud list failed: ', $json );
 
 			if ( $json ) {
-				$msg = __( 'Cloud Error', 'litespeed-cache' ) . ": [Service] $service [Info] " . $json;
+				$msg = __( 'Cloud Error', 'litespeed-cache' ) . ": [Service] $service [Info] " . json_encode( $json );
 				Admin_Display::error( $msg );
 			}
 
@@ -379,7 +419,7 @@ class Cloud extends Base {
 	 * @access public
 	 */
 	public static function get( $service, $data = array() ) {
-		$instance = self::get_instance();
+		$instance = self::cls();
 		return $instance->_get( $service, $data );
 	}
 
@@ -444,26 +484,30 @@ class Cloud extends Base {
 			return true;
 		}
 
+		$expiration_req = self::EXPIRATION_REQ;
 		// Limit frequent unfinished request to 5min
 		$timestamp_tag = 'curr_request.';
 		if ( $service_tag == self::SVC_IMG_OPTM . '-' . Img_Optm::TYPE_NEW_REQ ) {
 			$timestamp_tag = 'last_request.';
+			if ( $this->has_pkg( self::SVC_IMG_OPTM, self::BM_IMG_OPTM_PRIO ) ) {
+				$expiration_req /= 3;
+			}
 		}
 		else {
 			// For all other requests, if is under debug mode, will always allow
-			if ( Conf::val( Base::O_DEBUG ) && $this->_api_key ) {
+			if ( $this->conf( self::O_DEBUG ) && $this->_api_key ) {
 				return true;
 			}
 		}
 
 		if ( ! empty( $this->_summary[ $timestamp_tag . $service_tag ] ) ) {
-			$expired = $this->_summary[ $timestamp_tag . $service_tag ] + self::EXPIRATION_REQ - time();
+			$expired = $this->_summary[ $timestamp_tag . $service_tag ] + $expiration_req - time();
 			if ( $expired > 0 ) {
 				Debug2::debug( "[Cloud] ❌ try [$service_tag] after $expired seconds" );
 
 				if ( $service_tag !== self::API_VER ) {
 					$msg = __( 'Cloud Error', 'litespeed-cache' ) . ': ' . sprintf( __( 'Please try after %1$s for service %2$s.', 'litespeed-cache' ), Utility::readable_time( $expired, 0, true ), '<code>' . $service_tag . '</code>' );
-					Admin_Display::error( $msg );
+					Admin_Display::error( array( 'cloud_trylater' => $msg ) );
 				}
 
 				return false;
@@ -489,7 +533,7 @@ class Cloud extends Base {
 	 * @access public
 	 */
 	public static function post( $service, $data = false, $time_out = false ) {
-		$instance = self::get_instance();
+		$instance = self::cls();
 		return $instance->_post( $service, $data, $time_out );
 	}
 
@@ -547,6 +591,10 @@ class Cloud extends Base {
 			if ( $service !== self::API_VER ) {
 				$msg = __( 'Failed to request via WordPress', 'litespeed-cache' ) . ': ' . $error_message . " [server] $server [service] $service";
 				Admin_Display::error( $msg );
+
+				// Force redetect node
+				Debug2::debug( '❄️  Node error, redetecting node [svc] ' . $service );
+				$this->detect_cloud( $service, true );
 			}
 			return;
 		}
@@ -559,6 +607,10 @@ class Cloud extends Base {
 			if ( $service !== self::API_VER ) {
 				$msg = __( 'Failed to request via WordPress', 'litespeed-cache' ) . ': ' . $response[ 'body' ] . " [server] $server [service] $service";
 				Admin_Display::error( $msg );
+
+				// Force redetect node
+				Debug2::debug( '❄️  Node error, redetecting node [svc] ' . $service );
+				$this->detect_cloud( $service, true );
 			}
 
 			return;
@@ -649,11 +701,12 @@ class Cloud extends Base {
 
 			// Site not on QC, delete invalid domain key
 			if ( $json_msg == 'site_not_registered' || $json_msg == 'err_key' ) {
-				Conf::get_instance()->update_confs( array( Base::O_API_KEY => '' ) );
+				$this->cls( 'Conf' )->update_confs( array( self::O_API_KEY => '' ) );
 
 				$msg = __( 'Site not recognized. Domain Key has been automatically removed. Please request a new one.', 'litespeed-cache' );
 				$msg .= Doc::learn_more( admin_url( 'admin.php?page=litespeed-general' ), __( 'Click here to set.', 'litespeed-cache' ), true, false, true );
-				Admin_Display::error( $msg );
+				$msg .= Doc::learn_more( 'https://docs.litespeedtech.com/lscache/lscwp/general/#domain-key', false, false, false, true );
+				Admin_Display::error( $msg, false, true );
 			}
 
 			return;
@@ -785,7 +838,7 @@ class Cloud extends Base {
 		$data = array(
 			'site_url'	=> home_url(),
 			'rest'		=> function_exists( 'rest_get_url_prefix' ) ? rest_get_url_prefix() : apply_filters( 'rest_url_prefix', 'wp-json' ),
-			'server_ip'	=> Conf::val( Base::O_SERVER_IP ),
+			'server_ip'	=> $this->conf( self::O_SERVER_IP ),
 		);
 		if ( ! empty( $this->_summary[ 'token' ] ) ) {
 			$data[ 'token' ] = $this->_summary[ 'token' ];
@@ -881,7 +934,7 @@ class Cloud extends Base {
 		}
 
 		// This doesn't need to sync QUIC conf but need to clear nodes
-		Conf::get_instance()->update_confs( array( Base::O_API_KEY => $_POST[ 'domain_key' ] ) );
+		$this->cls( 'Conf' )->update_confs( array( self::O_API_KEY => $_POST[ 'domain_key' ] ) );
 
 		$this->_summary[ 'is_linked' ] = $_POST[ 'is_linked' ] ? 1 : 0;
 		$this->_summary[ 'apikey_ts' ] = time();
@@ -977,8 +1030,34 @@ class Cloud extends Base {
 	 *
 	 * @since  3.0
 	 */
-	public static function is_from_cloud() {
-		$response = wp_remote_get( 'https://www.quic.cloud/ips?json' );
+	public function is_from_cloud() {
+		if ( empty( $this->_summary[ 'ips' ] ) || empty( $this->_summary[ 'ips_ts' ] ) || time() - $this->_summary[ 'ips_ts' ] > 86400 * self::TTL_IPS ) {
+			$this->_update_ips();
+		}
+
+		$res = $this->cls( 'Router' )->ip_access( $this->_summary[ 'ips' ] );
+		if ( ! $res ) {
+			Debug2::debug( '❄️ ❌ Not our cloud IP' );
+
+			// Refresh IP list for future detection
+			$this->_update_ips();
+		}
+		else {
+			Debug2::debug( '❄️ ✅ Passed Cloud IP verification' );
+		}
+
+		return $res;
+	}
+
+	/**
+	 * Update Cloud IP list
+	 *
+	 * @since 4.2
+	 */
+	private function _update_ips() {
+		Debug2::debug( '❄️ Load remote Cloud IP list from ' . self::CLOUD_IPS );
+
+		$response = wp_remote_get( self::CLOUD_IPS );
 		if ( is_wp_error( $response ) ) {
 			$error_message = $response->get_error_message();
 			Debug2::debug( '[CLoud] failed to get ip whitelist: ' . $error_message );
@@ -987,7 +1066,9 @@ class Cloud extends Base {
 
 		$json = json_decode( $response[ 'body' ], true );
 
-		return Router::get_instance()->ip_access( $json );
+		$this->_summary[ 'ips_ts' ] = time();
+		$this->_summary[ 'ips' ] = $json;
+		self::save_summary();
 	}
 
 	/**
@@ -1015,36 +1096,34 @@ class Cloud extends Base {
 	 * @since  3.0
 	 * @access public
 	 */
-	public static function handler() {
-		$instance = self::get_instance();
-
+	public function handler() {
 		$type = Router::verify_type();
 
 		switch ( $type ) {
 			case self::TYPE_CLEAR_CLOUD:
-				$instance->clear_cloud();
+				$this->clear_cloud();
 				break;
 
 			case self::TYPE_REDETECT_CLOUD:
 				if ( ! empty( $_GET[ 'svc' ] ) ) {
-					$instance->detect_cloud( $_GET[ 'svc' ], true );
+					$this->detect_cloud( $_GET[ 'svc' ], true );
 				}
 				break;
 
 			case self::TYPE_CLEAR_PROMO:
-				$instance->_clear_promo();
+				$this->_clear_promo();
 				break;
 
 			case self::TYPE_GEN_KEY:
-				$instance->gen_key();
+				$this->gen_key();
 				break;
 
 			case self::TYPE_LINK:
-				$instance->_link_to_qc();
+				$this->_link_to_qc();
 				break;
 
 			case self::TYPE_SYNC_USAGE:
-				$instance->sync_usage();
+				$this->sync_usage();
 
 				$msg = __( 'Sync credit allowance with Cloud Server successfully.', 'litespeed-cache' ) ;
 				Admin_Display::succeed( $msg ) ;

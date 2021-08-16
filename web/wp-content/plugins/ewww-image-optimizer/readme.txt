@@ -3,9 +3,9 @@ Contributors: nosilver4u
 Donate link: https://ewww.io/donate/
 Tags: optimize, image, convert, webp, resize, compress, lazy load, optimization, lossless, lossy, seo, scale
 Requires at least: 5.4
-Tested up to: 5.7
+Tested up to: 5.8
 Requires PHP: 7.1
-Stable tag: 6.1.9
+Stable tag: 6.2.3
 License: GPLv3
 
 Smaller Images, Faster Sites, Happier Visitors. Comprehensive image optimization that doesn't require a degree in rocket science.
@@ -114,7 +114,7 @@ See [https://docs.ewww.io/article/39-bulk-optimizer-failure](https://docs.ewww.i
 
 = What are the supported operating systems? =
 
-I've tested it on Windows (with Apache), Linux, Mac OSX, FreeBSD, and Solaris. The cloud API will work on any OS.
+I've tested it on Windows (with Apache), Linux, Mac OSX, FreeBSD, and Solaris. The Compress API and Easy IO CDN will work on any OS.
 
 = I want to know more about image optimization, and why you chose these options/tools. =
 
@@ -131,6 +131,48 @@ That's not a question, but since I made it up, I'll answer it. See this resource
 
 * Feature requests can be viewed and submitted on our [feedback portal](https://feedback.ewww.io/b/features)
 * If you would like to help translate this plugin in your language, [join the team](https://translate.wordpress.org/projects/wp-plugins/ewww-image-optimizer/)
+
+= 6.2.3 =
+* fixed: db error when MariaDB 10.1 does not permit ALTER for setting default column value
+* fixed: Lazy Load missing placeholder folder when Easy IO is enabled
+
+= 6.2.2 =
+* added: disable Easy IO's "deep" integration with image_downsize filter via EIO_DISABLE_DEEP_INTEGRATION override
+* added: integration with JSON/AJAX respones from Spotlight Social Media Feeds plugin
+* changed: PNG placeholders are now inlined for less HTTP requests and better auto-scaling
+* changed: Bulk Optimizer processes images from oldest to newest for the Media Library
+* changed: Resize Detection uses minified JS and console logging suppressed unless using SCRIPT_DEBUG
+* fixed: Easy IO does not rewrite image (href) links if image_downsize integration has rewritten the img tag
+* fixed: Lazy Load throws error when ewww_webp_supported not defined in edge cases
+* fixed: front-end scripts loading for page builders when they shouldn't be
+* fixed: when using WP/LR Sync, EWWWIO_WPLR_AUTO does not trigger optimization for new images
+* fixed: img element search parsing JSON incorrectly
+* fixed: WebP uploads not resized to max dimensions
+
+= 6.2.1 =
+* fixed: Lazy Load regression prevents above-the-fold CSS background images from loading
+* fixed: WebP Conversion for CMYK images leaves empty color profile attached
+
+= 6.2.0 =
+* added: PHP-based WebP Conversion via GD/Imagick in free mode when exec() is disabled
+* added: enable -sharp_yuv option for WebP conversion with the EIO_WEBP_SHARP_YUV override
+* added: WebP Conversion for CMYK images
+* added: webp-supported conditional class added to body tag when JS WebP is active
+* added: WP-CLI command can be run with --webp-only option
+* added: Lazy Load for iframes, add 'iframe' in exclusions to disable
+* added: compatibility with S3 Uploads 3.x
+* added: preserve metadata and apply lossless compression to linked versions of images via Easy IO with EIO_PRESERVE_LINKED_IMAGES constant
+* added: Easy IO rewrites URLs in existing picture elements
+* changed: JS WebP scripts moved to beginning of page footer
+* changed: native lazy loading is now enabled for right-sized PNG placeholders, override with EIO_DISABLE_NATIVE_LAZY constant
+* changed: add resume ability to Delete Originals tool
+* changed: move Easy IO check-in to wp_cron
+* fixed: empty .webp images sometimes produced when cwebp encounters an error
+* fixed: Bulk Optimizer for NextGEN loading incorrect script
+* fixed: Bulk Optimizer for NextGEN fails to verify nonce for selective optimization
+* fixed: Last Optimized times for Optimized Images table were incorrect
+* fixed: Add Missing Dimensions overwrites smaller width/height attribute if only one is set
+* fixed: replacing an existing attribute (like width) with a numeric value is broken
 
 = 6.1.9 =
 * fixed: Easy IO's Include All Resources compat with Oxygen Builder and Beaver Builder

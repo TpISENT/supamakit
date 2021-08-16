@@ -1,10 +1,8 @@
 === Stop User Enumeration ===
 Contributors: fullworks,alanfuller
 Tags: User Enumeration, Security, WPSCAN, fail2ban,
-Requires at least: 4.6
-Requires PHP: 5.6
-Tested up to: 5.7
-Stable tag: 1.3.30
+Tested up to: 5.8
+Stable tag: 1.3.32
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +17,8 @@ User Enumeration is a type of attack where nefarious parties can probe your webs
 If you are on a VPS or dedicated server, as the attack IP is logged, you can use (optional additional configuration) fail2ban to block the attack directly at your server's firewall, a very powerful solution for VPS owners to stop brute force attacks as well as DDoS attacks.
 
 If you don't have access to install fail2ban ( e.g. on a Shared Host ) you can still use this plugin.
+
+The plugin can stop the user id being leaked by the oEmbed API call.
 
 Since WordPress 4.5 user data can also be obtained by API calls without logging in, this is a WordPress feature, but if you don't need it to get user data, this
 plugin will restrict and log that too.
@@ -41,7 +41,7 @@ Either using the dashboard 'Add Plugin' feature to find, install and activate th
 
 = It doesn't seem to work! ==
 Are you logged in?  This plugin won't do anything for logged in users, it only works when you are logged out. This is the way it is designed. A common mistake is to install the plugin and test it, while still logged in as admin.
-= My user name still seems to be leaked! ==
+= It my user name still seems to be leaked! ==
 Themes and xml feeds will include your user 'Display Name'. If you do not specify any name details or nick name, the 'Display Name' will default to your user name. Make sure your Display Name is always set NOT to your user name or it will be leaked in multiple places.
 = Are there any settings? =
 Yes, but the default ones are fine for most cases
@@ -61,10 +61,15 @@ An fail2ban config file, wordpress-userenum.conf is found in the plugin director
 An example jail.local is found in plugin directory stop-user-enumeration/fail2ban
 
 == Upgrade Notice ==
-= 1.3.30 =
-Upgrade to version 1.3.30 to disable author site maps - you will need to enable in settings (closes issue #6)
 
 == Changelog ==
+= 1.3.32 =
+* be case insensitive when checking REST API
+
+= 1.3.31 =
+* Upgrade to version 1.3.30 to disable author site maps - you will need to enable in settings (closes issue #6)
+
+
 = 1.3.30 =
 * option to remove author site maps
 

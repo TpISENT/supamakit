@@ -20,11 +20,11 @@ class Image
 	{
 		Debug2::debug( 'CLI_Cloud init' );
 
-		$this->__img_optm = Img_Optm::get_instance();
+		$this->__img_optm = Img_Optm::cls();
 	}
 
 	/**
-	 * Send image optimization request to cloud server
+	 * Send image optimization request to QUIC.cloud server
 	 *
 	 * ## OPTIONS
 	 *
@@ -40,7 +40,7 @@ class Image
 	}
 
 	/**
-	 * Pull optimized images from cloud server
+	 * Pull optimized images from QUIC.cloud server
 	 *
 	 * ## OPTIONS
 	 *
@@ -127,7 +127,7 @@ class Image
 	}
 
 	/**
-	 * Clean up unfinished image data from cloud server
+	 * Clean up unfinished image data from QUIC.cloud server
 	 *
 	 * ## OPTIONS
 	 *

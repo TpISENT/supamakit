@@ -4,27 +4,11 @@ defined( 'WPINC' ) || exit;
 ?>
 
 <h3 class="litespeed-title-short">
-	<?php echo __( 'Optimization Settings', 'litespeed-cache' ); ?>
-	<?php Doc::learn_more( 'https://docs.litespeedtech.com/lscache/lscwp/pageopt/#optimization-settings-tab' ); ?>
+	<?php echo __( 'HTML Settings', 'litespeed-cache' ); ?>
+	<?php Doc::learn_more( 'https://docs.litespeedtech.com/lscache/lscwp/pageopt/#html-settings-tab' ); ?>
 </h3>
 
 <table class="wp-list-table striped litespeed-table"><tbody>
-
-	<tr>
-		<th>
-			<?php $id = Base::O_OPTM_TTL; ?>
-			<?php $this->title( $id ); ?>
-		</th>
-		<td>
-			<?php $this->build_input( $id ); ?> <?php $this->readable_seconds(); ?>
-			<div class="litespeed-desc">
-				<?php echo __( 'Specify how long, in seconds, CSS/JS files are cached.', 'litespeed-cache' ); ?>
-				<?php $this->recommended( $id ); ?>
-				<?php $this->_validate_ttl( $id, 3600 ); ?>
-			</div>
-		</td>
-	</tr>
-
 	<tr>
 		<th>
 			<?php $id = Base::O_OPTM_HTML_MIN; ?>
@@ -62,9 +46,24 @@ defined( 'WPINC' ) || exit;
 		<td>
 			<?php $this->build_switch( $id ); ?>
 			<div class="litespeed-desc">
-				<?php echo __( 'Widely enable DNS prefetch for URLs in the document, including images, CSS, JavaScript, and so forth.', 'litespeed-cache' ); ?>
+				<?php echo __( 'Automatically enable DNS prefetching for all URLs in the document, including images, CSS, JavaScript, and so forth.', 'litespeed-cache' ); ?>
 				<?php echo __( 'This can improve the page loading speed.', 'litespeed-cache' ); ?>
 				<?php Doc::learn_more( 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control' ); ?>
+			</div>
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+			<?php $id = Base::O_OPTM_HTML_LAZY; ?>
+			<?php $this->title( $id ); ?>
+		</th>
+		<td>
+			<?php $this->build_textarea( $id ); ?>
+			<div class="litespeed-desc">
+				<?php echo __( 'Delay rendering off-screen HTML elements by its selector.', 'litespeed-cache' ); ?>
+				<?php Doc::one_per_line(); ?>
+				<?php Doc::learn_more( 'https://docs.litespeedtech.com/lscache/lscwp/pageopt/#html-lazyload-selectors' ); ?>
 			</div>
 		</td>
 	</tr>
@@ -77,7 +76,7 @@ defined( 'WPINC' ) || exit;
 		<td>
 			<?php $this->build_switch( $id ); ?>
 			<div class="litespeed-desc">
-				<?php echo __( 'Remove query strings from static resources.', 'litespeed-cache' ); ?>
+				<?php echo __( 'Remove query strings from internal static resources.', 'litespeed-cache' ); ?>
 				<br /><font class="litespeed-warning">
 					⚠️
 					<?php echo __( 'Google reCAPTCHA will be bypassed automatically.', 'litespeed-cache' ); ?>
@@ -99,7 +98,7 @@ defined( 'WPINC' ) || exit;
 			<?php $this->build_switch( $id ); ?>
 			<div class="litespeed-desc">
 				<?php echo __( 'Use Web Font Loader library to load Google Fonts asynchronously while leaving other CSS intact.', 'litespeed-cache' ); ?>
-				<?php echo __( 'This will also add a preconnect to Google for faster Google Fonts downloading.', 'litespeed-cache' ); ?>
+				<?php echo __( 'This will also add a preconnect to Google Fonts to establish a connection earlier.', 'litespeed-cache' ); ?>
 				<?php Doc::learn_more( 'https://docs.litespeedtech.com/lscache/lscwp/pageopt/#load-google-fonts-asynchronously' ); ?>
 			</div>
 		</td>

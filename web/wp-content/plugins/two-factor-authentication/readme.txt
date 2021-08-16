@@ -2,7 +2,7 @@
 Tags: two factor, 2fa, tfa, two factor auth, google authenticator
 Requires at least: 3.4
 Tested up to: 5.8
-Stable tag: 1.10.3
+Stable tag: 1.10.4
 Requires PHP: 5.6
 Author: DavidAnderson
 Contributors: DavidAnderson, DNutbourne
@@ -155,6 +155,10 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 13. Allowing users to have trusted devices (Premium version)
 
 == Changelog ==
+
+= 1.10.4 - 27/Jul/2021 =
+
+* TWEAK: Fix a couple of minor visual regressions in the WooCommerce login form TFA field layout
 
 = 1.10.3 - 28/Jun/2021 =
 
@@ -688,4 +692,4 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 * User interface simplified/de-cluttered
 
 == Upgrade Notice ==
-* 1.10.3 : Incorrect object reference in Affiliate WP integration (regression in 1.10.0)
+* 1.10.4 : Fix a couple of minor visual regressions in the WooCommerce login form TFA field layout

@@ -13,9 +13,7 @@ namespace LiteSpeed;
 
 defined( 'WPINC' ) || exit;
 
-class ESI extends Instance {
-	protected static $_instance;
-
+class ESI extends Root {
 	private static $has_esi = false;
 	private static $_combine_ids = array();
 	private $esi_args = null;
@@ -37,28 +35,33 @@ class ESI extends Instance {
 	/**
 	 * Confructor of ESI
 	 *
-	 * @since    1.2.0
-	 * @access protected
+	 * @since  1.2.0
+	 * @since  4.0 Change to be after Vary init in hook 'after_setup_theme'
 	 */
-	protected function __construct() {
+	public function init() {
 		/**
 		 * Bypass ESI related funcs if disabled ESI to fix potential DIVI compatibility issue
 		 * @since  2.9.7.2
 		 */
-		if ( Router::is_ajax() || ! Router::esi_enabled() ) {
+		if ( Router::is_ajax() || ! $this->cls( 'Router' )->esi_enabled() ) {
+			return;
+		}
+
+		// Guest mode, don't need to use ESI
+		if ( defined( 'LITESPEED_GUEST' ) && LITESPEED_GUEST ) {
 			return;
 		}
 
 		// Init ESI in `after_setup_theme` hook after detected if LITESPEED_DISABLE_ALL is ON or not
-		add_action( 'litespeed_initing', array( $this, 'esi_init' ) );
+		$this->_hooks();
 
 		/**
 		 * Overwrite wp_create_nonce func
 		 * @since  2.9.5
 		 */
-		if ( ! is_admin() && ! function_exists( 'wp_create_nonce' ) ) {
-			$this->_transform_nonce();
-		}
+		$this->_transform_nonce();
+
+		! defined( 'LITESPEED_ESI_INITED' ) && define( 'LITESPEED_ESI_INITED', true );
 	}
 
 	/**
@@ -67,10 +70,11 @@ class ESI extends Instance {
 	 * Load delayed by hook to give the ability to bypass by LITESPEED_DISABLE_ALL const
 	 *
 	 * @since 2.9.7.2
-	 * @access public
+	 * @since  4.0 Changed to private from public
+	 * @access private
 	 */
-	public function esi_init() {
-		add_action( 'template_include', array( $this, 'esi_template' ), 99999 );
+	private function _hooks() {
+		add_filter( 'template_include', array( $this, 'esi_template' ), 99999 );
 
 		add_action( 'load-widgets.php', __NAMESPACE__ . '\Purge::purge_widget' );
 		add_action( 'wp_update_comment_count', __NAMESPACE__ . '\Purge::purge_comment_widget' );
@@ -108,9 +112,13 @@ class ESI extends Instance {
 	 * @since  2.9.5
 	 */
 	private function _transform_nonce() {
+		if ( is_admin() ) {
+			return;
+		}
+
 		// Load ESI nonces in conf
-		$nonces = Conf::val( Base::O_ESI_NONCE );
-		add_filter( 'litespeed_esi_nonces', array( Data::get_instance(), 'load_esi_nonces' ) );
+		$nonces = $this->conf( Base::O_ESI_NONCE );
+		add_filter( 'litespeed_esi_nonces', array( $this->cls( 'Data' ), 'load_esi_nonces' ) );
 		if ( $nonces = apply_filters( 'litespeed_esi_nonces', $nonces ) ) {
 			foreach ( $nonces as $action ) {
 				$this->nonce_action( $action );
@@ -118,9 +126,6 @@ class ESI extends Instance {
 		}
 
 		add_action( 'litespeed_nonce', array( $this, 'nonce_action' ) );
-
-		Debug2::debug( '[ESI] Overwrite wp_create_nonce()' );
-		litespeed_define_nonce_func();
 	}
 
 	/**
@@ -152,6 +157,15 @@ class ESI extends Instance {
 	 * @since 2.9.5
 	 */
 	public function is_nonce_action( $action ) {
+		// If GM not run yet, then ESI not init yet, then ESI nonce will not be allowed even nonce func replaced.
+		if ( ! defined( 'LITESPEED_ESI_INITED' ) ) {
+			return null;
+		}
+
+		if ( is_admin() ) {
+			return null;
+		}
+
 		foreach ( $this->_nonce_actions as $k => $v ) {
 			if ( strpos( $k, '*' ) !== false ) {
 				if( preg_match( '#' . $k . '#iU', $action ) ) {
@@ -189,7 +203,7 @@ class ESI extends Instance {
 		do_action( 'litespeed_esi_shortcode-' . $atts[ 0 ] );
 
 		// Show ESI link
-		return self::sub_esi_block( 'esi', 'esi-shortcode', $atts, $cache );
+		return $this->sub_esi_block( 'esi', 'esi-shortcode', $atts, $cache );
 	}
 
 	/**
@@ -230,7 +244,7 @@ class ESI extends Instance {
 		 * Only when ESI's parent is not REST, replace REQUEST_URI to avoid breaking WP5 editor REST call
 		 * @since 2.9.3
 		 */
-		if ( ! empty( $_SERVER[ 'ESI_REFERER' ] ) && ! REST::get_instance()->is_rest( $_SERVER[ 'ESI_REFERER' ] ) ) {
+		if ( ! empty( $_SERVER[ 'ESI_REFERER' ] ) && ! $this->cls( 'REST' )->is_rest( $_SERVER[ 'ESI_REFERER' ] ) ) {
 			$_SERVER[ 'REQUEST_URI' ] = $_SERVER[ 'ESI_REFERER' ];
 		}
 
@@ -389,7 +403,7 @@ class ESI extends Instance {
 	 * @param bool $svar  		If store the value in memory or not, in memory wil be faster
 	 * @param array $inline_val 	If show the current value for current request( this can avoid multiple esi requests in first time cache generating process )
 	 */
-	public static function sub_esi_block( $block_id, $wrapper, $params = array(), $control = 'private,no-vary', $silence = false, $preserved = false, $svar = false, $inline_param = array() ) {
+	public function sub_esi_block( $block_id, $wrapper, $params = array(), $control = 'private,no-vary', $silence = false, $preserved = false, $svar = false, $inline_param = array() ) {
 		if ( empty($block_id) || ! is_array($params) || preg_match('/[^\w-]/', $block_id) ) {
 			return false;
 		}
@@ -399,7 +413,7 @@ class ESI extends Instance {
 			$params[ '_ls_silence' ] = true;
 		}
 
-		if ( REST::get_instance()->is_rest() || REST::get_instance()->is_internal_rest() ) {
+		if ( $this->cls( 'REST' )->is_rest() || $this->cls( 'REST' )->is_internal_rest() ) {
 			$params[ 'is_json' ] = 1;
 		}
 
@@ -425,7 +439,7 @@ class ESI extends Instance {
 		}
 
 		// Append hash
-		$appended_params[ '_hash' ] = self::_gen_esi_md5( $appended_params );
+		$appended_params[ '_hash' ] = $this->_gen_esi_md5( $appended_params );
 
 		/**
 		 * Escape potential chars
@@ -469,7 +483,7 @@ class ESI extends Instance {
 		// Will reverse the buffer when output in self::finalize()
 		if ( $preserved ) {
 			$hash = md5( $output );
-			self::get_instance()->_esi_preserve_list[ $hash ] = $output;
+			$this->_esi_preserve_list[ $hash ] = $output;
 			Debug2::debug( "[ESI] Preserved to $hash" );
 
 			return $hash;
@@ -484,7 +498,7 @@ class ESI extends Instance {
 	 * @since  2.9.6
 	 * @access private
 	 */
-	private static function _gen_esi_md5( $params ) {
+	private function _gen_esi_md5( $params ) {
 		$keys = array(
 			self::QS_ACTION,
 			'_control',
@@ -499,7 +513,7 @@ class ESI extends Instance {
 		}
 		Debug2::debug2( '[ESI] md5_string=' . $str );
 
-		return md5( Conf::val( Base::HASH ) . $str );
+		return md5( $this->conf( Base::HASH ) . $str );
 	}
 
 	/**
@@ -544,7 +558,7 @@ class ESI extends Instance {
 		 * Validate if is a legal ESI req
 		 * @since 2.9.6
 		 */
-		if ( empty( $_GET[ '_hash' ] ) || self::_gen_esi_md5( $_GET ) != $_GET[ '_hash' ] ) {
+		if ( empty( $_GET[ '_hash' ] ) || $this->_gen_esi_md5( $_GET ) != $_GET[ '_hash' ] ) {
 			Debug2::debug( '[ESI] ❌ Failed to validate _hash' );
 			return;
 		}
@@ -661,7 +675,7 @@ class ESI extends Instance {
 			self::PARAM_ARGS => $args
 		);
 
-		echo self::sub_esi_block( 'widget', 'widget ' . $name, $params, $esi_private . 'no-vary' );
+		echo $this->sub_esi_block( 'widget', 'widget ' . $name, $params, $esi_private . 'no-vary' );
 
 		return false;
 	}
@@ -686,7 +700,7 @@ class ESI extends Instance {
 			'ref' => $_SERVER[ 'REQUEST_URI' ],
 		);
 
-		echo self::sub_esi_block( 'admin-bar', 'adminbar', $params );
+		echo $this->sub_esi_block( 'admin-bar', 'adminbar', $params );
 	}
 
 	/**
@@ -743,7 +757,7 @@ class ESI extends Instance {
 		}
 
 		wp_admin_bar_render();
-		if ( ! Conf::val( Base::O_ESI_CACHE_ADMBAR ) ) {
+		if ( ! $this->conf( Base::O_ESI_CACHE_ADMBAR ) ) {
 			Control::set_nocache( 'build-in set to not cacheable' );
 		}
 		else {
@@ -765,7 +779,7 @@ class ESI extends Instance {
 	public function load_comment_form_block( $params ) {
 		comment_form( $params[ self::PARAM_ARGS ], $params[ self::PARAM_ID ] );
 
-		if ( ! Conf::val( Base::O_ESI_CACHE_COMMFORM ) ) {
+		if ( ! $this->conf( Base::O_ESI_CACHE_COMMFORM ) ) {
 			Control::set_nocache( 'build-in set to not cacheable' );
 		}
 		else {
@@ -903,7 +917,7 @@ class ESI extends Instance {
 			self::PARAM_ARGS => $this->esi_args,
 		);
 
-		echo self::sub_esi_block( 'comment-form', 'comment form', $params );
+		echo $this->sub_esi_block( 'comment-form', 'comment form', $params );
 		echo GUI::clean_wrapper_begin();
 		add_action( 'comment_form_after', array( $this, 'comment_form_sub_clean' ) );
 	}
@@ -925,26 +939,24 @@ class ESI extends Instance {
 	 * @since  2.6
 	 * @access public
 	 */
-	public static function finalize( $buffer ) {
-		$instance = self::get_instance();
-
+	public function finalize( $buffer ) {
 		// Prepend combo esi block
 		if ( self::$_combine_ids ) {
 			Debug2::debug( '[ESI] 🍔 Enabled combo' );
-			$esi_block = self::sub_esi_block( self::COMBO, '__COMBINE_MAIN__', array(), 'no-cache', true );
+			$esi_block = $this->sub_esi_block( self::COMBO, '__COMBINE_MAIN__', array(), 'no-cache', true );
 			$buffer = $esi_block . $buffer;
 		}
 
 		// Bypass if no preserved list to be replaced
-		if ( ! $instance->_esi_preserve_list ) {
+		if ( ! $this->_esi_preserve_list ) {
 			return $buffer;
 		}
 
-		$keys = array_keys( $instance->_esi_preserve_list );
+		$keys = array_keys( $this->_esi_preserve_list );
 
 		Debug2::debug( '[ESI] replacing preserved blocks', $keys );
 
-		$buffer = str_replace( $keys, $instance->_esi_preserve_list, $buffer );
+		$buffer = str_replace( $keys, $this->_esi_preserve_list, $buffer );
 
 		return $buffer;
 	}

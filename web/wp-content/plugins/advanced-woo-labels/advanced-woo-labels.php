@@ -3,12 +3,12 @@
 /*
 Plugin Name: Advanced Woo Labels
 Description: Advance WooCommerce product labels plugin
-Version: 1.25
+Version: 1.27
 Author: ILLID
 Author URI: https://advanced-woo-labels.com/
 Text Domain: advanced-woo-labels
 WC requires at least: 3.0.0
-WC tested up to: 5.4.0
+WC tested up to: 5.5.0
 */
 
 
@@ -85,7 +85,7 @@ final class AWL_Main {
      */
     private function define_constants() {
 
-        $this->define( 'AWL_VERSION', '1.25' );
+        $this->define( 'AWL_VERSION', '1.27' );
 
         $this->define( 'AWL_DIR', plugin_dir_path( AWL_FILE ) );
         $this->define( 'AWL_URL', plugin_dir_url( AWL_FILE ) );
